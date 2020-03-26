@@ -177,6 +177,33 @@ testmain.cc.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/testmain.cc.s
 .PHONY : testmain.cc.s
 
+voting_info_UT.o: voting_info_UT.cc.o
+
+.PHONY : voting_info_UT.o
+
+# target to build an object file
+voting_info_UT.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/voting_info_UT.cc.o
+.PHONY : voting_info_UT.cc.o
+
+voting_info_UT.i: voting_info_UT.cc.i
+
+.PHONY : voting_info_UT.i
+
+# target to preprocess a source file
+voting_info_UT.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/voting_info_UT.cc.i
+.PHONY : voting_info_UT.cc.i
+
+voting_info_UT.s: voting_info_UT.cc.s
+
+.PHONY : voting_info_UT.s
+
+# target to generate assembly for a file
+voting_info_UT.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/voting_info_UT.cc.s
+.PHONY : voting_info_UT.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -192,6 +219,9 @@ help:
 	@echo "... testmain.o"
 	@echo "... testmain.i"
 	@echo "... testmain.s"
+	@echo "... voting_info_UT.o"
+	@echo "... voting_info_UT.i"
+	@echo "... voting_info_UT.s"
 .PHONY : help
 
 
