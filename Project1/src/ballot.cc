@@ -4,7 +4,6 @@
  * @copyright 2020 5801 Team3, All rights reserved.
  */
 
-#include <list>
 #include "ballot.h"
 
 Ballot::Ballot(int ballot_id, std::list<int> CandidateList) {

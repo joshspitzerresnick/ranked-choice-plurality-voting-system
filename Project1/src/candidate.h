@@ -45,6 +45,7 @@ class Candidate {  // : public Reporter {
   int GetNumBallots();
   /**
   * @brief Add a ballot to the list of ballots the candidate has
+  * @param[in] A ballot object
   * @return int of the number of ballots the candidate has
   */
   int AddBallot(Ballot);
@@ -85,6 +86,7 @@ class STVCandidate : public Candidate {
   std::list<Ballot> RemoveBallotList();
   /**
   * @brief Save ballot id number for the first ballot given to an STV candiate.
+  * @param[in] the ballot id number as an integer.
   */
   void SetFirstBallotNum(int);
   /**
