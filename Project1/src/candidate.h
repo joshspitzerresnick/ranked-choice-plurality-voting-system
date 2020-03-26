@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include "ballot.h"
 
 /**
  * @brief The main class for candidates.

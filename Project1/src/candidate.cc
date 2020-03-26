@@ -7,7 +7,7 @@
 #include "candidate.h"
 #include "ballot.h"
 
-Candidate::Candidate(int, std::string, std::string) {
+Candidate::Candidate(int=-1, std::string="Fred", std::string="Party") {
     // Add code here
 }
 

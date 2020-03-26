@@ -150,6 +150,33 @@ ballot_UT.cc.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/ballot_UT.cc.s
 .PHONY : ballot_UT.cc.s
 
+candidate_UT.o: candidate_UT.cc.o
+
+.PHONY : candidate_UT.o
+
+# target to build an object file
+candidate_UT.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/candidate_UT.cc.o
+.PHONY : candidate_UT.cc.o
+
+candidate_UT.i: candidate_UT.cc.i
+
+.PHONY : candidate_UT.i
+
+# target to preprocess a source file
+candidate_UT.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/candidate_UT.cc.i
+.PHONY : candidate_UT.cc.i
+
+candidate_UT.s: candidate_UT.cc.s
+
+.PHONY : candidate_UT.s
+
+# target to generate assembly for a file
+candidate_UT.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/candidate_UT.cc.s
+.PHONY : candidate_UT.cc.s
+
 testmain.o: testmain.cc.o
 
 .PHONY : testmain.o
@@ -177,33 +204,6 @@ testmain.cc.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/testmain.cc.s
 .PHONY : testmain.cc.s
 
-voting_info_UT.o: voting_info_UT.cc.o
-
-.PHONY : voting_info_UT.o
-
-# target to build an object file
-voting_info_UT.cc.o:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/voting_info_UT.cc.o
-.PHONY : voting_info_UT.cc.o
-
-voting_info_UT.i: voting_info_UT.cc.i
-
-.PHONY : voting_info_UT.i
-
-# target to preprocess a source file
-voting_info_UT.cc.i:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/voting_info_UT.cc.i
-.PHONY : voting_info_UT.cc.i
-
-voting_info_UT.s: voting_info_UT.cc.s
-
-.PHONY : voting_info_UT.s
-
-# target to generate assembly for a file
-voting_info_UT.cc.s:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/voting_info_UT.cc.s
-.PHONY : voting_info_UT.cc.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -216,12 +216,12 @@ help:
 	@echo "... ballot_UT.o"
 	@echo "... ballot_UT.i"
 	@echo "... ballot_UT.s"
+	@echo "... candidate_UT.o"
+	@echo "... candidate_UT.i"
+	@echo "... candidate_UT.s"
 	@echo "... testmain.o"
 	@echo "... testmain.i"
 	@echo "... testmain.s"
-	@echo "... voting_info_UT.o"
-	@echo "... voting_info_UT.i"
-	@echo "... voting_info_UT.s"
 .PHONY : help
 
 
