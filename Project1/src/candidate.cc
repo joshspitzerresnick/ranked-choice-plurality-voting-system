@@ -7,51 +7,55 @@
 #include "candidate.h"
 #include "ballot.h"
 
-Candidate::Candidate(int=-1, std::string="Fred", std::string="Party") {
-    // Add code here
+Candidate::Candidate(int candidate_num = -1,
+                     std::string candidate_name = "Fred",
+                     std::string candidate_party = "Ind") {
+    id_ = candidate_num;
+    name_ = candidate_name;
+    party_ = candidate_party;
 }
 
 int Candidate::GetID() {
-    // Add code here
-    return -1;
+    return id_;
 }
+
 std::string Candidate::GetName() {
-    // Add code here
-    return "name";
+    return name_;
 }
 
 int Candidate::GetNumBallots() {
-    // Add code here
-    return -1;
+    return numBallots_;
 }
 
 int Candidate::AddBallot(Ballot) {
-    // Add code here
-    return -1;
+    return numBallots_;
 }
 
-int IncrementNumBallots() {
-    return -1;
+int Candidate::IncrementNumBallots() {
+    numBallots_++;
+    return numBallots_;
 }
 
-STVCandidate::STVCandidate(int, std::string, std::string) {
-    // Add code here
+STVCandidate::STVCandidate(int candidate_num,
+                           std::string candidate_name,
+                           std::string candidate_party) {
+    id_ = candidate_num;
+    name_ = candidate_name;
+    party_ = candidate_party;
 }
 
 std::list<Ballot> STVCandidate::RemoveBallotList() {
-    std::list<Ballot> ballotList;
-    return ballotList;
+    return ballotList_;
 }
 
-void STVCandidate::SetFirstBallotNum(int) {
-    // Add code here
+void STVCandidate::SetFirstBallotNum(int ballot_num) {
+    first_Ballot_Num_ = ballot_num;
 }
 
 int STVCandidate::GetFirstBallotNum() {
-    // Add code here
-    return -1;
+    return first_Ballot_Num_;
 }
 
 void STVCandidate::SetNumBallotZero() {
-    // Add code here
+    numBallots_ = 0;
 }

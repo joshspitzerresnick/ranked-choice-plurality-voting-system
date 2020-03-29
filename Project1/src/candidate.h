@@ -51,7 +51,7 @@ class Candidate {  // : public Reporter {
   */
   int AddBallot(Ballot);
 
- private:
+ protected:
   /**
   * @brief Add one to the number of ballots the candidate has
   * @return int of the number of ballots the candidate has
