@@ -50,6 +50,16 @@ class Candidate {  // : public Reporter {
   * @return int of the number of ballots the candidate has
   */
   int AddBallot(Ballot);
+  /**
+  * @brief Overload operator = for Candidate
+  * @param[in] A Candidate object
+  * @return A Candidate object
+  */
+  Candidate* operator = (Candidate *c) 
+    { 
+        return this; 
+    };  
+  
 
  protected:
   /**
@@ -95,7 +105,15 @@ class STVCandidate : public Candidate {
   * @return int of the ballot id number.
   */
   int GetFirstBallotNum();
-
+  /**
+  * @brief Overload operator = for STVCandidate
+  * @param[in] An STVCandidate object
+  * @return An STVCandidate object
+  */
+  STVCandidate* operator = (STVCandidate *c) 
+    { 
+        return this; 
+    };  
  private:
   /**
   * @brief Sets the number of ballots the STV candidate has to zero
