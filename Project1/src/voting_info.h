@@ -11,8 +11,8 @@
 #include <string>
 #include <list>
 
-#include "src/candidate.h"
-#include "src/ballot.h"
+#include "candidate.h"
+#include "ballot.h"
 
 /**
  * @brief The main class for storing voting information.

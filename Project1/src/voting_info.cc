@@ -8,23 +8,23 @@
 #include <string>
 #include <list>
 
-#include "src/voting_info.h"
+#include "voting_info.h"
 
 VotingInfo::VotingInfo(int algorithm, int seats) {
   algorithm_ = algorithm;
   num_seats_ = seats;
   num_candidates_ = 0;
-  candidate_list_ = NULL;
+  candidate_list_ = {};
   num_ballots_ = 0;
-  ballot_list_ = NULL;
+  ballot_list_ = {};
 }
 
 VotingInfo::~VotingInfo() {
   for (int i = 0; i < candidate_list_.size(); i++) {
-    candidate_list_[i] = NULL;
+    candidate_list_.pop_back();
   }
   for (int i = 0; i < ballot_list_.size(); i++) {
-    ballot_list_[i] = NULL;
+    ballot_list_.pop_back();
   }
   candidate_list_.clear();
   ballot_list_.clear();

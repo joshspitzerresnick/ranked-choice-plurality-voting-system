@@ -10,7 +10,7 @@
 #include <iostream>
 #include <string>
 #include <list>
-#include "src/voting_info.h"
+#include "voting_info.h"
 
 /**
  * @brief The main class for elections.
