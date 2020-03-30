@@ -75,7 +75,7 @@ TEST_F(PluralityElectionTests, Constructor) {
 }
 
 TEST_F(PluralityElectionTests, RunElection) {
-    pElection->RunElection(votinginfo1);
+    EXPECT_NO_THROW(pElection->RunElection(votinginfo1));
     EXPECT_NE(candidate1->GetNumBallots(), 1);
     // Add tests
 }

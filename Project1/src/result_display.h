@@ -10,8 +10,8 @@
 #include <iostream>
 #include <string>
 
-#include "src/election_record.h"
-#include "src/voting_info.h"
+#include "election_record.h"
+#include "voting_info.h"
 
 /**
  * @brief The main class for displaying election results.

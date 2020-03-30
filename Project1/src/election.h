@@ -28,10 +28,12 @@ class AbstractElection {  // : public Reporter {
   */
   virtual void RunElection(VotingInfo*);
 
- private:
+ protected:
   /*
   * Add ElectionRecord and ResultDisplay - what are these?
   */
+  int ElectionRecord; // election record - needs to be updated.
+  int ResultDisplay; // result display - needs to be updated.
 };
 /**
  * @brief The main class for Plurality Elections.

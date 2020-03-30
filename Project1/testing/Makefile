@@ -177,33 +177,6 @@ candidate_UT.cc.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/candidate_UT.cc.s
 .PHONY : candidate_UT.cc.s
 
-plurality_election_UT.o: plurality_election_UT.cc.o
-
-.PHONY : plurality_election_UT.o
-
-# target to build an object file
-plurality_election_UT.cc.o:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/plurality_election_UT.cc.o
-.PHONY : plurality_election_UT.cc.o
-
-plurality_election_UT.i: plurality_election_UT.cc.i
-
-.PHONY : plurality_election_UT.i
-
-# target to preprocess a source file
-plurality_election_UT.cc.i:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/plurality_election_UT.cc.i
-.PHONY : plurality_election_UT.cc.i
-
-plurality_election_UT.s: plurality_election_UT.cc.s
-
-.PHONY : plurality_election_UT.s
-
-# target to generate assembly for a file
-plurality_election_UT.cc.s:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/plurality_election_UT.cc.s
-.PHONY : plurality_election_UT.cc.s
-
 testmain.o: testmain.cc.o
 
 .PHONY : testmain.o
@@ -273,9 +246,6 @@ help:
 	@echo "... candidate_UT.o"
 	@echo "... candidate_UT.i"
 	@echo "... candidate_UT.s"
-	@echo "... plurality_election_UT.o"
-	@echo "... plurality_election_UT.i"
-	@echo "... plurality_election_UT.s"
 	@echo "... testmain.o"
 	@echo "... testmain.i"
 	@echo "... testmain.s"

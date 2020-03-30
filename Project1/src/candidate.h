@@ -49,7 +49,7 @@ class Candidate {  // : public Reporter {
   * @param[in] A ballot object
   * @return int of the number of ballots the candidate has
   */
-  int AddBallot(Ballot);
+  int AddBallot(Ballot*);
 
  protected:
   /**
@@ -59,8 +59,8 @@ class Candidate {  // : public Reporter {
   int IncrementNumBallots();
   std::string name_;  // candidate name
   std::string party_;  // candiate party
-  int numBallots_;  // number of ballots the candidate has
-  std::list<Ballot> ballotList_;  // list of ballots a candidate has
+  int numBallots_ = 0;  // number of ballots the candidate has
+  std::list<Ballot*> ballotList_ = {};  // list of ballots a candidate has
   int id_;  // candidate id number
 };
 /**
@@ -81,10 +81,16 @@ class STVCandidate : public Candidate {
   */
   explicit STVCandidate(int, std::string, std::string);
   /**
+  * @brief Add a ballot to the list of ballots the candidate has
+  * @param[in] A ballot object
+  * @return int of the number of ballots the candidate has
+  */
+  int AddBallot(Ballot* ballot);
+  /**
   * @brief Remove the list of ballots an STV candidate has
   * @return list of ballots
   */
-  std::list<Ballot> RemoveBallotList();
+  std::list<Ballot*> RemoveBallotList();
   /**
   * @brief Save ballot id number for the first ballot given to an STV candiate.
   * @param[in] the ballot id number as an integer.
