@@ -13,12 +13,18 @@ class ElectionRecord
 protected:
     std::list<Ballot*> nonDistributedBallotList_;
     std::list<Candidate*> nonElectedCandidateList_;
-    std::list<Candidate*> winnersList_{};
-    std::list<Candidate*> losersList_{};
+    std::list<Candidate*> winnersList_;
+    std::list<Candidate*> losersList_;
 
 public:
-    ElectionRecord() {};
-    virtual std::list<Ballot*> GetNonDistributedBallotList()=0;
+    ElectionRecord();
+    // ElectionRecord(std::list<Ballot*> nonDistributedBallotList, std::list<Candidate*> nonElectedCandidateList) : 
+    // nonDistributedBallotList_(nonDistributedBallotList), nonElectedCandidateList_(nonElectedCandidateList),
+    // winnersList_{0}, losersList_{0} {}; 
+    // ElectionRecord(const ElectionRecord &); // copy constructor
+    // ElectionRecord & operator = (const ElectionRecord &); // copy operator 
+    ~ElectionRecord() {};
+    std::list<Ballot*> GetNonDistributedBallotList();
     std::list<Candidate*> GetNonElectedCandidateList();
     std::list<Candidate*> GetWinnersList();
     std::list<Candidate*> GetLosersList();

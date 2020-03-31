@@ -2,38 +2,15 @@
 #include "STVElectionRecord.h"
 
 STVElectionRecord::STVElectionRecord() : DroopQuota_(0), discardedBallotList_(0)
-{
-    
+{    
 }
 
-// STVElectionRecord::STVElectionRecord() : nonDistributedBallotList_(0), nonElectedCandidateList_(0), winnersList_(0), losersList_(0), discardedBallotList_(0), DroopQuota_(0)
-// {
-// }
-
 // STVElectionRecord::STVElectionRecord(std::list<STVCandidate> iniCandidateList, std::list<Ballot> iniBallotList, int DroopQuota) : 
-//  nonDistributedBallotList_(iniBallotList), nonElectedCandidateList_(iniCandidateList), winnersList_(0), losersList_(0), discardedBallotList_(0), DroopQuota_(DroopQuota)
+//  ElectionRecord(iniBallotList, iniCandidateList), discardedBallotList_(0), DroopQuota_(DroopQuota)
 // {
 // }
 
-std::list<Ballot*> STVElectionRecord::GetNonDistributedBallotList()
-{
-    return nonDistributedBallotList_;
-};
 
-std::list<Candidate*> STVElectionRecord::GetNonElectedCandidateList()
-{
-    return nonElectedCandidateList_;
-};
-
-std::list<Candidate*> STVElectionRecord::GetWinnersList()
-{
-    return winnersList_;
-};
-
-std::list<Candidate*> STVElectionRecord::GetLosersList()
-{
-    return losersList_;
-};
 
 std::list<Ballot*> STVElectionRecord::GetDiscardedBallotList()
 {
@@ -75,10 +52,10 @@ STVCandidate* STVElectionRecord::RemoveLastCandidateFromNonElectedCandidateList(
     return nullptr;
 };
 
-std::list<Ballot> STVElectionRecord::AddCandidateToLosersList(STVCandidate* candidate)
+std::list<Ballot*> STVElectionRecord::AddCandidateToLosersList(STVCandidate* candidate)
 {
     //to be implemented
-    auto ballots = std::list<Ballot>(0);
+    auto ballots = std::list<Ballot*>(0);
     return ballots;
 };
 
@@ -92,11 +69,11 @@ std::list<Ballot> STVElectionRecord::AddCandidateToLosersList(STVCandidate* cand
 //     //to be implemented
 // };
 
-Candidate* BreakTies(Candidate* candidate1, Candidate* candidate2)
-{
-    //to be implemented
-    return candidate1;
-};
+// STVCandidate* BreakTies(STVCandidate* candidate1, STVCandidate* candidate2)
+// {
+//     //to be implemented
+//     return candidate1;
+// };
 
 // STVCandidate* STVElectionRecord::PopCandidateOffLosersList()
 // {
