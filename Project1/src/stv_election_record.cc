@@ -83,7 +83,7 @@ void STVElectionRecord::DistributeBallots() {
     {
 	    curBallot = nonDistributedBallotList_.front();
         nonDistributedBallotList_.pop_front();
-        assigned = false; numChecked = 0; //initialize
+        assigned = false; //initialize
         // Get ranked candidate list
 	    tempRankedCandidateList = (int) curBallot->GetRankedCandidateIDList();
         auto li = tempRankedCandidateList.begin();    
