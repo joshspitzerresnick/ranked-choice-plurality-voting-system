@@ -165,10 +165,10 @@ STVCandidate* STVElectionRecord::PopCandidateOffLosersList() {
 
 // utility function for comparing candidates' votes
 bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2) {
-  if (lhs->GetNumBallots() == rhs->GetNumBallots()){
+  if (candidate1->GetNumBallots() == candidate2->GetNumBallots()){
       return BreakTies(candidate1,candidate2);
   }
   else {
-  return lhs->GetNumBallots() > rhs->GetNumBallots();
+  return candidate1->GetNumBallots() > candidate2->GetNumBallots();
   }
 }
