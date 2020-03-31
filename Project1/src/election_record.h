@@ -32,6 +32,10 @@ class ElectionRecord {
   * @brief Election record destructor
   */
     ~ElectionRecord();
+    std::list<Ballot*> GetNonDistributedBallotList();
+    std::list<Candidate*> GetNonElectedCandidateList();
+    std::list<Candidate*> GetWinnersList();
+    std::list<Candidate*> GetLosersList();
   /**
   * @brief Virtual function for distributing ballots.
   */

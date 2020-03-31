@@ -18,29 +18,25 @@ ElectionRecord::~ElectionRecord() {
     // Add code here
 }
 
-// std::list<Ballot*> ElectionRecord::GetNonDistribuedBallotList() {
-    // Add code here
-    // std::list<Ballot*> ballot_list;
-    // return ballot_list;
-// }
+std::list<Ballot*> ElectionRecord::GetNonDistributedBallotList()
+{
+    return nonDistributedBallotList_;
+};
 
-// std::list<Candidate*> ElectionRecord::GetNonElectedCandidateList() {
-    // Add code here
-    // std::list<Candidate*> candidate_list;
-    // return candidate_list;
-// }
+std::list<Candidate*> ElectionRecord::GetNonElectedCandidateList()
+{
+    return nonElectedCandidateList_;
+};
 
-// std::list<Candidate*> ElectionRecord::GetWinnersList() {
-    // Add code here
-    // std::list<Candidate*> candidate_list;
-    // return candidate_list;
-// }
+std::list<Candidate*> ElectionRecord::GetWinnersList()
+{
+    return winnersList_;
+};
 
-// std::list<Candidate*> ElectionRecord::GetLosersList() {
-    // Add code here
-    // std::list<Candidate*> candidate_list;
-    // return candidate_list;
-// }
+std::list<Candidate*> ElectionRecord::GetLosersList()
+{
+    return losersList_;
+};
 
 void ElectionRecord::DistributeBallots() {
     // Add code here
