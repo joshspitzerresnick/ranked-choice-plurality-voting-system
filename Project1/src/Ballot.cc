@@ -4,7 +4,7 @@
  * @copyright 2020 5801 Team3, All rights reserved.
  */
 
-#include "ballot.h"
+#include "Ballot.h"
 
 Ballot::Ballot(int ballot_id, std::list<int> CandidateList) {
     std::list<int> tempList;
