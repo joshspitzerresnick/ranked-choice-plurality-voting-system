@@ -123,6 +123,33 @@ runTests/fast:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/build
 .PHONY : runTests/fast
 
+STVElectionRecord_UT.o: STVElectionRecord_UT.cc.o
+
+.PHONY : STVElectionRecord_UT.o
+
+# target to build an object file
+STVElectionRecord_UT.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/STVElectionRecord_UT.cc.o
+.PHONY : STVElectionRecord_UT.cc.o
+
+STVElectionRecord_UT.i: STVElectionRecord_UT.cc.i
+
+.PHONY : STVElectionRecord_UT.i
+
+# target to preprocess a source file
+STVElectionRecord_UT.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/STVElectionRecord_UT.cc.i
+.PHONY : STVElectionRecord_UT.cc.i
+
+STVElectionRecord_UT.s: STVElectionRecord_UT.cc.s
+
+.PHONY : STVElectionRecord_UT.s
+
+# target to generate assembly for a file
+STVElectionRecord_UT.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/STVElectionRecord_UT.cc.s
+.PHONY : STVElectionRecord_UT.cc.s
+
 ballot_UT.o: ballot_UT.cc.o
 
 .PHONY : ballot_UT.o
@@ -240,6 +267,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... runTests"
 	@echo "... edit_cache"
+	@echo "... STVElectionRecord_UT.o"
+	@echo "... STVElectionRecord_UT.i"
+	@echo "... STVElectionRecord_UT.s"
 	@echo "... ballot_UT.o"
 	@echo "... ballot_UT.i"
 	@echo "... ballot_UT.s"
