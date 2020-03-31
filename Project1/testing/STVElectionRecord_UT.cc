@@ -87,3 +87,8 @@ TEST_F(STVElectionRecordUT, Constructor) {
     EXPECT_NO_THROW(stver = new STVElectionRecord(nonElectedCandidateList,
                                   nonDistributedBallotList, 10));
 }
+
+TEST_F(STVElectionRecordUT, BreakTies) {
+    EXPECT_EQ(stver->BreakTies(candidate1, candidate2), candidate1);
+    EXPECT_NE(stver->BreakTies(candidate1, candidate2), candidate2);
+}
