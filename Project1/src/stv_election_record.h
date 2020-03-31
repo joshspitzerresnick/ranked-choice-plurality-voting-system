@@ -91,9 +91,9 @@ class STVElectionRecord {
    * @param[in] STV candidate 1
    * @param[in] STV candidate 2
    * 
-   * @return The winning STV candidate
+   * @return true if the first candidate wins over the second candidate
    */
-    STVCandidate* BreakTies(STVCandidate*, STVCandidate*);
+    bool BreakTies(STVCandidate*, STVCandidate*);
   /**
    * @brief Take an stv candidate off the losers list
    * 
@@ -107,5 +107,5 @@ class STVElectionRecord {
     std::list<STVCandidate*> winnersList_;  // Winner List
     std::list<STVCandidate*> losersList_;  // Loser List
     std::list<Ballot*> discardedBallotList_;  // The discarded ballot list
-    int DroopQuota_ = 0;  // The droop quota
+    int DroopQuota_;  // The droop quota
 };
