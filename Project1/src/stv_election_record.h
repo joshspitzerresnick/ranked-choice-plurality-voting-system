@@ -32,19 +32,19 @@ class STVElectionRecord {
   /**
    * @brief Function to get nonDistributedBallotList_.
    */
-  std::list<Ballot*> ElectionRecord::GetNonDistributedBallotList()
+  std::list<Ballot*> GetNonDistributedBallotList()
   /**
    * @brief Function to get nonElectedCandidateList_.
    */
-  std::list<STVCandidate*> ElectionRecord::GetNonElectedCandidateList()
+  std::list<STVCandidate*> GetNonElectedCandidateList()
   /**
    * @brief Function to get winnersList_.
    */
-  std::list<STVCandidate*> ElectionRecord::GetWinnersList()
+  std::list<STVCandidate*> GetWinnersList()
   /**
    * @brief Function to get losersList_.
    */
-  std::list<STVCandidate*> ElectionRecord::GetLosersList()
+  std::list<STVCandidate*> GetLosersList()
   /**
    * @brief Function to shuffle the ballots prior to the election.
    */

@@ -13,34 +13,31 @@
 #include <random>  // std::default_random_engine
 #include <chrono>  // std::chrono::system_clock
 
-
-
-explicit STVElectionRecord::STVElectionRecord(std::list<STVCandidate*> stvcandidate_list, std::list<Ballot*> ballot_list, int droop)
+explicit STVElectionRecord::STVElectionRecord(const std::list<STVCandidate*> stvcandidate_list, const std::list<Ballot*> ballot_list, int droop)
  : nonElectedCandidateList_(stvcandidate_list), nonDistributedBallotList_(ballot_list), DroopQuota_(droop),
  winnersList_(0), losersList_(0), discardedBallotList_(0) {
-  numCandidates_ = (int)stvcandidate_list.size();
 }
 
 // STVElectionRecord::~STVElectionRecord() {
 //     // Add code here
 // }
 
-std::list<Ballot*> ElectionRecord::GetNonDistributedBallotList()
+std::list<Ballot*> STVElectionRecord::GetNonDistributedBallotList()
 {
   return nonDistributedBallotList_;
 };
 
-std::list<STVCandidate*> ElectionRecord::GetNonElectedCandidateList()
+std::list<STVCandidate*> STVElectionRecord::GetNonElectedCandidateList()
 {
   return nonElectedCandidateList_;
 };
 
-std::list<STVCandidate*> ElectionRecord::GetWinnersList()
+std::list<STVCandidate*> STVElectionRecord::GetWinnersList()
 {
   return winnersList_;
 };
 
-std::list<STVCandidate*> ElectionRecord::GetLosersList()
+std::list<STVCandidate*> STVElectionRecord::GetLosersList()
 {
   return losersList_;
 };
