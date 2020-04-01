@@ -20,13 +20,16 @@ class BallotFileTests : public ::testing::Test {
   VotingInfo* votinginfos;
   BallotFileProcessor* pbfp;
   BallotFileProcessor* sbfp;
-  Candidate *can1, *can2, *can3, *can4, *can5, *can6;
+  Candidate *can1, *can2, *can3, *can4, *can5, *can6, *temp;
   std::list<Candidate*> cand_list;
+  std::list<Candidate*> new_cand_list;
   std::list<int> cand_ints;
   Ballot* ballot1;
   Ballot* ballot2;
   Ballot* ballot3;
+  Ballot* tempballot;
   std::list<Ballot*> ballot_list;
+  std::list<Ballot*> new_ballot_list;
   int i;
   virtual void SetUp() {
     for (i=0; i < 6; i++) {
@@ -40,10 +43,10 @@ class BallotFileTests : public ::testing::Test {
     ballot_list.push_back(ballot3);
     can1 = new Candidate(0, "A", "Ind");
     can2 = new Candidate(1, "B", "Ind");
-    can3 = new Candidate(1, "C", "Ind");
-    can4 = new Candidate(1, "D", "Ind");
-    can5 = new Candidate(1, "E", "Ind");
-    can6 = new Candidate(1, "F", "Ind");
+    can3 = new Candidate(2, "C", "Ind");
+    can4 = new Candidate(3, "D", "Ind");
+    can5 = new Candidate(4, "E", "Ind");
+    can6 = new Candidate(5, "F", "Ind");
     cand_list.push_back(can1);
     cand_list.push_back(can2);
     cand_list.push_back(can3);
@@ -76,7 +79,22 @@ TEST_F(BallotFileTests, ProcessFiles) {
     pbfp->ProcessFiles(votinginfop);
     EXPECT_EQ(votinginfop->GetNumCandidates(), 6);
     EXPECT_EQ(votinginfop->GetNumBallots(), 3);
-    EXPECT_EQ(votinginfop->GetCandidateList(), cand_list);
-    EXPECT_EQ(votinginfop->GetBallotList(), ballot_list);
-    // sbfp->ProcessFiles(votinginfos);
+    new_cand_list = votinginfop->GetCandidateList();
+    temp = new_cand_list.front();
+    EXPECT_EQ(temp->GetID(), 0);
+    EXPECT_EQ(temp->GetName(), "A");
+    new_ballot_list = votinginfop->GetBallotList();
+    tempballot = new_ballot_list.front();
+    EXPECT_EQ(tempballot->GetID(), 1);
+
+    sbfp->ProcessFiles(votinginfos);
+    EXPECT_EQ(votinginfos->GetNumCandidates(), 6);
+    EXPECT_EQ(votinginfos->GetNumBallots(), 4);
+    new_cand_list = votinginfos->GetCandidateList();
+    temp = new_cand_list.front();
+    EXPECT_EQ(temp->GetID(), 0);
+    EXPECT_EQ(temp->GetName(), "A");
+    new_ballot_list = votinginfos->GetBallotList();
+    tempballot = new_ballot_list.front();
+    EXPECT_EQ(tempballot->GetID(), 1);
 }

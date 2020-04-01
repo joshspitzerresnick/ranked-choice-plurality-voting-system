@@ -46,6 +46,7 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
     while (getline(ballot_files_, line)) {
         row.clear();  // Clear the row variable prior to reading in new line.
         introw.clear();
+        cand_list.clear();
         stringstream s(line);
         while (getline(s, word, ',')) {  // Break the row by , delimiter
             row.push_back(word);
