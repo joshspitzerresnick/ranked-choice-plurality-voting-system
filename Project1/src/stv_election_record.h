@@ -30,9 +30,21 @@ class STVElectionRecord {
     explicit STVElectionRecord(const std::list<STVCandidate*>,
                                const std::list<Ballot*>, int);
   /**
-  * @brief STV election record destructor
-  */
-    ~STVElectionRecord();
+   * @brief Function to get nonDistributedBallotList_.
+   */
+  std::list<Ballot*> ElectionRecord::GetNonDistributedBallotList()
+  /**
+   * @brief Function to get nonElectedCandidateList_.
+   */
+  std::list<STVCandidate*> ElectionRecord::GetNonElectedCandidateList()
+  /**
+   * @brief Function to get winnersList_.
+   */
+  std::list<STVCandidate*> ElectionRecord::GetWinnersList()
+  /**
+   * @brief Function to get losersList_.
+   */
+  std::list<STVCandidate*> ElectionRecord::GetLosersList()
   /**
    * @brief Function to shuffle the ballots prior to the election.
    */
@@ -109,3 +121,4 @@ class STVElectionRecord {
     std::list<Ballot*> discardedBallotList_;  // The discarded ballot list
     int DroopQuota_;  // The droop quota
 };
+#endif
