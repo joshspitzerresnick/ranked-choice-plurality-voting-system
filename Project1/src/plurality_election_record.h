@@ -9,11 +9,10 @@
 
 #include "candidate.h"
 #include "ballot.h"
-#include "election_record.h"
 
 
 
-class PluralityElectionRecord: public ElectionRecord
+class PluralityElectionRecord
 {
  public:
   /**
@@ -41,13 +40,6 @@ class PluralityElectionRecord: public ElectionRecord
   */
   void SortNonElectedCandidateList();
 
-  /**
-  * @brief Randomly chooses a candidate to break the tie
-  * @return randomly selected candidate
-  */
-  Candidate* BreakTies(Candidate*, Candidate*);
-
-
  /**
   * @brief Moves Candidates from the non elected candidate list to the 
   *        winners list
@@ -60,9 +52,8 @@ class PluralityElectionRecord: public ElectionRecord
   * @brief Moves Candidates from the non elected candidate list to the 
   *        losers list
   * 
-  *@param[in] int Number of candidates to move to the losers list
   */
-  void MoveFirstNCandidatesFromNonELectedListToLosersList(int);
+  void MoveRemainingCandidatesToLosersList();
 
   /**
   * @brief Gets the candidates that are not on the winners list or
@@ -90,10 +81,25 @@ class PluralityElectionRecord: public ElectionRecord
   */
   std::list<Ballot*> GetNonDistributedBallotList();
 
+  /**
+  * @brief Randomly chooses true or false to break a tie
+  */
+  static bool BreakTies();
+ /**
+  * @brief Moves Candidates from the non elected candidate list to the 
+  *        losers list
+  * 
+  *@param[in] int Number of candidates to move to the losers list
+  */
+  static bool CandidateNumBallotsComp(Candidate*,Candidate*);
+
+ private:
+  std::list<Ballot*> nonDistributedBallotList_;
+  std::list<Candidate*> nonElectedCandidateList_;
+  std::list<Candidate*> winnersList_;
+  std::list<Candidate*> losersList_;
+
 
 };
-
-
-
 
 #endif // SRC_PLURALITY_ELECTION_RECORD_H_
