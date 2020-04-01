@@ -11,7 +11,7 @@
 #include <fstream>
 #include <string>
 
-#include "src/voting_info.h"
+#include "voting_info.h"
 
 /**
  * @brief The main class for processing ballot files.
@@ -38,6 +38,7 @@ class BallotFileProcessor {
   void ProcessFiles(VotingInfo*);
 
  private:
-  std::ifstream ballot_files_;
+  std::string ballot_file_name_;  // Name of the ballot file to process.
+  std::ifstream ballot_files_;  // Stream to use for processing ballot file.
 };
 #endif  // SRC_BALLOT_FILE_PROCESSOR_H_

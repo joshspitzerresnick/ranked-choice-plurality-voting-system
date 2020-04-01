@@ -177,6 +177,33 @@ ballot_UT.cc.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/ballot_UT.cc.s
 .PHONY : ballot_UT.cc.s
 
+ballot_file_processor_UT.o: ballot_file_processor_UT.cc.o
+
+.PHONY : ballot_file_processor_UT.o
+
+# target to build an object file
+ballot_file_processor_UT.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/ballot_file_processor_UT.cc.o
+.PHONY : ballot_file_processor_UT.cc.o
+
+ballot_file_processor_UT.i: ballot_file_processor_UT.cc.i
+
+.PHONY : ballot_file_processor_UT.i
+
+# target to preprocess a source file
+ballot_file_processor_UT.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/ballot_file_processor_UT.cc.i
+.PHONY : ballot_file_processor_UT.cc.i
+
+ballot_file_processor_UT.s: ballot_file_processor_UT.cc.s
+
+.PHONY : ballot_file_processor_UT.s
+
+# target to generate assembly for a file
+ballot_file_processor_UT.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/ballot_file_processor_UT.cc.s
+.PHONY : ballot_file_processor_UT.cc.s
+
 candidate_UT.o: candidate_UT.cc.o
 
 .PHONY : candidate_UT.o
@@ -273,6 +300,9 @@ help:
 	@echo "... ballot_UT.o"
 	@echo "... ballot_UT.i"
 	@echo "... ballot_UT.s"
+	@echo "... ballot_file_processor_UT.o"
+	@echo "... ballot_file_processor_UT.i"
+	@echo "... ballot_file_processor_UT.s"
 	@echo "... candidate_UT.o"
 	@echo "... candidate_UT.i"
 	@echo "... candidate_UT.s"
