@@ -231,6 +231,33 @@ candidate_UT.cc.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/candidate_UT.cc.s
 .PHONY : candidate_UT.cc.s
 
+logger_UT.o: logger_UT.cc.o
+
+.PHONY : logger_UT.o
+
+# target to build an object file
+logger_UT.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/logger_UT.cc.o
+.PHONY : logger_UT.cc.o
+
+logger_UT.i: logger_UT.cc.i
+
+.PHONY : logger_UT.i
+
+# target to preprocess a source file
+logger_UT.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/logger_UT.cc.i
+.PHONY : logger_UT.cc.i
+
+logger_UT.s: logger_UT.cc.s
+
+.PHONY : logger_UT.s
+
+# target to generate assembly for a file
+logger_UT.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/logger_UT.cc.s
+.PHONY : logger_UT.cc.s
+
 testmain.o: testmain.cc.o
 
 .PHONY : testmain.o
@@ -306,6 +333,9 @@ help:
 	@echo "... candidate_UT.o"
 	@echo "... candidate_UT.i"
 	@echo "... candidate_UT.s"
+	@echo "... logger_UT.o"
+	@echo "... logger_UT.i"
+	@echo "... logger_UT.s"
 	@echo "... testmain.o"
 	@echo "... testmain.i"
 	@echo "... testmain.s"
