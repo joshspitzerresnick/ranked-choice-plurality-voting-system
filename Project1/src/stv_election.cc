@@ -27,7 +27,7 @@ STVElection::RunElection(){
         ballotList = stvElectionRecord_->AddCandidateToLosersList(candidate);
         stvElectionRecord_->AddLoserBallotsToNonDistributedBallotList(ballotList);
     }
-    if ((int)(stvElectionRecord_->winnersList_.size()) < numSeats_){
+    while ((int)(stvElectionRecord_->winnersList_.size()) < numSeats_){
         candidate = stvElectionRecord_->PopCandidateOffLosersList();
         stvElectionRecord_->AddCandidateToWinnersList(candidate);
     }
