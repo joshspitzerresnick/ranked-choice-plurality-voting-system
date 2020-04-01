@@ -2,8 +2,10 @@
 #include "voting_system.h"
 #include "stv_election.h"
 #include "plurality_election.h"
-#include "ballot_file_processor.h:
+#include "ballot_file_processor.h
+#include "logger.h"
 #include <cstring>
+#include <iostream>
 
 bool BallotShuffleOff=false;
 
@@ -15,9 +17,10 @@ int main(int argc, char* argv){
 	PluralityElection* pluralityElection;
 	BallotFileProcessor* ballotFileProcessor;
 	VotingInfo* votingInfo;
-
+   
 	if (argc >= 2 && strcmp (argv[1], "-t") == 0){
 		BallotShuffleOff = true;
+        Logger::GetLogger()->LogToFile("Command line argument received: turn off ballot shuffle.")
 	}
 	
 	UserInterface(&numSeats, &choice);
@@ -29,14 +32,14 @@ int main(int argc, char* argv){
 	switch (choice){
 	case 1 :
 		stvElection = new STVElection(votingInfo);
-		STVElection.RunElection();
+		stvElection->RunElection();
 		break;
 	case 2:
 		pluralityElection = new PluralityElection(votingInfo);
-		STVElection.RunElection();
+		pluralityElection->RunElection();
 		break;
 	default:
-		//error
+		//error, this should never happen
 	}	
 }
 
@@ -44,7 +47,8 @@ void UserInterface(int *numSeats, int *choice)
 {
 	while (choice != 1 || choice != 2)
 	{
-		cout << "Select election type, choose 3. Help if instruction is needed: " << endl;
+		cout << "-----------------Voting System Main Menu-----------------------" << endl;
+        cout << "Select election type, choose 3. Help if instruction is needed: " << endl;
 		cout << "1: STV" << endl;
 		cout << "2: Plurality" << endl;
 		cout << "3: Help" << endl;
@@ -63,6 +67,8 @@ void UserInterface(int *numSeats, int *choice)
 
 void DisplayHelp()
 {
-	// need code here
+	cout << "---------------Voting System Help Menu------------------" << endl;
+    cout << "* Voting System is ..."
+    // need more printing codes
 }
 	
