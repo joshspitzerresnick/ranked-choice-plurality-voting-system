@@ -65,7 +65,7 @@ void STVElectionRecord::ShuffleBallots() {
 // utility function for shuffling ballots
 template <class T > void listShuffle( list<T> &L )
 {
-   unsigned seed = = std::chrono::system_clock::now().time_since_epoch().count();
+   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
    vector<T> V( L.begin(), L.end() );
    shuffle( V.begin(), V.end(), default_random_engine(seed) );
    L.assign( V.begin(), V.end() );
@@ -87,29 +87,30 @@ void STVElectionRecord::DistributeBallots() {
         // Get ranked candidate list
 	    tempRankedCandidateList = (int) curBallot->GetRankedCandidateIDList();
         auto li = tempRankedCandidateList.begin();    
-        while (~assigned && li != tempRankedCandidateList.end()){
+        while (!assigned && li != tempRankedCandidateList.end()){
             std::advance(li, 1); 
             // Find the next ranked candidate on nonElectedCandidateList
             curCandidateID = *li;
             // Create a list Iterator
             std::list<Candidate*>::iterator itCandidate;
             for (itCandidate = nonElectedCandidateList_.begin(); itCandidate != nonElectedCandidateList_.end(), itCandidate++){
-                if (itCandidate->GetId() == *li){
+                if ((*itCandidate)->GetId() == *li){
                     nonDistributedBallotList_
                     numBallots = itCandidate.AddBallot(&curBallot);
+                    //check if current candidate met droop
+                    if (CheckDroop(numBallots))
+                    {
+                       tempCandidate = *itCandidate;
+                       nonElectedCandidateList_.erase(itCandidate++);
+                       AddCandidateToWinnersList(&tempCandidate);
+                    }
                     assigned = true;
                     break;
                 }
             }
-            //check if current candidate met droop
-            if (CheckDroop(numBallots))
-            {
-                tempCandidate = *itCandidate;
-                nonElectedCandidateList_.erase(itCandidate);
-                AddCandidateToWinnersList(&tempCandidate);
-            }
+            
         }
-        if (li == tempRankedCandidateList.end() && ~assigned){ 
+        if (li == tempRankedCandidateList.end() && !assigned){ 
             AddBallotToDiscardedBallotList(&curBallot);  // did not find a candidate on non elected list for this ballot
         }
     }
