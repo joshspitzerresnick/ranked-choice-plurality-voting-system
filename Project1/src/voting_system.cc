@@ -57,7 +57,7 @@ void UserInterface(int *numSeats, int *choice)
   std::string errMsg = "Invalid choice. Please enter 1, 2 or 3.";
   char c = 0; // char var to hold user input for y/n
   bool numSeatsValid = false; // for input checking
-  while (*choice != 1 || *choice != 2)
+  while (*choice != 1 && *choice != 2)
   {
     std::cout << "-----------------Voting System Main Menu-----------------------\n" << std::flush;
     std::cout << "Select election type, choose 3. Help if instruction is needed: \n" << std::flush;
