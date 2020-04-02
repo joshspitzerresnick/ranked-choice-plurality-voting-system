@@ -29,7 +29,7 @@ int main(int argc, char** argv){
   // Check command line argument
   if (argc >= 2 && strcmp (argv[1], "-t") == 0){
     BallotShuffleOff = true; // Turn off ballot shuffle if '-t' is detected
-    *logger->LogToFile("Command line argument received: turn off ballot shuffle.");
+    logger->LogToFile("Command line argument received: turn off ballot shuffle.");
   }
 
   UserInterface(&numSeats, &choice);
