@@ -12,6 +12,8 @@
 #include "candidate.h"
 #include "ballot.h"
 
+extern bool BallotShuffleOff;
+
 /**
  * @brief The main class for stv election.
  *
