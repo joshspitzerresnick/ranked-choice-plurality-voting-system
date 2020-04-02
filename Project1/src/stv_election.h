@@ -46,5 +46,5 @@ class STVElection{
   STVElectionRecord* stvElectionRecord_;  // stv election record object
   // STVResultDisplay* stvResultDisplay_;  // stv result display object // NO LONGER USING - Josh
   int numSeats_;  // number of seats to be filled
-}
+};
 #endif
