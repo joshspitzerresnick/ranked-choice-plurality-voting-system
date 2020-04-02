@@ -312,6 +312,33 @@ home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.s
 .PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.s
 
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.o: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.o
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.o
+
+# target to build an object file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.o
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.o
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.i: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.i
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.i
+
+# target to preprocess a source file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.i
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.i
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.s: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.s
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.s
+
+# target to generate assembly for a file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.s
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.cc.s
+
 home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.o: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.o
 
 .PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.o
@@ -392,6 +419,60 @@ logger_UT.s: logger_UT.cc.s
 logger_UT.cc.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/logger_UT.cc.s
 .PHONY : logger_UT.cc.s
+
+plurality_election_UT.o: plurality_election_UT.cc.o
+
+.PHONY : plurality_election_UT.o
+
+# target to build an object file
+plurality_election_UT.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/plurality_election_UT.cc.o
+.PHONY : plurality_election_UT.cc.o
+
+plurality_election_UT.i: plurality_election_UT.cc.i
+
+.PHONY : plurality_election_UT.i
+
+# target to preprocess a source file
+plurality_election_UT.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/plurality_election_UT.cc.i
+.PHONY : plurality_election_UT.cc.i
+
+plurality_election_UT.s: plurality_election_UT.cc.s
+
+.PHONY : plurality_election_UT.s
+
+# target to generate assembly for a file
+plurality_election_UT.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/plurality_election_UT.cc.s
+.PHONY : plurality_election_UT.cc.s
+
+plurality_election_record_UT.o: plurality_election_record_UT.cc.o
+
+.PHONY : plurality_election_record_UT.o
+
+# target to build an object file
+plurality_election_record_UT.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/plurality_election_record_UT.cc.o
+.PHONY : plurality_election_record_UT.cc.o
+
+plurality_election_record_UT.i: plurality_election_record_UT.cc.i
+
+.PHONY : plurality_election_record_UT.i
+
+# target to preprocess a source file
+plurality_election_record_UT.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/plurality_election_record_UT.cc.i
+.PHONY : plurality_election_record_UT.cc.i
+
+plurality_election_record_UT.s: plurality_election_record_UT.cc.s
+
+.PHONY : plurality_election_record_UT.s
+
+# target to generate assembly for a file
+plurality_election_record_UT.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/plurality_election_record_UT.cc.s
+.PHONY : plurality_election_record_UT.cc.s
 
 testmain.o: testmain.cc.o
 
@@ -477,6 +558,9 @@ help:
 	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.o"
 	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.i"
 	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.s"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.o"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.i"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election.s"
 	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.o"
 	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.i"
 	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.s"
@@ -486,6 +570,12 @@ help:
 	@echo "... logger_UT.o"
 	@echo "... logger_UT.i"
 	@echo "... logger_UT.s"
+	@echo "... plurality_election_UT.o"
+	@echo "... plurality_election_UT.i"
+	@echo "... plurality_election_UT.s"
+	@echo "... plurality_election_record_UT.o"
+	@echo "... plurality_election_record_UT.i"
+	@echo "... plurality_election_record_UT.s"
 	@echo "... testmain.o"
 	@echo "... testmain.i"
 	@echo "... testmain.s"
