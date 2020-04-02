@@ -14,6 +14,9 @@
 #include <random>  // std::default_random_engine
 #include <chrono>  // std::chrono::system_clock
 
+template <typename T > void listShuffle( std::list<T> &L );
+bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2);
+
 STVElectionRecord::STVElectionRecord(const std::list<STVCandidate*> stvcandidate_list, const std::list<Ballot*> ballot_list, int droop)
  : nonElectedCandidateList_(stvcandidate_list), nonDistributedBallotList_(ballot_list), DroopQuota_(droop),
  winnersList_(0), losersList_(0), discardedBallotList_(0) {
@@ -61,7 +64,7 @@ void STVElectionRecord::ShuffleBallots() {
 }
 
 // utility function for shuffling ballots
-template <typename T > void listShuffle( list<T> &L )
+template <typename T > void listShuffle( std::list<T> &L )
 {
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   std::vector<T> V( L.begin(), L.end() );
