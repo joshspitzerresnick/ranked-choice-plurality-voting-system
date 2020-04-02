@@ -32,19 +32,19 @@ class STVElectionRecord {
   /**
    * @brief Function to get nonDistributedBallotList_.
    */
-  std::list<Ballot*> GetNonDistributedBallotList()
+  std::list<Ballot*> GetNonDistributedBallotList();
   /**
    * @brief Function to get nonElectedCandidateList_.
    */
-  std::list<STVCandidate*> GetNonElectedCandidateList()
+  std::list<STVCandidate*> GetNonElectedCandidateList();
   /**
    * @brief Function to get winnersList_.
    */
-  std::list<STVCandidate*> GetWinnersList()
+  std::list<STVCandidate*> GetWinnersList();
   /**
    * @brief Function to get losersList_.
    */
-  std::list<STVCandidate*> GetLosersList()
+  std::list<STVCandidate*> GetLosersList();
   /**
    * @brief Function to shuffle the ballots prior to the election.
    */
@@ -55,15 +55,15 @@ class STVElectionRecord {
     void DistributeBallots();
   /**
    * @brief Function to check a ballot count against the droop value.
-   * 
+   *
    * @param[in] A ballot count.
-   * 
+   *
    * @return Returns a bool of true if droop has been met and false otherwise.
    */
     bool CheckDroop(int);
   /**
    * @brief Add an stv candidate to the winners list.
-   * 
+   *
    * @param[in] An stv candidate
    */
     void AddCandidateToWinnersList(STVCandidate*);
@@ -73,42 +73,42 @@ class STVElectionRecord {
     void SortNonElectedCandidateList();
   /**
    * @brief Remove the last candidate from the non elected candidate list
-   * 
+   *
    * @return The last stv candidate from the non elected candidates list
    */
     STVCandidate* RemoveLastCandidateFromNonElectedCandidateList();
   /**
    * @brief Add an stv candidate to the losers list
-   * 
+   *
    * @param[in] an stv candidate
-   * 
+   *
    * @return A list of the losers ballots.
    */
     std::list<Ballot*> AddCandidateToLosersList(STVCandidate*);
   /**
    * @brief Add the ballots from a losing candidate back into the non distributed ballots list
-   * 
+   *
    * @param[in] A list of ballots
    */
     void AddLoserBallotsToNonDistributedBallotList(std::list<Ballot*>);
   /**
    * @brief Add ballot to discared ballot list
-   * 
+   *
    * @param[in] A ballot
    */
     void AddBallotToDiscardedBallotList(Ballot*);
   /**
    * @brief Break a tie between two stv candidates
-   * 
+   *
    * @param[in] STV candidate 1
    * @param[in] STV candidate 2
-   * 
+   *
    * @return true if the first candidate wins over the second candidate
    */
     bool BreakTies(STVCandidate*, STVCandidate*);
   /**
    * @brief Take an stv candidate off the losers list
-   * 
+   *
    * @return An stv candidate
    */
     STVCandidate* PopCandidateOffLosersList();
