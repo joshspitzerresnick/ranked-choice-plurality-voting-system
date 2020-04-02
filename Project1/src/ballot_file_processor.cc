@@ -53,7 +53,7 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
         }
         if (linecnt == 0) {  // Run for first line - Candidates
             for (i = 0; i < row.size(); i++) {
-                if (algo == 0) {  // plurality election
+                if (algo == 2) {  // plurality election
                     candidate = new Candidate(i, row[i], "Ind");
                     votinginfo->AddCandidateToCandidateList(candidate);
                 } else {  // stv election

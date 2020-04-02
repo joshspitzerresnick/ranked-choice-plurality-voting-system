@@ -25,7 +25,7 @@ class VotingInfo {
   * @brief Constructs a voting info container with an algorithm choice and
   *        number of seats available.
   *
-  * @param[in] int holding choice of algorithm (0 for plurality, 1 for STV).
+  * @param[in] int holding choice of algorithm (1 for STV, 2 for plurality).
   * @param[in] int holding number of seats available.
   */
   explicit VotingInfo(int = -1, int = -1);
@@ -36,7 +36,7 @@ class VotingInfo {
   /**
   * @brief Returns choice of algorithm.
   *
-  * @return int holding choice of algorithm (0 for plurality, 1 for STV).
+  * @return int holding choice of algorithm (1 for STV, 2 for plurality).
   */
   int GetAlgorithm() const;
   /**
