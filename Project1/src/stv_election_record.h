@@ -10,6 +10,7 @@
 #include <list>
 #include "candidate.h"
 #include "ballot.h"
+#include "logger.h"
 
 extern Logger* logger;
 
