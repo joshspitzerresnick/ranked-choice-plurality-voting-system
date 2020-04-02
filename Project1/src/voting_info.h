@@ -52,6 +52,12 @@ class VotingInfo {
   */
   void AddCandidateToCandidateList(Candidate*);
   /**
+  * @brief Adds an STV candidate to the list of candidates.
+  *
+  * @param[in] STVCandidate* holding an STV candidate to be added.
+  */
+  void AddCandidateToCandidateList(STVCandidate*);
+  /**
   * @brief Adds a ballot to the list of ballots.
   *
   * @param[in] Ballot* holding a ballot to be added.
@@ -76,6 +82,12 @@ class VotingInfo {
   */
   std::list<Candidate*> GetCandidateList() const;
   /**
+  * @brief Returns list of STV candidates.
+  *
+  * @return std::list<STVCandidate*> holding list of candidates.
+  */
+  std::list<STVCandidate*> GetSTVCandidateList() const;
+  /**
   * @brief Returns list of ballots.
   *
   * @return std::list<Ballot*> holding list of ballots.
@@ -89,6 +101,7 @@ class VotingInfo {
   int num_seats_;
   int num_candidates_;
   std::list<Candidate*> candidate_list_;
+  std::list<STVCandidate*> stv_candidate_list_;
   int num_ballots_;
   std::list<Ballot*> ballot_list_;
 };

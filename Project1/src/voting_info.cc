@@ -43,6 +43,11 @@ void VotingInfo::AddCandidateToCandidateList(Candidate* candidate) {
   IncrementNumCandidates();
 }
 
+void VotingInfo::AddCandidateToCandidateList(STVCandidate* stv_candidate) {
+  stv_candidate_list_.push_back(stv_candidate);
+  IncrementNumCandidates();
+}
+
 void VotingInfo::AddBallotToBallotList(Ballot* ballot) {
   ballot_list_.push_back(ballot);
   IncrementNumBallots();
@@ -58,6 +63,10 @@ int VotingInfo::GetNumBallots() const {
 
 std::list<Candidate*> VotingInfo::GetCandidateList() const {
   return candidate_list_;
+}
+
+std::list<STVCandidate*> VotingInfo::GetSTVCandidateList() const {
+  return stv_candidate_list_;
 }
 
 std::list<Ballot*> VotingInfo::GetBallotList() const {
