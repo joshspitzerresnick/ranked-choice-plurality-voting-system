@@ -124,7 +124,7 @@ void STVElectionRecord::DistributeBallots() {
 }
 
 bool STVElectionRecord::CheckDroop(int droop) {
-  return (droop >= DroopQuota_)? true:false);
+  return ((droop >= DroopQuota_)? true:false);
 }
 
 void STVElectionRecord::AddCandidateToWinnersList(STVCandidate* candidate) {
@@ -160,7 +160,7 @@ void STVElectionRecord::AddBallotToDiscardedBallotList(Ballot* ballot) {
 }
 
 bool STVElectionRecord::BreakTies(STVCandidate* candidate1, STVCandidate* candidate2) {
-  return candidate1.GetFirstBallotNum()>candidate2.GetFirstBallotNum();
+  return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum();
 }
 
 STVCandidate* STVElectionRecord::PopCandidateOffLosersList() {
