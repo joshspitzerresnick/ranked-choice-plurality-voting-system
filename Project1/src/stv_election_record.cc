@@ -120,7 +120,7 @@ void STVElectionRecord::DistributeBallots() {
     //
     }
   }
-  delete tempRankedCandidateList;
+  // delete tempRankedCandidateList; // NOT ALLOCATED - Josh
 }
 
 bool STVElectionRecord::CheckDroop(int droop) {
