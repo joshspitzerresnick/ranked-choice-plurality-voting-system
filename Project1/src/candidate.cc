@@ -18,15 +18,15 @@ Candidate::Candidate(int candidate_num = 0,
     party_ = candidate_party;
 }
 
-int Candidate::GetID() {
+int Candidate::GetID() const {
     return id_;
 }
 
-std::string Candidate::GetName() {
+std::string Candidate::GetName() const {
     return name_;
 }
 
-int Candidate::GetNumBallots() {
+int Candidate::GetNumBallots() const {
     return numBallots_;
 }
 

@@ -33,17 +33,17 @@ class Candidate {  // : public Reporter {
   * @brief Get candidate id
   * @return candidate id
   */
-  int GetID();
+  int GetID() const;
   /**
   * @brief Get the candidate's name
   * @return string of the candidate's name
   */
-  std::string GetName();
+  std::string GetName() const;
   /**
   * @brief Get the number of ballots the candidate has
   * @return int of the number of ballots the candidate has
   */
-  int GetNumBallots();
+  int GetNumBallots() const;
   /**
   * @brief Add a ballot to the list of ballots the candidate has
   * @param[in] A ballot object
