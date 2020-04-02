@@ -21,7 +21,7 @@ void STVElection::RunElection(){
   STVCandidate* candidate; // stv candidate object pointer to hold candidate object to pass between member functions
   std::list<Ballot*> ballotList; // ballot pointer list to hold ballots for passing between stvelectionrecord functions
   // check if ballot shuffle off option is true
-  if (~BallotShuffleOff){
+  if (!BallotShuffleOff){
     stvElectionRecord_->ShuffleBallots(); // shuffle ballots
   }
   while (true){

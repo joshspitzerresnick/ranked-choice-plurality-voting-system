@@ -80,7 +80,7 @@ void UserInterface(int *numSeats, int *choice)
       DisplayHelp();
     }
   }
-  while (~numSeatsValid) {
+  while (!numSeatsValid) {
     std::cout << "Enter number of seats: "
     std::cin >> numSeats;
     // Input checking
