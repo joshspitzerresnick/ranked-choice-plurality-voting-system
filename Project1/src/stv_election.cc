@@ -42,13 +42,13 @@ void STVElection::RunElection(){
     stvElectionRecord_->AddCandidateToWinnersList(candidate);
   }
   // display election results
-  DisplayResult(stvElectionRecord_);
+  DisplayResult(/*stvElectionRecord_*/);
 }
 
 void STVElection::DisplayResult(){
   std::list<STVCandidate*> winnersList;
   std::list<STVCandidate*> losersList;
-  std::list<Candidate*>::iterator it;
+  std::list<STVCandidate*>::iterator it;
   int numCandidates;
   int orderNum = 0;
   winnersList = stvElectionRecord_->GetWinnersList();
