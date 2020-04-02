@@ -99,13 +99,13 @@ void STVElectionRecord::DistributeBallots() {
       std::list<STVCandidate*>::iterator itCandidate;
       for (itCandidate = nonElectedCandidateList_.begin(); itCandidate != nonElectedCandidateList_.end(); itCandidate++){
         if ((*itCandidate)->GetID() == *li){
-          numBallots = (*itCandidate)->AddBallot(&curBallot);
+          numBallots = (*itCandidate)->AddBallot(curBallot);
           //check if current candidate met droop
           if (CheckDroop(numBallots))
           {
             tempCandidate = *itCandidate;
             nonElectedCandidateList_.erase(itCandidate++);
-            AddCandidateToWinnersList(&tempCandidate);
+            AddCandidateToWinnersList(tempCandidate);
             //--------- Log to logger
             //
           }
@@ -115,7 +115,7 @@ void STVElectionRecord::DistributeBallots() {
       }
     }
     if (li == tempRankedCandidateList.end() && !assigned){
-    AddBallotToDiscardedBallotList(&curBallot);  // did not find a candidate on non elected list for this ballot
+    AddBallotToDiscardedBallotList(curBallot);  // did not find a candidate on non elected list for this ballot
     //--------- Log to logger
     //
     }
@@ -156,7 +156,7 @@ STVElectionRecord::AddLoserBallotsToNonDistributedBallotList(std::list<Ballot*>
 }
 
 void STVElectionRecord::AddBallotToDiscardedBallotList(Ballot* ballot) {
-  discardedBallotList_.push_front(&ballot);
+  discardedBallotList_.push_front(ballot);
 }
 
 bool STVElectionRecord::BreakTies(STVCandidate* candidate1, STVCandidate* candidate2) {
