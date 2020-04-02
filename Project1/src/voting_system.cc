@@ -35,7 +35,7 @@ int main(int argc, char** argv){
   votingInfo = new VotingInfo(choice, numSeats);
 
   ballotFileProcessor = new BallotFileProcessor;
-  ballotFileProcessor.ProcessFiles(votingInfo);
+  ballotFileProcessor->ProcessFiles(votingInfo);
 
   switch (choice){
     case 1 :
@@ -43,11 +43,11 @@ int main(int argc, char** argv){
       stvElection->RunElection();
       break;
     case 2:
-      pluralityElection = new PluralityElection(votingInfo);
-      pluralityElection->RunElection();
+      pluralityElection = new PluralityElection(/*votingInfo*/); // TODO once Colin implements - Josh
+      pluralityElection->RunElection(votingInfo); // TODO
       break;
     default:
-    //error, this should never happen
+      exit(1); //error, this should never happen
   }
 }
 
@@ -56,7 +56,7 @@ void UserInterface(int *numSeats, int *choice)
   std::string errMsg = "Invalid choice. Please enter 1, 2 or 3.";
   char c = 0; // char var to hold user input for y/n
   bool numSeatsValid = false; // for input checking
-  while (choice != 1 || choice != 2)
+  while (*choice != 1 || *choice != 2)
   {
     std::cout << "-----------------Voting System Main Menu-----------------------\n" << std::flush;
     std::cout << "Select election type, choose 3. Help if instruction is needed: \n" << std::flush;
@@ -71,11 +71,11 @@ void UserInterface(int *numSeats, int *choice)
   }
     std::cout << "\n" << std::flush;
 
-    if (choice < 1 || choice > 3)
+    if (*choice < 1 || *choice > 3)
     {
       std::cout << errMsg << "\n" << std::flush;
     }
-    else if (choice == 3)
+    else if (*choice == 3)
     {
       DisplayHelp();
     }
