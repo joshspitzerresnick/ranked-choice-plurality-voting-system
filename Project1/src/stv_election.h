@@ -34,6 +34,14 @@ class STVElection{
   *
   */
   void RunElection();
+    /**
+  * @brief Display STV election results.
+  *
+  * @param[in] none, using member structure within the same class
+  * @return void
+  *
+  */
+  void DisplayResult();
  private: 
   STVElectionRecord* stvElectionRecord_;  // stv election record object
   STVResultDisplay* stvResultDisplay_;  // stv result display object
