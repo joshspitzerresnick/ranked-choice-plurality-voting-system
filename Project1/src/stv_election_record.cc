@@ -54,7 +54,7 @@ void STVElectionRecord::ShuffleBallots() {
   for (it = nonDistributedBallotList_.begin(); it != nonDistributedBallotList_.end(); it++)
   {
     // Access the object through iterator
-    ballotSequenceAfterShuffle[i] = it->id;
+    ballotSequenceAfterShuffle[i] = (*it)->GetID();
   }
   // Log ballot sequence after shuffle to logger
   //----------------Need code-----------------------------
