@@ -4,6 +4,7 @@
  * @copyright 2020 5801 Team3, All rights reserved.
  */
 
+#include "stv_election_record.h"
 #include <list>
 #include "candidate.h"
 #include "ballot.h"
@@ -13,7 +14,7 @@
 #include <random>  // std::default_random_engine
 #include <chrono>  // std::chrono::system_clock
 
-explicit STVElectionRecord::STVElectionRecord(const std::list<STVCandidate*> stvcandidate_list, const std::list<Ballot*> ballot_list, int droop)
+STVElectionRecord::STVElectionRecord(const std::list<STVCandidate*> stvcandidate_list, const std::list<Ballot*> ballot_list, int droop)
  : nonElectedCandidateList_(stvcandidate_list), nonDistributedBallotList_(ballot_list), DroopQuota_(droop),
  winnersList_(0), losersList_(0), discardedBallotList_(0) {
 }
@@ -48,7 +49,7 @@ void STVElectionRecord::ShuffleBallots() {
   // Get the sequence after shuffling for logging purpose
   int ballotSequenceAfterShuffle [(int)nonDistributedBallotList_.size()];
   int i=0;
-  std::list<Ballot*>::iterator it; //Create an iterator of std::list 
+  std::list<Ballot*>::iterator it; //Create an iterator of std::list
   // Make iterate point to begining and incerement it one by one till it reaches the end of list.
   for (it = nonDistributedBallotList_.begin(); it != nonDistributedBallotList_.end(); it++)
   {
@@ -85,9 +86,9 @@ void STVElectionRecord::DistributeBallots() {
     assigned = false; //initialize
     // Get ranked candidate list
     tempRankedCandidateList = (int) curBallot->GetRankedCandidateIDList();
-    auto li = tempRankedCandidateList.begin();    
+    auto li = tempRankedCandidateList.begin();
     while (!assigned && li != tempRankedCandidateList.end()){
-      std::advance(li, 1); 
+      std::advance(li, 1);
       // Find the next ranked candidate on nonElectedCandidateList
       curCandidateID = *li;
       // Create a list Iterator
@@ -109,7 +110,7 @@ void STVElectionRecord::DistributeBallots() {
         }
       }
     }
-    if (li == tempRankedCandidateList.end() && !assigned){ 
+    if (li == tempRankedCandidateList.end() && !assigned){
     AddBallotToDiscardedBallotList(&curBallot);  // did not find a candidate on non elected list for this ballot
     //--------- Log to logger
     //
@@ -147,7 +148,7 @@ STVElectionRecord::AddCandidateToLosersList(STVCandidate* candidate) {
 void
 STVElectionRecord::AddLoserBallotsToNonDistributedBallotList(std::list<Ballot*>
                                                              ballot_list) {
-  nonDistributedBallotList_.assign(ballot_list.begin(),ballot_list.end()); 
+  nonDistributedBallotList_.assign(ballot_list.begin(),ballot_list.end());
 }
 
 void STVElectionRecord::AddBallotToDiscardedBallotList(Ballot* ballot) {

@@ -5,7 +5,7 @@
  */
 
 #include "stv_election.h"
-#include "voting_system.cc"
+// #include "voting_system.cc"
 #include <cmath>
 #include <iostream>
 
