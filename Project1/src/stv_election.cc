@@ -26,7 +26,7 @@ void STVElection::RunElection(){
   while (true){
     stvElectionRecord_->DistributeBallots(); // distribute ballots
     // when there is no more candidate on nonelected list, exit loop
-    if (stvElectionRecord_->nonElectedCandidateList_.empty()){
+    if (stvElectionRecord_->GetNonElectedCandidateList().empty()){
       break;
     }
     // Sort non-elected candidate list by number of votes, break tie (embeded) if number of votes are equal
@@ -37,7 +37,7 @@ void STVElection::RunElection(){
     stvElectionRecord_->AddLoserBallotsToNonDistributedBallotList(ballotList);
   }
   // if need more candidates to fill seats, move the candidates being put on losers list last to winners list
-  while ((int)(stvElectionRecord_->winnersList_.size()) < numSeats_){
+  while ((int)(stvElectionRecord_->GetWinnersList().size()) < numSeats_){
     candidate = stvElectionRecord_->PopCandidateOffLosersList();
     stvElectionRecord_->AddCandidateToWinnersList(candidate);
   }
