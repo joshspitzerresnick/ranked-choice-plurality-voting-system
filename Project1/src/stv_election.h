@@ -25,7 +25,7 @@ class STVElection{
   * @param[in] VotingInfo* data structure
   *
   */
-  STVElection(VotingInfo*);
+  explicit STVElection(VotingInfo*);
   /**
   * @brief Run an STV election.
   *
@@ -42,7 +42,7 @@ class STVElection{
   *
   */
   void DisplayResult();
- private: 
+ private:
   STVElectionRecord* stvElectionRecord_;  // stv election record object
   STVResultDisplay* stvResultDisplay_;  // stv result display object
   int numSeats_;  // number of seats to be filled

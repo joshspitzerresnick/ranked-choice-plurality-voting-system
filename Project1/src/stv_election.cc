@@ -8,7 +8,7 @@
 #include <cmath>
 #include <iostream>
 
-explicit STVElection::STVElection(VotingInfo* votingInfo) {
+STVElection::STVElection(VotingInfo* votingInfo) {
   numSeats_ = votingInfo->GetNumSeats();
   int numBallots = votingInfo->GetNumBallots();
   int droop = (int)(floor(((double)numBallots)/((double)numSeats_+1))+1);
