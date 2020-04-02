@@ -14,6 +14,7 @@
 #include <random>  // std::default_random_engine
 #include <chrono>  // std::chrono::system_clock
 
+// forward declaration of helpers
 template <typename T > void listShuffle( std::list<T> &L );
 bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2);
 
@@ -80,7 +81,7 @@ void STVElectionRecord::DistributeBallots() {
   Ballot* curBallot; // a holder for the ballot popped off list
   Candidate* tempCandidate; //pointer to a candidate
   // Loop on nonDistributedBallotList
-  While(!nonDistributedBallotList_.empty()) // keep looping if nonDistributedBallotList is not empty
+  while(!nonDistributedBallotList_.empty()) // keep looping if nonDistributedBallotList is not empty
   {
     curBallot = nonDistributedBallotList_.front();
     nonDistributedBallotList_.pop_front();
