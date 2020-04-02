@@ -91,21 +91,8 @@ void UserInterface(int *numSeats, int *choice)
       numSeats = 0;
     }
     // Input range checking
-    if (*numSeats > 1 && *numSeats < 99)
-    {
-      // Confirm user input
-      std::cout << "Number of seats entered is :" << numSeats << "\n" << std::flush;
-      std::cout << "Is this number is correct? (y/n): ";
-      std::cin >> c;
-      while(std::cin.fail()) {
-        std::cout << "Invalid input. Please enter y or n. \n" << std::flush;
-        std::cin.clear();
-        c = 0;
-      }
-      if (c == 'y')
-      {
-        numSeatsValid = true;
-      }
+    if (*numSeats > 1 && *numSeats < 99){
+      numSeatsValid = true;
     }
   }
 }
