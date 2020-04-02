@@ -44,7 +44,7 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
     std::cout << "number of Candidates: " << num_candidates << "\n\n" << std::flush;
 
     std::list<Candidate*> winners_list = election_record->GetWinnersList();
-    std::list<Candidate*> losers_list = election_record->GetWinnersList();
+    std::list<Candidate*> losers_list = election_record->GetLosersList();
 
     std::cout << "Election Results:\n\n" << std::flush;
     std::cout << "Winners list\n" << std::flush;
@@ -71,6 +71,7 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
         current_candidate = losers_list.front();
         candidate_num_ballots = current_candidate->GetNumBallots();
         percent = (float)candidate_num_ballots / (float)num_ballots;
+        percent = percent*100;
         std::cout << i << ". " << current_candidate->GetName() << "    " << candidate_num_ballots << "    " << percent << "\n" << std::flush;
         losers_list.pop_front(); 
         i++;

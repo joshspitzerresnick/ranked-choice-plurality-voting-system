@@ -20,7 +20,7 @@ void DisplayHelp();
 
 int main(int argc, char** argv){
 
-  int choice = 0;
+  int choice = 5;
   int numSeats;
   STVElection* stvElection;
   PluralityElection* pluralityElection;
@@ -33,19 +33,23 @@ int main(int argc, char** argv){
   }
 
   UserInterface(&numSeats, &choice);
+   std::string ballot_files;
+  std::cout << "enter name of ballot file:\n" << std::flush;
+  std::cin >> ballot_files;
+ 
   votingInfo = new VotingInfo(choice, numSeats);
 
-  ballotFileProcessor = new BallotFileProcessor;
+  ballotFileProcessor = new BallotFileProcessor(ballot_files);
   ballotFileProcessor->ProcessFiles(votingInfo);
 
   switch (choice){
+    case 0:
+      pluralityElection = new PluralityElection(/*votingInfo*/); // TODO once Colin implements - Josh
+      pluralityElection->RunElection(votingInfo); // TODO
+      break;
     case 1 :
       stvElection = new STVElection(votingInfo);
       stvElection->RunElection();
-      break;
-    case 2:
-      pluralityElection = new PluralityElection(/*votingInfo*/); // TODO once Colin implements - Josh
-      pluralityElection->RunElection(votingInfo); // TODO
       break;
     default:
       exit(1); //error, this should never happen
@@ -54,16 +58,16 @@ int main(int argc, char** argv){
 
 void UserInterface(int *numSeats, int *choice)
 {
-  std::string errMsg = "Invalid choice. Please enter 1, 2 or 3.";
+  std::string errMsg = "Invalid choice. Please enter 0, 1 or 2.";
   char c = 0; // char var to hold user input for y/n
   bool numSeatsValid = false; // for input checking
-  while (*choice != 1 && *choice != 2)
+  while (*choice != 0 && *choice != 1)
   {
     std::cout << "-----------------Voting System Main Menu-----------------------\n" << std::flush;
-    std::cout << "Select election type, choose 3. Help if instruction is needed: \n" << std::flush;
+    std::cout << "Select election type, choose 2. Help if instruction is needed: \n" << std::flush;
+    std::cout << "0: Plurality\n" << std::flush;
     std::cout << "1: STV\n" << std::flush;
-    std::cout << "2: Plurality\n" << std::flush;
-    std::cout << "3: Help\n" << std::flush;
+    std::cout << "2: Help\n" << std::flush;
     std::cout << "Selection: ";
     std::cin >> *choice;
     while(std::cin.fail()) {
@@ -72,11 +76,11 @@ void UserInterface(int *numSeats, int *choice)
   }
     std::cout << "\n" << std::flush;
 
-    if (*choice < 1 || *choice > 3)
+    if (*choice < 0 || *choice > 1)
     {
       std::cout << errMsg << "\n" << std::flush;
     }
-    else if (*choice == 3)
+    else if (*choice == 2)
     {
       DisplayHelp();
     }
@@ -90,7 +94,9 @@ void UserInterface(int *numSeats, int *choice)
       std::cin.clear();
       numSeats = 0;
     }
+    numSeatsValid = true;
     // Input range checking
+    /*
     if (*numSeats > 1 && *numSeats < 99)
     {
       // Confirm user input
@@ -107,6 +113,7 @@ void UserInterface(int *numSeats, int *choice)
         numSeatsValid = true;
       }
     }
+    */
   }
 }
 
