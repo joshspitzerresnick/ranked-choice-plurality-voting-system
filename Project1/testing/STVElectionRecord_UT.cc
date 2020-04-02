@@ -9,7 +9,7 @@
 #include <string>
 #include "../src/ballot.h"
 #include "../src/candidate.h"
-#include "../src/election_record.cc"
+#include "../src/election_record.h"
 
 /******************************************************
 * TEST FEATURE SetUp

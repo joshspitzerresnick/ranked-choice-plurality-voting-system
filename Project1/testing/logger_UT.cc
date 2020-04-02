@@ -6,7 +6,7 @@
 
 #include <gtest/gtest.h>
 #include <list>
-#include "../src/logger.cc"
+#include "../src/logger.h"
 
 /******************************************************
 * TEST FEATURE SetUp

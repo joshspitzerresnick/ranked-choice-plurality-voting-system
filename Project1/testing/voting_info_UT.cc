@@ -8,7 +8,7 @@
  * Includes
  ******************************************************************************/
 #include <gtest/gtest.h>
-#include "../src/voting_info.cc"
+#include "../src/voting_info.h"
 
 /******************************************************
 * TEST FEATURE SetUp

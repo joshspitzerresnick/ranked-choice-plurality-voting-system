@@ -7,7 +7,7 @@
 #include <gtest/gtest.h>
 #include <list>
 #include <string>
-#include "../src/candidate.cc"
+#include "../src/candidate.h"
 
 /******************************************************
 * TEST FEATURE SetUp

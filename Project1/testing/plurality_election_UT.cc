@@ -6,7 +6,7 @@
 
 #include <gtest/gtest.h>
 #include <list>
-#include "../src/election.cc"
+#include "../src/election.h"
 
 /******************************************************
 * TEST FEATURE SetUp

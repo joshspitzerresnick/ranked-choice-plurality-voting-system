@@ -6,7 +6,7 @@
 
 #include <gtest/gtest.h>
 #include <list>
-#include "../src/ballot_file_processor.cc"
+#include "../src/ballot_file_processor.h"
 
 /******************************************************
 * TEST FEATURE SetUp

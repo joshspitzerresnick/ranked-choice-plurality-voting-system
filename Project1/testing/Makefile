@@ -123,33 +123,6 @@ runTests/fast:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/build
 .PHONY : runTests/fast
 
-STVElectionRecord_UT.o: STVElectionRecord_UT.cc.o
-
-.PHONY : STVElectionRecord_UT.o
-
-# target to build an object file
-STVElectionRecord_UT.cc.o:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/STVElectionRecord_UT.cc.o
-.PHONY : STVElectionRecord_UT.cc.o
-
-STVElectionRecord_UT.i: STVElectionRecord_UT.cc.i
-
-.PHONY : STVElectionRecord_UT.i
-
-# target to preprocess a source file
-STVElectionRecord_UT.cc.i:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/STVElectionRecord_UT.cc.i
-.PHONY : STVElectionRecord_UT.cc.i
-
-STVElectionRecord_UT.s: STVElectionRecord_UT.cc.s
-
-.PHONY : STVElectionRecord_UT.s
-
-# target to generate assembly for a file
-STVElectionRecord_UT.cc.s:
-	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/STVElectionRecord_UT.cc.s
-.PHONY : STVElectionRecord_UT.cc.s
-
 ballot_UT.o: ballot_UT.cc.o
 
 .PHONY : ballot_UT.o
@@ -230,6 +203,168 @@ candidate_UT.s: candidate_UT.cc.s
 candidate_UT.cc.s:
 	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/candidate_UT.cc.s
 .PHONY : candidate_UT.cc.s
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.o: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.o
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.o
+
+# target to build an object file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.o
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.o
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.i: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.i
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.i
+
+# target to preprocess a source file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.i
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.i
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.s: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.s
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.s
+
+# target to generate assembly for a file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.s
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.cc.s
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.o: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.o
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.o
+
+# target to build an object file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.o
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.o
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.i: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.i
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.i
+
+# target to preprocess a source file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.i
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.i
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.s: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.s
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.s
+
+# target to generate assembly for a file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.s
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.cc.s
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.o: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.o
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.o
+
+# target to build an object file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.o
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.o
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.i: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.i
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.i
+
+# target to preprocess a source file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.i
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.i
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.s: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.s
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.s
+
+# target to generate assembly for a file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.s
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.cc.s
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.o: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.o
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.o
+
+# target to build an object file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.o
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.o
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.i: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.i
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.i
+
+# target to preprocess a source file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.i
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.i
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.s: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.s
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.s
+
+# target to generate assembly for a file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.s
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.cc.s
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.o: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.o
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.o
+
+# target to build an object file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.o
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.o
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.i: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.i
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.i
+
+# target to preprocess a source file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.i
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.i
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.s: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.s
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.s
+
+# target to generate assembly for a file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.s
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.cc.s
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.o: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.o
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.o
+
+# target to build an object file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.o:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.o
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.o
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.i: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.i
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.i
+
+# target to preprocess a source file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.i:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.i
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.i
+
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.s: home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.s
+
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.s
+
+# target to generate assembly for a file
+home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.s:
+	$(MAKE) -f CMakeFiles/runTests.dir/build.make CMakeFiles/runTests.dir/home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.s
+.PHONY : home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.cc.s
 
 logger_UT.o: logger_UT.cc.o
 
@@ -321,9 +456,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... runTests"
 	@echo "... edit_cache"
-	@echo "... STVElectionRecord_UT.o"
-	@echo "... STVElectionRecord_UT.i"
-	@echo "... STVElectionRecord_UT.s"
 	@echo "... ballot_UT.o"
 	@echo "... ballot_UT.i"
 	@echo "... ballot_UT.s"
@@ -333,6 +465,24 @@ help:
 	@echo "... candidate_UT.o"
 	@echo "... candidate_UT.i"
 	@echo "... candidate_UT.s"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.o"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.i"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot.s"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.o"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.i"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/ballot_file_processor.s"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.o"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.i"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/candidate.s"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.o"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.i"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/logger.s"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.o"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.i"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/plurality_election_record.s"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.o"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.i"
+	@echo "... home/bbaker/Documents/CSCI5801/repo-Team3/Project1/src/voting_info.s"
 	@echo "... logger_UT.o"
 	@echo "... logger_UT.i"
 	@echo "... logger_UT.s"

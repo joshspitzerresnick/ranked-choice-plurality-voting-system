@@ -6,7 +6,7 @@
 
 #include <gtest/gtest.h>
 #include <list>
-#include "../src/plurality_election_record.cc"
+#include "../src/plurality_election_record.h"
 
 /******************************************************
 * TEST FEATURE SetUp
