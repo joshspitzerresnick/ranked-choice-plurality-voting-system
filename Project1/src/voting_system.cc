@@ -12,7 +12,8 @@
 #include <cstring>
 #include <iostream>
 
-bool BallotShuffleOff=false;
+bool BallotShuffleOff = false;
+Logger* logger = new Logger();
 
 void UserInterface(int *numSeats, int *choice);
 void DisplayHelp();
@@ -25,10 +26,10 @@ int main(int argc, char** argv){
   PluralityElection* pluralityElection;
   BallotFileProcessor* ballotFileProcessor;
   VotingInfo* votingInfo;
-
+  // Check command line argument
   if (argc >= 2 && strcmp (argv[1], "-t") == 0){
-    BallotShuffleOff = true;
-    // Logger::GetLogger()->LogToFile("Command line argument received: turn off ballot shuffle.") // TODO - Josh
+    BallotShuffleOff = true; // Turn off ballot shuffle if '-t' is detected
+    *logger->LogToFile("Command line argument received: turn off ballot shuffle.");
   }
 
   UserInterface(&numSeats, &choice);
@@ -81,7 +82,7 @@ void UserInterface(int *numSeats, int *choice)
     }
   }
   while (!numSeatsValid) {
-    std::cout << "Enter number of seats: " << std::flush;
+    std::cout << "Enter number of seats: ";
     std::cin >> *numSeats;
     // Input checking
     while(std::cin.fail()) {
