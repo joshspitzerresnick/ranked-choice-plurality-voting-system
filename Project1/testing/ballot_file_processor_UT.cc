@@ -56,7 +56,7 @@ class BallotFileTests : public ::testing::Test {
     pl_ballot_file_name = "../src/plurality_ballots.csv";
     stv_ballot_file_name = "../src/stv_ballots.csv";
     pbfp = new BallotFileProcessor(pl_ballot_file_name);
-    votinginfop = new VotingInfo(0, 1);
+    votinginfop = new VotingInfo(2, 1);
     sbfp = new BallotFileProcessor(stv_ballot_file_name);
     votinginfos = new VotingInfo(1, 2);
   }
