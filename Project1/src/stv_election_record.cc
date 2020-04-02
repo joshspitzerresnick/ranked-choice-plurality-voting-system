@@ -89,7 +89,7 @@ void STVElectionRecord::DistributeBallots() {
     //
     assigned = false; //initialize
     // Get ranked candidate list
-    tempRankedCandidateList = (int) curBallot->GetRankedCandidateIDList();
+    tempRankedCandidateList = /*(int)*/ curBallot->GetRankedCandidateIDList(); // TODO
     auto li = tempRankedCandidateList.begin();
     while (!assigned && li != tempRankedCandidateList.end()){
       std::advance(li, 1);
@@ -97,8 +97,8 @@ void STVElectionRecord::DistributeBallots() {
       curCandidateID = *li;
       // Create a list Iterator
       std::list<STVCandidate*>::iterator itCandidate;
-      for (itCandidate = nonElectedCandidateList_.begin(); itCandidate != nonElectedCandidateList_.end(), itCandidate++){
-        if ((*itCandidate)->GetId() == *li){
+      for (itCandidate = nonElectedCandidateList_.begin(); itCandidate != nonElectedCandidateList_.end(); itCandidate++){
+        if ((*itCandidate)->GetID() == *li){
           numBallots = (*itCandidate)->AddBallot(&curBallot);
           //check if current candidate met droop
           if (CheckDroop(numBallots))
