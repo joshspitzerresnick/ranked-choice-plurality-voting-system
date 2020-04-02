@@ -100,7 +100,7 @@ class STVCandidate : public Candidate {
   * @brief Get the ballot id of the first ballot given to the STV candidate
   * @return int of the ballot id number.
   */
-  int GetFirstBallotNum();
+  int GetFirstBallotNum() const;
 
  private:
   /**

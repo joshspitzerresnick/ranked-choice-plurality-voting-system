@@ -17,6 +17,7 @@
 // forward declaration of helpers
 template <typename T > void listShuffle( std::list<T> &L );
 bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2);
+bool BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2);
 
 STVElectionRecord::STVElectionRecord(const std::list<STVCandidate*> stvcandidate_list, const std::list<Ballot*> ballot_list, int droop)
  : nonElectedCandidateList_(stvcandidate_list), nonDistributedBallotList_(ballot_list), DroopQuota_(droop),
@@ -159,7 +160,7 @@ void STVElectionRecord::AddBallotToDiscardedBallotList(Ballot* ballot) {
   discardedBallotList_.push_front(ballot);
 }
 
-bool STVElectionRecord::BreakTies(STVCandidate* candidate1, STVCandidate* candidate2) {
+bool STVElectionRecord::BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2) {
   return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum();
 }
 

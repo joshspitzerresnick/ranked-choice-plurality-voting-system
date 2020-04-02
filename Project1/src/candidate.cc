@@ -76,7 +76,7 @@ void STVCandidate::SetFirstBallotNum(int ballot_num) {
     first_Ballot_Num_ = ballot_num;
 }
 
-int STVCandidate::GetFirstBallotNum() {
+int STVCandidate::GetFirstBallotNum() const {
     return first_Ballot_Num_;
 }
 
