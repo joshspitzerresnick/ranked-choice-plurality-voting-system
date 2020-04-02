@@ -64,7 +64,7 @@ void UserInterface(int *numSeats, int *choice)
     std::cout << "2: Plurality\n" << std::flush;
     std::cout << "3: Help\n" << std::flush;
     std::cout << "Selection: ";
-    std::cin >> choice;
+    std::cin >> *choice;
     while(std::cin.fail()) {
     std::cout << errMsg << "\n" << std::flush;
     choice = 0;
