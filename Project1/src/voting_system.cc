@@ -1,15 +1,20 @@
+/**
+ * @file voting_system.cc
+ *
+ * @copyright 2020 5801 Team3, All rights reserved.
+ */
 
-#include "voting_system.h"
+// #include "voting_system.h" // NO SUCH THING - Josh
 #include "stv_election.h"
 #include "plurality_election.h"
-#include "ballot_file_processor.h
+#include "ballot_file_processor.h"
 #include "logger.h"
 #include <cstring>
 #include <iostream>
 
 bool BallotShuffleOff=false;
 
-int main(int argc, char* argv){	
+int main(int argc, char** argv){
 
   int choice = 0;
   int numSeats;
@@ -40,7 +45,7 @@ int main(int argc, char* argv){
       break;
     default:
     //error, this should never happen
-  }	
+  }
 }
 
 void UserInterface(int *numSeats, int *choice)
@@ -107,4 +112,3 @@ void DisplayHelp()
     std::cout << "* Voting System is ...\n" << std::flush;
     // need more printing codes
 }
-	
