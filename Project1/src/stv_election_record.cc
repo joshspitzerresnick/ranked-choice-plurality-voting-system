@@ -140,7 +140,7 @@ STVElectionRecord::RemoveLastCandidateFromNonElectedCandidateList() {
 std::list<Ballot*>
 STVElectionRecord::AddCandidateToLosersList(STVCandidate* candidate) {
   losersList_.push_back(candidate);
-  std::list<Ballot*> ballot_list = candidate.RemoveBallotList();
+  std::list<Ballot*> ballot_list = candidate->RemoveBallotList();
   return ballot_list;
 }
 
