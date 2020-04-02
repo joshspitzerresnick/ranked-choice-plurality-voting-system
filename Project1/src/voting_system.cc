@@ -14,6 +14,9 @@
 
 bool BallotShuffleOff=false;
 
+void UserInterface(int *numSeats, int *choice);
+void DisplayHelp();
+
 int main(int argc, char** argv){
 
   int choice = 0;
@@ -25,7 +28,7 @@ int main(int argc, char** argv){
 
   if (argc >= 2 && strcmp (argv[1], "-t") == 0){
     BallotShuffleOff = true;
-    Logger::GetLogger()->LogToFile("Command line argument received: turn off ballot shuffle.")
+    // Logger::GetLogger()->LogToFile("Command line argument received: turn off ballot shuffle.") // TODO - Josh
   }
 
   UserInterface(&numSeats, &choice);
