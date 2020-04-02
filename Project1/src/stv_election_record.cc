@@ -16,7 +16,7 @@
 
 // forward declaration of helpers
 template <typename T > void listShuffle( std::list<T> &L );
-bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2);
+// bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2);
 //bool STVElectionRecord::BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2);
 
 STVElectionRecord::STVElectionRecord(const std::list<STVCandidate*> stvcandidate_list, const std::list<Ballot*> ballot_list, int droop)
@@ -133,7 +133,13 @@ void STVElectionRecord::AddCandidateToWinnersList(STVCandidate* candidate) {
 }
 
 void STVElectionRecord::SortNonElectedCandidateList() {
-  nonElectedCandidateList_.sort(CandidateNumBallotsComp);
+  nonElectedCandidateList_.sort([](const STVCandidate &candidate1, const STVCandidate &candidate2)
+    {
+      if (candidate1.GetNumBallots() == candidate2.GetNumBallots())
+        {return candidate1.GetFirstBallotNum()>candidate2.GetFirstBallotNum(); }
+      return candidate1.GetNumBallots() > candidate2.GetNumBallots();
+    }
+  );
 }
 
 STVCandidate*
@@ -160,9 +166,9 @@ void STVElectionRecord::AddBallotToDiscardedBallotList(Ballot* ballot) {
   discardedBallotList_.push_front(ballot);
 }
 
-bool STVElectionRecord::BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2) {
-  return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum();
-}
+// bool STVElectionRecord::BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2) {
+//   return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum();
+// }
 
 STVCandidate* STVElectionRecord::PopCandidateOffLosersList() {
   STVCandidate* candidate;
@@ -173,12 +179,12 @@ STVCandidate* STVElectionRecord::PopCandidateOffLosersList() {
   return candidate;
 }
 
-// utility function for comparing candidates' votes
-bool STVElectionRecord::CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2) {
-  if (candidate1->GetNumBallots() == candidate2->GetNumBallots()){
-    return STVElectionRecord::BreakTies(candidate1,candidate2);
-  }
-  else {
-  return candidate1->GetNumBallots() > candidate2->GetNumBallots();
-  }
-}
+// // utility function for comparing candidates' votes
+// bool STVElectionRecord::CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2) {
+//   if (candidate1->GetNumBallots() == candidate2->GetNumBallots()){
+//     return STVElectionRecord::BreakTies(candidate1,candidate2);
+//   }
+//   else {
+//   return candidate1->GetNumBallots() > candidate2->GetNumBallots();
+//   }
+// }

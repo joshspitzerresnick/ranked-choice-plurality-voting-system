@@ -108,7 +108,7 @@ class STVElectionRecord {
    *
    * @return true if the first candidate wins over the second candidate
    */
-  bool BreakTies(const STVCandidate*, const STVCandidate*);
+  // bool BreakTies(const STVCandidate*, const STVCandidate*);
   /**
    * @brief Take an stv candidate off the losers list
    *
