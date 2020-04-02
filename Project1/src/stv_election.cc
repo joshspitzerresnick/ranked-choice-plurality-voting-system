@@ -16,7 +16,7 @@ STVElection::STVElection(VotingInfo* votingInfo) {
   // stvResultDisplay_= new ResultDisplay(); // NO LONGER USING - Josh
 }
 
-STVElection::RunElection(){
+void STVElection::RunElection(){
   STVCandidate* candidate; // stv candidate object pointer to hold candidate object to pass between member functions
   std::list<Ballot*> ballotList; // ballot pointer list to hold ballots for passing between stvelectionrecord functions
   // check if ballot shuffle off option is true
