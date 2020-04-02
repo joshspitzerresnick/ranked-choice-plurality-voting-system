@@ -61,9 +61,9 @@ void UserInterface(int *numSeats, int *choice)
   {
     std::cout << "-----------------Voting System Main Menu-----------------------" << std::endl;
     std::cout << "Select election type, choose 3. Help if instruction is needed: " << std::endl;
-    std::cout << "1: STV\n" << std::endl;
-    std::cout << "2: Plurality\n" << std::endl;
-    std::cout << "3: Help\n" << std::endl;
+    std::cout << "1: STV" << std::endl;
+    std::cout << "2: Plurality" << std::endl;
+    std::cout << "3: Help" << std::endl;
     std::cout << "Selection: ";
     std::cin >> *choice;
     while(std::cin.fail()) {
