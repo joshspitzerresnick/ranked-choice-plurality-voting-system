@@ -17,7 +17,7 @@
 // forward declaration of helpers
 template <typename T > void listShuffle( std::list<T> &L );
 bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2);
-bool BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2);
+//bool STVElectionRecord::BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2);
 
 STVElectionRecord::STVElectionRecord(const std::list<STVCandidate*> stvcandidate_list, const std::list<Ballot*> ballot_list, int droop)
  : nonElectedCandidateList_(stvcandidate_list), nonDistributedBallotList_(ballot_list), DroopQuota_(droop),
@@ -66,7 +66,7 @@ void STVElectionRecord::ShuffleBallots() {
 }
 
 // utility function for shuffling ballots
-template <typename T > void listShuffle( std::list<T> &L )
+template <typename T > void STVElectionRecord::listShuffle( std::list<T> &L )
 {
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
   std::vector<T> V( L.begin(), L.end() );
@@ -174,9 +174,9 @@ STVCandidate* STVElectionRecord::PopCandidateOffLosersList() {
 }
 
 // utility function for comparing candidates' votes
-bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2) {
+bool STVElectionRecord::CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2) {
   if (candidate1->GetNumBallots() == candidate2->GetNumBallots()){
-    return BreakTies(candidate1,candidate2);
+    return STVElectionRecord::BreakTies(candidate1,candidate2);
   }
   else {
   return candidate1->GetNumBallots() > candidate2->GetNumBallots();
