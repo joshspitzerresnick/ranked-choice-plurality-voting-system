@@ -47,28 +47,28 @@ void UserInterface(int *numSeats, int *choice)
 {
 	while (choice != 1 || choice != 2)
 	{
-		cout << "-----------------Voting System Main Menu-----------------------" << endl;
-        cout << "Select election type, choose 3. Help if instruction is needed: " << endl;
-		cout << "1: STV" << endl;
-		cout << "2: Plurality" << endl;
-		cout << "3: Help" << endl;
-		cout << "Selection: ";
-		cin >> choice;
-		cout << endl;
+		std::cout << "-----------------Voting System Main Menu-----------------------" << endl;
+        std::cout << "Select election type, choose 3. Help if instruction is needed: " << endl;
+		std::cout << "1: STV" << endl;
+		std::cout << "2: Plurality" << endl;
+		std::cout << "3: Help" << endl;
+		std::cout << "Selection: ";
+		std::cin >> choice;
+		std::cout << endl;
 		
 		if (choice == 3)
 		{
 			DisplayHelp();
 		}
 	}
-	cout << "Enter number of seats: "
-	cin >> numSeats; // need to add some error check here
+	std::cout << "Enter number of seats: "
+	std::cin >> numSeats; // need to add some error check here
 }
 
 void DisplayHelp()
 {
-	cout << "---------------Voting System Help Menu------------------" << endl;
-    cout << "* Voting System is ..."
+	std::cout << "---------------Voting System Help Menu------------------" << endl;
+    std::cout << "* Voting System is ..."
     // need more printing codes
 }
 	
