@@ -62,13 +62,13 @@ void STVElection::DisplayResult(){
   for (it = winnersList.begin(); it != winnersList.end(); it++)
   {
     std::advance(it, 1);
-    cout << ++orderNum << ": " << (*it)->GetName() << std::endl;
+    std::cout << ++orderNum << ": " << (*it)->GetName() << std::endl;
   }
   orderNum = 0;
   for (it = LosersList.begin(); it != LosersList.end(); it++)
   {
     std::advance(it, 1);
-    cout << ++orderNum << ": " << (*it)->GetName() << std::endl;
+    std::cout << ++orderNum << ": " << (*it)->GetName() << std::endl;
   }
-  cout << "-------------End of Result Display-------------" << std::endl;
+  std::cout << "-------------End of Result Display-------------" << std::endl;
 }
