@@ -12,8 +12,8 @@ STVElection::STVElection(VotingInfo* votingInfo) {
   numSeats_ = votingInfo->GetNumSeats();
   int numBallots = votingInfo->GetNumBallots();
   int droop = (int)(floor(((double)numBallots)/((double)numSeats_+1))+1);
-  stvElectionRecord_ = new STVElectionRecord(votingInfo->GetCandidateList(), votingInfo->GetBallotList(), droop);
-  stvResultDisplay_= new ResultDisplay();
+  stvElectionRecord_ = new STVElectionRecord( (STVCandidate*) votingInfo->GetCandidateList(), votingInfo->GetBallotList(), droop); // TODO: VotingInfo only stores Candidates - Josh
+  // stvResultDisplay_= new ResultDisplay(); // NO LONGER USING - Josh
 }
 
 STVElection::RunElection(){
