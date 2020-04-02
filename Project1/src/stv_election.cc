@@ -12,7 +12,7 @@ STVElection::STVElection(VotingInfo* votingInfo) {
   numSeats_ = votingInfo->GetNumSeats();
   int numBallots = votingInfo->GetNumBallots();
   int droop = (int)(floor(((double)numBallots)/((double)numSeats_+1))+1);
-  stvElectionRecord_ = new stvElectionRecord_(votingInfo.GetCandidateList(), votingInfo.GetBallotList(), droop);
+  stvElectionRecord_ = new STVElectionRecord(votingInfo->GetCandidateList(), votingInfo->GetBallotList(), droop);
   stvResultDisplay_= new ResultDisplay();
 }
 
