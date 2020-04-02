@@ -134,6 +134,7 @@ void STVElectionRecord::AddCandidateToWinnersList(STVCandidate* candidate) {
 
 struct STVCandidateComparator
 {
+<<<<<<< HEAD
   // Compare 2 STVCandidate objects using number of ballots and order received
   bool operator ()(const STVCandidate* candidate1, const STVCandidate* candidate2)
   {
@@ -141,6 +142,15 @@ struct STVCandidateComparator
       {return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum(); }
       return candidate1->GetNumBallots() > candidate2->GetNumBallots(); 
   }
+=======
+	// Compare 2 STVCandidate objects using number of ballots and order received
+	bool operator ()(const STVCandidate* candidate1, const STVCandidate* candidate2)
+	{
+		if (candidate1->GetNumBallots() == candidate2->GetNumBallots())
+        {return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum(); }
+      return candidate1->GetNumBallots() > candidate2->GetNumBallots();
+	}
+>>>>>>> c692b2eb788d7e87c9f9303c8d4f1e2f211b716b
 };
 
 void STVElectionRecord::SortNonElectedCandidateList() {
