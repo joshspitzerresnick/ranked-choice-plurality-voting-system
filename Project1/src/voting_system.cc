@@ -81,8 +81,8 @@ void UserInterface(int *numSeats, int *choice)
     }
   }
   while (!numSeatsValid) {
-    std::cout << "Enter number of seats: "
-    std::cin >> numSeats;
+    std::cout << "Enter number of seats: " << std::flush;
+    std::cin >> *numSeats;
     // Input checking
     while(std::cin.fail()) {
       std::cout << "Invalid input. Please enter a number between 1 and 99.\n" << std::flush;
@@ -90,7 +90,7 @@ void UserInterface(int *numSeats, int *choice)
       numSeats = 0;
     }
     // Input range checking
-    if (numSeats > 1 && numSeats < 99)
+    if (*numSeats > 1 && *numSeats < 99)
     {
       // Confirm user input
       std::cout << "Number of seats entered is :" << numSeats << "\n" << std::flush;
