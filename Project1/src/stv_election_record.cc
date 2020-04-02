@@ -58,7 +58,7 @@ void STVElectionRecord::ShuffleBallots() {
   for (it = nonDistributedBallotList_.begin(); it != nonDistributedBallotList_.end(); it++)
   {
     // Access the object through iterator
-    ballotSequenceAfterShuffle[i] = it->GetID();
+    ballotSequenceAfterShuffle[i] = (*it)->GetID();
   }
   // Log ballot sequence after shuffle to logger
   //----------------Need code-----------------------------
@@ -98,12 +98,12 @@ void STVElectionRecord::DistributeBallots() {
       // Create a list Iterator
       std::list<STVCandidate*>::iterator itCandidate;
       for (itCandidate = nonElectedCandidateList_.begin(); itCandidate != nonElectedCandidateList_.end(); itCandidate++){
-        if (itCandidate->GetID() == *li){
-          numBallots = itCandidate->AddBallot(curBallot);
+        if ((*itCandidate)->GetID() == *li){
+          numBallots = (*itCandidate)->AddBallot(curBallot);
           //check if current candidate met droop
           if (CheckDroop(numBallots))
           {
-            tempCandidate = itCandidate;
+            tempCandidate = *itCandidate;
             nonElectedCandidateList_.erase(itCandidate++);
             AddCandidateToWinnersList(tempCandidate);
             //--------- Log to logger
