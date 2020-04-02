@@ -137,9 +137,9 @@ struct STVCandidateComparator
 	// Compare 2 STVCandidate objects using number of ballots and order received
 	bool operator ()(const STVCandidate* candidate1, const STVCandidate* candidate2)
 	{
-		if (candidate1.GetNumBallots() == candidate2.GetNumBallots())
-        {return candidate1.GetFirstBallotNum()>candidate2.GetFirstBallotNum(); }
-      return candidate1.GetNumBallots() > candidate2.GetNumBallots(); 
+		if (candidate1->GetNumBallots() == candidate2->GetNumBallots())
+        {return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum(); }
+      return candidate1->GetNumBallots() > candidate2->GetNumBallots();
 	}
 };
 
