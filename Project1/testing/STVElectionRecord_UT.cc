@@ -9,8 +9,10 @@
 #include <string>
 #include "../src/ballot.h"
 #include "../src/candidate.h"
-#include "../src/election_record.h"
+#include "../src/stv_election_record.h"
 
+
+bool BallotShuffleOff = false;
 /******************************************************
 * TEST FEATURE SetUp
 *******************************************************/
