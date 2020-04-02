@@ -2,6 +2,7 @@
 
 #include "stv_election.h"
 #include <cmath>
+#include <iostream>
 
 explicit STVElection::STVElection(VotingInfo* votingInfo) {
   numSeats_ = votingInfo->GetNumSeats();
@@ -37,5 +38,33 @@ STVElection::RunElection(){
     stvElectionRecord_->AddCandidateToWinnersList(candidate);
   }
   // display election results
-  stvResultDisplay_->DisplayResult(stvElectionRecord_);
+  DisplayResult(stvElectionRecord_);
+}
+
+void STVElection::DisplayResult(){
+  std::list<STVCandidate*> winnersList;
+  std::list<STVCandidate*> losersList;
+  std::list<Candidate*>::iterator it;
+  int numCandidates;
+  int orderNum = 0;
+  winnersList = stvElectionRecord_->GetWinnersList();
+  losersList = stvElectionRecord_->GetLosersList();
+  numCandidates = (int)winnersList.size() + (int)losersList.size();
+  std::cout << "---------------Election Result-----------------" << endl;
+  std::cout << "* Election Type: STV" << endl;
+  std::cout << "* #Seats: " << numSeats_ << endl;
+  std::cout << "* #Candidates: " << numCandidates << endl;
+  std::cout << "* Winners are: " << endl;
+  for (it = winnersList.begin(); it != winnersList.end(); it++)
+  {
+    std::advance(it, 1);
+    cout << ++orderNum << ": " << (*it)->GetName() << endl;    
+  }
+  orderNum = 0;
+  for (it = LosersList.begin(); it != LosersList.end(); it++)
+  {
+    std::advance(it, 1);
+    cout << ++orderNum << ": " << (*it)->GetName() << endl;    
+  }
+  cout << "-------------End of Result Display-------------" << endl;
 }
