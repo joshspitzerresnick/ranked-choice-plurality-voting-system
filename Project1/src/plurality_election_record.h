@@ -3,17 +3,15 @@
  *
  * @copyright 2020 5801 Team3, All rights reserved.
  */
+
 #ifndef SRC_PLURALITY_ELECTION_RECORD_H_
 #define SRC_PLURALITY_ELECTION_RECORD_H_
-#include <list>
 
+#include <list>
 #include "candidate.h"
 #include "ballot.h"
 
-
-
-class PluralityElectionRecord
-{
+class PluralityElectionRecord {
  public:
   /**
   * @brief Constructs plurality election record with a list of candidates
@@ -23,7 +21,7 @@ class PluralityElectionRecord
   * @param[in] List of Ballot objects
   */
   explicit PluralityElectionRecord(std::list<Candidate*>, std::list<Ballot*>);
-  
+
   /**
   * @brief Deconstructs a Plurality election record container.
   */
@@ -91,15 +89,13 @@ class PluralityElectionRecord
   * 
   *@param[in] int Number of candidates to move to the losers list
   */
-  static bool CandidateNumBallotsComp(Candidate*,Candidate*);
+  static bool CandidateNumBallotsComp(Candidate*, Candidate*);
 
  private:
   std::list<Ballot*> nonDistributedBallotList_;
   std::list<Candidate*> nonElectedCandidateList_;
   std::list<Candidate*> winnersList_;
   std::list<Candidate*> losersList_;
-
-
 };
 
-#endif // SRC_PLURALITY_ELECTION_RECORD_H_
+#endif  // SRC_PLURALITY_ELECTION_RECORD_H_
