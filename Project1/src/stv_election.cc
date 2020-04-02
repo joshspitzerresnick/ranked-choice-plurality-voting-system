@@ -42,7 +42,7 @@ void STVElection::RunElection(){
     stvElectionRecord_->AddCandidateToWinnersList(candidate);
   }
   // display election results
-  DisplayResult(/*stvElectionRecord_*/);
+  DisplayResult();
 }
 
 void STVElection::DisplayResult(){
@@ -54,21 +54,21 @@ void STVElection::DisplayResult(){
   winnersList = stvElectionRecord_->GetWinnersList();
   losersList = stvElectionRecord_->GetLosersList();
   numCandidates = (int)winnersList.size() + (int)losersList.size();
-  std::cout << "---------------Election Result-----------------" << std::endl;
-  std::cout << "* Election Type: STV" << std::endl;
-  std::cout << "* #Seats: " << numSeats_ << std::endl;
-  std::cout << "* #Candidates: " << numCandidates << std::endl;
-  std::cout << "* Winners are: " << std::endl;
+  std::cout << "---------------Election Result-----------------\n" << std::flush;
+  std::cout << "* Election Type: STV\n" << std::flush;
+  std::cout << "* #Seats: " << numSeats_ << "\n" << std::flush;
+  std::cout << "* #Candidates: " << numCandidates << "\n" << std::flush;
+  std::cout << "* Winners are: " << "\n" << std::flush;
   for (it = winnersList.begin(); it != winnersList.end(); it++)
   {
     std::advance(it, 1);
-    std::cout << ++orderNum << ": " << (*it)->GetName() << std::endl;
+    std::cout << ++orderNum << ": " << (*it)->GetName() << "\n" << std::flush;
   }
   orderNum = 0;
   for (it = losersList.begin(); it != losersList.end(); it++)
   {
     std::advance(it, 1);
-    std::cout << ++orderNum << ": " << (*it)->GetName() << std::endl;
+    std::cout << ++orderNum << ": " << (*it)->GetName() << "\n" << std::flush;
   }
-  std::cout << "-------------End of Result Display-------------" << std::endl;
+  std::cout << "-------------End of Result Display-------------\n" << std::flush;
 }
