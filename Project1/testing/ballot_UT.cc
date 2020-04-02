@@ -44,18 +44,23 @@ class BallotTests : public ::testing::Test {
  ******************************************************************************/
 
 TEST_F(BallotTests, Constructor) {
+    // Negative ballot id should throw exception.
     EXPECT_ANY_THROW(ballot1 = new Ballot(-1, candidateList1));
+    // Duplicate candidate id should throw exception.
     EXPECT_ANY_THROW(ballot1 = new Ballot(1, candidateDup));
+    // Common ballot definitions.
     EXPECT_NO_THROW(ballot1 = new Ballot(1, candidateList1));
     EXPECT_NO_THROW(ballot2 = new Ballot(2, candidateList2));
 }
 
 TEST_F(BallotTests, GetID) {
+    // Check for correct return of ballot ids.
     EXPECT_EQ(ballot1->GetID(), 1);
     EXPECT_EQ(ballot2->GetID(), 2);
 }
 
 TEST_F(BallotTests, GetRankedCandidateList) {
+    // Check for correct return of candidate id list.
     EXPECT_EQ(ballot1->GetRankedCandidateIDList(), candidateList1);
     EXPECT_EQ(ballot2->GetRankedCandidateIDList(), candidateList2);
 }

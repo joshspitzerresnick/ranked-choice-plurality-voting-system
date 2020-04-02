@@ -11,24 +11,15 @@ Ballot::Ballot(int ballot_id, std::list<int> CandidateList) {
     tempList = CandidateList;
     tempList.sort();
     tempList.unique();
-    try {
-        if (ballot_id < 0) {
-            throw 1;
-        }
-        if (tempList.size() != CandidateList.size()) {
-            throw 2;
-        }
+    if (ballot_id < 0) {
+        throw std::invalid_argument("ballot id can not be negative");
+    }
+    if (tempList.size() != CandidateList.size()) {
+        throw std::
+              invalid_argument("candidate list can not contain duplicates");
+    }
     id_ = ballot_id;
     rankedCandidateIDList_ = CandidateList;
-    }
-    catch (int e) {
-        if (e == 1) {
-            std::cout << "Ballot ID can not be negative." << '\n';
-        }
-        if (e == 2) {
-            std::cout << "Candidate list can not contain duplicates." << '\n';
-        }
-    }
 }
 
 int Ballot::GetID() {

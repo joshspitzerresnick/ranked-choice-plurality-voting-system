@@ -8,21 +8,14 @@
 #include "ballot.h"
 
 Candidate::Candidate(int candidate_num = 0,
-                     std::string candidate_name = "Fred",
-                     std::string candidate_party = "Ind") {
-    try {
-        if (candidate_num < 0) {
-            throw 1;
-        }
-        id_ = candidate_num;
-        name_ = candidate_name;
-        party_ = candidate_party;
+                     std::string candidate_name = "",
+                     std::string candidate_party = "") {
+    if (candidate_num < 0) {
+        throw std::invalid_argument("candidate id cannot be negative");
     }
-    catch (int e) {
-        if (e == 1) {
-            std::cout << "Candidate ID can not be negative." << '\n';
-        }
-    }
+    id_ = candidate_num;
+    name_ = candidate_name;
+    party_ = candidate_party;
 }
 
 int Candidate::GetID() {
@@ -51,6 +44,12 @@ int Candidate::IncrementNumBallots() {
 STVCandidate::STVCandidate(int candidate_num,
                            std::string candidate_name,
                            std::string candidate_party) {
+    if (candidate_num < 0) {
+        throw std::invalid_argument("candidate id cannot be negative");
+    }
+    id_ = candidate_num;
+    name_ = candidate_name;
+    party_ = candidate_party;
     first_Ballot_Num_ = 0;
 }
 
@@ -71,6 +70,9 @@ std::list<Ballot*> STVCandidate::RemoveBallotList() {
 }
 
 void STVCandidate::SetFirstBallotNum(int ballot_num) {
+    if (ballot_num < 0) {
+        throw std::invalid_argument("ballot id cannot be negative");
+    }
     first_Ballot_Num_ = ballot_num;
 }
 

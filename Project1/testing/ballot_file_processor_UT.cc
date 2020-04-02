@@ -71,30 +71,45 @@ class BallotFileTests : public ::testing::Test {
  ******************************************************************************/
 
 TEST_F(BallotFileTests, Constructor) {
+    // Check normal construction
     EXPECT_NO_THROW(pbfp = new BallotFileProcessor(pl_ballot_file_name));
     EXPECT_NO_THROW(sbfp = new BallotFileProcessor(stv_ballot_file_name));
 }
 
-TEST_F(BallotFileTests, ProcessFiles) {
+TEST_F(BallotFileTests, ProcessPluralityBallots) {
+    // Process plurality ballots
     pbfp->ProcessFiles(votinginfop);
+    // Check that the correct number of candidates were created.
     EXPECT_EQ(votinginfop->GetNumCandidates(), 6);
+    // Check that the correct number of ballots were created.
     EXPECT_EQ(votinginfop->GetNumBallots(), 3);
+    // Check that the first candidate added has the correct id and name
     new_cand_list = votinginfop->GetCandidateList();
     temp = new_cand_list.front();
     EXPECT_EQ(temp->GetID(), 0);
     EXPECT_EQ(temp->GetName(), "A");
+    // Check that the first ballot added has the correct id and candidate list
     new_ballot_list = votinginfop->GetBallotList();
     tempballot = new_ballot_list.front();
     EXPECT_EQ(tempballot->GetID(), 1);
+    EXPECT_EQ(tempballot->GetRankedCandidateIDList().front(), 0);
+}
 
+TEST_F(BallotFileTests, ProcessSTVBallots) {
+    // Process stv ballots
     sbfp->ProcessFiles(votinginfos);
+    // Check tha tthe correct number of candidates were created.
     EXPECT_EQ(votinginfos->GetNumCandidates(), 6);
+    // Check that the correct number of ballots were created.
     EXPECT_EQ(votinginfos->GetNumBallots(), 4);
+    // Check that the first candidate added has the correct id and name
     new_cand_list = votinginfos->GetCandidateList();
     temp = new_cand_list.front();
     EXPECT_EQ(temp->GetID(), 0);
     EXPECT_EQ(temp->GetName(), "A");
+    // Check that the first ballot added has the correct id and candidate list
     new_ballot_list = votinginfos->GetBallotList();
     tempballot = new_ballot_list.front();
     EXPECT_EQ(tempballot->GetID(), 1);
+    EXPECT_EQ(tempballot->GetRankedCandidateIDList().front(), 0);
 }
