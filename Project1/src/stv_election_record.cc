@@ -60,10 +60,10 @@ void STVElectionRecord::ShuffleBallots() {
 }
 
 // utility function for shuffling ballots
-template <class T > void listShuffle( list<T> &L )
+template <typename T > void listShuffle( list<T> &L )
 {
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-  vector<T> V( L.begin(), L.end() );
+  std::vector<T> V( L.begin(), L.end() );
   std::shuffle( V.begin(), V.end(), std::default_random_engine(seed) );
   L.assign( V.begin(), V.end() );
 }
