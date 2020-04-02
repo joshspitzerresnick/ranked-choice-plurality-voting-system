@@ -79,7 +79,7 @@ void STVElectionRecord::DistributeBallots() {
   int numBallots; // number of ballots a candidate has
   bool assigned; // if a ballot had been assigned
   Ballot* curBallot; // a holder for the ballot popped off list
-  Candidate* tempCandidate; //pointer to a candidate
+  STVCandidate* tempCandidate; //pointer to a candidate
   // Loop on nonDistributedBallotList
   while(!nonDistributedBallotList_.empty()) // keep looping if nonDistributedBallotList is not empty
   {
