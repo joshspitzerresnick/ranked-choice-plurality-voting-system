@@ -59,22 +59,22 @@ void UserInterface(int *numSeats, int *choice)
   bool numSeatsValid = false; // for input checking
   while (*choice != 1 && *choice != 2)
   {
-    std::cout << "-----------------Voting System Main Menu-----------------------\n" << std::flush;
-    std::cout << "Select election type, choose 3. Help if instruction is needed: \n" << std::flush;
-    std::cout << "1: STV\n" << std::flush;
-    std::cout << "2: Plurality\n" << std::flush;
-    std::cout << "3: Help\n" << std::flush;
+    std::cout << "-----------------Voting System Main Menu-----------------------" << std::endl;
+    std::cout << "Select election type, choose 3. Help if instruction is needed: " << std::endl;
+    std::cout << "1: STV\n" << std::endl;
+    std::cout << "2: Plurality\n" << std::endl;
+    std::cout << "3: Help\n" << std::endl;
     std::cout << "Selection: ";
     std::cin >> *choice;
     while(std::cin.fail()) {
-    std::cout << errMsg << "\n" << std::flush;
-    choice = 0;
-  }
-    std::cout << "\n" << std::flush;
+      std::cout << errMsg << std::endl;
+      choice = 0;
+    }
+    std::cout << " "<< std::endl;
 
     if (*choice < 1 || *choice > 3)
     {
-      std::cout << errMsg << "\n" << std::flush;
+      std::cout << errMsg << std::endl;
     }
     else if (*choice == 3)
     {
@@ -86,7 +86,7 @@ void UserInterface(int *numSeats, int *choice)
     std::cin >> *numSeats;
     // Input checking
     while(std::cin.fail()) {
-      std::cout << "Invalid input. Please enter a number between 1 and 99.\n" << std::flush;
+      std::cout << "Invalid input. Please enter a number between 1 and 99." << std::endl;
       std::cin.clear();
       numSeats = 0;
     }
@@ -99,7 +99,7 @@ void UserInterface(int *numSeats, int *choice)
 
 void DisplayHelp()
 {
-	std::cout << "---------------Voting System Help Menu------------------\n" << std::flush;
-    std::cout << "* Voting System is ...\n" << std::flush;
+	std::cout << "---------------Voting System Help Menu------------------" << std::endl;
+    std::cout << "* Voting System is ..." << std::endl;
     // need more printing codes
 }
