@@ -22,7 +22,7 @@ class BallotFileTests : public ::testing::Test {
   BallotFileProcessor* sbfp;
   Candidate *can1, *can2, *can3, *can4, *can5, *can6, *temp;
   std::list<Candidate*> cand_list;
-  std::list<Candidate*> new_cand_list;
+  std::list<STVCandidate*> new_cand_list;
   std::list<int> cand_ints;
   Ballot* ballot1;
   Ballot* ballot2;
@@ -84,8 +84,8 @@ TEST_F(BallotFileTests, ProcessPluralityBallots) {
     // Check that the correct number of ballots were created.
     EXPECT_EQ(votinginfop->GetNumBallots(), 3);
     // Check that the first candidate added has the correct id and name
-    new_cand_list = votinginfop->GetCandidateList();
-    temp = new_cand_list.front();
+    cand_list = votinginfop->GetCandidateList();
+    temp = cand_list.front();
     EXPECT_EQ(temp->GetID(), 0);
     EXPECT_EQ(temp->GetName(), "A");
     // Check that the first ballot added has the correct id and candidate list
@@ -103,7 +103,7 @@ TEST_F(BallotFileTests, ProcessSTVBallots) {
     // Check that the correct number of ballots were created.
     EXPECT_EQ(votinginfos->GetNumBallots(), 4);
     // Check that the first candidate added has the correct id and name
-    new_cand_list = votinginfos->GetCandidateList();
+    new_cand_list = votinginfos->GetSTVCandidateList();
     temp = new_cand_list.front();
     EXPECT_EQ(temp->GetID(), 0);
     EXPECT_EQ(temp->GetName(), "A");
