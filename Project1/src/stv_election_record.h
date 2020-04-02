@@ -11,6 +11,8 @@
 #include "candidate.h"
 #include "ballot.h"
 
+extern Logger* logger;
+
 /**
  * @brief The class for the STV election records
  *
