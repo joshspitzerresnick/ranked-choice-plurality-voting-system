@@ -117,13 +117,17 @@ class STVElectionRecord {
   STVCandidate* PopCandidateOffLosersList();
 
  private:
-  template <typename T > void listShuffle( std::list<T> &L ); // utility function for shuffling ballots
-  bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2); // utility function for comparing candidates' votes
+  template <typename T > void listShuffle(std::list<T> &L);
+                 // utility function for shuffling ballots
+  bool CandidateNumBallotsComp(const STVCandidate* candidate1,
+                               const STVCandidate* candidate2);
+                  // utility function for comparing candidates' votes
   std::list<Ballot*> nonDistributedBallotList_;  // Non Distributed ballot list
-  std::list<STVCandidate*> nonElectedCandidateList_;  // Non elected candidate list
+  std::list<STVCandidate*> nonElectedCandidateList_;
+                  // Non elected candidate list
   std::list<STVCandidate*> winnersList_;  // Winner List
   std::list<STVCandidate*> losersList_;  // Loser List
   std::list<Ballot*> discardedBallotList_;  // The discarded ballot list
   int DroopQuota_;  // The droop quota
 };
-#endif
+#endif  // SRC_STV_ELECTION_RECORD_H_
