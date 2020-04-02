@@ -96,7 +96,7 @@ void STVElectionRecord::DistributeBallots() {
       // Find the next ranked candidate on nonElectedCandidateList
       curCandidateID = *li;
       // Create a list Iterator
-      std::list<Candidate*>::iterator itCandidate;
+      std::list<STVCandidate*>::iterator itCandidate;
       for (itCandidate = nonElectedCandidateList_.begin(); itCandidate != nonElectedCandidateList_.end(), itCandidate++){
         if ((*itCandidate)->GetId() == *li){
           numBallots = (*itCandidate)->AddBallot(&curBallot);
