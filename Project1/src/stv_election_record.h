@@ -30,7 +30,7 @@ class STVElectionRecord {
   * @param[in] droop value
   *
   */
-  explicit STVElectionRecord(const std::list<STVCandidate*>,
+  STVElectionRecord(const std::list<STVCandidate*>,
                                const std::list<Ballot*>, int);
   /**
    * @brief Function to get nonDistributedBallotList_.
@@ -117,11 +117,11 @@ class STVElectionRecord {
   STVCandidate* PopCandidateOffLosersList();
 
  private:
-  // template <typename T > void listShuffle(std::list<T> &L);
-  //                // utility function for shuffling ballots
-  // bool CandidateNumBallotsComp(const STVCandidate* candidate1,
-  //                              const STVCandidate* candidate2);
-  //                 // utility function for comparing candidates' votes
+  template <typename T > void ListShuffle(std::list<T> &L);
+                 // utility function for shuffling ballots
+  static bool STVCandidateComparator(STVCandidate* candidate1,
+                               STVCandidate* candidate2);
+                  // utility function for comparing candidates' votes
   std::list<Ballot*> nonDistributedBallotList_;  // Non Distributed ballot list
   std::list<STVCandidate*> nonElectedCandidateList_;
                   // Non elected candidate list
