@@ -72,7 +72,7 @@ void UserInterface(int *numSeats, int *choice)
     std::cin >> *choice;
     while(std::cin.fail()) {
     std::cout << errMsg << "\n" << std::flush;
-    choice = 0;
+    *choice = 5;
   }
     std::cout << "\n" << std::flush;
 
