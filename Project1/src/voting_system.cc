@@ -20,7 +20,7 @@ void DisplayHelp();
 
 int main(int argc, char** argv) {
   int choice = 0;
-  int numSeats;
+  int numSeats =0;
   STVElection* stvElection;
   PluralityElection* pluralityElection;
   BallotFileProcessor* ballotFileProcessor;
@@ -32,6 +32,7 @@ int main(int argc, char** argv) {
   }
 
   UserInterface(&numSeats, &choice);
+  std::cout << numSeats <<std::endl;
   votingInfo = new VotingInfo(choice, numSeats);
 
   ballotFileProcessor = new BallotFileProcessor;
@@ -53,9 +54,9 @@ int main(int argc, char** argv) {
 
 void UserInterface(int *numSeats, int *choice) {
   std::string errMsg = "Invalid choice. Please enter 1, 2 or 3.";
-  char c = 0;  // char var to hold user input for y/n
   bool numSeatsValid = false;  // for input checking
-  while (*choice != 1 && *choice != 2) {
+  int temp;
+  while (temp != 1 && temp != 2) {
     std::cout << "-----------------Voting System Main Menu-----------------------"
               << std::endl;
     std::cout << "Select election type, choose 3. Help if instruction is needed: "
@@ -64,32 +65,26 @@ void UserInterface(int *numSeats, int *choice) {
     std::cout << "2: Plurality" << std::endl;
     std::cout << "3: Help" << std::endl;
     std::cout << "Selection: ";
-    std::cin >> *choice;
+    std::cin >> temp;    
     while (std::cin.fail()) {
       std::cout << errMsg << std::endl;
-      choice = 0;
     }
-    std::cout << " "<< std::endl;
 
-    if (*choice < 1 || *choice > 3) {
+    if (temp < 1 || temp > 3) {
       std::cout << errMsg << std::endl;
-    } else if (*choice == 3) {
+    } else if (temp == 3) {
       DisplayHelp();
     }
   }
+  *choice = temp;
+  temp = 0;
   while (!numSeatsValid) {
     std::cout << "Enter number of seats: ";
-    std::cin >> *numSeats;
-    // Input checking
-    while (std::cin.fail()) {
-      std::cout << "Invalid input. Please enter a number between 1 and 99."
-                << std::endl;
-      std::cin.clear();
-      numSeats = 0;
-    }
+    std::cin >> temp;
     // Input range checking
-    if (*numSeats > 1 && *numSeats < 99) {
+    if (temp >= 1 && temp <= 99) {
       numSeatsValid = true;
+      *numSeats = temp;
     }
   }
 }
