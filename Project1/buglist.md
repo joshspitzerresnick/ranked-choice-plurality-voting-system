@@ -1,6 +1,6 @@
 # CSci 5801 Project1 - Team3 - VotingSystem - Bug List
 
-| Description of bug | Location of bug | Steps to recreate bug/test case | Root cause analysis
+Num | Description of bug | Location of bug | Steps to recreate bug/test case | Root cause analysis
 --- | --- | --- | --- | ---
 1 | STV election hangs | stv_election.cc | Start VotingSystem, select STV election | Many dependencies
 2 | Logger does not work | logger.cc | Run VotingSystem, audit_file.txt is created but doesn’t get printed to
