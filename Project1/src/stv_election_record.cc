@@ -8,25 +8,18 @@
 #include <list>
 #include "candidate.h"
 #include "ballot.h"
-#include <algorithm> //std::shuffle
-#include <vector>
 #include <cstdlib>
-#include <random>  // std::default_random_engine
-#include <chrono>  // std::chrono::system_clock
+#include "stvElectionRecordUtils.cc"
 
-// forward declaration of helpers
-template <typename T > void listShuffle( std::list<T> &L );
-// bool STVCandidateComparator(const STVCandidate* candidate1, const STVCandidate* candidate2);
-//bool STVElectionRecord::BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2);
-
-STVElectionRecord::STVElectionRecord(const std::list<STVCandidate*> stvcandidate_list, const std::list<Ballot*> ballot_list, int droop)
- : nonElectedCandidateList_(stvcandidate_list), nonDistributedBallotList_(ballot_list), DroopQuota_(droop),
- winnersList_(0), losersList_(0), discardedBallotList_(0) {
+STVElectionRecord::STVElectionRecord(std::list<STVCandidate*> candidates, std::list<Ballot*> ballots, int droop)
+{
+    this->nonDistributedBallotList_ = ballots;
+    this->nonElectedCandidateList_ = candidates;
+    this->winnersList_ = {};
+    this->losersList_ = {};
+    this->discardedBallotList_ = {};
+    this->DroopQuota_ = droop;
 }
-
-// STVElectionRecord::~STVElectionRecord() {
-//     // Add code here
-// }
 
 std::list<Ballot*> STVElectionRecord::GetNonDistributedBallotList()
 {
@@ -50,7 +43,7 @@ std::list<STVCandidate*> STVElectionRecord::GetLosersList()
 
 void STVElectionRecord::ShuffleBallots() {
   // Call utility function to shuffle ballots
-  listShuffle( nonDistributedBallotList_ );
+  ListShuffle( nonDistributedBallotList_ );
   // Get the sequence after shuffling for logging purpose
   int ballotSequenceAfterShuffle [(int)nonDistributedBallotList_.size()];
   int i=0;
@@ -63,15 +56,6 @@ void STVElectionRecord::ShuffleBallots() {
   }
   // Log ballot sequence after shuffle to logger
   //----------------Need code-----------------------------
-}
-
-// utility function for shuffling ballots
-template <typename T > void STVElectionRecord::listShuffle( std::list<T> &L )
-{
-  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-  std::vector<T> V( L.begin(), L.end() );
-  std::shuffle( V.begin(), V.end(), std::default_random_engine(seed) );
-  L.assign( V.begin(), V.end() );
 }
 
 void STVElectionRecord::DistributeBallots() {
@@ -132,17 +116,6 @@ void STVElectionRecord::AddCandidateToWinnersList(STVCandidate* candidate) {
   winnersList_.push_back(candidate);
 }
 
-struct STVCandidateComparator
-{
-
-  // Compare 2 STVCandidate objects using number of ballots and order received
-  bool operator ()(const STVCandidate* candidate1, const STVCandidate* candidate2)
-  {
-    if (candidate1->GetNumBallots() == candidate2->GetNumBallots())
-      {return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum(); }
-      return candidate1->GetNumBallots() > candidate2->GetNumBallots(); 
-  }
-
 void STVElectionRecord::SortNonElectedCandidateList() {
   nonElectedCandidateList_.sort(STVCandidateComparator());
   // nonElectedCandidateList_.sort([](const STVCandidate &candidate1, const STVCandidate &candidate2)
@@ -191,12 +164,4 @@ STVCandidate* STVElectionRecord::PopCandidateOffLosersList() {
   return candidate;
 }
 
-// utility function for comparing candidates' votes
-// bool STVElectionRecord::STVCandidateComparator(const STVCandidate* candidate1, const STVCandidate* candidate2) {
-//   if (candidate1->GetNumBallots() == candidate2->GetNumBallots()){
-//     return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum();
-//   }
-//   else {
-//   return candidate1->GetNumBallots() > candidate2->GetNumBallots();
-//   }
-// }
+
