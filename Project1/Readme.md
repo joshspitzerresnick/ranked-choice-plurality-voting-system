@@ -7,7 +7,7 @@ Project1 - Waterfall Methodology - VotingSystem
 - Josh Spitzer-Resnick - spitz123@umn.edu
 - Colin Kluegel - klue0037@umn.edu
 
-## How to
+## How to compile the system
 
 ### Voting System build / clean using included makefile
 
@@ -25,8 +25,12 @@ directory. Run the project by typing
 ```
 Project1/src $ ./VotingSystem
 ```
+In order to clean the `src` directory of object files and the executable, type
+```
+Project1/src $ make clean
+```
 
-## Voting System build using CMake
+### Voting System build using CMake
 
 To build the voting system, ensure you are in the `src` directory and type:
 ```
@@ -45,7 +49,7 @@ Project1/src $ ./VotingSystem
 customized to work only on your machine's file system. Do not push this version
 of the Makefile to GitHub, as no one else will be able to use it.
 
-## Unit Test files build using CMake
+### Unit Test files build using CMake
 
 To build unit test files, ensure you are in the `testing` directory and type:
 ```
