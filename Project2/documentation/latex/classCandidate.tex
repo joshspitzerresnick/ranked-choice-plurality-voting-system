@@ -1,0 +1,171 @@
+\hypertarget{classCandidate}{}\section{Candidate Class Reference}
+\label{classCandidate}\index{Candidate@{Candidate}}
+
+
+The main class for candidates.  
+
+
+
+
+{\ttfamily \#include $<$candidate.\+h$>$}
+
+
+
+Inheritance diagram for Candidate\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{classCandidate__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Candidate\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{classCandidate__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCandidate_a5687946f621baf578fe2391272481dc5}{Candidate} (int, std\+::string, std\+::string)
+\begin{DoxyCompactList}\small\item\em Constructs a candidate to be used in an election. \end{DoxyCompactList}\item 
+int \hyperlink{classCandidate_a29b844b51162c153c6f85cf817c1c9d2}{Get\+ID} () const
+\begin{DoxyCompactList}\small\item\em Get candidate id. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classCandidate_ad1ca1432a295579d2d61fd50a5988973}{Get\+Name} () const
+\begin{DoxyCompactList}\small\item\em Get the candidate\textquotesingle{}s name. \end{DoxyCompactList}\item 
+int \hyperlink{classCandidate_a966911d3f565a2d31cf9780b522340d8}{Get\+Num\+Ballots} () const
+\begin{DoxyCompactList}\small\item\em Get the number of ballots the candidate has. \end{DoxyCompactList}\item 
+int \hyperlink{classCandidate_af33985d301d94d4855d28b891aba1ed6}{Add\+Ballot} (\hyperlink{classBallot}{Ballot} $\ast$)
+\begin{DoxyCompactList}\small\item\em Add a ballot to the list of ballots the candidate has. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classCandidate_a15a55468662174c8189b32fe344deb9e}{Increment\+Num\+Ballots} ()
+\begin{DoxyCompactList}\small\item\em Add one to the number of ballots the candidate has. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCandidate_a70cca9349b891eb921bfdeabe7ded6d5}\label{classCandidate_a70cca9349b891eb921bfdeabe7ded6d5}} 
+std\+::string {\bfseries name\+\_\+}
+\item 
+\mbox{\Hypertarget{classCandidate_a0bfc84bce32a43270d2387aea8ce2cdf}\label{classCandidate_a0bfc84bce32a43270d2387aea8ce2cdf}} 
+std\+::string {\bfseries party\+\_\+}
+\item 
+\mbox{\Hypertarget{classCandidate_aec8aa8cbbd790386924e7b57b84c9081}\label{classCandidate_aec8aa8cbbd790386924e7b57b84c9081}} 
+int {\bfseries num\+Ballots\+\_\+} = 0
+\item 
+\mbox{\Hypertarget{classCandidate_ab1454bc82abc3f3b417bdf81de09fc0c}\label{classCandidate_ab1454bc82abc3f3b417bdf81de09fc0c}} 
+std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$ $>$ {\bfseries ballot\+List\+\_\+} = \{\}
+\item 
+\mbox{\Hypertarget{classCandidate_a04149c9b00ec326c2d81cc607c29271c}\label{classCandidate_a04149c9b00ec326c2d81cc607c29271c}} 
+int {\bfseries id\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The main class for candidates. 
+
+Is a candidate. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCandidate_a5687946f621baf578fe2391272481dc5}\label{classCandidate_a5687946f621baf578fe2391272481dc5}} 
+\index{Candidate@{Candidate}!Candidate@{Candidate}}
+\index{Candidate@{Candidate}!Candidate@{Candidate}}
+\subsubsection{\texorpdfstring{Candidate()}{Candidate()}}
+{\footnotesize\ttfamily Candidate\+::\+Candidate (\begin{DoxyParamCaption}\item[{int}]{candidate\+\_\+num = {\ttfamily 0},  }\item[{std\+::string}]{candidate\+\_\+name = {\ttfamily \char`\"{}\char`\"{}},  }\item[{std\+::string}]{candidate\+\_\+party = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a candidate to be used in an election. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em int} & holding a candidate id number \\
+\hline
+\mbox{\tt in}  & {\em string} & containing the candidate\textquotesingle{}s name \\
+\hline
+\mbox{\tt in}  & {\em string} & containing the candidate\textquotesingle{}s party \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classCandidate_af33985d301d94d4855d28b891aba1ed6}\label{classCandidate_af33985d301d94d4855d28b891aba1ed6}} 
+\index{Candidate@{Candidate}!Add\+Ballot@{Add\+Ballot}}
+\index{Add\+Ballot@{Add\+Ballot}!Candidate@{Candidate}}
+\subsubsection{\texorpdfstring{Add\+Ballot()}{AddBallot()}}
+{\footnotesize\ttfamily int Candidate\+::\+Add\+Ballot (\begin{DoxyParamCaption}\item[{\hyperlink{classBallot}{Ballot} $\ast$}]{ballot }\end{DoxyParamCaption})}
+
+
+
+Add a ballot to the list of ballots the candidate has. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em A} & ballot object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int of the number of ballots the candidate has 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCandidate_a29b844b51162c153c6f85cf817c1c9d2}\label{classCandidate_a29b844b51162c153c6f85cf817c1c9d2}} 
+\index{Candidate@{Candidate}!Get\+ID@{Get\+ID}}
+\index{Get\+ID@{Get\+ID}!Candidate@{Candidate}}
+\subsubsection{\texorpdfstring{Get\+I\+D()}{GetID()}}
+{\footnotesize\ttfamily int Candidate\+::\+Get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get candidate id. 
+
+\begin{DoxyReturn}{Returns}
+candidate id 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCandidate_ad1ca1432a295579d2d61fd50a5988973}\label{classCandidate_ad1ca1432a295579d2d61fd50a5988973}} 
+\index{Candidate@{Candidate}!Get\+Name@{Get\+Name}}
+\index{Get\+Name@{Get\+Name}!Candidate@{Candidate}}
+\subsubsection{\texorpdfstring{Get\+Name()}{GetName()}}
+{\footnotesize\ttfamily std\+::string Candidate\+::\+Get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the candidate\textquotesingle{}s name. 
+
+\begin{DoxyReturn}{Returns}
+string of the candidate\textquotesingle{}s name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCandidate_a966911d3f565a2d31cf9780b522340d8}\label{classCandidate_a966911d3f565a2d31cf9780b522340d8}} 
+\index{Candidate@{Candidate}!Get\+Num\+Ballots@{Get\+Num\+Ballots}}
+\index{Get\+Num\+Ballots@{Get\+Num\+Ballots}!Candidate@{Candidate}}
+\subsubsection{\texorpdfstring{Get\+Num\+Ballots()}{GetNumBallots()}}
+{\footnotesize\ttfamily int Candidate\+::\+Get\+Num\+Ballots (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the number of ballots the candidate has. 
+
+\begin{DoxyReturn}{Returns}
+int of the number of ballots the candidate has 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCandidate_a15a55468662174c8189b32fe344deb9e}\label{classCandidate_a15a55468662174c8189b32fe344deb9e}} 
+\index{Candidate@{Candidate}!Increment\+Num\+Ballots@{Increment\+Num\+Ballots}}
+\index{Increment\+Num\+Ballots@{Increment\+Num\+Ballots}!Candidate@{Candidate}}
+\subsubsection{\texorpdfstring{Increment\+Num\+Ballots()}{IncrementNumBallots()}}
+{\footnotesize\ttfamily int Candidate\+::\+Increment\+Num\+Ballots (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Add one to the number of ballots the candidate has. 
+
+\begin{DoxyReturn}{Returns}
+int of the number of ballots the candidate has 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{candidate_8h}{candidate.\+h}\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{candidate_8cc}{candidate.\+cc}\end{DoxyCompactItemize}

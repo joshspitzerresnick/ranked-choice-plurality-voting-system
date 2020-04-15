@@ -1,0 +1,80 @@
+\hypertarget{classLogger}{}\section{Logger Class Reference}
+\label{classLogger}\index{Logger@{Logger}}
+
+
+The main class for logging info to an audit file.  
+
+
+
+
+{\ttfamily \#include $<$logger.\+h$>$}
+
+
+
+Collaboration diagram for Logger\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=159pt]{classLogger__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLogger_abc41bfb031d896170c7675fa96a6b30c}{Logger} ()
+\begin{DoxyCompactList}\small\item\em Constructs an object to use to log election information to a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLogger_acb668a9e186a25fbaad2e4af6d1ed00a}\label{classLogger_acb668a9e186a25fbaad2e4af6d1ed00a}} 
+\hyperlink{classLogger_acb668a9e186a25fbaad2e4af6d1ed00a}{$\sim$\+Logger} ()
+\begin{DoxyCompactList}\small\item\em Deconstructs election logging object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classLogger_ad22a485469cc14c5266e5fda019aba4d}\label{classLogger_ad22a485469cc14c5266e5fda019aba4d}} 
+std\+::string \hyperlink{classLogger_ad22a485469cc14c5266e5fda019aba4d}{Get\+Log\+File} ()
+\begin{DoxyCompactList}\small\item\em Get the file name of the election information audit file. \end{DoxyCompactList}\item 
+void \hyperlink{classLogger_adb535266f5ad2a27ce2bd589884f347b}{Log\+To\+File} (std\+::string message)
+\begin{DoxyCompactList}\small\item\em Send a message to the logger to append to an election information file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The main class for logging info to an audit file. 
+
+Is an election file logger 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classLogger_abc41bfb031d896170c7675fa96a6b30c}\label{classLogger_abc41bfb031d896170c7675fa96a6b30c}} 
+\index{Logger@{Logger}!Logger@{Logger}}
+\index{Logger@{Logger}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Logger()}{Logger()}}
+{\footnotesize\ttfamily Logger\+::\+Logger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructs an object to use to log election information to a file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em string} & holding text of a csv ballot file. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classLogger_adb535266f5ad2a27ce2bd589884f347b}\label{classLogger_adb535266f5ad2a27ce2bd589884f347b}} 
+\index{Logger@{Logger}!Log\+To\+File@{Log\+To\+File}}
+\index{Log\+To\+File@{Log\+To\+File}!Logger@{Logger}}
+\subsubsection{\texorpdfstring{Log\+To\+File()}{LogToFile()}}
+{\footnotesize\ttfamily void Logger\+::\+Log\+To\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{message }\end{DoxyParamCaption})}
+
+
+
+Send a message to the logger to append to an election information file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em message} & to be written to the election information file. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{logger_8h}{logger.\+h}\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/logger.\+cc\end{DoxyCompactItemize}

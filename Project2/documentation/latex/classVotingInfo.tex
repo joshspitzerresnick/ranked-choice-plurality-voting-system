@@ -1,0 +1,218 @@
+\hypertarget{classVotingInfo}{}\section{Voting\+Info Class Reference}
+\label{classVotingInfo}\index{Voting\+Info@{Voting\+Info}}
+
+
+The main class for storing voting information.  
+
+
+
+
+{\ttfamily \#include $<$voting\+\_\+info.\+h$>$}
+
+
+
+Collaboration diagram for Voting\+Info\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classVotingInfo__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classVotingInfo_a7bdb2f2026f5f68eee3fbee92855b759}{Voting\+Info} (int=-\/1, int=-\/1)
+\begin{DoxyCompactList}\small\item\em Constructs a voting info container with an algorithm choice and number of seats available. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classVotingInfo_a72e88f41ab4e266582041b8f42768586}\label{classVotingInfo_a72e88f41ab4e266582041b8f42768586}} 
+\hyperlink{classVotingInfo_a72e88f41ab4e266582041b8f42768586}{$\sim$\+Voting\+Info} ()
+\begin{DoxyCompactList}\small\item\em Deconstructs a voting info container. \end{DoxyCompactList}\item 
+int \hyperlink{classVotingInfo_a2d0abd1d9be36bfd9fb734dfa644b8e1}{Get\+Algorithm} () const
+\begin{DoxyCompactList}\small\item\em Returns choice of algorithm. \end{DoxyCompactList}\item 
+int \hyperlink{classVotingInfo_a9c226e3b169e0228ab26cb0a251792bd}{Get\+Num\+Seats} () const
+\begin{DoxyCompactList}\small\item\em Returns number of seats available. \end{DoxyCompactList}\item 
+void \hyperlink{classVotingInfo_ac0ab5f83a06ea6721999addb43a581ea}{Add\+Candidate\+To\+Candidate\+List} (\hyperlink{classCandidate}{Candidate} $\ast$)
+\begin{DoxyCompactList}\small\item\em Adds a candidate to the list of candidates. \end{DoxyCompactList}\item 
+void \hyperlink{classVotingInfo_a18d8dfef16797ef988a296d5ef28c852}{Add\+Candidate\+To\+Candidate\+List} (\hyperlink{classSTVCandidate}{S\+T\+V\+Candidate} $\ast$)
+\begin{DoxyCompactList}\small\item\em Adds an S\+TV candidate to the list of candidates. \end{DoxyCompactList}\item 
+void \hyperlink{classVotingInfo_ae4b8b9a77642271760bce59a0411f900}{Add\+Ballot\+To\+Ballot\+List} (\hyperlink{classBallot}{Ballot} $\ast$)
+\begin{DoxyCompactList}\small\item\em Adds a ballot to the list of ballots. \end{DoxyCompactList}\item 
+int \hyperlink{classVotingInfo_add7749e53650135da703aa7b816598f5}{Get\+Num\+Candidates} () const
+\begin{DoxyCompactList}\small\item\em Returns number of candidates in candidate list. \end{DoxyCompactList}\item 
+int \hyperlink{classVotingInfo_af84ccfdfbdf95bc33f959d8b82e27d8c}{Get\+Num\+Ballots} () const
+\begin{DoxyCompactList}\small\item\em Returns number of ballots in ballot list. \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{classCandidate}{Candidate} $\ast$ $>$ \hyperlink{classVotingInfo_ad64e934ebd73e4be9e89458e0a304030}{Get\+Candidate\+List} () const
+\begin{DoxyCompactList}\small\item\em Returns list of candidates. \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{classSTVCandidate}{S\+T\+V\+Candidate} $\ast$ $>$ \hyperlink{classVotingInfo_a16f743613daad52be36a92226001e5dd}{Get\+S\+T\+V\+Candidate\+List} () const
+\begin{DoxyCompactList}\small\item\em Returns list of S\+TV candidates. \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$ $>$ \hyperlink{classVotingInfo_a73ac1888c3695a912ef6991b6667eeaf}{Get\+Ballot\+List} () const
+\begin{DoxyCompactList}\small\item\em Returns list of ballots. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The main class for storing voting information. 
+
+Is a voting information container. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classVotingInfo_a7bdb2f2026f5f68eee3fbee92855b759}\label{classVotingInfo_a7bdb2f2026f5f68eee3fbee92855b759}} 
+\index{Voting\+Info@{Voting\+Info}!Voting\+Info@{Voting\+Info}}
+\index{Voting\+Info@{Voting\+Info}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Voting\+Info()}{VotingInfo()}}
+{\footnotesize\ttfamily Voting\+Info\+::\+Voting\+Info (\begin{DoxyParamCaption}\item[{int}]{algorithm = {\ttfamily -\/1},  }\item[{int}]{seats = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a voting info container with an algorithm choice and number of seats available. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em int} & holding choice of algorithm (0 for plurality, 1 for S\+TV). \\
+\hline
+\mbox{\tt in}  & {\em int} & holding number of seats available. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classVotingInfo_ae4b8b9a77642271760bce59a0411f900}\label{classVotingInfo_ae4b8b9a77642271760bce59a0411f900}} 
+\index{Voting\+Info@{Voting\+Info}!Add\+Ballot\+To\+Ballot\+List@{Add\+Ballot\+To\+Ballot\+List}}
+\index{Add\+Ballot\+To\+Ballot\+List@{Add\+Ballot\+To\+Ballot\+List}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Add\+Ballot\+To\+Ballot\+List()}{AddBallotToBallotList()}}
+{\footnotesize\ttfamily void Voting\+Info\+::\+Add\+Ballot\+To\+Ballot\+List (\begin{DoxyParamCaption}\item[{\hyperlink{classBallot}{Ballot} $\ast$}]{ballot }\end{DoxyParamCaption})}
+
+
+
+Adds a ballot to the list of ballots. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Ballot$\ast$} & holding a ballot to be added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classVotingInfo_ac0ab5f83a06ea6721999addb43a581ea}\label{classVotingInfo_ac0ab5f83a06ea6721999addb43a581ea}} 
+\index{Voting\+Info@{Voting\+Info}!Add\+Candidate\+To\+Candidate\+List@{Add\+Candidate\+To\+Candidate\+List}}
+\index{Add\+Candidate\+To\+Candidate\+List@{Add\+Candidate\+To\+Candidate\+List}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Add\+Candidate\+To\+Candidate\+List()}{AddCandidateToCandidateList()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Voting\+Info\+::\+Add\+Candidate\+To\+Candidate\+List (\begin{DoxyParamCaption}\item[{\hyperlink{classCandidate}{Candidate} $\ast$}]{candidate }\end{DoxyParamCaption})}
+
+
+
+Adds a candidate to the list of candidates. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em Candidate$\ast$} & holding a candidate to be added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classVotingInfo_a18d8dfef16797ef988a296d5ef28c852}\label{classVotingInfo_a18d8dfef16797ef988a296d5ef28c852}} 
+\index{Voting\+Info@{Voting\+Info}!Add\+Candidate\+To\+Candidate\+List@{Add\+Candidate\+To\+Candidate\+List}}
+\index{Add\+Candidate\+To\+Candidate\+List@{Add\+Candidate\+To\+Candidate\+List}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Add\+Candidate\+To\+Candidate\+List()}{AddCandidateToCandidateList()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Voting\+Info\+::\+Add\+Candidate\+To\+Candidate\+List (\begin{DoxyParamCaption}\item[{\hyperlink{classSTVCandidate}{S\+T\+V\+Candidate} $\ast$}]{stv\+\_\+candidate }\end{DoxyParamCaption})}
+
+
+
+Adds an S\+TV candidate to the list of candidates. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em S\+T\+V\+Candidate$\ast$} & holding an S\+TV candidate to be added. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classVotingInfo_a2d0abd1d9be36bfd9fb734dfa644b8e1}\label{classVotingInfo_a2d0abd1d9be36bfd9fb734dfa644b8e1}} 
+\index{Voting\+Info@{Voting\+Info}!Get\+Algorithm@{Get\+Algorithm}}
+\index{Get\+Algorithm@{Get\+Algorithm}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Get\+Algorithm()}{GetAlgorithm()}}
+{\footnotesize\ttfamily int Voting\+Info\+::\+Get\+Algorithm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns choice of algorithm. 
+
+\begin{DoxyReturn}{Returns}
+int holding choice of algorithm (0 for plurality, 1 for S\+TV). 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVotingInfo_a73ac1888c3695a912ef6991b6667eeaf}\label{classVotingInfo_a73ac1888c3695a912ef6991b6667eeaf}} 
+\index{Voting\+Info@{Voting\+Info}!Get\+Ballot\+List@{Get\+Ballot\+List}}
+\index{Get\+Ballot\+List@{Get\+Ballot\+List}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Get\+Ballot\+List()}{GetBallotList()}}
+{\footnotesize\ttfamily std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$ $>$ Voting\+Info\+::\+Get\+Ballot\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns list of ballots. 
+
+\begin{DoxyReturn}{Returns}
+std\+::list$<$\+Ballot$\ast$$>$ holding list of ballots. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVotingInfo_ad64e934ebd73e4be9e89458e0a304030}\label{classVotingInfo_ad64e934ebd73e4be9e89458e0a304030}} 
+\index{Voting\+Info@{Voting\+Info}!Get\+Candidate\+List@{Get\+Candidate\+List}}
+\index{Get\+Candidate\+List@{Get\+Candidate\+List}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Get\+Candidate\+List()}{GetCandidateList()}}
+{\footnotesize\ttfamily std\+::list$<$ \hyperlink{classCandidate}{Candidate} $\ast$ $>$ Voting\+Info\+::\+Get\+Candidate\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns list of candidates. 
+
+\begin{DoxyReturn}{Returns}
+std\+::list$<$\+Candidate$\ast$$>$ holding list of candidates. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVotingInfo_af84ccfdfbdf95bc33f959d8b82e27d8c}\label{classVotingInfo_af84ccfdfbdf95bc33f959d8b82e27d8c}} 
+\index{Voting\+Info@{Voting\+Info}!Get\+Num\+Ballots@{Get\+Num\+Ballots}}
+\index{Get\+Num\+Ballots@{Get\+Num\+Ballots}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Get\+Num\+Ballots()}{GetNumBallots()}}
+{\footnotesize\ttfamily int Voting\+Info\+::\+Get\+Num\+Ballots (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns number of ballots in ballot list. 
+
+\begin{DoxyReturn}{Returns}
+int holding number of ballots in ballot list. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVotingInfo_add7749e53650135da703aa7b816598f5}\label{classVotingInfo_add7749e53650135da703aa7b816598f5}} 
+\index{Voting\+Info@{Voting\+Info}!Get\+Num\+Candidates@{Get\+Num\+Candidates}}
+\index{Get\+Num\+Candidates@{Get\+Num\+Candidates}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Get\+Num\+Candidates()}{GetNumCandidates()}}
+{\footnotesize\ttfamily int Voting\+Info\+::\+Get\+Num\+Candidates (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns number of candidates in candidate list. 
+
+\begin{DoxyReturn}{Returns}
+int holding number of candidates in candidate list. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVotingInfo_a9c226e3b169e0228ab26cb0a251792bd}\label{classVotingInfo_a9c226e3b169e0228ab26cb0a251792bd}} 
+\index{Voting\+Info@{Voting\+Info}!Get\+Num\+Seats@{Get\+Num\+Seats}}
+\index{Get\+Num\+Seats@{Get\+Num\+Seats}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Get\+Num\+Seats()}{GetNumSeats()}}
+{\footnotesize\ttfamily int Voting\+Info\+::\+Get\+Num\+Seats (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns number of seats available. 
+
+\begin{DoxyReturn}{Returns}
+int holding number of seats available. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classVotingInfo_a16f743613daad52be36a92226001e5dd}\label{classVotingInfo_a16f743613daad52be36a92226001e5dd}} 
+\index{Voting\+Info@{Voting\+Info}!Get\+S\+T\+V\+Candidate\+List@{Get\+S\+T\+V\+Candidate\+List}}
+\index{Get\+S\+T\+V\+Candidate\+List@{Get\+S\+T\+V\+Candidate\+List}!Voting\+Info@{Voting\+Info}}
+\subsubsection{\texorpdfstring{Get\+S\+T\+V\+Candidate\+List()}{GetSTVCandidateList()}}
+{\footnotesize\ttfamily std\+::list$<$ \hyperlink{classSTVCandidate}{S\+T\+V\+Candidate} $\ast$ $>$ Voting\+Info\+::\+Get\+S\+T\+V\+Candidate\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns list of S\+TV candidates. 
+
+\begin{DoxyReturn}{Returns}
+std\+::list$<$\+S\+T\+V\+Candidate$\ast$$>$ holding list of candidates. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{voting__info_8h}{voting\+\_\+info.\+h}\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{voting__info_8cc}{voting\+\_\+info.\+cc}\end{DoxyCompactItemize}

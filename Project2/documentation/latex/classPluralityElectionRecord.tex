@@ -1,0 +1,155 @@
+\hypertarget{classPluralityElectionRecord}{}\section{Plurality\+Election\+Record Class Reference}
+\label{classPluralityElectionRecord}\index{Plurality\+Election\+Record@{Plurality\+Election\+Record}}
+
+
+Collaboration diagram for Plurality\+Election\+Record\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=241pt]{classPluralityElectionRecord__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPluralityElectionRecord_a6cc4b921ebfed3f5003b3047fae68fc5}{Plurality\+Election\+Record} (std\+::list$<$ \hyperlink{classCandidate}{Candidate} $\ast$$>$, std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$$>$)
+\begin{DoxyCompactList}\small\item\em Constructs plurality election record with a list of candidates and list of ballots. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPluralityElectionRecord_ae04ff63f885d88bb3160621802855413}\label{classPluralityElectionRecord_ae04ff63f885d88bb3160621802855413}} 
+\hyperlink{classPluralityElectionRecord_ae04ff63f885d88bb3160621802855413}{$\sim$\+Plurality\+Election\+Record} ()
+\begin{DoxyCompactList}\small\item\em Deconstructs a Plurality election record container. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPluralityElectionRecord_a0429e5fd83d0583d0077c51b163cae23}\label{classPluralityElectionRecord_a0429e5fd83d0583d0077c51b163cae23}} 
+void \hyperlink{classPluralityElectionRecord_a0429e5fd83d0583d0077c51b163cae23}{Distribute\+Ballots} ()
+\begin{DoxyCompactList}\small\item\em Distributes ballots to candidates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPluralityElectionRecord_a922a4048844b20b6eb5702abc7c99b97}\label{classPluralityElectionRecord_a922a4048844b20b6eb5702abc7c99b97}} 
+void \hyperlink{classPluralityElectionRecord_a922a4048844b20b6eb5702abc7c99b97}{Sort\+Non\+Elected\+Candidate\+List} ()
+\begin{DoxyCompactList}\small\item\em Sorts the non\+Elected\+Candidate\+List, candidate with the highest number of ballots is sent to front of the list. \end{DoxyCompactList}\item 
+void \hyperlink{classPluralityElectionRecord_a9463aecae88c5decfdbb793678b16c87}{Move\+First\+N\+Candidates\+From\+Non\+E\+Lected\+List\+To\+Winners\+List} (int)
+\begin{DoxyCompactList}\small\item\em Moves Candidates from the non elected candidate list to the winners list. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPluralityElectionRecord_aed6bc13b7af6b3747f0bfde6d19d47b4}\label{classPluralityElectionRecord_aed6bc13b7af6b3747f0bfde6d19d47b4}} 
+void \hyperlink{classPluralityElectionRecord_aed6bc13b7af6b3747f0bfde6d19d47b4}{Move\+Remaining\+Candidates\+To\+Losers\+List} ()
+\begin{DoxyCompactList}\small\item\em Moves Candidates from the non elected candidate list to the losers list. \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{classCandidate}{Candidate} $\ast$ $>$ \hyperlink{classPluralityElectionRecord_a3767192b33477411922f21ef4474f2e5}{Get\+Non\+Elected\+Candidate\+List} ()
+\begin{DoxyCompactList}\small\item\em Gets the candidates that are not on the winners list or losers list. \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{classCandidate}{Candidate} $\ast$ $>$ \hyperlink{classPluralityElectionRecord_a5b5da69173023ac0441918b0485b58b9}{Get\+Winners\+List} ()
+\begin{DoxyCompactList}\small\item\em Gets the candidates that are on the winners list. \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{classCandidate}{Candidate} $\ast$ $>$ \hyperlink{classPluralityElectionRecord_af998fcfa909f9e781ab5c48bd6b54d77}{Get\+Losers\+List} ()
+\begin{DoxyCompactList}\small\item\em Gets the candidates that are on the losers list. \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$ $>$ \hyperlink{classPluralityElectionRecord_a996f0e14812b0b1d510af52ab0c496bf}{Get\+Non\+Distributed\+Ballot\+List} ()
+\begin{DoxyCompactList}\small\item\em Gets the list of ballots that haven\textquotesingle{}t yet been assigned to a candidate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classPluralityElectionRecord_af157c9564184c444bcf8cab59b0ac07e}\label{classPluralityElectionRecord_af157c9564184c444bcf8cab59b0ac07e}} 
+static bool \hyperlink{classPluralityElectionRecord_af157c9564184c444bcf8cab59b0ac07e}{Break\+Ties} ()
+\begin{DoxyCompactList}\small\item\em Randomly chooses true or false to break a tie. \end{DoxyCompactList}\item 
+static bool \hyperlink{classPluralityElectionRecord_af7b9fef847ef615ff844912a1a851a62}{Candidate\+Num\+Ballots\+Comp} (\hyperlink{classCandidate}{Candidate} $\ast$, \hyperlink{classCandidate}{Candidate} $\ast$)
+\begin{DoxyCompactList}\small\item\em Moves Candidates from the non elected candidate list to the losers list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPluralityElectionRecord_a6cc4b921ebfed3f5003b3047fae68fc5}\label{classPluralityElectionRecord_a6cc4b921ebfed3f5003b3047fae68fc5}} 
+\index{Plurality\+Election\+Record@{Plurality\+Election\+Record}!Plurality\+Election\+Record@{Plurality\+Election\+Record}}
+\index{Plurality\+Election\+Record@{Plurality\+Election\+Record}!Plurality\+Election\+Record@{Plurality\+Election\+Record}}
+\subsubsection{\texorpdfstring{Plurality\+Election\+Record()}{PluralityElectionRecord()}}
+{\footnotesize\ttfamily Plurality\+Election\+Record\+::\+Plurality\+Election\+Record (\begin{DoxyParamCaption}\item[{std\+::list$<$ \hyperlink{classCandidate}{Candidate} $\ast$$>$}]{candidates,  }\item[{std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$$>$}]{ballots }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs plurality election record with a list of candidates and list of ballots. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em } & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classPluralityElectionRecord_af7b9fef847ef615ff844912a1a851a62}\label{classPluralityElectionRecord_af7b9fef847ef615ff844912a1a851a62}} 
+\index{Plurality\+Election\+Record@{Plurality\+Election\+Record}!Candidate\+Num\+Ballots\+Comp@{Candidate\+Num\+Ballots\+Comp}}
+\index{Candidate\+Num\+Ballots\+Comp@{Candidate\+Num\+Ballots\+Comp}!Plurality\+Election\+Record@{Plurality\+Election\+Record}}
+\subsubsection{\texorpdfstring{Candidate\+Num\+Ballots\+Comp()}{CandidateNumBallotsComp()}}
+{\footnotesize\ttfamily bool Plurality\+Election\+Record\+::\+Candidate\+Num\+Ballots\+Comp (\begin{DoxyParamCaption}\item[{\hyperlink{classCandidate}{Candidate} $\ast$}]{candidate1,  }\item[{\hyperlink{classCandidate}{Candidate} $\ast$}]{candidate2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Moves Candidates from the non elected candidate list to the losers list. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em int} & Number of candidates to move to the losers list \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPluralityElectionRecord_af998fcfa909f9e781ab5c48bd6b54d77}\label{classPluralityElectionRecord_af998fcfa909f9e781ab5c48bd6b54d77}} 
+\index{Plurality\+Election\+Record@{Plurality\+Election\+Record}!Get\+Losers\+List@{Get\+Losers\+List}}
+\index{Get\+Losers\+List@{Get\+Losers\+List}!Plurality\+Election\+Record@{Plurality\+Election\+Record}}
+\subsubsection{\texorpdfstring{Get\+Losers\+List()}{GetLosersList()}}
+{\footnotesize\ttfamily std\+::list$<$ \hyperlink{classCandidate}{Candidate} $\ast$ $>$ Plurality\+Election\+Record\+::\+Get\+Losers\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the candidates that are on the losers list. 
+
+\begin{DoxyReturn}{Returns}
+list$<$\+Candidate$\ast$$>$ a list of candidate pointers 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPluralityElectionRecord_a996f0e14812b0b1d510af52ab0c496bf}\label{classPluralityElectionRecord_a996f0e14812b0b1d510af52ab0c496bf}} 
+\index{Plurality\+Election\+Record@{Plurality\+Election\+Record}!Get\+Non\+Distributed\+Ballot\+List@{Get\+Non\+Distributed\+Ballot\+List}}
+\index{Get\+Non\+Distributed\+Ballot\+List@{Get\+Non\+Distributed\+Ballot\+List}!Plurality\+Election\+Record@{Plurality\+Election\+Record}}
+\subsubsection{\texorpdfstring{Get\+Non\+Distributed\+Ballot\+List()}{GetNonDistributedBallotList()}}
+{\footnotesize\ttfamily std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$ $>$ Plurality\+Election\+Record\+::\+Get\+Non\+Distributed\+Ballot\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the list of ballots that haven\textquotesingle{}t yet been assigned to a candidate. 
+
+\begin{DoxyReturn}{Returns}
+list$<$\+Ballot$\ast$$>$ a list of ballot pointers 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPluralityElectionRecord_a3767192b33477411922f21ef4474f2e5}\label{classPluralityElectionRecord_a3767192b33477411922f21ef4474f2e5}} 
+\index{Plurality\+Election\+Record@{Plurality\+Election\+Record}!Get\+Non\+Elected\+Candidate\+List@{Get\+Non\+Elected\+Candidate\+List}}
+\index{Get\+Non\+Elected\+Candidate\+List@{Get\+Non\+Elected\+Candidate\+List}!Plurality\+Election\+Record@{Plurality\+Election\+Record}}
+\subsubsection{\texorpdfstring{Get\+Non\+Elected\+Candidate\+List()}{GetNonElectedCandidateList()}}
+{\footnotesize\ttfamily std\+::list$<$ \hyperlink{classCandidate}{Candidate} $\ast$ $>$ Plurality\+Election\+Record\+::\+Get\+Non\+Elected\+Candidate\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the candidates that are not on the winners list or losers list. 
+
+\begin{DoxyReturn}{Returns}
+list$<$\+Candidate$\ast$$>$ a list of candidate pointers 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPluralityElectionRecord_a5b5da69173023ac0441918b0485b58b9}\label{classPluralityElectionRecord_a5b5da69173023ac0441918b0485b58b9}} 
+\index{Plurality\+Election\+Record@{Plurality\+Election\+Record}!Get\+Winners\+List@{Get\+Winners\+List}}
+\index{Get\+Winners\+List@{Get\+Winners\+List}!Plurality\+Election\+Record@{Plurality\+Election\+Record}}
+\subsubsection{\texorpdfstring{Get\+Winners\+List()}{GetWinnersList()}}
+{\footnotesize\ttfamily std\+::list$<$ \hyperlink{classCandidate}{Candidate} $\ast$ $>$ Plurality\+Election\+Record\+::\+Get\+Winners\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the candidates that are on the winners list. 
+
+\begin{DoxyReturn}{Returns}
+list$<$\+Candidate$\ast$$>$ a list of candidate pointers 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPluralityElectionRecord_a9463aecae88c5decfdbb793678b16c87}\label{classPluralityElectionRecord_a9463aecae88c5decfdbb793678b16c87}} 
+\index{Plurality\+Election\+Record@{Plurality\+Election\+Record}!Move\+First\+N\+Candidates\+From\+Non\+E\+Lected\+List\+To\+Winners\+List@{Move\+First\+N\+Candidates\+From\+Non\+E\+Lected\+List\+To\+Winners\+List}}
+\index{Move\+First\+N\+Candidates\+From\+Non\+E\+Lected\+List\+To\+Winners\+List@{Move\+First\+N\+Candidates\+From\+Non\+E\+Lected\+List\+To\+Winners\+List}!Plurality\+Election\+Record@{Plurality\+Election\+Record}}
+\subsubsection{\texorpdfstring{Move\+First\+N\+Candidates\+From\+Non\+E\+Lected\+List\+To\+Winners\+List()}{MoveFirstNCandidatesFromNonELectedListToWinnersList()}}
+{\footnotesize\ttfamily void Plurality\+Election\+Record\+::\+Move\+First\+N\+Candidates\+From\+Non\+E\+Lected\+List\+To\+Winners\+List (\begin{DoxyParamCaption}\item[{int}]{N }\end{DoxyParamCaption})}
+
+
+
+Moves Candidates from the non elected candidate list to the winners list. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em int} & Number of candidates to move to the winners list \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{plurality__election__record_8h}{plurality\+\_\+election\+\_\+record.\+h}\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/plurality\+\_\+election\+\_\+record.\+cc\end{DoxyCompactItemize}

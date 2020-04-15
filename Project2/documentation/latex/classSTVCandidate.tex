@@ -1,0 +1,138 @@
+\hypertarget{classSTVCandidate}{}\section{S\+T\+V\+Candidate Class Reference}
+\label{classSTVCandidate}\index{S\+T\+V\+Candidate@{S\+T\+V\+Candidate}}
+
+
+The main class for S\+TV candidates.  
+
+
+
+
+{\ttfamily \#include $<$candidate.\+h$>$}
+
+
+
+Inheritance diagram for S\+T\+V\+Candidate\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{classSTVCandidate__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for S\+T\+V\+Candidate\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{classSTVCandidate__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSTVCandidate_af9d9b827835e1689069c6fe97a950321}{S\+T\+V\+Candidate} (int, std\+::string, std\+::string)
+\begin{DoxyCompactList}\small\item\em Constructs an S\+TV candidate to be used in an S\+TV election. \end{DoxyCompactList}\item 
+int \hyperlink{classSTVCandidate_a91601ba711e655bde45114cf846e2787}{Add\+Ballot} (\hyperlink{classBallot}{Ballot} $\ast$ballot)
+\begin{DoxyCompactList}\small\item\em Add a ballot to the list of ballots the candidate has. \end{DoxyCompactList}\item 
+std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$ $>$ \hyperlink{classSTVCandidate_a4eac28947d47e9726a4c0565c7e60250}{Remove\+Ballot\+List} ()
+\begin{DoxyCompactList}\small\item\em Remove the list of ballots an S\+TV candidate has. \end{DoxyCompactList}\item 
+void \hyperlink{classSTVCandidate_af57688ad8fabeeff8c6738779c7bdc3e}{Set\+First\+Ballot\+Num} (int)
+\begin{DoxyCompactList}\small\item\em Save ballot id number for the first ballot given to an S\+TV candiate. \end{DoxyCompactList}\item 
+int \hyperlink{classSTVCandidate_a3281dae3d03733994405241e57a23eec}{Get\+First\+Ballot\+Num} () const
+\begin{DoxyCompactList}\small\item\em Get the ballot id of the first ballot given to the S\+TV candidate. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The main class for S\+TV candidates. 
+
+Is an S\+TV candidate. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSTVCandidate_af9d9b827835e1689069c6fe97a950321}\label{classSTVCandidate_af9d9b827835e1689069c6fe97a950321}} 
+\index{S\+T\+V\+Candidate@{S\+T\+V\+Candidate}!S\+T\+V\+Candidate@{S\+T\+V\+Candidate}}
+\index{S\+T\+V\+Candidate@{S\+T\+V\+Candidate}!S\+T\+V\+Candidate@{S\+T\+V\+Candidate}}
+\subsubsection{\texorpdfstring{S\+T\+V\+Candidate()}{STVCandidate()}}
+{\footnotesize\ttfamily S\+T\+V\+Candidate\+::\+S\+T\+V\+Candidate (\begin{DoxyParamCaption}\item[{int}]{candidate\+\_\+num,  }\item[{std\+::string}]{candidate\+\_\+name,  }\item[{std\+::string}]{candidate\+\_\+party }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs an S\+TV candidate to be used in an S\+TV election. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em int} & holding an S\+TV candidate id number \\
+\hline
+\mbox{\tt in}  & {\em string} & containing the S\+TV candidate\textquotesingle{}s name \\
+\hline
+\mbox{\tt in}  & {\em string} & containing the S\+TV candidate\textquotesingle{}s party \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classSTVCandidate_a91601ba711e655bde45114cf846e2787}\label{classSTVCandidate_a91601ba711e655bde45114cf846e2787}} 
+\index{S\+T\+V\+Candidate@{S\+T\+V\+Candidate}!Add\+Ballot@{Add\+Ballot}}
+\index{Add\+Ballot@{Add\+Ballot}!S\+T\+V\+Candidate@{S\+T\+V\+Candidate}}
+\subsubsection{\texorpdfstring{Add\+Ballot()}{AddBallot()}}
+{\footnotesize\ttfamily int S\+T\+V\+Candidate\+::\+Add\+Ballot (\begin{DoxyParamCaption}\item[{\hyperlink{classBallot}{Ballot} $\ast$}]{ballot }\end{DoxyParamCaption})}
+
+
+
+Add a ballot to the list of ballots the candidate has. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em A} & ballot object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int of the number of ballots the candidate has 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSTVCandidate_a3281dae3d03733994405241e57a23eec}\label{classSTVCandidate_a3281dae3d03733994405241e57a23eec}} 
+\index{S\+T\+V\+Candidate@{S\+T\+V\+Candidate}!Get\+First\+Ballot\+Num@{Get\+First\+Ballot\+Num}}
+\index{Get\+First\+Ballot\+Num@{Get\+First\+Ballot\+Num}!S\+T\+V\+Candidate@{S\+T\+V\+Candidate}}
+\subsubsection{\texorpdfstring{Get\+First\+Ballot\+Num()}{GetFirstBallotNum()}}
+{\footnotesize\ttfamily int S\+T\+V\+Candidate\+::\+Get\+First\+Ballot\+Num (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the ballot id of the first ballot given to the S\+TV candidate. 
+
+\begin{DoxyReturn}{Returns}
+int of the ballot id number. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSTVCandidate_a4eac28947d47e9726a4c0565c7e60250}\label{classSTVCandidate_a4eac28947d47e9726a4c0565c7e60250}} 
+\index{S\+T\+V\+Candidate@{S\+T\+V\+Candidate}!Remove\+Ballot\+List@{Remove\+Ballot\+List}}
+\index{Remove\+Ballot\+List@{Remove\+Ballot\+List}!S\+T\+V\+Candidate@{S\+T\+V\+Candidate}}
+\subsubsection{\texorpdfstring{Remove\+Ballot\+List()}{RemoveBallotList()}}
+{\footnotesize\ttfamily std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$ $>$ S\+T\+V\+Candidate\+::\+Remove\+Ballot\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Remove the list of ballots an S\+TV candidate has. 
+
+\begin{DoxyReturn}{Returns}
+list of ballots 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classSTVCandidate_af57688ad8fabeeff8c6738779c7bdc3e}\label{classSTVCandidate_af57688ad8fabeeff8c6738779c7bdc3e}} 
+\index{S\+T\+V\+Candidate@{S\+T\+V\+Candidate}!Set\+First\+Ballot\+Num@{Set\+First\+Ballot\+Num}}
+\index{Set\+First\+Ballot\+Num@{Set\+First\+Ballot\+Num}!S\+T\+V\+Candidate@{S\+T\+V\+Candidate}}
+\subsubsection{\texorpdfstring{Set\+First\+Ballot\+Num()}{SetFirstBallotNum()}}
+{\footnotesize\ttfamily void S\+T\+V\+Candidate\+::\+Set\+First\+Ballot\+Num (\begin{DoxyParamCaption}\item[{int}]{ballot\+\_\+num }\end{DoxyParamCaption})}
+
+
+
+Save ballot id number for the first ballot given to an S\+TV candiate. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em the} & ballot id number as an integer. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{candidate_8h}{candidate.\+h}\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{candidate_8cc}{candidate.\+cc}\end{DoxyCompactItemize}

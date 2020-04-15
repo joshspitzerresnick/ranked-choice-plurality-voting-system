@@ -1,0 +1,15 @@
+build
+*.o
+*.exe
+*.out
+!documentation/html
+!documentation/latex
+.vscode/
+testing/CMakeFiles/
+testing/cmake_install.cmake
+testing/CMakeCache.txt
+testing/runTests
+src/CMakeFiles/
+src/cmake_install.cmake
+src/CMakeCache.txt
+src/VotingSystem
