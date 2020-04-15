@@ -1,3 +1,7 @@
+# CSci 5801 S20 Project 2 Makefile - Team 3
+# Originally compiled by Colin Kluegel, features added by Josh Spitzer-Resnick
+# (C) 2020 Colin Kluegel (klue0037), Josh Spitzer-Resnick (spitz123)
+
 VotingSystem: voting_system.o ballot.o candidate.o voting_info.o ballot_file_processor.o plurality_election_record.o logger.o plurality_election.o stv_election.o stv_election_record.o
 	g++ voting_system.o ballot.o candidate.o voting_info.o ballot_file_processor.o plurality_election_record.o logger.o plurality_election.o stv_election.o stv_election_record.o -o VotingSystem
 
@@ -33,6 +37,10 @@ stv_election_record.o: stv_election_record.cc stv_election_record.h
 
 
 
+all: VotingSystem docs
+
+docs:
+	cd ../documentation; doxygen Doxyfile
 
 clean:
 	rm *.o VotingSystem
