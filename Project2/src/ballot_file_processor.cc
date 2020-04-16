@@ -41,7 +41,6 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
     int algo = votinginfo->GetAlgorithm();
     int i, j;
     int num;
-    int cand_cnt = 0;
     Candidate* candidate;
     STVCandidate* stv_candidate;
     Ballot* ballot;
@@ -66,11 +65,9 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
                 if (algo == 0) {  // plurality election
                     candidate = new Candidate(i, row[i], "Ind");
                     votinginfo->AddCandidateToCandidateList(candidate);
-                    cand_cnt++;
                 } else {  // stv election
                     stv_candidate = new STVCandidate(i, row[i], "Ind");
                     votinginfo->AddCandidateToCandidateList(stv_candidate);
-                    cand_cnt++;
                 }
             }
         } else {  // Run for the rest of the file - ballot information
@@ -88,7 +85,7 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
                 }
             }
             ballot = new Ballot(linecnt, cand_list);
-            if (IsInvalid(algo, cand_cnt, ballot)) {
+            if (IsInvalid(algo, votinginfo->GetNumCandidates(), ballot)) {
                 votinginfo->AddBallotToInvalidList(ballot);
             } else {
                 votinginfo->AddBallotToBallotList(ballot);
