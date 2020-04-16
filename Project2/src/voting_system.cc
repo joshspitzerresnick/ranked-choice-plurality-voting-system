@@ -48,8 +48,8 @@ int main(int argc, char** argv){
       pluralityElection->RunElection(votingInfo); // TODO
       break;
     case 1 :
-      stvElection = new STVElection(votingInfo);
-      stvElection->RunElection();
+      stvElection = new STVElection();
+      stvElection->RunElection(votingInfo);
       break;
     default:
       exit(1); //error, this should never happen

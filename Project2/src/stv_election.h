@@ -11,6 +11,7 @@
 #include "stv_election_record.h"
 #include "candidate.h"
 #include "ballot.h"
+#include <list>
 
 extern bool BallotShuffleOff;
 
@@ -27,7 +28,7 @@ class STVElection{
   * @param[in] VotingInfo* data structure
   *
   */
-  explicit STVElection(VotingInfo*);
+  explicit STVElection();
   /**
   * @brief Run an STV election.
   *
@@ -35,7 +36,7 @@ class STVElection{
   * @return void
   *
   */
-  void RunElection();
+  void RunElection(VotingInfo*);
     /**
   * @brief Display STV election results.
   *
@@ -43,10 +44,6 @@ class STVElection{
   * @return void
   *
   */
-  void DisplayResult();
- private:
-  STVElectionRecord* stvElectionRecord_;  // stv election record object
-  // STVResultDisplay* stvResultDisplay_;  // stv result display object // NO LONGER USING - Josh
-  int numSeats_;  // number of seats to be filled
+  void DisplayResult(STVElectionRecord*, VotingInfo*);
 };
 #endif

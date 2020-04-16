@@ -8,6 +8,7 @@
 #define SRC_STV_ELECTION_RECORD_H_
 
 #include <list>
+#include <map>
 #include "candidate.h"
 #include "ballot.h"
 #include "logger.h"
@@ -30,100 +31,125 @@ class STVElectionRecord {
   * @param[in] droop value
   *
   */
-  explicit STVElectionRecord(const std::list<STVCandidate*>,
-                               const std::list<Ballot*>, int);
+  explicit STVElectionRecord(std::list<STVCandidate*>, std::list<Ballot*>, int);
+
   /**
    * @brief Function to get nonDistributedBallotList_.
+   *
+   * @return list<Ballot*>,
    */
   std::list<Ballot*> GetNonDistributedBallotList();
+
   /**
-   * @brief Function to get nonElectedCandidateList_.
+   * @brief Method to find a candidate from NonElectedCandidateMap.
+   *
+   * @param[in] int, ID of candidate
+   * @return STVCandidate* with id of input parameter, or NULL if candidate not in map
    */
-  std::list<STVCandidate*> GetNonElectedCandidateList();
+  STVCandidate* FindCandidate(int);
+
   /**
-   * @brief Function to get winnersList_.
+   * @brief Method to assign a ballot to a candidate.
+   *
+   * @param[in] Ballot*, ballot to give to candidate
+   * @param[in] STVCandidate*, STVCandidate to assign ballot to
+   * @param[in] int, ID of candidate
+   */
+  void GiveBallotToCandidate(Ballot*, STVCandidate*, int);
+
+  /**
+   * @brief Method to check if there are still candidates in NonElectedCandidateMap
+   *
+   * @return Returns bool, True if there are still candidates in NonElectedCandidateMap
+   * else it returns false
+   */
+  bool ValidCandidatesRemain();
+
+  /**
+   * @brief Method to get nonElectedCandidateMap
+   *
+   * @return map<int, STVCandidate*>, the nonElectedCandidateMap
+   */
+  std::map<int,STVCandidate*> GetNonElectedCandidateMap();
+
+  /**
+   * @brief Method to get winnersList_.
+   *
+   * @return Returns list<STVCandidate*>
    */
   std::list<STVCandidate*> GetWinnersList();
+
   /**
-   * @brief Function to get losersList_.
+   * @brief Method to get losersList_.
+   *
+   * @return Returns list<STVCandidate*>
    */
   std::list<STVCandidate*> GetLosersList();
+
   /**
-   * @brief Function to shuffle the ballots prior to the election.
+   * @brief Method to shuffle the ballots prior to the election.
    */
   void ShuffleBallots();
+
   /**
-   * @brief Function to distribute the ballots to the canidate of the ballots choosing.
+   * @brief Method to perform one round of distributing ballots.
    */
   void DistributeBallots();
+
   /**
-   * @brief Function to check a ballot count against the droop value.
+   * @brief Method to check a ballot count against the droop value.
    *
    * @param[in] A ballot count.
    *
    * @return Returns a bool of true if droop has been met and false otherwise.
    */
   bool CheckDroop(int);
+
   /**
    * @brief Add an stv candidate to the winners list.
    *
    * @param[in] An stv candidate
    */
   void AddCandidateToWinnersList(STVCandidate*);
-  /**
-   * @brief Sort the non elected candidate list
-   */
-  void SortNonElectedCandidateList();
-  /**
-   * @brief Remove the last candidate from the non elected candidate list
-   *
-   * @return The last stv candidate from the non elected candidates list
-   */
-  STVCandidate* RemoveLastCandidateFromNonElectedCandidateList();
+
+
   /**
    * @brief Add an stv candidate to the losers list
    *
-   * @param[in] an stv candidate
-   *
-   * @return A list of the losers ballots.
    */
-  std::list<Ballot*> AddCandidateToLosersList(STVCandidate*);
-  /**
-   * @brief Add the ballots from a losing candidate back into the non distributed ballots list
-   *
-   * @param[in] A list of ballots
-   */
-  void AddLoserBallotsToNonDistributedBallotList(std::list<Ballot*>);
-  /**
-   * @brief Add ballot to discared ballot list
-   *
-   * @param[in] A ballot
-   */
-  void AddBallotToDiscardedBallotList(Ballot*);
-  /**
-   * @brief Break a tie between two stv candidates
-   *
-   * @param[in] STV candidate 1
-   * @param[in] STV candidate 2
-   *
-   * @return true if the first candidate wins over the second candidate
-   */
-  // bool BreakTies(const STVCandidate*, const STVCandidate*);
-  /**
-   * @brief Take an stv candidate off the losers list
-   *
-   * @return An stv candidate
-   */
-  STVCandidate* PopCandidateOffLosersList();
+   void AddCandidateToLosersList();
+
+   /**
+    * @brief Find the losing candidate
+    *
+    *@return STVCandidate*, losing candidate
+    */
+   STVCandidate* GetBiggestLoser();
+
+   /**
+    * @brief Break losing candidate tie if there are multiple losing candidates
+    *
+    *@param[in] list<STVCandidate*> list of the losing stv candidates
+    *@return STVCandidate*, losing candidate
+    */
+   STVCandidate* BreakLoserTie(std::list<STVCandidate*>);
+
+   /**
+    * @brief Moves ballots from losers list to winners list
+    *
+    * @param[in] int, number of places on winners list
+    */
+  void FillWinnersList(int);
 
  private:
   template <typename T > void listShuffle( std::list<T> &L ); // utility function for shuffling ballots
   bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2); // utility function for comparing candidates' votes
   std::list<Ballot*> nonDistributedBallotList_;  // Non Distributed ballot list
-  std::list<STVCandidate*> nonElectedCandidateList_;  // Non elected candidate list
+  std::map<int,STVCandidate*> nonElectedCandidateMap;
   std::list<STVCandidate*> winnersList_;  // Winner List
   std::list<STVCandidate*> losersList_;  // Loser List
   std::list<Ballot*> discardedBallotList_;  // The discarded ballot list
   int DroopQuota_;  // The droop quota
+  int current_ballot_num;
 };
 #endif
