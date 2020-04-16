@@ -36,6 +36,18 @@ class BallotFileProcessor {
   * @param[in] pointer to VotingInfo object with algorithm and seat info.
   */
   void ProcessFiles(VotingInfo*);
+  /**
+   * @brief Check if ballot file is valid.
+   * 
+   * @param[in] int for the algorithm used.  0 is a plurality election, 1 is an stv election.
+   * 
+   * @param[in] int for the number of candidates in the election.
+   * 
+   * @param[in] pointer to a ballot object 
+   * 
+   * @return bool, True if the ballot is invalid, False if the ballot valid. 
+   */
+  bool IsInvalid(int, int, Ballot*);
 
  private:
   std::string ballot_file_name_;  // Name of the ballot file to process.
