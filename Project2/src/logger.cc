@@ -1,40 +1,27 @@
 /**
- * @file ballot_file_processor.cc
+ * @file logger.cc
  *
- * @copyright 2020 5801 Team3, All rights reserved.
+ * @copyright 2020 5801 Team3, based on a singleton logger example, All rights reserved.
  */
-
-#include <string>
-#include <sstream>
-#include <vector>
-#include <list>
 #include "logger.h"
+#include <iostream>
 
-using std::vector;
-using std::string;
-using std::stringstream;
-using std::ios;
-
+const char Logger::fileName[] = "VotingSystemAuditFile.txt";
+Logger* Logger::pThis = NULL;
+std::ofstream Logger::logFile;
 Logger::Logger() {
-    string e_message;
-    log_stream_.open(log_file_.c_str(), std::ios_base::app);
-    if (!log_stream_.good()) {
-        log_stream_.close();
-        std::ostringstream oss;
-        oss << "Audit file: " << log_file_ << " alread exists!" << '\n';
-        e_message = oss.str();
-        throw e_message;
+}
+Logger* Logger::GetLogger() {
+    if (pThis == NULL) {
+        std::cout << "Construct new Logger obj..." << std::endl;
+        pThis = new Logger();
+        std::cout << "Open new log file..." << std::endl;
+        logFile.open(fileName, std::ios::out | std::ios::app);
     }
+    return pThis;
+}
+void Logger::Log(const std::string& msg) {
+    std::cout << "log message to file..." << msg << std::endl;
+    logFile << msg << "\n";
 }
 
-Logger::~Logger() {
-    log_stream_.close();
-}
-
-string Logger::GetLogFile() {
-    return log_file_;
-}
-
-void Logger::LogToFile(string message) {
-    log_stream_ << message << '\n';
-}
