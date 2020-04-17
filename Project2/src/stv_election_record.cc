@@ -94,6 +94,7 @@ void STVElectionRecord::GiveBallotToCandidate(Ballot* ballot, STVCandidate* stvc
 
 	}
 
+
 }
 
 bool STVElectionRecord::ValidCandidatesRemain()
@@ -132,8 +133,19 @@ std::list<STVCandidate*> STVElectionRecord::GetLosersList()
   return losersList_;
 };
 
+
 void STVElectionRecord::ShuffleBallots() {
-   //TODO, probably can convert to vector->shuffle-> back to list
+
+   std::vector<Ballot*> ballot_vector;
+   std::copy(this->nonDistributedBallotList_.begin(), this->nonDistributedBallotList_.end(), std::back_inserter(ballot_vector));
+   unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
+   std::default_random_engine engine(seed);
+   std::shuffle(ballot_vector.begin(), ballot_vector.end(), engine);
+   std::shuffle(ballot_vector.begin(), ballot_vector.end(), engine);
+   std::shuffle(ballot_vector.begin(), ballot_vector.end(), engine);
+   this->nonDistributedBallotList_.clear();
+   std::copy(ballot_vector.begin(), ballot_vector.end(), std::back_inserter(this->nonDistributedBallotList_));
+
 }
 
 bool STVElectionRecord::CheckDroop(int droop) {

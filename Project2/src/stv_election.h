@@ -36,7 +36,7 @@ class STVElection{
   * @return void
   *
   */
-  void RunElection(VotingInfo*);
+  void RunElection(VotingInfo*, bool);
     /**
   * @brief Display STV election results.
   *

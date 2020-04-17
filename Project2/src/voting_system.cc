@@ -12,7 +12,7 @@
 #include <cstring>
 #include <iostream>
 
-bool BallotShuffleOff = false;
+
 Logger* logger = new Logger();
 
 void UserInterface(int *numSeats, int *choice);
@@ -22,13 +22,14 @@ int main(int argc, char** argv){
 
   int choice = 5;
   int numSeats;
+  bool BallotShuffle = true;
   STVElection* stvElection;
   PluralityElection* pluralityElection;
   BallotFileProcessor* ballotFileProcessor;
   VotingInfo* votingInfo;
   // Check command line argument
   if (argc >= 2 && strcmp (argv[1], "-t") == 0){
-    BallotShuffleOff = true; // Turn off ballot shuffle if '-t' is detected
+    BallotShuffle = false; // Turn off ballot shuffle if '-t' is detected
     logger->LogToFile("Command line argument received: turn off ballot shuffle.");
   }
 
@@ -49,7 +50,7 @@ int main(int argc, char** argv){
       break;
     case 1 :
       stvElection = new STVElection();
-      stvElection->RunElection(votingInfo);
+      stvElection->RunElection(votingInfo, BallotShuffle);
       break;
     default:
       exit(1); //error, this should never happen

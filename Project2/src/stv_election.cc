@@ -17,7 +17,7 @@ STVElection::STVElection() {
 
 }
 
-void STVElection::RunElection(VotingInfo* votingInfo){
+void STVElection::RunElection(VotingInfo* votingInfo, bool ballot_shuffle){
     std::list<STVCandidate*> candidates_list = votingInfo->GetSTVCandidateList();
     std::list<Ballot*> ballots_list = votingInfo->GetBallotList();
     bool candidates_remain= true;
@@ -26,6 +26,10 @@ void STVElection::RunElection(VotingInfo* votingInfo){
     int droop = (int)floor(num_ballots / (num_seats + 1)) + 1;
 
     STVElectionRecord* election_record = new STVElectionRecord(candidates_list, ballots_list, droop);
+    if(ballot_shuffle)
+    {
+        election_record->ShuffleBallots();
+    }
     while(candidates_remain)
     {
         election_record->DistributeBallots();
