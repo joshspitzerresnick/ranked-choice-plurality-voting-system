@@ -64,6 +64,12 @@ class VotingInfo {
   */
   void AddBallotToBallotList(Ballot*);
   /**
+   * @brief Adds a ballot to the list of invalid ballots.
+   * 
+   * @param[in] Ballot* holding a ballot to be added.
+   */
+  void AddBallotToInvalidList(Ballot*);
+  /**
   * @brief Returns number of candidates in candidate list.
   *
   * @return int holding number of candidates in candidate list.
@@ -75,6 +81,12 @@ class VotingInfo {
   * @return int holding number of ballots in ballot list.
   */
   int GetNumBallots() const;
+  /**
+   * @brief Returns number of ballots in invalid ballot list.
+   * 
+   * @return int holding number of ballots in invalid ballot list.
+   */
+  int GetNumInvalid() const;
   /**
   * @brief Returns list of candidates.
   *
@@ -93,10 +105,17 @@ class VotingInfo {
   * @return std::list<Ballot*> holding list of ballots.
   */
   std::list<Ballot*> GetBallotList() const;
+  /**
+   * @brief Returns list of invalid ballots.
+   * 
+   * @return std::list<Ballot*> holding list of invalid ballots.
+   */
+  std::list<Ballot*> GetInvalidList() const;
 
  private:
   void IncrementNumCandidates();
   void IncrementNumBallots();
+  void IncrementNumInvalid();
   int algorithm_;
   int num_seats_;
   int num_candidates_;
@@ -104,5 +123,7 @@ class VotingInfo {
   std::list<STVCandidate*> stv_candidate_list_;
   int num_ballots_;
   std::list<Ballot*> ballot_list_;
+  int num_invalid_;
+  std::list<Ballot*> invalid_list_;
 };
 #endif  // SRC_VOTING_INFO_H_

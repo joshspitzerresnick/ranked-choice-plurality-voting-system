@@ -22,15 +22,15 @@ set(Sources
 # Link runTests with waht we want to test and the GTest and pthread libraries
 add_executable(runTests 
     ${Sources} 
-    testmain.cc 
-    ballot_UT.cc 
-    candidate_UT.cc 
-    voting_info_UT.cc 
-    ballot_file_processor_UT.cc 
-    plurality_election_record_UT.cc
-    plurality_election_UT.cc
-    # STVElectionRecord_UT.cc
-    # STVElection_UT.cc
-    logger_UT.cc) 
+    ../src/testmain.cc 
+    ../src/ballot_UT.cc 
+    ../src/candidate_UT.cc 
+    ../src/voting_info_UT.cc 
+    ../src/ballot_file_processor_UT.cc 
+    ../src/plurality_election_record_UT.cc
+    ../src/plurality_election_UT.cc
+    # ../src/STVElectionRecord_UT.cc
+    # ../src/STVElection_UT.cc
+    ../src/logger_UT.cc) 
     
 target_link_libraries(runTests ${GTEST_LIBRARIES} pthread)
