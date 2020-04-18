@@ -9,6 +9,7 @@
 #include "logger.h"
 #include <cstring>
 #include <iostream>
+#include <assert.h>
 
 bool BallotShuffleOff = false;
 
@@ -58,7 +59,11 @@ void UserInterface(int *numSeats, int *choice)
   std::string errMsg = "Invalid choice. Please enter 0, 1 or 2.";
   char c = 0;  // char var to hold user input for y/n
   bool numSeatsValid = false;  // for input checking
+  int tt=0;
   while (*choice != 0 && *choice != 1) {
+    tt++;
+    if (tt>=5)
+      assert(false);
     std::cout << "-----------------Voting System Main Menu-----------------------\n" << std::flush;
     std::cout << "Select election type, choose 2. Help if instruction is needed: \n" << std::flush;
     std::cout << "0: Plurality\n" << std::flush;
@@ -66,12 +71,12 @@ void UserInterface(int *numSeats, int *choice)
     std::cout << "2: Help\n" << std::flush;
     std::cout << "Selection: ";
     std::cin >> *choice;
-    while (std::cin.fail()) {
+    if (std::cin.fail()) {
     std::cout << errMsg << std::endl;
     std::cin.clear();
+    cin.ignore(10000, '\n');
     *choice = 5;
-    }
-    if (*choice < 0 || *choice > 2) {
+    } else if (*choice < 0 || *choice > 2) {
       std::cout << errMsg << std::endl;
     } else if (*choice == 2) {
       DisplayHelp();
@@ -84,18 +89,26 @@ void UserInterface(int *numSeats, int *choice)
     if (std::cin.fail() || *numSeats < 1 || *numSeats > 99) {
       std::cout << "Invalid input. Please enter a number between 1 and 99." << std::endl;
       std::cin.clear();
-      numSeats = 0;
+      cin.ignore(10000, '\n');
+      *numSeats = -1;
     } else {
-      std::cout << "Number of seats entered is " << *numSeats << std::endl;
-      std::cout << "Is this number is correct? (y/n): ";
-      std::cin >> c;
-      while (std::cin.fail()) {
-        std::cout << "Invalid input. Please enter y or n." << std::endl;
-        std::cin.clear();
-        c = 0;
-      }
-      if (c == 'y') {
-        numSeatsValid = true;
+      while (true) {
+        std::cout << "Number of seats entered is " << *numSeats << std::endl;
+        std::cout << "Is this number is correct? (y/n): ";
+        std::cin >> c;
+        if (std::cin.fail()) {
+          std::cout << "Invalid input. Please enter y or n." << std::endl;
+          std::cin.clear();
+          cin.ignore(10000, '\n');
+          c = 0;
+        } else if (c == 'y') {
+          numSeatsValid = true;
+          break;
+        } else if (c == 'n') {
+          break;
+        } else {
+          std::cout << "Invalid input. Please enter y or n." << std::endl;
+        }
       }
     }
   }
