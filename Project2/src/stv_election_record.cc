@@ -43,9 +43,7 @@ std::list<STVCandidate*> STVElectionRecord::GetLosersList() {
 
 void STVElectionRecord::ShuffleBallots() {
   // Call utility function to shuffle ballots
-  std::cout << "shuffle ballots..." << std::endl;
   ListShuffle(nonDistributedBallotList_);
-  std::cout << "After shuffle..." << std::endl;
   // Get the sequence after shuffling for logging purpose
   // int ballotSequenceAfterShuffle[nonDistributedBallotList_.size()];
   // int i = 0;
@@ -59,7 +57,7 @@ void STVElectionRecord::ShuffleBallots() {
   // ----------------Need code-----------------------------
 }
 
-void STVElectionRecord::DistributeBallots() {
+void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
   std::list<int> tempRankedCandidateList;  // temperory int array to store ranked candidate list from each ballot
   int curCandidateID;  // current ranked candidate ID
   int numBallots;  // number of ballots a candidate has
@@ -85,6 +83,10 @@ void STVElectionRecord::DistributeBallots() {
       for (itCandidate = nonElectedCandidateList_.begin();
       itCandidate != nonElectedCandidateList_.end(); itCandidate++) {
         if ((*itCandidate)->GetID() == *li) {
+          if ((*itCandidate)->GetNumBallots() < 1) {
+            // Assign first ballot number
+            (*itCandidate)->SetFirstBallotNum((*firstBallotNum)++);
+          }
           numBallots = (*itCandidate)->AddBallot(curBallot);
           // check if current candidate met droop
           if (CheckDroop(numBallots)) {
@@ -153,10 +155,6 @@ void STVElectionRecord::AddBallotToDiscardedBallotList(Ballot* ballot) {
   discardedBallotList_.push_front(ballot);
 }
 
-// bool STVElectionRecord::BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2) {
-//   return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum();
-// }
-
 STVCandidate* STVElectionRecord::PopCandidateOffLosersList() {
   STVCandidate* candidate;
   candidate = losersList_.back();
@@ -168,7 +166,6 @@ STVCandidate* STVElectionRecord::PopCandidateOffLosersList() {
 
 template <typename T > void STVElectionRecord::ListShuffle(std::list<T> &L) {
   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-  std::cout << "inside ListShuffle function..." << std::endl;
   std::vector<T> V(L.begin(), L.end());
   std::shuffle(V.begin(), V.end(), std::default_random_engine(seed));
   L.assign(V.begin(), V.end());

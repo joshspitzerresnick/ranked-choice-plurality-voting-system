@@ -5,7 +5,7 @@
  */
 
 #include "stv_election.h"
-// #include "voting_system.cc"
+#include <list>
 #include <cmath>
 #include <iostream>
 #include <assert.h>
@@ -22,24 +22,23 @@ void STVElection::RunElection() {
   STVCandidate* candidate;  // stv candidate object pointer to hold candidate object to pass between member functions
   std::list<Ballot*> ballotList;  // ballot pointer list to hold ballots for passing between stvelectionrecord functions
   std::list<STVCandidate*> tempSTVCandidateList;
+  int firstBallotNum = 1;
   // check if ballot shuffle off option is true
   if (!BallotShuffleOff) {
-    stvElectionRecord_->ShuffleBallots();  // shuffle ballots    
+    stvElectionRecord_->ShuffleBallots();  // shuffle ballots
   }
   while (true) {
-    stvElectionRecord_->DistributeBallots();  // distribute ballots
+    stvElectionRecord_->DistributeBallots(&firstBallotNum);
     // when there is no more candidate on nonelected list, exit loop
     tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
     if (tempSTVCandidateList .empty()) {
       break;
     }
-    
     // Sort non-elected candidate list by number of votes, break tie (embeded) if number of votes are equal
     stvElectionRecord_->SortNonElectedCandidateList();
     // Put the candidate with the least votes onto losers list and put his/her ballots into non-distributed balots list
     candidate = stvElectionRecord_->RemoveLastCandidateFromNonElectedCandidateList();
     tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
-    std::cout << "election2: nonElectedCandidateList_.size()=" << tempSTVCandidateList.size() << "\n";
     ballotList = stvElectionRecord_->AddCandidateToLosersList(candidate);
     stvElectionRecord_->AddLoserBallotsToNonDistributedBallotList(ballotList);
   }
@@ -52,7 +51,7 @@ void STVElection::RunElection() {
   DisplayResult();
 }
 
-void STVElection::DisplayResult(){
+void STVElection::DisplayResult() {
   std::list<STVCandidate*> winnersList;
   std::list<STVCandidate*> losersList;
   std::list<STVCandidate*>::iterator it;

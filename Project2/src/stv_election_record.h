@@ -55,7 +55,7 @@ class STVElectionRecord {
   /**
    * @brief Function to distribute the ballots to the canidate of the ballots choosing.
    */
-  void DistributeBallots();
+  void DistributeBallots(int*);
   /**
    * @brief Function to check a ballot count against the droop value.
    *
