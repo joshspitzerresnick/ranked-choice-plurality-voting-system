@@ -26,6 +26,15 @@ BallotFileProcessor::~BallotFileProcessor() {
     ballot_files_.close();
 }
 
+bool BallotFileProcessor::IsInvalid(int algo, int cand_cnt, Ballot* ballot) {
+    std::list<int> cand_lst = ballot->GetRankedCandidateIDList();
+    if (algo != 0 && (cand_lst.size() < (cand_cnt / 2.0))) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
     // Define required variables
     int linecnt = 0;
@@ -76,7 +85,11 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
                 }
             }
             ballot = new Ballot(linecnt, cand_list);
-            votinginfo->AddBallotToBallotList(ballot);
+            if (IsInvalid(algo, votinginfo->GetNumCandidates(), ballot)) {
+                votinginfo->AddBallotToInvalidList(ballot);
+            } else {
+                votinginfo->AddBallotToBallotList(ballot);
+            }
         }
         linecnt++;  // Increment line counter
     }
