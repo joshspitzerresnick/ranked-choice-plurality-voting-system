@@ -3,8 +3,6 @@
  *
  * @copyright 2020 5801 Team3, All rights reserved.
  */
-
-// #include "voting_system.h" // NO SUCH THING - Josh
 #include "stv_election.h"
 #include "plurality_election.h"
 #include "ballot_file_processor.h"
@@ -27,15 +25,13 @@ int main(int argc, char** argv) {
   // Check command line argument
   if (argc >= 2 && strcmp(argv[1], "-t") == 0) {
     BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
-    // std::string msg = "Command line argument received: turn off ballot shuffle.";
-    std::string msg = "test";
-    std::cout << "msg = " << msg << std::endl;
+    std::string msg = "Command line argument received: turn off ballot shuffle.";
     Logger::GetLogger()->Log(msg);
   }
 
   UserInterface(&numSeats, &choice);
   std::string ballot_files;
-  std::cout << "enter name of ballot file:\n" << std::flush;
+  std::cout << "enter the name of the ballot file:" << std::flush;
   std::cin >> ballot_files;
 
   votingInfo = new VotingInfo(choice, numSeats);
@@ -72,6 +68,7 @@ void UserInterface(int *numSeats, int *choice)
     std::cin >> *choice;
     while (std::cin.fail()) {
     std::cout << errMsg << std::endl;
+    std::cin.clear();
     *choice = 5;
     }
     if (*choice < 0 || *choice > 2) {
@@ -104,8 +101,7 @@ void UserInterface(int *numSeats, int *choice)
   }
 }
 
-void DisplayHelp()
-{
+void DisplayHelp() {
 	std::cout << "---------------Voting System Help Menu------------------\n"         << std::flush;
     std::cout << "* Voting System is ...\n"                                         << std::flush;
     std::cout << "(C) 2020 Archer, Baker, Kluegel, Spitzer-Resnick \n\n"            << std::flush;

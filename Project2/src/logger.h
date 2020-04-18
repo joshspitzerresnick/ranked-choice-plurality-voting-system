@@ -8,6 +8,7 @@
 #define Logger_H
 #include <fstream>
 #include <string>
+using namespace std;
 #define LOGGER Logger::GetLogger()
 /**
 *   Singleton Logger Class.
