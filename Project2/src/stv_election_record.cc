@@ -63,8 +63,7 @@ void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
   bool assigned;  // if a ballot had been assigned
   Ballot* curBallot;  // a holder for the ballot popped off list
   STVCandidate* tempCandidate;  // pointer to a candidate
-  int msgSize = 1000, n;
-  char msg[msgSize], temp[10];
+  char msg[1000], temp[10];
   // Loop on nonDistributedBallotList: keep looping if nonDistributedBallotList is not empty
   while (!nonDistributedBallotList_.empty()) {
     curBallot = nonDistributedBallotList_.front();
@@ -81,7 +80,7 @@ void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
       std::list<STVCandidate*>::iterator itCandidate;
       for (itCandidate = nonElectedCandidateList_.begin();
       itCandidate != nonElectedCandidateList_.end(); itCandidate++) {
-        if ((*itCandidate)->GetID() == *li) {
+        if ((*itCandidate)->GetID() + 1 == *li) {
           if ((*itCandidate)->GetNumBallots() < 1) {
             // Assign first ballot number
             (*itCandidate)->SetFirstBallotNum((*firstBallotNum)++);
@@ -128,17 +127,7 @@ void STVElectionRecord::SortNonElectedCandidateList() {
 STVCandidate*
 STVElectionRecord::RemoveLastCandidateFromNonElectedCandidateList() {
   STVCandidate* candidate;
-  char msg[1000], temp[10];
-  snprintf(msg, sizeof(msg), "Sorted nonElectedCandidateList inside remove function: ");
-  std::list<STVCandidate*>::iterator itCandidate;
-    for (itCandidate = nonElectedCandidateList_.begin(); itCandidate != nonElectedCandidateList_.end(); itCandidate++) {
-      // Access the object through iterator
-      snprintf(temp, sizeof(temp), ",%s", (*itCandidate)->GetName().c_str());
-      strncat(msg, temp, sizeof(msg));
-    }
-    LOGGER->Log(msg);  // Log
   candidate = nonElectedCandidateList_.back();
-  snprintf(msg, sizeof(msg), "candidate %s is being removed", candidate->GetName().c_str());
   nonElectedCandidateList_.pop_back();
   return candidate;
 }
