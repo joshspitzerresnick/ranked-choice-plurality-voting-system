@@ -5,15 +5,6 @@
  */
 
 #include "stv_election_record.h"
-#include <list>
-#include <vector>
-#include "candidate.h"
-#include "ballot.h"
-#include <cstdlib>
-#include <algorithm> //std::shuffle
-#include <random>  // std::default_random_engine
-#include <chrono>  // std::chrono::system_clock
-#include <assert.h>
 
 STVElectionRecord::STVElectionRecord
 (std::list<STVCandidate*> candidates, std::list<Ballot*> ballots, int droop) {
@@ -42,19 +33,27 @@ std::list<STVCandidate*> STVElectionRecord::GetLosersList() {
 }
 
 void STVElectionRecord::ShuffleBallots() {
+  char msg[1000], temp[10];
   // Call utility function to shuffle ballots
   ListShuffle(nonDistributedBallotList_);
   // Get the sequence after shuffling for logging purpose
-  // int ballotSequenceAfterShuffle[nonDistributedBallotList_.size()];
-  // int i = 0;
-  // std::list<Ballot*>::iterator it;  // Create an iterator of std::list
-  // // Make iterate point to begining and incerement it one by one till it reaches the end of list.
-  // for (it = nonDistributedBallotList_.begin(); it != nonDistributedBallotList_.end(); it++) {
-  //   // Access the object through iterator
-  //   ballotSequenceAfterShuffle[i] = (*it)->GetID();
-  // }
-  // Log ballot sequence after shuffle to logger
-  // ----------------Need code-----------------------------
+  snprintf(msg, sizeof(msg), "Ballot sequence after shuffle: ");
+  std::list<Ballot*>::iterator it;  // Create an iterator of std::list
+  // Log ballot sequence after shuffle to logger  
+  int cnt = 0;
+  for (it = nonDistributedBallotList_.begin(); it != nonDistributedBallotList_.end(); it++) {
+    cnt++;
+    snprintf(temp, sizeof(temp), ",%d", (*it)->GetID());
+    if (cnt < 200) {
+      strncat(msg, temp, sizeof(msg));
+    } else {
+      cnt = 0;
+      LOGGER->Log(msg);  // Log
+      snprintf(msg, sizeof(msg), "...");
+      strncat(msg, temp, sizeof(msg));
+    }
+  }
+  LOGGER->Log(msg);
 }
 
 void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
@@ -64,12 +63,12 @@ void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
   bool assigned;  // if a ballot had been assigned
   Ballot* curBallot;  // a holder for the ballot popped off list
   STVCandidate* tempCandidate;  // pointer to a candidate
+  int msgSize = 1000, n;
+  char msg[msgSize], temp[10];
   // Loop on nonDistributedBallotList: keep looping if nonDistributedBallotList is not empty
   while (!nonDistributedBallotList_.empty()) {
     curBallot = nonDistributedBallotList_.front();
     nonDistributedBallotList_.pop_front();
-    //--------- Log to logger
-    //
     assigned = false;  //  initialize
     // Get ranked candidate list
     tempRankedCandidateList = /*(int)*/ curBallot->GetRankedCandidateIDList();
@@ -88,13 +87,16 @@ void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
             (*itCandidate)->SetFirstBallotNum((*firstBallotNum)++);
           }
           numBallots = (*itCandidate)->AddBallot(curBallot);
+          snprintf(msg, sizeof(msg), "Ballot#%d is assigned to candidate %s", curBallot->GetID(), (*itCandidate)->GetName().c_str());
+          LOGGER->Log(msg);
           // check if current candidate met droop
           if (CheckDroop(numBallots)) {
             tempCandidate = *itCandidate;
             nonElectedCandidateList_.erase(itCandidate++);
             AddCandidateToWinnersList(tempCandidate);
             //--------- Log to logger
-            //
+            snprintf(msg, sizeof(msg), "candidate %s met droop, move to winnersList", tempCandidate->GetName().c_str());
+            LOGGER->Log(msg);
           }
           assigned = true;
           break;
@@ -105,10 +107,10 @@ void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
       // did not find a candidate on non elected list for this ballot
       AddBallotToDiscardedBallotList(curBallot);
       //--------- Log to logger
-      //
+      snprintf(msg, sizeof(msg), "Ballot#%d is discarded", curBallot->GetID());
+      LOGGER->Log(msg);
     }
   }
-  // delete tempRankedCandidateList;
 }
 
 bool STVElectionRecord::CheckDroop(int droop) {
@@ -121,19 +123,22 @@ void STVElectionRecord::AddCandidateToWinnersList(STVCandidate* candidate) {
 
 void STVElectionRecord::SortNonElectedCandidateList() {
   nonElectedCandidateList_.sort(STVCandidateComparator);
-  // nonElectedCandidateList_.sort([](const STVCandidate &candidate1, const STVCandidate &candidate2)
-  //   {
-  //     if (candidate1.GetNumBallots() == candidate2.GetNumBallots())
-  //       {return candidate1.GetFirstBallotNum()>candidate2.GetFirstBallotNum(); }
-  //     return candidate1.GetNumBallots() > candidate2.GetNumBallots();
-  //   }
-  // );
 }
 
 STVCandidate*
 STVElectionRecord::RemoveLastCandidateFromNonElectedCandidateList() {
   STVCandidate* candidate;
+  char msg[1000], temp[10];
+  snprintf(msg, sizeof(msg), "Sorted nonElectedCandidateList inside remove function: ");
+  std::list<STVCandidate*>::iterator itCandidate;
+    for (itCandidate = nonElectedCandidateList_.begin(); itCandidate != nonElectedCandidateList_.end(); itCandidate++) {
+      // Access the object through iterator
+      snprintf(temp, sizeof(temp), ",%s", (*itCandidate)->GetName().c_str());
+      strncat(msg, temp, sizeof(msg));
+    }
+    LOGGER->Log(msg);  // Log
   candidate = nonElectedCandidateList_.back();
+  snprintf(msg, sizeof(msg), "candidate %s is being removed", candidate->GetName().c_str());
   nonElectedCandidateList_.pop_back();
   return candidate;
 }
@@ -159,8 +164,6 @@ STVCandidate* STVElectionRecord::PopCandidateOffLosersList() {
   STVCandidate* candidate;
   candidate = losersList_.back();
   losersList_.pop_back();
-  //--------- Log to logger
-  //
   return candidate;
 }
 
@@ -173,8 +176,13 @@ template <typename T > void STVElectionRecord::ListShuffle(std::list<T> &L) {
 
 // utility function for comparing candidates' votes
 bool STVElectionRecord::STVCandidateComparator(STVCandidate* candidate1, STVCandidate* candidate2) {
+  char msg[1000];
   if (candidate1->GetNumBallots() == candidate2->GetNumBallots()) {
-    return candidate1->GetFirstBallotNum() > candidate2->GetFirstBallotNum();
+    snprintf(msg, sizeof(msg), "Tie break between candidate %s (#votes=%d, #1stBallot=%d) and candidate %s (#votes=%d, #1stBallot=%d).",
+        candidate1->GetName().c_str(), candidate1->GetNumBallots(), candidate1->GetFirstBallotNum(),
+        candidate2->GetName().c_str(), candidate2->GetNumBallots(), candidate2->GetFirstBallotNum());
+    LOGGER->Log(msg);
+    return candidate1->GetFirstBallotNum() < candidate2->GetFirstBallotNum();
   } else {
   return candidate1->GetNumBallots() > candidate2->GetNumBallots();
   }

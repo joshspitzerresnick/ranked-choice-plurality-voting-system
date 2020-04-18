@@ -23,20 +23,21 @@ int main(int argc, char** argv) {
   PluralityElection* pluralityElection;
   BallotFileProcessor* ballotFileProcessor;
   VotingInfo* votingInfo;
-  int msgSize = 200, n;
-  char msg[msgSize];
+  char msg[200];
+  Logger::GetLogger();
+  LOGGER->Log("----------------------------------Start A New Election----------------------------------------------------");
   // Check command line argument
   if (argc >= 2 && strcmp(argv[1], "-t") == 0) {
     BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
-    Logger::GetLogger()->Log("Command line argument received: turn off ballot shuffle.");
+    LOGGER->Log("Command line argument received: turn off ballot shuffle.");
   }
 
   UserInterface(&numSeats, &choice);
   std::string ballot_files;
   std::cout << "enter the name of the ballot file:" << std::flush;
   std::cin >> ballot_files;
-  n = snprintf(msg, msgSize, "User entered ballot file: %s", ballot_files.c_str());
-  Logger::GetLogger()->Log(msg);
+  snprintf(msg, sizeof(msg), "User entered ballot file: %s", ballot_files.c_str());
+  LOGGER->Log(msg);
 
   votingInfo = new VotingInfo(choice, numSeats);
 
@@ -45,13 +46,13 @@ int main(int argc, char** argv) {
 
   switch (choice) {
     case 0:
-      n = snprintf(msg, msgSize, "Start running plurality election...");
+      snprintf(msg, sizeof(msg), "Start running plurality election...");
       LOGGER->Log(msg);
       pluralityElection = new PluralityElection();
       pluralityElection->RunElection(votingInfo);
       break;
     case 1 :
-      n = snprintf(msg, msgSize, "Start running stv election...");
+      snprintf(msg, sizeof(msg), "Start running stv election...");
       LOGGER->Log(msg);
       stvElection = new STVElection(votingInfo);
       stvElection->RunElection();

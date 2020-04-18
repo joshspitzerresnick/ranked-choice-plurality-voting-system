@@ -5,10 +5,6 @@
  */
 
 #include "stv_election.h"
-#include <list>
-#include <cmath>
-#include <iostream>
-#include <assert.h>
 
 STVElection::STVElection(VotingInfo* votingInfo) {
   numSeats_ = votingInfo->GetNumSeats();
@@ -23,30 +19,67 @@ void STVElection::RunElection() {
   std::list<Ballot*> ballotList;  // ballot pointer list to hold ballots for passing between stvelectionrecord functions
   std::list<STVCandidate*> tempSTVCandidateList;
   int firstBallotNum = 1;
+  int msgSize = 1000;
+  char msg[msgSize], temp[20];
   // check if ballot shuffle off option is true
   if (!BallotShuffleOff) {
     stvElectionRecord_->ShuffleBallots();  // shuffle ballots
   }
   while (true) {
     stvElectionRecord_->DistributeBallots(&firstBallotNum);
-    // when there is no more candidate on nonelected list, exit loop
     tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
-    if (tempSTVCandidateList .empty()) {
+    // when there is no more candidate on nonelected list, exit loop
+    if (tempSTVCandidateList.empty()) {
       break;
     }
     // Sort non-elected candidate list by number of votes, break tie (embeded) if number of votes are equal
     stvElectionRecord_->SortNonElectedCandidateList();
+    tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
+    snprintf(msg, msgSize, "Sorted nonElectedCandidateList: ");
+    // Create an iterator of std::list
+    std::list<STVCandidate*>::iterator itCandidate;
+    for (itCandidate = tempSTVCandidateList.begin(); itCandidate != tempSTVCandidateList.end(); itCandidate++) {
+      // Access the object through iterator
+      snprintf(temp, sizeof(temp), ",%s (%d votes)", (*itCandidate)->GetName().c_str(), (*itCandidate)->GetNumBallots());
+      strncat(msg, temp, sizeof(msg));
+    }
+    LOGGER->Log(msg);  // Log
     // Put the candidate with the least votes onto losers list and put his/her ballots into non-distributed balots list
     candidate = stvElectionRecord_->RemoveLastCandidateFromNonElectedCandidateList();
-    tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
+    snprintf(msg, sizeof(msg), "Move candidate %s to losersList", candidate->GetName().c_str());
+    LOGGER->Log(msg);
+    // tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
     ballotList = stvElectionRecord_->AddCandidateToLosersList(candidate);
+    snprintf(msg, msgSize, "Move candidate %s's ballot to nonDistributedBallotList: ", candidate->GetName().c_str());
+    std::list<Ballot*>::iterator it;  // Create an iterator of std::list
+    // snprintf(msg, sizeof(msg), "#Ballots to add= %d", (int)ballotList.size());
+    LOGGER->Log(msg);
+    int cnt = 0;
+    for (it = ballotList.begin(); it != ballotList.end(); it++) {
+      cnt++;
+      // Access the object through iterator
+      snprintf(temp, sizeof(temp), ",%d", (*it)->GetID());
+      if (cnt < 200) {
+        strncat(msg, temp, sizeof(msg));
+      } else {
+        cnt = 0;
+        LOGGER->Log(msg);  // Log
+        snprintf(msg, sizeof(msg), "...");
+        strncat(msg, temp, sizeof(msg));
+      }
+    }
+    LOGGER->Log(msg);
     stvElectionRecord_->AddLoserBallotsToNonDistributedBallotList(ballotList);
   }
   // if need more candidates to fill seats, move the candidates being put on losers list last to winners list
-  while ((int)(stvElectionRecord_->GetWinnersList().size()) < numSeats_){
+  while ((int)(stvElectionRecord_->GetWinnersList().size()) < numSeats_) {
     candidate = stvElectionRecord_->PopCandidateOffLosersList();
+    snprintf(msg, msgSize, "Move candidate %s from losersList to winnersList.",
+                                                  candidate->GetName().c_str());
+    LOGGER->Log(msg);
     stvElectionRecord_->AddCandidateToWinnersList(candidate);
   }
+  Logger::GetLogger()->Log("----------------------------------Election Complete----------------------------------------------------");
   // display election results
   DisplayResult();
 }
