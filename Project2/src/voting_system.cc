@@ -9,7 +9,7 @@
 #include "logger.h"
 #include <cstring>
 #include <iostream>
-#include <assert.h>
+#include <stdio.h>
 
 bool BallotShuffleOff = false;
 
@@ -23,17 +23,20 @@ int main(int argc, char** argv) {
   PluralityElection* pluralityElection;
   BallotFileProcessor* ballotFileProcessor;
   VotingInfo* votingInfo;
+  int msgSize = 200, n;
+  char msg[msgSize];
   // Check command line argument
   if (argc >= 2 && strcmp(argv[1], "-t") == 0) {
     BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
-    std::string msg = "Command line argument received: turn off ballot shuffle.";
-    Logger::GetLogger()->Log(msg);
+    Logger::GetLogger()->Log("Command line argument received: turn off ballot shuffle.");
   }
 
   UserInterface(&numSeats, &choice);
   std::string ballot_files;
   std::cout << "enter the name of the ballot file:" << std::flush;
   std::cin >> ballot_files;
+  n = snprintf(msg, msgSize, "User entered ballot file: %s", ballot_files.c_str());
+  Logger::GetLogger()->Log(msg);
 
   votingInfo = new VotingInfo(choice, numSeats);
 
@@ -42,10 +45,14 @@ int main(int argc, char** argv) {
 
   switch (choice) {
     case 0:
+      n = snprintf(msg, msgSize, "Start running plurality election...");
+      LOGGER->Log(msg);
       pluralityElection = new PluralityElection();
       pluralityElection->RunElection(votingInfo);
       break;
     case 1 :
+      n = snprintf(msg, msgSize, "Start running stv election...");
+      LOGGER->Log(msg);
       stvElection = new STVElection(votingInfo);
       stvElection->RunElection();
       break;
@@ -59,11 +66,10 @@ void UserInterface(int *numSeats, int *choice)
   std::string errMsg = "Invalid choice. Please enter 0, 1 or 2.";
   char c = 0;  // char var to hold user input for y/n
   bool numSeatsValid = false;  // for input checking
-  int tt=0;
+  int msgSize = 200, n;
+  char msg[msgSize];
+
   while (*choice != 0 && *choice != 1) {
-    tt++;
-    if (tt>=5)
-      assert(false);
     std::cout << "-----------------Voting System Main Menu-----------------------\n" << std::flush;
     std::cout << "Select election type, choose 2. Help if instruction is needed: \n" << std::flush;
     std::cout << "0: Plurality\n" << std::flush;
@@ -82,6 +88,8 @@ void UserInterface(int *numSeats, int *choice)
       DisplayHelp();
     }
   }
+  n = snprintf(msg, msgSize, "User choose election type option: %d", *choice);
+  Logger::GetLogger()->Log(msg);
   while (!numSeatsValid) {
     std::cout << "Enter number of seats: ";
     std::cin >> *numSeats;
@@ -99,10 +107,12 @@ void UserInterface(int *numSeats, int *choice)
         if (std::cin.fail()) {
           std::cout << "Invalid input. Please enter y or n." << std::endl;
           std::cin.clear();
-          cin.ignore(10000, '\n');
+          cin.ignore(1, '\n');
           c = 0;
         } else if (c == 'y') {
           numSeatsValid = true;
+          n = snprintf(msg, msgSize, "User enter number of seats: %d", *numSeats);
+          LOGGER->Log(msg);
           break;
         } else if (c == 'n') {
           break;

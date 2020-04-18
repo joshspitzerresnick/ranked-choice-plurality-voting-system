@@ -12,8 +12,6 @@
 #include "ballot.h"
 #include "logger.h"
 
-extern Logger* logger;
-
 /**
  * @brief The class for the STV election records
  *
@@ -101,15 +99,6 @@ class STVElectionRecord {
    */
   void AddBallotToDiscardedBallotList(Ballot*);
   /**
-   * @brief Break a tie between two stv candidates
-   *
-   * @param[in] STV candidate 1
-   * @param[in] STV candidate 2
-   *
-   * @return true if the first candidate wins over the second candidate
-   */
-  // bool BreakTies(const STVCandidate*, const STVCandidate*);
-  /**
    * @brief Take an stv candidate off the losers list
    *
    * @return An stv candidate
@@ -117,11 +106,19 @@ class STVElectionRecord {
   STVCandidate* PopCandidateOffLosersList();
 
  private:
+  /**
+   * @brief Private utility function for shuffling ballots
+   *
+   * @return Shuffled list
+   */
   template <typename T > void ListShuffle(std::list<T> &L);
-                 // utility function for shuffling ballots
+  /**
+   * @brief Private utility function for comparing candidates' votes
+   *
+   * @return bool: whether candidate1 has more votes than candidate2
+   */
   static bool STVCandidateComparator(STVCandidate* candidate1,
                                STVCandidate* candidate2);
-                  // utility function for comparing candidates' votes
   std::list<Ballot*> nonDistributedBallotList_;  // Non Distributed ballot list
   std::list<STVCandidate*> nonElectedCandidateList_;
                   // Non elected candidate list
