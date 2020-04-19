@@ -1,7 +1,7 @@
 /**
  * @file voting_info.h
  *
- * @copyright 2020 Josh Spitzer-Resnick, spitz123
+ * @copyright 2020 5801 Team3, all rights reserved
  */
 
 #ifndef SRC_VOTING_INFO_H_
@@ -111,6 +111,12 @@ class VotingInfo {
    * @return std::list<Ballot*> holding list of invalid ballots.
    */
   std::list<Ballot*> GetInvalidList() const;
+  /**
+   * @brief Log to audit file.
+   * 
+   * @return void.
+   */
+  void LogToAuditFile();
 
  private:
   void IncrementNumCandidates();

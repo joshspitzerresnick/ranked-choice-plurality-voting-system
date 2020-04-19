@@ -1,12 +1,13 @@
 /**
  * @file voting_info.cc
  *
- * @copyright 2020 Josh Spitzer-Resnick, spitz123
+ * @copyright 2020 5801 Team3, all rights reserved
  */
 
 #include <iostream>
 #include <string>
 #include <list>
+#include "logger.h"
 
 #include "voting_info.h"
 
@@ -102,4 +103,11 @@ void VotingInfo::IncrementNumBallots() {
 
 void VotingInfo::IncrementNumInvalid() {
   num_invalid_++;
+}
+
+void VotingInfo::LogToAuditFile() {
+  char msg[1000];
+  snprintf(msg, sizeof(msg), "Following ballots are put on invalid ballot list: ");
+  LOGGER->Log(msg);
+  LOGGER->Log(invalid_list_);
 }
