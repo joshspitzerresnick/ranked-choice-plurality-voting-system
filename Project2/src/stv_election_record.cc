@@ -36,24 +36,10 @@ void STVElectionRecord::ShuffleBallots() {
   char msg[1000], temp[10];
   // Call utility function to shuffle ballots
   ListShuffle(nonDistributedBallotList_);
-  // Get the sequence after shuffling for logging purpose
+  // Log the sequence after shuffling
   snprintf(msg, sizeof(msg), "Ballot sequence after shuffle: ");
-  std::list<Ballot*>::iterator it;  // Create an iterator of std::list
-  // Log ballot sequence after shuffle
-  int cnt = 0;
-  for (it = nonDistributedBallotList_.begin(); it != nonDistributedBallotList_.end(); it++) {
-    cnt++;
-    snprintf(temp, sizeof(temp), ",%d", (*it)->GetID());
-    if (cnt < 200) {
-      strncat(msg, temp, sizeof(msg));
-    } else {
-      cnt = 0;
-      LOGGER->Log(msg);  // Log
-      snprintf(msg, sizeof(msg), "...");
-      strncat(msg, temp, sizeof(msg));
-    }
-  }
   LOGGER->Log(msg);
+  LOGGER->Log(nonDistributedBallotList_);
 }
 
 void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
@@ -72,33 +58,14 @@ void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
     // Get ranked candidate list
     tempRankedCandidateIDList = /*(int)*/ curBallot->GetRankedCandidateIDList();
     snprintf(msg, sizeof(msg), "Ballot %d RankedCandidateIDList: ", curBallot->GetID());
-    std::list<int>::iterator it1;  // Create an iterator of std::list
-    int cnt = 0;
-    for (it1 = tempRankedCandidateIDList.begin(); it1!= tempRankedCandidateIDList.end(); it1++) {
-      cnt++;
-      snprintf(temp, sizeof(temp), ",%d", *it1);
-      if (cnt < 200) {
-        strncat(msg, temp, sizeof(msg));
-      } else {
-        cnt = 0;
-        LOGGER->Log(msg);  // Log
-        snprintf(msg, sizeof(msg), "...");
-        strncat(msg, temp, sizeof(msg));
-      }
-    }
     LOGGER->Log(msg);
+    LOGGER->Log(tempRankedCandidateIDList);
     auto li = tempRankedCandidateIDList.begin();
     while (!assigned && li != tempRankedCandidateIDList.end()) {
-      // Find the next ranked candidate on nonElectedCandidateList
-      // curCandidateID = *li;
-      // snprintf(msg, sizeof(msg), "curCandidateID %d on Ballot#%d ", *li, curBallot->GetID());
-      // LOGGER->Log(msg);
       // Create a list Iterator
       std::list<STVCandidate*>::iterator itCandidate;
       for (itCandidate = nonElectedCandidateList_.begin();
       itCandidate != nonElectedCandidateList_.end(); itCandidate++) {
-        // snprintf(msg, sizeof(msg), "List CandidateID = %d ", (*itCandidate)->GetID());
-        // LOGGER->Log(msg);
         if ((*itCandidate)->GetID() == *li) {
           if ((*itCandidate)->GetNumBallots() < 1) {
             // Assign first ballot number
@@ -120,6 +87,7 @@ void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
           break;
         }
       }
+      // Find the next ranked candidate on nonElectedCandidateList
       std::advance(li, 1);
     }
     if (li == tempRankedCandidateIDList.end() && !assigned) {

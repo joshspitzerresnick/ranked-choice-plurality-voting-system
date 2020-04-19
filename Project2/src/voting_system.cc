@@ -67,8 +67,7 @@ void UserInterface(int *numSeats, int *choice)
   std::string errMsg = "Invalid choice. Please enter 0, 1 or 2.";
   char c = 0;  // char var to hold user input for y/n
   bool numSeatsValid = false;  // for input checking
-  int msgSize = 200, n;
-  char msg[msgSize];
+  char msg[200];
 
   while (*choice != 0 && *choice != 1) {
     std::cout << "-----------------Voting System Main Menu-----------------------\n" << std::flush;
@@ -89,7 +88,7 @@ void UserInterface(int *numSeats, int *choice)
       DisplayHelp();
     }
   }
-  n = snprintf(msg, msgSize, "User choose election type option: %d", *choice);
+ snprintf(msg, sizeof(msg), "User choose election type option: %d", *choice);
   Logger::GetLogger()->Log(msg);
   while (!numSeatsValid) {
     std::cout << "Enter number of seats: ";
@@ -112,7 +111,7 @@ void UserInterface(int *numSeats, int *choice)
           c = 0;
         } else if (c == 'y') {
           numSeatsValid = true;
-          n = snprintf(msg, msgSize, "User enter number of seats: %d", *numSeats);
+          snprintf(msg, sizeof(msg), "User enter number of seats: %d", *numSeats);
           LOGGER->Log(msg);
           break;
         } else if (c == 'n') {
@@ -145,5 +144,4 @@ void DisplayHelp() {
     std::cout <<   "statistics for the type of election you have chose will appear on the screen \n"                   << std::flush;
     std::cout <<   "4. Close the program \n"                   << std::flush;
     std::cout <<   "5. To run a new election, start the system again and repeat the above steps\n"  << std::flush;
-
 }
