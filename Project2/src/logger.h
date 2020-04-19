@@ -8,6 +8,11 @@
 #define Logger_H
 #include <fstream>
 #include <string>
+#include <iostream>
+#include <cstdlib>
+#include <list>
+#include <string.h>
+#include "candidate.h"
 using namespace std;
 #define LOGGER Logger::GetLogger()
 /**
@@ -25,6 +30,14 @@ class Logger {
     *   @return singleton object of logger class..
     */
     static Logger* GetLogger();
+    /**
+    *   Logs a list
+    *   @param list to be logged.
+    */
+    void Log(std::list<int> &L);
+
+    void Log(std::list<Candidate*> L);
+    void Log(std::list<Ballot*> L);
 
  private:
     /**
