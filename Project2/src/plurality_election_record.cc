@@ -20,8 +20,7 @@ void PluralityElectionRecord::DistributeBallots()
 
     Ballot* curr_ballot;
     int curr_candidate_id;
-    while(!nonDistributedBallotList_.empty())
-    {
+    while(!nonDistributedBallotList_.empty()) {
         curr_ballot = nonDistributedBallotList_.front();
         curr_candidate_id = curr_ballot->GetRankedCandidateIDList().front();
         std::list<Candidate*>::iterator it;
