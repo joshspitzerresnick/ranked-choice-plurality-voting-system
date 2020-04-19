@@ -14,7 +14,6 @@
 #include <list>
 #include <cmath>
 #include <iostream>
-#include <assert.h>
 #include "logger.h"
 #include <cstdlib>
 #include <string.h>
