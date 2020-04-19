@@ -5,48 +5,69 @@
  */
 
 #include "stv_election.h"
-// #include "voting_system.cc"
-#include <cmath>
-#include <iostream>
 
 STVElection::STVElection(VotingInfo* votingInfo) {
-  numSeats_ = votingInfo->GetNumSeats();
+  numSeats_ = votingInfo->GetNumSeats() <= votingInfo->GetNumCandidates() ? votingInfo->GetNumSeats() : votingInfo->GetNumCandidates();
   int numBallots = votingInfo->GetNumBallots();
-  int droop = (int)(floor(((double)numBallots)/((double)numSeats_+1))+1);
-  stvElectionRecord_ = new STVElectionRecord(votingInfo->GetSTVCandidateList(), votingInfo->GetBallotList(), droop);
-  // stvResultDisplay_= new ResultDisplay(); // NO LONGER USING - Josh
+  int droop = static_cast<int>(floor((static_cast<double>(numBallots))/(static_cast<double>(numSeats_)+1))+1);
+  stvElectionRecord_ = new STVElectionRecord(votingInfo->GetSTVCandidateList(),
+    votingInfo->GetBallotList(), droop);
 }
 
-void STVElection::RunElection(){
-  STVCandidate* candidate; // stv candidate object pointer to hold candidate object to pass between member functions
-  std::list<Ballot*> ballotList; // ballot pointer list to hold ballots for passing between stvelectionrecord functions
+void STVElection::RunElection() {
+  STVCandidate* candidate;  // stv candidate object pointer to hold candidate object to pass between member functions
+  std::list<Ballot*> ballotList;  // ballot pointer list to hold ballots for passing between stvelectionrecord functions
+  std::list<STVCandidate*> tempSTVCandidateList;
+  int firstBallotNum = 1;
+  char msg[1000], temp[20];
   // check if ballot shuffle off option is true
-  if (!BallotShuffleOff){
-    stvElectionRecord_->ShuffleBallots(); // shuffle ballots
+  if (!BallotShuffleOff) {
+    stvElectionRecord_->ShuffleBallots();  // shuffle ballots
   }
-  while (true){
-    stvElectionRecord_->DistributeBallots(); // distribute ballots
+  while (true) {
+    stvElectionRecord_->DistributeBallots(&firstBallotNum);
+    tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
     // when there is no more candidate on nonelected list, exit loop
-    if (stvElectionRecord_->GetNonElectedCandidateList().empty()){
+    if (tempSTVCandidateList.empty()) {
       break;
     }
     // Sort non-elected candidate list by number of votes, break tie (embeded) if number of votes are equal
     stvElectionRecord_->SortNonElectedCandidateList();
+    tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
+    snprintf(msg, sizeof(msg), "Sorted nonElectedCandidateList: ");
+    // Create an iterator of std::list
+    std::list<STVCandidate*>::iterator itCandidate;
+    for (itCandidate = tempSTVCandidateList.begin(); itCandidate != tempSTVCandidateList.end(); itCandidate++) {
+      // Access the object through iterator
+      snprintf(temp, sizeof(temp), ",%s (%d votes)", (*itCandidate)->GetName().c_str(), (*itCandidate)->GetNumBallots());
+      strncat(msg, temp, sizeof(msg));
+    }
+    LOGGER->Log(msg);  // Log
     // Put the candidate with the least votes onto losers list and put his/her ballots into non-distributed balots list
     candidate = stvElectionRecord_->RemoveLastCandidateFromNonElectedCandidateList();
+    // Logging...
+    snprintf(msg, sizeof(msg), "Move candidate %s to losersList", candidate->GetName().c_str());
+    LOGGER->Log(msg);
     ballotList = stvElectionRecord_->AddCandidateToLosersList(candidate);
+    snprintf(msg, sizeof(msg), "Move candidate %s's ballot to nonDistributedBallotList: ", candidate->GetName().c_str());
+    LOGGER->Log(msg);
+    LOGGER->Log(ballotList);
     stvElectionRecord_->AddLoserBallotsToNonDistributedBallotList(ballotList);
   }
   // if need more candidates to fill seats, move the candidates being put on losers list last to winners list
-  while ((int)(stvElectionRecord_->GetWinnersList().size()) < numSeats_){
+  while ((int)(stvElectionRecord_->GetWinnersList().size()) < numSeats_) {
     candidate = stvElectionRecord_->PopCandidateOffLosersList();
+    snprintf(msg, sizeof(msg), "Move candidate %s from losersList to winnersList.",
+                                                  candidate->GetName().c_str());
+    LOGGER->Log(msg);
     stvElectionRecord_->AddCandidateToWinnersList(candidate);
   }
+  Logger::GetLogger()->Log("----------------------------------Election Complete----------------------------------------------------");
   // display election results
   DisplayResult();
 }
 
-void STVElection::DisplayResult(){
+void STVElection::DisplayResult() {
   std::list<STVCandidate*> winnersList;
   std::list<STVCandidate*> losersList;
   std::list<STVCandidate*>::iterator it;
@@ -56,20 +77,17 @@ void STVElection::DisplayResult(){
   losersList = stvElectionRecord_->GetLosersList();
   numCandidates = (int)winnersList.size() + (int)losersList.size();
   std::cout << "---------------Election Result-----------------\n" << std::flush;
-  std::cout << "* Election Type: STV\n" << std::flush;
-  std::cout << "* #Seats: " << numSeats_ << "\n" << std::flush;
-  std::cout << "* #Candidates: " << numCandidates << "\n" << std::flush;
-  std::cout << "* Winners are: " << "\n" << std::flush;
-  for (it = winnersList.begin(); it != winnersList.end(); it++)
-  {
-    std::advance(it, 1);
+  std::cout << "* Election Type: STV" << std::endl;
+  std::cout << "* #Seats: " << numSeats_ << std::endl;
+  std::cout << "* #Candidates: " << numCandidates << std::endl;
+  std::cout << "* Winners are: " << std::endl;
+  for (it = winnersList.begin(); it != winnersList.end(); it++) {
     std::cout << ++orderNum << ": " << (*it)->GetName() << "\n" << std::flush;
   }
   orderNum = 0;
-  for (it = losersList.begin(); it != losersList.end(); it++)
-  {
-    std::advance(it, 1);
-    std::cout << ++orderNum << ": " << (*it)->GetName() << "\n" << std::flush;
+  std::cout << "* Losers are: " << std::endl;
+  for (it = losersList.begin(); it != losersList.end(); it++) {
+    std::cout << ++orderNum << ": " << (*it)->GetName() << std::endl;
   }
-  std::cout << "-------------End of Result Display-------------\n" << std::flush;
+  std::cout << "-------------End of Result Display-------------" << std::endl;
 }

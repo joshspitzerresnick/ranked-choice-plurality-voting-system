@@ -3,66 +3,73 @@
  *
  * @copyright 2020 5801 Team3, All rights reserved.
  */
-
-// #include "voting_system.h" // NO SUCH THING - Josh
 #include "stv_election.h"
 #include "plurality_election.h"
 #include "ballot_file_processor.h"
 #include "logger.h"
 #include <cstring>
 #include <iostream>
+#include <stdio.h>
 
 bool BallotShuffleOff = false;
-Logger* logger = new Logger();
 
 void UserInterface(int *numSeats, int *choice);
 void DisplayHelp();
 
-int main(int argc, char** argv){
-
+int main(int argc, char** argv) {
   int choice = 5;
   int numSeats;
   STVElection* stvElection;
   PluralityElection* pluralityElection;
   BallotFileProcessor* ballotFileProcessor;
   VotingInfo* votingInfo;
+  char msg[200];
+  Logger::GetLogger();
+  LOGGER->Log("----------------------------------Start A New Election----------------------------------------------------");
   // Check command line argument
-  if (argc >= 2 && strcmp (argv[1], "-t") == 0){
-    BallotShuffleOff = true; // Turn off ballot shuffle if '-t' is detected
-    logger->LogToFile("Command line argument received: turn off ballot shuffle.");
+  if (argc >= 2 && strcmp(argv[1], "-t") == 0) {
+    BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
+    LOGGER->Log("Command line argument received: turn off ballot shuffle.");
   }
 
   UserInterface(&numSeats, &choice);
-   std::string ballot_files;
-  std::cout << "enter name of ballot file:\n" << std::flush;
+  std::string ballot_files;
+  std::cout << "enter the name of the ballot file:" << std::flush;
   std::cin >> ballot_files;
- 
+  snprintf(msg, sizeof(msg), "User entered ballot file: %s", ballot_files.c_str());
+  LOGGER->Log(msg);
+
   votingInfo = new VotingInfo(choice, numSeats);
 
   ballotFileProcessor = new BallotFileProcessor(ballot_files);
   ballotFileProcessor->ProcessFiles(votingInfo);
 
-  switch (choice){
+  switch (choice) {
     case 0:
-      pluralityElection = new PluralityElection(/*votingInfo*/); // TODO once Colin implements - Josh
-      pluralityElection->RunElection(votingInfo); // TODO
+      snprintf(msg, sizeof(msg), "Start running plurality election...");
+      LOGGER->Log(msg);
+      pluralityElection = new PluralityElection();
+      pluralityElection->RunElection(votingInfo);
       break;
     case 1 :
+      snprintf(msg, sizeof(msg), "Start running stv election...");
+      LOGGER->Log(msg);
       stvElection = new STVElection(votingInfo);
       stvElection->RunElection();
       break;
     default:
-      exit(1); //error, this should never happen
+      exit(1);  // error, this should never happen
   }
 }
 
 void UserInterface(int *numSeats, int *choice)
 {
   std::string errMsg = "Invalid choice. Please enter 0, 1 or 2.";
-  char c = 0; // char var to hold user input for y/n
-  bool numSeatsValid = false; // for input checking
-  while (*choice != 0 && *choice != 1)
-  {
+  char c = 0;  // char var to hold user input for y/n
+  bool numSeatsValid = false;  // for input checking
+  char msg[200];
+
+  while (*choice != 0 && *choice != 1) {
     std::cout << "-----------------Voting System Main Menu-----------------------\n" << std::flush;
     std::cout << "Select election type, choose 2. Help if instruction is needed: \n" << std::flush;
     std::cout << "0: Plurality\n" << std::flush;
@@ -70,55 +77,54 @@ void UserInterface(int *numSeats, int *choice)
     std::cout << "2: Help\n" << std::flush;
     std::cout << "Selection: ";
     std::cin >> *choice;
-    while(std::cin.fail()) {
-    std::cout << errMsg << "\n" << std::flush;
+    if (std::cin.fail()) {
+    std::cout << errMsg << std::endl;
+    std::cin.clear();
+    cin.ignore(10000, '\n');
     *choice = 5;
-  }
-    std::cout << "\n" << std::flush;
-
-    if (*choice < 0 || *choice > 2)
-    {
-      std::cout << errMsg << "\n" << std::flush;
-    }
-    else if (*choice == 2)
-    {
+    } else if (*choice < 0 || *choice > 2) {
+      std::cout << errMsg << std::endl;
+    } else if (*choice == 2) {
       DisplayHelp();
     }
   }
+ snprintf(msg, sizeof(msg), "User choose election type option: %d", *choice);
+  Logger::GetLogger()->Log(msg);
   while (!numSeatsValid) {
     std::cout << "Enter number of seats: ";
     std::cin >> *numSeats;
     // Input checking
-    while(std::cin.fail()) {
-      std::cout << "Invalid input. Please enter a number between 1 and 99.\n" << std::flush;
+    if (std::cin.fail() || *numSeats < 1 || *numSeats > 99) {
+      std::cout << "Invalid input. Please enter a number between 1 and 99." << std::endl;
       std::cin.clear();
-      numSeats = 0;
-    }
-    numSeatsValid = true;
-    // Input range checking
-    /*
-    if (*numSeats > 1 && *numSeats < 99)
-    {
-      // Confirm user input
-      std::cout << "Number of seats entered is :" << numSeats << "\n" << std::flush;
-      std::cout << "Is this number is correct? (y/n): ";
-      std::cin >> c;
-      while(std::cin.fail()) {
-        std::cout << "Invalid input. Please enter y or n. \n" << std::flush;
-        std::cin.clear();
-        c = 0;
+      cin.ignore(10000, '\n');
+      *numSeats = -1;
+    } else {
+      while (true) {
+        std::cout << "Number of seats entered is " << *numSeats << std::endl;
+        std::cout << "Is this number is correct? (y/n): ";
+        std::cin >> c;
+        if (std::cin.fail()) {
+          std::cout << "Invalid input. Please enter y or n." << std::endl;
+          std::cin.clear();
+          cin.ignore(1, '\n');
+          c = 0;
+        } else if (c == 'y') {
+          numSeatsValid = true;
+          snprintf(msg, sizeof(msg), "User enter number of seats: %d", *numSeats);
+          LOGGER->Log(msg);
+          break;
+        } else if (c == 'n') {
+          break;
+        } else {
+          std::cout << "Invalid input. Please enter y or n." << std::endl;
+        }
       }
-      if (c == 'y')
-      {
-        numSeatsValid = true;
-      }
     }
-    */
   }
 }
 
-void DisplayHelp()
-{
+void DisplayHelp() {
 	std::cout << "---------------Voting System Help Menu------------------\n"         << std::flush;
     std::cout << "* Voting System is ...\n"                                         << std::flush;
     std::cout << "(C) 2020 Archer, Baker, Kluegel, Spitzer-Resnick \n\n"            << std::flush;
@@ -138,5 +144,4 @@ void DisplayHelp()
     std::cout <<   "statistics for the type of election you have chose will appear on the screen \n"                   << std::flush;
     std::cout <<   "4. Close the program \n"                   << std::flush;
     std::cout <<   "5. To run a new election, start the system again and repeat the above steps\n"  << std::flush;
-
 }

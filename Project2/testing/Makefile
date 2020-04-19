@@ -129,5 +129,5 @@ STVElectionRecord_UT.o : $(USER_DIR)/STVElectionRecord_UT.cc $(USER_DIR)/stv_ele
 voting_info_UT.o : $(USER_DIR)/voting_info_UT.cc $(USER_DIR)/voting_info.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/voting_info_UT.cc
 
-runTests : ballot.o ballot_file_processor.o candidate.o logger.o plurality_election_record.o plurality_election.o voting_info.o ballot_UT.o ballot_file_processor_UT.o candidate_UT.o logger_UT.o plurality_election_record_UT.o plurality_election_UT.o voting_info_UT.o gtest_main.a
+runTests : ballot.o ballot_file_processor.o candidate.o logger.o plurality_election_record.o plurality_election.o voting_info.o ballot_UT.o ballot_file_processor_UT.o candidate_UT.o plurality_election_record_UT.o plurality_election_UT.o voting_info_UT.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@

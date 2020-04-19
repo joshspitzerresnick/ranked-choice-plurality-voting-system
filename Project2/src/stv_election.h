@@ -11,6 +11,12 @@
 #include "stv_election_record.h"
 #include "candidate.h"
 #include "ballot.h"
+#include <list>
+#include <cmath>
+#include <iostream>
+#include "logger.h"
+#include <cstdlib>
+#include <string.h>
 
 extern bool BallotShuffleOff;
 

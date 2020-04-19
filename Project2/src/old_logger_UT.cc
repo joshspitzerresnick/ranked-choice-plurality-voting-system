@@ -6,17 +6,20 @@
 
 #include <gtest/gtest.h>
 #include <list>
-#include "logger.cc"
+#include "../src/logger.h"
 
 /******************************************************
 * TEST FEATURE SetUp
 *******************************************************/
 class LoggerTests : public ::testing::Test {
  protected:
-  std::string testMsg = "Test Message";
+  std::string audit_file_name;
+  Logger* audit_log;
   virtual void SetUp() {
+    audit_log = new Logger();
   }
   virtual void TearDown() {
+    delete audit_log;
   }
 };
 
@@ -24,8 +27,16 @@ class LoggerTests : public ::testing::Test {
  * Test Cases
  ******************************************************************************/
 
+TEST_F(LoggerTests, Constructor) {
+    EXPECT_NO_THROW(audit_log = new Logger());
+    audit_log->~Logger();
+    EXPECT_ANY_THROW(audit_log = new Logger());
+}
+
+TEST_F(LoggerTests, GetLogFile) {
+    EXPECT_EQ(audit_log->GetLogFile(), "audit_file.txt");
+}
+
 TEST_F(LoggerTests, LogToFile) {
-    Logger::GetLogger()->Log(testMsg);
-    Logger::GetLogger()->Log("This is a test... 2nd message");
-    LOGGER->Log("This is a test... 3rd message");
+    audit_log->LogToFile("This is a test");
 }
