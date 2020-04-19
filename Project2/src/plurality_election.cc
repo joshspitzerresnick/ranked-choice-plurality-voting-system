@@ -20,7 +20,7 @@ void PluralityElection::RunElection(VotingInfo* votingInfo)
 {
     std::list<Candidate*> candidates_list = votingInfo->GetCandidateList();
     std::list<Ballot*> ballots_list = votingInfo->GetBallotList();
-    int num_seats = votingInfo->GetNumSeats();
+    int num_seats = votingInfo->GetNumSeats() <= votingInfo->GetNumCandidates() ? votingInfo->GetNumSeats() : votingInfo->GetNumCandidates();
 
     PluralityElectionRecord* election_record = new PluralityElectionRecord(candidates_list, ballots_list);
     election_record->DistributeBallots();
@@ -32,8 +32,7 @@ void PluralityElection::RunElection(VotingInfo* votingInfo)
 
 }
 
-void PluralityElection::DisplayResults(PluralityElectionRecord* election_record, VotingInfo* voting_info)
-{
+void PluralityElection::DisplayResults(PluralityElectionRecord* election_record, VotingInfo* voting_info) {
     
     int num_ballots = voting_info->GetNumBallots();
     int num_seats = voting_info->GetNumSeats();
