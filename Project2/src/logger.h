@@ -31,12 +31,19 @@ class Logger {
     */
     static Logger* GetLogger();
     /**
-    *   Logs a list
+    *   Logs a list of integers
     *   @param list to be logged.
     */
     void Log(std::list<int> &L);
-
+    /**
+    *   Logs a list of Candidate objects
+    *   @param list to be logged.
+    */
     void Log(std::list<Candidate*> L);
+    /**
+    *   Logs a list of Ballot objects
+    *   @param list to be logged.
+    */
     void Log(std::list<Ballot*> L);
 
  private:
