@@ -69,7 +69,7 @@ void Logger::Log(std::list<Candidate*> L) {
 }
 
 void Logger::Log(std::list<Ballot*> L) {
-  char msg[1000], temp[50];
+  char msg[2000], temp[50];
   snprintf(msg, sizeof(msg), "... ");
   std::list<Ballot*>::iterator it;  // Create an iterator of std::list
   int cnt = 0;
