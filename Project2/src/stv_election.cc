@@ -48,7 +48,13 @@ void STVElection::RunElection() {
     // Logging...
     snprintf(msg, sizeof(msg), "Move candidate %s to losersList", candidate->GetName().c_str());
     LOGGER->Log(msg);
-    ballotList = stvElectionRecord_->AddCandidateToLosersList(candidate);
+    ballotList = stvElectionRecord_->AddCandidateToLosersList(candidate);    
+    tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
+    // when there is no more candidate on nonelected list, exit loop
+    if (tempSTVCandidateList.empty()) {
+      LOGGER->Log("No more candidate on nonElectedList");
+      break;
+    }
     snprintf(msg, sizeof(msg), "Move candidate %s's ballot to nonDistributedBallotList: ", candidate->GetName().c_str());
     LOGGER->Log(msg);
     LOGGER->Log(ballotList);
