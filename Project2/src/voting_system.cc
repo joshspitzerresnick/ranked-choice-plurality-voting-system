@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 
   UserInterface(&numSeats, &choice);
   std::string ballot_files;
-  std::cout << "enter the name of the ballot file:" << std::flush;
+  std::cout << "enter the name of the ballot file: " << std::flush;
   std::cin >> ballot_files;
   snprintf(msg, sizeof(msg), "User entered ballot file: %s", ballot_files.c_str());
   LOGGER->Log(msg);
@@ -102,12 +102,12 @@ void UserInterface(int *numSeats, int *choice)
     } else {
       while (true) {
         std::cout << "Number of seats entered is " << *numSeats << std::endl;
-        std::cout << "Is this number is correct? (y/n): ";
+        std::cout << "Is this number correct? (y/n): ";
         std::cin >> c;
         if (std::cin.fail()) {
           std::cout << "Invalid input. Please enter y or n." << std::endl;
           std::cin.clear();
-          cin.ignore(1, '\n');
+          cin.ignore(10000, '\n');
           c = 0;
         } else if (c == 'y') {
           numSeatsValid = true;
@@ -118,6 +118,9 @@ void UserInterface(int *numSeats, int *choice)
           break;
         } else {
           std::cout << "Invalid input. Please enter y or n." << std::endl;
+          std::cin.clear();
+          cin.ignore(10000, '\n');
+          c = 0;
         }
       }
     }
