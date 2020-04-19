@@ -6,21 +6,20 @@
 
 #include <stdlib.h>
 #include "plurality_election_record.h"
+#include "logger.h"
 
-PluralityElectionRecord::PluralityElectionRecord(std::list<Candidate*> candidates, std::list<Ballot*> ballots)
-{
+PluralityElectionRecord::PluralityElectionRecord(std::list<Candidate*> candidates, std::list<Ballot*> ballots) {
     this->nonDistributedBallotList_ = ballots;
     this->nonElectedCandidateList_ = candidates;
     this->winnersList_ = {};
     this->losersList_ = {};
 }
 
-void PluralityElectionRecord::DistributeBallots()
-{
-
+void PluralityElectionRecord::DistributeBallots() {
     Ballot* curr_ballot;
     int curr_candidate_id;
-    while(!nonDistributedBallotList_.empty()) {
+    char msg[1000];
+    while (!nonDistributedBallotList_.empty()) {
         curr_ballot = nonDistributedBallotList_.front();
         curr_candidate_id = curr_ballot->GetRankedCandidateIDList().front();
         std::list<Candidate*>::iterator it;
@@ -29,13 +28,12 @@ void PluralityElectionRecord::DistributeBallots()
             if((*it)->GetID() == curr_candidate_id)
             {
                 (*it)->AddBallot(curr_ballot);
+                snprintf(msg, sizeof(msg), "Ballot %d is assigned to Candidate %s", curr_ballot->GetID(), (*it)->GetName().c_str());
+                LOGGER->Log(msg);
                 break;
             }
         }
         nonDistributedBallotList_.pop_front();
-
-
-
     }
 }
 

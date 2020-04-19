@@ -39,7 +39,7 @@ void STVElection::RunElection() {
     std::list<STVCandidate*>::iterator itCandidate;
     for (itCandidate = tempSTVCandidateList.begin(); itCandidate != tempSTVCandidateList.end(); itCandidate++) {
       // Access the object through iterator
-      snprintf(temp, sizeof(temp), ",%s (%d votes)", (*itCandidate)->GetName().c_str(), (*itCandidate)->GetNumBallots());
+      snprintf(temp, sizeof(temp), "%s (%d votes), ", (*itCandidate)->GetName().c_str(), (*itCandidate)->GetNumBallots());
       strncat(msg, temp, sizeof(msg));
     }
     LOGGER->Log(msg);  // Log

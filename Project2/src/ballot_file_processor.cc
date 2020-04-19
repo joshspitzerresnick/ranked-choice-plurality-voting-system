@@ -12,6 +12,7 @@
 #include "ballot.h"
 #include "voting_info.h"
 #include "ballot_file_processor.h"
+#include "logger.h"
 
 using std::vector;
 using std::string;
@@ -48,9 +49,11 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
     vector<int> introw;
     std::list<int> cand_list;
     string line, word;
+    char msg[1000];
 
     ballot_files_.open(ballot_file_name_, ios::in);  // Open ballot file
-
+    snprintf(msg, sizeof(msg), "Read in ballot file: %s", ballot_file_name_.c_str());
+    LOGGER->Log(msg);
     // Start processing ballot file
     while (getline(ballot_files_, line)) {
         row.clear();  // Clear the row variable prior to reading in new line.
@@ -94,4 +97,5 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
         linecnt++;  // Increment line counter
     }
     ballot_files_.close();
+    votinginfo->LogToAuditFile();
 }
