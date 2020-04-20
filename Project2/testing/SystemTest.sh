@@ -72,3 +72,18 @@ echo "Use stv_ballots.csv with nominal number of seats" >> system_test_report.tx
 printf "1\n3\ny\n../testing/stv_ballots.csv" | ../src/./VotingSystem >> system_test_report.txt
 echo "Test Completed." >> system_test_report.txt
 echo " " >> system_test_report.txt
+
+echo "Execute STV election in VotingSystem..." >> system_test_report.txt
+echo "Use stv_ballots.csv with nominal number of seats and turnoff ballot shuffle" >> system_test_report.txt
+printf "1\n3\ny\n../testing/stv_ballots.csv" | ../src/./VotingSystem -t >> system_test_report.txt
+echo " "
+echo "The above election output should match the following output:" >> system_test_report.txt
+echo " "
+printf "1\n3\ny\n../testing/stv_ballots.csv" | ../src/./VotingSystem -t >> system_test_report.txt
+echo " "
+echo "The following election output should be different than above:" >> system_test_report.txt
+printf "1\n3\ny\n../testing/stv_ballots.csv" | ../src/./VotingSystem >> system_test_report.txt
+echo "Test Completed." >> system_test_report.txt
+echo " " >> system_test_report.txt
+
+# Add additional tests using larger ballot files....
