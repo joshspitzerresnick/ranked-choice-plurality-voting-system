@@ -79,6 +79,7 @@ void STVElection::DisplayResult(VotingInfo* votingInfo) {
   std::cout << "--------------------Election Results------------------------\n" << std::flush;
   std::cout << "* Election Type:\tSTV" << std::endl;
   std::cout << "* # Ballots:\t\t" << votingInfo->GetNumBallots() << "\n" << std::flush;
+  std::cout << "* # Invalid ballots:\t" << votingInfo->GetNumInvalid() << "\n" << std::flush;
   std::cout << "* # Seats:\t\t" << numSeats_ << std::endl;
   std::cout << "* # Candidates:\t\t" << numCandidates << std::endl;
   std::cout << "* Droop:\t\t" << stvElectionRecord_->GetDroop() << std::endl;
