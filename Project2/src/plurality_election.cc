@@ -37,16 +37,16 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
     int num_ballots = voting_info->GetNumBallots();
     int num_seats = voting_info->GetNumSeats();
     int num_candidates = voting_info->GetNumCandidates();
-    std::cout << "---------------Election Results-------------------\n" << std::flush;
-    std::cout << "* Election Type: Plurality\n" << std::flush;
-    std::cout << "* # Seats: " << num_seats << "\n" << std::flush;
-    std::cout << "* # Candidates: " << num_candidates << "\n" << std::flush;
-    std::cout << "* # Ballots: " << num_ballots << "\n" << std::flush;
+    std::cout << "--------------------Election Results------------------------\n" << std::flush;
+    std::cout << "* Election Type:\tPlurality\n" << std::flush;
+    std::cout << "* # Ballots:\t\t" << num_ballots << "\n" << std::flush;
+    std::cout << "* # Seats:\t\t" << num_seats << "\n" << std::flush;
+    std::cout << "* # Candidates:\t\t" << num_candidates << "\n" << std::flush;
 
     std::list<Candidate*> winners_list = election_record->GetWinnersList();
     std::list<Candidate*> losers_list = election_record->GetLosersList();
 
-    std::cout << "* Winners list:\n" << std::flush;
+    std::cout << "\n* Winners list:\n" << std::flush;
     std::cout << "Name\t# votes\t %\n" << std::flush;
 
     int i = 1;
@@ -64,7 +64,7 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
         i++;
     }
 
-    std::cout << "* Losers list:\n" << std::flush;
+    std::cout << "\n* Losers list:\n" << std::flush;
     while(!losers_list.empty())
     {
         current_candidate = losers_list.front();
@@ -75,5 +75,6 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
         losers_list.pop_front();
         i++;
     }
-    std::cout << "---------------End of Result Display--------------" << std::endl;
+    std::cout << "\nLocation of audit report:\t\tsrc/audit.txt" << std::endl;
+    std::cout << "--------------------End of Result Display-------------------" << std::endl;
 }

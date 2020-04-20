@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
       snprintf(msg, sizeof(msg), "Start running STV election...");
       LOGGER->Log(msg);
       stvElection = new STVElection(votingInfo);
-      stvElection->RunElection();
+      stvElection->RunElection(votingInfo);
       break;
     default:
       exit(1);  // error, this should never happen
@@ -146,22 +146,22 @@ void UserInterface(int *numSeats, int *choice) {
 
 void DisplayHelp() {
 	std::cout << "--------------------Voting System Help Menu-------------------------------------\n" << std::flush;
-  std::cout << "* Voting System is ...\n" << std::flush;
-  std::cout << "(C) 2020 Archer, Baker, Kluegel, Spitzer-Resnick \n\n" << std::flush;
-  std::cout <<  "How to get started: \n" << std::flush;
-  std::cout <<  "1. Open your command line terminal on your Linux system \n" << std::flush;
-  std::cout <<  "2. Type  ./VotingSystem  and press enter \n\n" << std::flush;
-  std::cout <<  "To calibrate the voting system:\n" << std::flush;
-  std::cout <<   "1. Contact your IT department to enter the appropriate commands\n\n" << std::flush;
-  std::cout <<   "How to run an election:\n" << std::flush;
-  std::cout <<   "1. In the input screen:\n" << std::flush;
-  std::cout <<   "     a. enter election type, 0 = plurality 1 = stv \n" << std::flush;
-  std::cout <<   "     b. enter number of seats \n" << std::flush;
-  std::cout <<   "     c. enter name of ballot file \n" << std::flush;
-  std::cout <<   "     d. press enter to run election \n" << std::flush;
-  std::cout <<   "2. Wait momentarily for all computations to have finished \n" << std::flush;
-  std::cout <<   "3. When all computations have finished, a summary of the results with appropriate\n" << std::flush;
-  std::cout <<   "statistics for the type of election you have chose will appear on the screen \n" << std::flush;
-  std::cout <<   "4. Close the program \n" << std::flush;
-  std::cout <<   "5. To run a new election, start the system again and repeat the above steps\n" << std::flush;
+  // std::cout << "* Voting System is ...\n" << std::flush;
+  std::cout << "(C) 2020 Archer, Baker, Kluegel, Spitzer-Resnick\n\n" << std::flush;
+  std::cout << "How to get started:\n" << std::flush;
+  std::cout << "1. Open your command line terminal on your Linux system\n" << std::flush;
+  std::cout << "2. Type ./VotingSystem and press enter\n\n" << std::flush;
+  std::cout << "To calibrate the voting system:\n" << std::flush;
+  std::cout << "1. Contact your IT department to enter the appropriate commands\n\n" << std::flush;
+  std::cout << "How to run an election:\n" << std::flush;
+  std::cout << "1. In the input screen:\n" << std::flush;
+  std::cout << "   a. enter election type: 0 = plurality, 1 = STV\n" << std::flush;
+  std::cout << "   b. enter number of seats\n" << std::flush;
+  std::cout << "   c. enter name(s) of ballot file(s), one at a time\n" << std::flush;
+  std::cout << "   d. press enter to run election\n" << std::flush;
+  std::cout << "2. Wait momentarily for all computations to finish\n" << std::flush;
+  std::cout << "3. When all computations have finished, a summary of the results with appropriate\n" << std::flush;
+  std::cout << "   statistics for the type of election you have chosen will appear on the screen\n" << std::flush;
+  std::cout << "4. Close the program\n" << std::flush;
+  std::cout << "5. To run a new election, start the system again and repeat the above steps\n" << std::flush;
 }
