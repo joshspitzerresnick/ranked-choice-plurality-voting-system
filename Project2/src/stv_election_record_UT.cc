@@ -26,6 +26,7 @@ class STVElectionRecordTests : public ::testing::Test {
   std::list<STVCandidate*> candidates;
   std::list<Ballot*> ballots;
   STVElectionRecord* election_record;
+  int droop;
 virtual void SetUp() {
   candidate1 = new STVCandidate(1, "Al", "left");
   candidate2 = new STVCandidate(2, "Beth", "center");
@@ -47,7 +48,8 @@ virtual void SetUp() {
   ballots.push_front(ballot3);
   ballots.push_front(ballot4);
   ballots.push_front(ballot5);
-  election_record = new STVElectionRecord(candidates, ballots);
+  droop = 3;
+  election_record = new STVElectionRecord(candidates, ballots, droop);
 }
 virtual void TearDown() {
   delete candidate1;
@@ -63,27 +65,21 @@ virtual void TearDown() {
 }
 };
 
-
-
-
 /*******************************************************************************
  * Test Cases
  ******************************************************************************/
 
 TEST_F(STVElectionRecordTests, Constructor) {
-  std::list<STVCandidate*> candidate_list;
-  candidate_list = election_record->GetNonElectedCandidateList();
-  std::list<Ballot*> ballot_list;
-  ballot_list = election_record->GetNonDistributedBallotList();
-  ASSERT_EQ(candidate_list, candidates);
-  ASSERT_EQ(ballot_list, ballots);
+  EXPECT_NO_THROW(election_record = new STVElectionRecord(candidates,
+                                                          ballots,
+                                                          droop));
 }
 
 TEST_F(STVElectionRecordTests, DistributeBallots) {
-  election_record->DistributeBallots();
+  // election_record->DistributeBallots();
   std::list<Ballot*> ballot_list;
   ballot_list = election_record->GetNonDistributedBallotList();
-  ASSERT_EQ(ballot_list, std::list<Ballot*>{});
+  ASSERT_EQ(ballot_list, ballots);
   std::list<STVCandidate*> candidate_list;
   candidate_list = election_record->GetNonElectedCandidateList();
   ASSERT_EQ(candidate_list.size(), 5);
@@ -101,7 +97,7 @@ TEST_F(STVElectionRecordTests, DistributeBallots) {
 }
 
 TEST_F(STVElectionRecordTests, SortNonElectedCandidateList) {
-  election_record->DistributeBallots();
+  // election_record->DistributeBallots();
   election_record->SortNonElectedCandidateList();
   std::list<STVCandidate*> temp_candidate_list;
   temp_candidate_list = election_record->GetNonElectedCandidateList();
@@ -128,6 +124,7 @@ TEST_F(STVElectionRecordTests, SortNonElectedCandidateList_reorder) {
   std::list<STVCandidate*> candidates_reorder;
   std::list<Ballot*> ballots_reorder;
   STVElectionRecord* election_record_reorder;
+  int droop = 3;
   candidate1_reorder = new STVCandidate(1, "Al", "left");
   candidate2_reorder = new STVCandidate(2, "Beth", "center");
   candidate3_reorder = new STVCandidate(3, "Carl", "right");
@@ -149,8 +146,8 @@ TEST_F(STVElectionRecordTests, SortNonElectedCandidateList_reorder) {
   ballots_reorder.push_front(ballot4_reorder);
   ballots_reorder.push_front(ballot3_reorder);
   election_record_reorder = new STVElectionRecord(candidates_reorder,
-                                                        ballots_reorder);
-  election_record_reorder->DistributeBallots();
+                                                        ballots_reorder, droop);
+  // election_record_reorder->DistributeBallots();
   election_record_reorder->SortNonElectedCandidateList();
   std::list<STVCandidate*> temp_candidate_list;
   temp_candidate_list = election_record_reorder->GetNonElectedCandidateList();
@@ -163,38 +160,52 @@ TEST_F(STVElectionRecordTests, SortNonElectedCandidateList_reorder) {
 
 TEST_F(STVElectionRecordTests, GetWinnersList) {
   ASSERT_EQ(election_record->GetWinnersList(), std::list<STVCandidate*>{});
-  election_record->MoveFirstNCandidatesFromNonELectedListToWinnersList(2);
-  std::list<STVCandidate*> winners_list = election_record->GetWinnersList();
+}
+
+TEST_F(STVElectionRecordTests, AddCandidateToWinnersList) {
+  ASSERT_EQ(election_record->GetWinnersList(), std::list<STVCandidate*>{});
+  election_record->AddCandidateToWinnersList(candidate1);
+  election_record->AddCandidateToWinnersList(candidate2);
+  std::list<STVCandidate*> winners_list;
+  winners_list = election_record->GetWinnersList();
   ASSERT_EQ(winners_list.size(), 2);
-  ASSERT_EQ(winners_list.front(), candidate5);
-  election_record->MoveFirstNCandidatesFromNonELectedListToWinnersList(2);
+  ASSERT_EQ(winners_list.front(), candidate1);
+  election_record->AddCandidateToWinnersList(candidate3);
+  election_record->AddCandidateToWinnersList(candidate4);
   winners_list = election_record->GetWinnersList();
   ASSERT_EQ(winners_list.size(), 4);
-  ASSERT_EQ(winners_list.front(), candidate5);
+  ASSERT_EQ(winners_list.front(), candidate1);
   winners_list.pop_front();
-  STVCandidate* winning_candidate = winners_list.front();
-  ASSERT_EQ(winners_list.front(), candidate4);
+  ASSERT_EQ(winners_list.front(), candidate2);
   winners_list.pop_front();
-  winning_candidate = winners_list.front();
   ASSERT_EQ(winners_list.front(), candidate3);
   winners_list.pop_front();
-  winning_candidate = winners_list.front();
-  ASSERT_EQ(winners_list.front(), candidate2);
+  ASSERT_EQ(winners_list.front(), candidate4);
 }
 
 TEST_F(STVElectionRecordTests, GetLosersList) {
   ASSERT_EQ(election_record->GetLosersList(), std::list<STVCandidate*>{});
-  election_record->MoveFirstNCandidatesFromNonELectedListToWinnersList(2);
-  election_record->MoveRemainingCandidatesToLosersList();
-  std::list<STVCandidate*> losers_list = election_record->GetLosersList();
-  ASSERT_EQ(losers_list.size(), 3);
+}
+
+TEST_F(STVElectionRecordTests, AddCandidateToLosersList) {
+  ASSERT_EQ(election_record->GetLosersList(), std::list<STVCandidate*>{});
+  election_record->AddCandidateToLosersList(candidate1);
+  election_record->AddCandidateToLosersList(candidate2);
+  std::list<STVCandidate*> losers_list;
+  losers_list = election_record->GetLosersList();
+  ASSERT_EQ(losers_list.size(), 2);
+  ASSERT_EQ(losers_list.front(), candidate1);
+  election_record->AddCandidateToLosersList(candidate3);
+  election_record->AddCandidateToLosersList(candidate4);
+  losers_list = election_record->GetLosersList();
+  ASSERT_EQ(losers_list.size(), 4);
+  ASSERT_EQ(losers_list.front(), candidate1);
+  losers_list.pop_front();
+  ASSERT_EQ(losers_list.front(), candidate2);
+  losers_list.pop_front();
   ASSERT_EQ(losers_list.front(), candidate3);
   losers_list.pop_front();
-  STVCandidate* losing_candidate = losers_list.front();
-  ASSERT_EQ(losing_candidate, candidate2);
-  losers_list.pop_front();
-  losing_candidate = losers_list.front();
-  ASSERT_EQ(losing_candidate, candidate1);
+  ASSERT_EQ(losers_list.front(), candidate4);
 }
 
 TEST_F(STVElectionRecordTests, GetNonElectedCandidateList) {
@@ -205,3 +216,51 @@ TEST_F(STVElectionRecordTests, GetNonDistributedBallotList) {
   ASSERT_EQ(election_record->GetNonDistributedBallotList(), ballots);
 }
 
+TEST_F(STVElectionRecordTests, ShuffleBallots) {
+  std::list<Ballot*> ballot_list;
+  ballot_list = election_record->GetNonDistributedBallotList();
+  election_record->ShuffleBallots();
+  std::list<Ballot*> shuffled_list;
+  shuffled_list = election_record->GetNonDistributedBallotList();
+  EXPECT_NE(shuffled_list, ballot_list);
+}
+
+TEST_F(STVElectionRecordTests, CheckDroop) {
+  EXPECT_EQ(election_record->CheckDroop(2), false);
+  EXPECT_EQ(election_record->CheckDroop(3), true);
+  EXPECT_EQ(election_record->CheckDroop(4), true);
+}
+
+TEST_F(STVElectionRecordTests,
+       RemoveLastCandidateFromNonElectedCandidateList) {
+  std::list<STVCandidate*> candidate_test_list1;
+  candidate_test_list1 = election_record->GetNonElectedCandidateList();
+  STVCandidate* last_candidate_check1;
+  last_candidate_check1 = election_record
+                            ->RemoveLastCandidateFromNonElectedCandidateList();
+  std::list<STVCandidate*> candidate_test_list2;
+  candidate_test_list2 = election_record->GetNonElectedCandidateList();
+  STVCandidate* last_candidate_check2;
+  last_candidate_check2 = election_record
+                            ->RemoveLastCandidateFromNonElectedCandidateList();
+  EXPECT_EQ(candidate_test_list1.size(), candidates.size());
+  EXPECT_EQ(candidate_test_list2.size(), candidates.size() - 1);
+  EXPECT_EQ(last_candidate_check1, candidate1);
+  EXPECT_EQ(last_candidate_check2, candidate2);
+}
+
+TEST_F(STVElectionRecordTests, AddLoserBallotsToNonDistributedBallotList) {
+  std::list<Ballot*> ballot_list;
+  ballot_list = election_record->GetNonDistributedBallotList();
+  EXPECT_EQ(ballot_list, ballots);
+  election_record->AddLoserBallotsToNonDistributedBallotList(ballots);
+  ballot_list = election_record->GetNonDistributedBallotList();
+  EXPECT_EQ(ballot_list.size(), 2.0 * ballots.size());
+}
+
+TEST_F(STVElectionRecordTests, PopCandidateOffLosersList) {
+  EXPECT_EQ(election_record->GetLosersList().size(), 0);
+  election_record->AddCandidateToLosersList(candidate1);
+  EXPECT_EQ(election_record->GetLosersList().size(), 1);
+  EXPECT_EQ(election_record->PopCandidateOffLosersList(), candidate1);
+}

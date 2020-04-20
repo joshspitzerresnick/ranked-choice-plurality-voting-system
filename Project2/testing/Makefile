@@ -98,8 +98,7 @@ stv_election.o : $(USER_DIR)/stv_election.cc $(USER_DIR)/stv_election.h $(GTEST_
 voting_info.o : $(USER_DIR)/voting_info.cc $(USER_DIR)/voting_info.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/voting_info.cc
 
-ballot_UT.o : $(USER_DIR)/ballot_UT.cc \
-                     $(USER_DIR)/ballot.h $(GTEST_HEADERS)
+ballot_UT.o : $(USER_DIR)/ballot_UT.cc $(USER_DIR)/ballot.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/ballot_UT.cc
 
 ballot_file_processor_UT.o : $(USER_DIR)/ballot_file_processor_UT.cc $(USER_DIR)/ballot_file_processor.h $(GTEST_HEADERS)
@@ -123,11 +122,8 @@ stv_election_record_UT.o : $(USER_DIR)/stv_election_record_UT.cc $(USER_DIR)/stv
 stv_election_UT.o : $(USER_DIR)/stv_election_UT.cc $(USER_DIR)/stv_election.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/stv_election_UT.cc
 
-STVElectionRecord_UT.o : $(USER_DIR)/STVElectionRecord_UT.cc $(USER_DIR)/stv_election_record.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/STVElectionRecord_UT.cc
-
 voting_info_UT.o : $(USER_DIR)/voting_info_UT.cc $(USER_DIR)/voting_info.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/voting_info_UT.cc
 
-runTests : ballot.o ballot_file_processor.o candidate.o logger.o plurality_election_record.o plurality_election.o voting_info.o ballot_UT.o ballot_file_processor_UT.o candidate_UT.o plurality_election_record_UT.o plurality_election_UT.o voting_info_UT.o gtest_main.a
+runTests : ballot.o ballot_file_processor.o candidate.o logger.o plurality_election_record.o plurality_election.o stv_election_record.o stv_election.o voting_info.o ballot_UT.o ballot_file_processor_UT.o candidate_UT.o logger_UT.o plurality_election_record_UT.o plurality_election_UT.o stv_election_record_UT.o stv_election_UT.o voting_info_UT.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@

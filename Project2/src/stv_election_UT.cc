@@ -1,5 +1,5 @@
 /**
- * @file STV_election_UT.cc
+ * @file stv_election_UT.cc
  *
  * @copyright 2020 5801 Team3, All rights reserved.
  */
@@ -8,14 +8,15 @@
 #include <list>
 #include "../src/stv_election.h"
 
+bool BallotShuffleOff = false;
+
 /******************************************************
 * TEST FEATURE SetUp
 *******************************************************/
 
 class STVElectionTests : public ::testing::Test {
  protected:
-  VotingInfo* votinginfo1;
-  VotingInfo* votinginfo2;
+  VotingInfo* votinginfo;
   Ballot* ballot1;
   Ballot* ballot2;
   Ballot* ballot3;
@@ -26,14 +27,14 @@ class STVElectionTests : public ::testing::Test {
   Ballot* ballot8;
   Ballot* ballot9;
   Ballot* ballot10;
-  Candidate* candidate1;
-  Candidate* candidate2;
+  STVCandidate* candidate1;
+  STVCandidate* candidate2;
   std::list<int> candidateList1, candidateList2, candidateDup;
   int i;
-  STVElection* pElection;
+  int* ip;
+  STVElection* stvElection;
   virtual void SetUp() {
-    votinginfo1 = new VotingInfo(0, 2);  // STV, 3 candidates
-    votinginfo2 = new VotingInfo(1, 2);  // STV, 3 candidates
+    votinginfo = new VotingInfo(1, 2);  // STV, 3 candidates
     candidateList1.push_back(1);
     candidateList2.push_back(2);
     ballot1 = new Ballot(1, candidateList1);
@@ -47,7 +48,7 @@ class STVElectionTests : public ::testing::Test {
     ballot9 = new Ballot(9, candidateList1);
     ballot10 = new Ballot(10, candidateList2);
     candidate1 = new STVCandidate(1, "Allison", "Democrat");
-    candidate1 = new STVCandidate(2, "Mark", "Independant");
+    candidate2 = new STVCandidate(2, "Mark", "Independant");
   }
   virtual void TearDown() {
     delete ballot1;
@@ -70,12 +71,13 @@ class STVElectionTests : public ::testing::Test {
  ******************************************************************************/
 
 TEST_F(STVElectionTests, Constructor) {
-    EXPECT_NO_THROW(pElection = new STVElection());
-    // Add more tests
+  EXPECT_NO_THROW(stvElection = new STVElection(votinginfo));
 }
 
 TEST_F(STVElectionTests, RunElection) {
-    EXPECT_NO_THROW(pElection->RunElection(votinginfo1));
-    EXPECT_NE(candidate1->GetNumBallots(), 1);
-    // Add tests
+  EXPECT_NO_THROW(stvElection->RunElection());
+}
+
+TEST_F(STVElectionTests, DisplayResults) {
+  EXPECT_NO_THROW(stvElection->DisplayResult());
 }
