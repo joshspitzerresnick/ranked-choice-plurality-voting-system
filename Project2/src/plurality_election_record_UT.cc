@@ -157,12 +157,6 @@ TEST_F(PluralityElectionRecordTests, SortNonElectedCandidateList_reorder) {
   ASSERT_EQ((most_ballots->GetID() == 2) || (most_ballots->GetID() == 3), true);
 }
 
-TEST_F(PluralityElectionRecordTests, BreakTies) {
-  bool test_candidate = PluralityElectionRecord::BreakTies();
-  ASSERT_TRUE((true == test_candidate) || (false == test_candidate));
-  // Add tests
-}
-
 TEST_F(PluralityElectionRecordTests,
        MoveFirstNCandidatesFromNonElectedListToWinnersList) {
   ASSERT_ANY_THROW(election_record
