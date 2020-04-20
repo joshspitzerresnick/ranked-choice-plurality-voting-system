@@ -47,14 +47,12 @@ void Logger::Log(std::list<int> &L) {
 
 void Logger::Log(std::list<Candidate*> L) {
   char msg[1000], temp[50];
-  std::string str;
   snprintf(msg, sizeof(msg), "... ");
   std::list<Candidate*>::iterator it;  // Create an iterator of std::list
   int cnt = 0, n = 0;
   for (it= L.begin(); it!= L.end(); it++) {
     cnt++;
-    str = (*it)->GetName();
-    n = snprintf(temp, sizeof(temp), "%s,", str.c_str());
+    n = snprintf(temp, sizeof(temp), "%d-%s,", (*it)->GetID(), (*it)->GetName().c_str());
     cnt += n;
     if (cnt < 200) {
       strncat(msg, temp, sizeof(msg));

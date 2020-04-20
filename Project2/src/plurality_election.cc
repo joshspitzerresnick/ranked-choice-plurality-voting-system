@@ -82,7 +82,7 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
         candidate_num_ballots = current_candidate->GetNumBallots();
         percent = (float)candidate_num_ballots / (float)num_ballots;
         percent = percent*100;
-        snprintf(msg, sizeof(msg), "%d: %s (%d ballots; %%%.2f Votes)", 
+        snprintf(msg, sizeof(msg), "  %d: %s (%d ballots; %%%.2f Votes)", 
                   i, current_candidate->GetName().c_str(), candidate_num_ballots, percent);
         LOGGER->Log(msg);
         std::cout << msg << "\n" << std::flush;
@@ -98,7 +98,7 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
         candidate_num_ballots = current_candidate->GetNumBallots();
         percent = (float)candidate_num_ballots / (float)num_ballots;
         percent = percent*100;
-        snprintf(msg, sizeof(msg), "%d: %s (%d ballots; %%%.2f Votes)", 
+        snprintf(msg, sizeof(msg), "  %d: %s (%d ballots; %%%.2f Votes)", 
                   i, current_candidate->GetName().c_str(), candidate_num_ballots, percent);
         LOGGER->Log(msg);
         std::cout << msg << "\n" << std::flush;

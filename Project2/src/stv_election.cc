@@ -19,7 +19,7 @@ void STVElection::RunElection() {
   std::list<Ballot*> ballotList;  // ballot pointer list to hold ballots for passing between stvelectionrecord functions
   std::list<STVCandidate*> tempSTVCandidateList;
   int firstBallotNum = 1;
-  char msg[1000], temp[20];
+  char msg[2000], temp[100];
   // check if ballot shuffle off option is true
   if (!BallotShuffleOff) {
     stvElectionRecord_->ShuffleBallots();  // shuffle ballots
@@ -39,7 +39,9 @@ void STVElection::RunElection() {
     std::list<STVCandidate*>::iterator itCandidate;
     for (itCandidate = tempSTVCandidateList.begin(); itCandidate != tempSTVCandidateList.end(); itCandidate++) {
       // Access the object through iterator
-      snprintf(temp, sizeof(temp), "%s (%d votes), ", (*itCandidate)->GetName().c_str(), (*itCandidate)->GetNumBallots());
+      snprintf(temp, sizeof(temp), "%d-%s (%d votes), ",
+          (*itCandidate)->GetID(), (*itCandidate)->GetName().c_str(),
+          (*itCandidate)->GetNumBallots());
       strncat(msg, temp, sizeof(msg));
     }
     LOGGER->Log(msg);  // Log
@@ -100,7 +102,7 @@ void STVElection::DisplayResult() {
   LOGGER->Log(msg);
   std::cout << msg << std::endl;
   for (it = winnersList.begin(); it != winnersList.end(); it++) {
-    snprintf(msg, sizeof(msg), "%d: %s", ++orderNum, (*it)->GetName().c_str());
+    snprintf(msg, sizeof(msg), "  %d: %s", ++orderNum, (*it)->GetName().c_str());
     LOGGER->Log(msg);
     std::cout << msg << "\n" << std::flush;
   }
@@ -109,7 +111,7 @@ void STVElection::DisplayResult() {
   LOGGER->Log(msg);
   std::cout << msg << std::endl;
   for (it = losersList.begin(); it != losersList.end(); it++) {
-    snprintf(msg, sizeof(msg), "%d: %s", ++orderNum, (*it)->GetName().c_str());
+    snprintf(msg, sizeof(msg), "  %d: %s", ++orderNum, (*it)->GetName().c_str());
     LOGGER->Log(msg);
     std::cout << msg << std::endl;
   }

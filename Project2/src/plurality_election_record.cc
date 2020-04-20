@@ -28,7 +28,7 @@ void PluralityElectionRecord::DistributeBallots() {
             if((*it)->GetID() == curr_candidate_id)
             {
                 (*it)->AddBallot(curr_ballot);
-                snprintf(msg, sizeof(msg), "Ballot %d is assigned to Candidate %s", curr_ballot->GetID(), (*it)->GetName().c_str());
+                snprintf(msg, sizeof(msg), "Ballot %d is assigned to Candidate %d-%s", curr_ballot->GetID(), (*it)->GetID(), (*it)->GetName().c_str());
                 LOGGER->Log(msg);
                 break;
             }
