@@ -39,8 +39,9 @@ void PluralityElection::RunElection(VotingInfo* votingInfo) {
     snprintf(msg, sizeof(msg), "Move the first %d candidates to winners list and the rest to losers list", num_seats);
     LOGGER->Log(msg);
     election_record->MoveRemainingCandidatesToLosersList();
-    Logger::GetLogger()->Log("----------------------------------Election Complete----------------------------------------------------");
     DisplayResults(election_record, votingInfo);
+    snprintf(msg, sizeof(msg), "---------------------------------------------------------Election Complete---------------------------------------------------------");
+    Logger::GetLogger()->Log(msg);
 }
 
 void PluralityElection::DisplayResults(PluralityElectionRecord* election_record, VotingInfo* voting_info) {
@@ -48,16 +49,29 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
     int num_ballots = voting_info->GetNumBallots();
     int num_seats = voting_info->GetNumSeats();
     int num_candidates = voting_info->GetNumCandidates();
-    std::cout << "---------------Election Result-----------------\n" << std::flush;
-    std::cout << "Election Type: Plurality\n" << std::flush;
-    std::cout << "Number of Ballots: " << num_ballots << "\n" << std::flush;
-    std::cout << "Number of Seats: " << num_seats << "\n" << std::flush;
-    std::cout << "number of Candidates: " << num_candidates << "\n\n" << std::flush;
+    char msg[1000];
+    snprintf(msg, sizeof(msg), "---------------Election Result----------------");
+    LOGGER->Log(msg);
+    std::cout << msg << "\n" << std::flush;
+    snprintf(msg, sizeof(msg), "* Election Type: Plurality");
+    LOGGER->Log(msg);
+    std::cout << msg << std::endl;
+    snprintf(msg, sizeof(msg), "* Number of Ballots: %d", num_ballots);
+    LOGGER->Log(msg);
+    std::cout << msg << std::endl;
+    snprintf(msg, sizeof(msg), "* #Seats: %d", num_seats);
+    LOGGER->Log(msg);
+    std::cout << msg << std::endl;
+    snprintf(msg, sizeof(msg), "* #Candidates: %d", num_candidates);
+    LOGGER->Log(msg);
+    std::cout << msg << std::endl;
 
     std::list<Candidate*> winners_list = election_record->GetWinnersList();
     std::list<Candidate*> losers_list = election_record->GetLosersList();
 
-    std::cout << "Winners are: \n" << std::flush;
+    snprintf(msg, sizeof(msg), "* Winners are: ");
+    LOGGER->Log(msg);
+    std::cout << msg << std::endl;
 
     int i = 1;
     float percent;
@@ -68,18 +82,27 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
         candidate_num_ballots = current_candidate->GetNumBallots();
         percent = (float)candidate_num_ballots / (float)num_ballots;
         percent = percent*100;
-        std::cout << i << ". " << current_candidate->GetName() << " (" << candidate_num_ballots << " ballots; " << percent << "% Votes)\n" << std::flush;
+        snprintf(msg, sizeof(msg), "%d: %s (%d ballots; %%%.2f Votes)", 
+                  i, current_candidate->GetName().c_str(), candidate_num_ballots, percent);
+        LOGGER->Log(msg);
+        std::cout << msg << "\n" << std::flush;
         winners_list.pop_front();
         i++;
     }
 
-    std::cout << "Losers are: \n" << std::flush;
+    snprintf(msg, sizeof(msg), "* Losers are: ");
+    LOGGER->Log(msg);
+    std::cout << msg << std::endl;
     while(!losers_list.empty()) {
         current_candidate = losers_list.front();
         candidate_num_ballots = current_candidate->GetNumBallots();
         percent = (float)candidate_num_ballots / (float)num_ballots;
         percent = percent*100;
-        std::cout << i << ". " << current_candidate->GetName() << " (" << candidate_num_ballots << " ballots; " << percent << "% Votes)\n" << std::flush;
+        snprintf(msg, sizeof(msg), "%d: %s (%d ballots; %%%.2f Votes)", 
+                  i, current_candidate->GetName().c_str(), candidate_num_ballots, percent);
+        LOGGER->Log(msg);
+        std::cout << msg << "\n" << std::flush;
+        // std::cout << i << ". " << current_candidate->GetName() << " (" << candidate_num_ballots << " ballots; " << percent << "% Votes)\n" << std::flush;
         losers_list.pop_front(); 
         i++;
     }

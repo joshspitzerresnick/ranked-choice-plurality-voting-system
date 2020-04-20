@@ -68,9 +68,10 @@ void STVElection::RunElection() {
     LOGGER->Log(msg);
     stvElectionRecord_->AddCandidateToWinnersList(candidate);
   }
-  Logger::GetLogger()->Log("----------------------------------Election Complete----------------------------------------------------");
   // display election results
   DisplayResult();
+  snprintf(msg, sizeof(msg), "---------------------------------------------------------Election Complete---------------------------------------------------------");
+  Logger::GetLogger()->Log(msg);
 }
 
 void STVElection::DisplayResult() {
@@ -79,21 +80,40 @@ void STVElection::DisplayResult() {
   std::list<STVCandidate*>::iterator it;
   int numCandidates;
   int orderNum = 0;
+  char msg[1000];
   winnersList = stvElectionRecord_->GetWinnersList();
   losersList = stvElectionRecord_->GetLosersList();
   numCandidates = (int)winnersList.size() + (int)losersList.size();
-  std::cout << "---------------Election Result-----------------\n" << std::flush;
-  std::cout << "* Election Type: STV" << std::endl;
-  std::cout << "* #Seats: " << numSeats_ << std::endl;
-  std::cout << "* #Candidates: " << numCandidates << std::endl;
-  std::cout << "* Winners are: " << std::endl;
+  snprintf(msg, sizeof(msg), "---------------Election Result----------------");
+  LOGGER->Log(msg);
+  std::cout << msg << "\n" << std::flush;
+  snprintf(msg, sizeof(msg), "* Election Type: STV");
+  LOGGER->Log(msg);
+  std::cout << msg << std::endl;
+  snprintf(msg, sizeof(msg), "* #Seats: %d", numSeats_);
+  LOGGER->Log(msg);
+  std::cout << msg << std::endl;
+  snprintf(msg, sizeof(msg), "* #Candidates: %d", numCandidates);
+  LOGGER->Log(msg);
+  std::cout << msg << std::endl;
+  snprintf(msg, sizeof(msg), "* Winners are: ");
+  LOGGER->Log(msg);
+  std::cout << msg << std::endl;
   for (it = winnersList.begin(); it != winnersList.end(); it++) {
-    std::cout << ++orderNum << ": " << (*it)->GetName() << "\n" << std::flush;
+    snprintf(msg, sizeof(msg), "%d: %s", ++orderNum, (*it)->GetName().c_str());
+    LOGGER->Log(msg);
+    std::cout << msg << "\n" << std::flush;
   }
   orderNum = 0;
-  std::cout << "* Losers are: " << std::endl;
+  snprintf(msg, sizeof(msg), "* Losers are: ");
+  LOGGER->Log(msg);
+  std::cout << msg << std::endl;
   for (it = losersList.begin(); it != losersList.end(); it++) {
-    std::cout << ++orderNum << ": " << (*it)->GetName() << std::endl;
+    snprintf(msg, sizeof(msg), "%d: %s", ++orderNum, (*it)->GetName().c_str());
+    LOGGER->Log(msg);
+    std::cout << msg << std::endl;
   }
-  std::cout << "-------------End of Result Display-------------" << std::endl;
+  snprintf(msg, sizeof(msg), "-------------End of Result Display------------");
+  LOGGER->Log(msg);
+  std::cout << msg << std::endl;
 }

@@ -25,7 +25,7 @@ int main(int argc, char** argv) {
   VotingInfo* votingInfo;
   char msg[200];
   Logger::GetLogger();
-  LOGGER->Log("----------------------------------Start A New Election----------------------------------------------------");
+  LOGGER->Log("---------------------------------------------------------Start A New Election---------------------------------------------------------");
   // Check command line argument
   if (argc >= 2 && strcmp(argv[1], "-t") == 0) {
     BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
