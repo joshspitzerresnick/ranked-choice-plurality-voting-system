@@ -42,22 +42,6 @@ void PluralityElectionRecord::SortNonElectedCandidateList()
     nonElectedCandidateList_.sort(CandidateNumBallotsComp);
 }
 
-
-bool PluralityElectionRecord::BreakTies()
-{
-    int rand_num = rand() % 2;
-    if(rand_num == 0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-    
-    
-}
-
 void PluralityElectionRecord::MoveFirstNCandidatesFromNonELectedListToWinnersList(int N)
 {
     if(N > this->nonElectedCandidateList_.size())
@@ -106,9 +90,24 @@ std::list<Ballot*> PluralityElectionRecord::GetNonDistributedBallotList()
 
 bool PluralityElectionRecord::CandidateNumBallotsComp(Candidate* candidate1, Candidate* candidate2)
 {
+    char msg[1000];
+    srand(time(0));
     if(candidate1->GetNumBallots()  == candidate2->GetNumBallots())
     {
-         return BreakTies();
+        bool select = rand() % 2;
+        snprintf(msg, sizeof(msg), "Tie break between candidate %s (#votes=%d) and candidate %s (#votes=%d).",
+        candidate1->GetName().c_str(), candidate1->GetNumBallots(), candidate2->GetName().c_str(), candidate2->GetNumBallots());
+        LOGGER->Log(msg);
+        if (select) {
+           snprintf(msg, sizeof(msg), "candidate %s (#votes=%d) is randomly picked as the winner.",
+           candidate1->GetName().c_str(), candidate1->GetNumBallots());
+           LOGGER->Log(msg);
+        } else {
+           snprintf(msg, sizeof(msg), "candidate %s (#votes=%d) is randomly picked as the winner.",
+           candidate2->GetName().c_str(), candidate2->GetNumBallots());
+           LOGGER->Log(msg);
+        }
+        return select;
     }
     else
     {

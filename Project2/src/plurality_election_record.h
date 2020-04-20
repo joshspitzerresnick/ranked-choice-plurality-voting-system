@@ -23,7 +23,6 @@ class PluralityElectionRecord
   * @param[in] List of Ballot objects
   */
   explicit PluralityElectionRecord(std::list<Candidate*>, std::list<Ballot*>);
-  
   /**
   * @brief Deconstructs a Plurality election record container.
   */
@@ -81,10 +80,6 @@ class PluralityElectionRecord
   */
   std::list<Ballot*> GetNonDistributedBallotList();
 
-  /**
-  * @brief Randomly chooses true or false to break a tie
-  */
-  static bool BreakTies();
  /**
   * @brief Moves Candidates from the non elected candidate list to the 
   *        losers list
