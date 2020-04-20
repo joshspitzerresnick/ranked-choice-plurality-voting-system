@@ -69,13 +69,13 @@ void Logger::Log(std::list<Candidate*> L) {
 }
 
 void Logger::Log(std::list<Ballot*> L) {
-  char msg[2000], temp[50];
+  char msg[1000], temp[50];
   snprintf(msg, sizeof(msg), "... ");
   std::list<Ballot*>::iterator it;  // Create an iterator of std::list
-  int cnt = 0;
+  int cnt = 0, n = 0;
   for (it= L.begin(); it!= L.end(); it++) {
-    cnt++;
-    snprintf(temp, sizeof(temp), "%d,", (*it)->GetID());
+    n = snprintf(temp, sizeof(temp), "%d,", (*it)->GetID());
+    cnt += n;
     if (cnt < 200) {
       strncat(msg, temp, sizeof(msg));
     } else {
