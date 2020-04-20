@@ -8,7 +8,7 @@
 #include <list>
 #include "../src/stv_election.h"
 
-bool BallotShuffleOff = false;
+bool BallotShuffleOff = true;
 
 /******************************************************
 * TEST FEATURE SetUp
