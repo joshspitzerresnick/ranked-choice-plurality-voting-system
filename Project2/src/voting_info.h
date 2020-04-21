@@ -65,7 +65,7 @@ class VotingInfo {
   void AddBallotToBallotList(Ballot*);
   /**
    * @brief Adds a ballot to the list of invalid ballots.
-   * 
+   *
    * @param[in] Ballot* holding a ballot to be added.
    */
   void AddBallotToInvalidList(Ballot*);
@@ -83,7 +83,7 @@ class VotingInfo {
   int GetNumBallots() const;
   /**
    * @brief Returns number of ballots in invalid ballot list.
-   * 
+   *
    * @return int holding number of ballots in invalid ballot list.
    */
   int GetNumInvalid() const;
@@ -107,10 +107,17 @@ class VotingInfo {
   std::list<Ballot*> GetBallotList() const;
   /**
    * @brief Returns list of invalid ballots.
-   * 
+   *
    * @return std::list<Ballot*> holding list of invalid ballots.
    */
   std::list<Ballot*> GetInvalidList() const;
+  /**
+  * @brief Writes report of all invalidated ballots (less than half of
+  *        candidates ranked) from an STV election to a specified filename.
+  *
+  * @param[in] std::string holding a filename for report to be written to.
+  */
+  void WriteInvalidBallotsToFile(std::string filename);
 
  private:
   void IncrementNumCandidates();

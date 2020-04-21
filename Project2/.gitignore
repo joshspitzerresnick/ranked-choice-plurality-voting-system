@@ -13,3 +13,5 @@ src/CMakeFiles/
 src/cmake_install.cmake
 src/CMakeCache.txt
 src/VotingSystem
+audit.txt
+invalidated.txt

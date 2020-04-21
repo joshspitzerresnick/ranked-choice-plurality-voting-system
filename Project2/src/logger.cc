@@ -5,7 +5,7 @@
  */
 #include "logger.h"
 
-const char Logger::fileName[] = "VotingSystemAuditFile.txt";
+const char Logger::fileName[] = "audit.txt";
 Logger* Logger::pThis = NULL;
 std::ofstream Logger::logFile;
 Logger::Logger() {

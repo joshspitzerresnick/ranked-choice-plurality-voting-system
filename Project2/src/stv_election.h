@@ -37,19 +37,19 @@ class STVElection{
   /**
   * @brief Run an STV election.
   *
-  * @param[in] none
+  * @param[in] VotingInfo*, a pointer to a VotingInfo object
   * @return void
   *
   */
-  void RunElection();
+  void RunElection(VotingInfo*);
     /**
   * @brief Display STV election results.
   *
-  * @param[in] none, using member structure within the same class
+  * @param[in] VotingInfo*, a pointer to a VotingInfo object
   * @return void
   *
   */
-  void DisplayResult();
+  void DisplayResult(VotingInfo*);
  private:
   STVElectionRecord* stvElectionRecord_;  // stv election record object
   // STVResultDisplay* stvResultDisplay_;  // stv result display object // NO LONGER USING - Josh

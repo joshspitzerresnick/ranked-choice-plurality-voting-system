@@ -6,6 +6,8 @@
 
 #include "stv_election.h"
 
+#define INVALIDATED_FILE "invalidated.txt"
+
 STVElection::STVElection(VotingInfo* votingInfo) {
   numSeats_ = votingInfo->GetNumSeats() <= votingInfo->GetNumCandidates() ? votingInfo->GetNumSeats() : votingInfo->GetNumCandidates();
   int numBallots = votingInfo->GetNumBallots();
@@ -14,7 +16,8 @@ STVElection::STVElection(VotingInfo* votingInfo) {
     votingInfo->GetBallotList(), droop);
 }
 
-void STVElection::RunElection() {
+void STVElection::RunElection(VotingInfo* votingInfo) {
+  votingInfo->WriteInvalidBallotsToFile(INVALIDATED_FILE);
   STVCandidate* candidate;  // stv candidate object pointer to hold candidate object to pass between member functions
   std::list<Ballot*> ballotList;  // ballot pointer list to hold ballots for passing between stvelectionrecord functions
   std::list<STVCandidate*> tempSTVCandidateList;
@@ -62,12 +65,12 @@ void STVElection::RunElection() {
     LOGGER->Log(msg);
     stvElectionRecord_->AddCandidateToWinnersList(candidate);
   }
-  Logger::GetLogger()->Log("----------------------------------Election Complete----------------------------------------------------");
+  Logger::GetLogger()->Log("----------------------------------------Election Complete-------------------------------------------");
   // display election results
-  DisplayResult();
+  DisplayResult(votingInfo);
 }
 
-void STVElection::DisplayResult() {
+void STVElection::DisplayResult(VotingInfo* votingInfo) {
   std::list<STVCandidate*> winnersList;
   std::list<STVCandidate*> losersList;
   std::list<STVCandidate*>::iterator it;
@@ -76,18 +79,23 @@ void STVElection::DisplayResult() {
   winnersList = stvElectionRecord_->GetWinnersList();
   losersList = stvElectionRecord_->GetLosersList();
   numCandidates = (int)winnersList.size() + (int)losersList.size();
-  std::cout << "---------------Election Result-----------------\n" << std::flush;
-  std::cout << "* Election Type: STV" << std::endl;
-  std::cout << "* #Seats: " << numSeats_ << std::endl;
-  std::cout << "* #Candidates: " << numCandidates << std::endl;
-  std::cout << "* Winners are: " << std::endl;
+  std::cout << "--------------------Election Results------------------------\n" << std::flush;
+  std::cout << "* Election Type:\tSTV" << std::endl;
+  std::cout << "* # Ballots:\t\t" << votingInfo->GetNumBallots() << "\n" << std::flush;
+  std::cout << "* # Invalid ballots:\t" << votingInfo->GetNumInvalid() << "\n" << std::flush;
+  std::cout << "* # Seats:\t\t" << numSeats_ << std::endl;
+  std::cout << "* # Candidates:\t\t" << numCandidates << std::endl;
+  std::cout << "* Droop:\t\t" << stvElectionRecord_->GetDroop() << std::endl;
+  std::cout << "\n* Winners are:" << std::endl;
   for (it = winnersList.begin(); it != winnersList.end(); it++) {
-    std::cout << ++orderNum << ": " << (*it)->GetName() << "\n" << std::flush;
+    std::cout << ++orderNum << ". " << (*it)->GetName() << "\n" << std::flush;
   }
   orderNum = 0;
-  std::cout << "* Losers are: " << std::endl;
+  std::cout << "\n* Losers are:" << std::endl;
   for (it = losersList.begin(); it != losersList.end(); it++) {
-    std::cout << ++orderNum << ": " << (*it)->GetName() << std::endl;
+    std::cout << ++orderNum << ". " << (*it)->GetName() << std::endl;
   }
-  std::cout << "-------------End of Result Display-------------" << std::endl;
+  std::cout << "\nLocation of audit report:\t\tsrc/audit.txt" << std::endl;
+  std::cout << "Location of invalidated ballots report:\tsrc/invalidated.txt" << std::endl;
+  std::cout << "--------------------End of Result Display-------------------" << std::endl;
 }
