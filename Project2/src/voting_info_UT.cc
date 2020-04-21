@@ -21,18 +21,26 @@ class VotingInfoTests : public ::testing::Test {
   Candidate* candidate1;
   Candidate* candidate2;
   Candidate* candidate3;
+  Candidate* candidate4;
   Ballot* ballot1;
   Ballot* ballot2;
   Ballot* ballot3;
+  Ballot* invalid1;
+  Ballot* invalid2;
+  Ballot* invalid3;
   virtual void SetUp() {
-    votinginfo1 = new VotingInfo(0, 3);  // plurality, 3 candidates
-    votinginfo2 = new VotingInfo(1, 3);  // STV, 3 candidates
+    votinginfo1 = new VotingInfo(0, 3);  // plurality, 3 seats
+    votinginfo2 = new VotingInfo(1, 3);  // STV, 3 seats
     candidate1 = new Candidate(1, "Al", "left");
     candidate2 = new Candidate(2, "Beth", "center");
     candidate3 = new Candidate(3, "Carl", "right");
+    candidate4 = new Candidate(4, "Dean", "nowhere");
     ballot1 = new Ballot(1, {1, 2, 3});
     ballot2 = new Ballot(2, {1, 3, 2});
     ballot3 = new Ballot(3, {1, 2});
+    invalid1 = new Ballot(4, {1});
+    invalid2 = new Ballot(5, {2});
+    invalid3 = new Ballot(6, {3});
   }
   virtual void TearDown() {
     delete votinginfo1;
@@ -40,9 +48,13 @@ class VotingInfoTests : public ::testing::Test {
     delete candidate1;
     delete candidate2;
     delete candidate3;
+    delete candidate4;
     delete ballot1;
     delete ballot2;
     delete ballot3;
+    delete invalid1;
+    delete invalid2;
+    delete invalid3;
   }
 };
 
@@ -116,4 +128,57 @@ TEST_F(VotingInfoTests, GetBallotList) {
   votinginfo1->AddBallotToBallotList(ballot2);
   EXPECT_EQ(votinginfo1->GetBallotList().back(), ballot2);  // in order
   EXPECT_EQ(votinginfo1->GetBallotList().size(), votinginfo1->GetNumBallots());
+}
+
+TEST_F(VotingInfoTests, WriteInvalidBallotsToFile_EvenNumCand) {
+  EXPECT_EQ(votinginfo2->GetNumCandidates(), 0);  // STV
+  votinginfo2->AddCandidateToCandidateList(candidate1);
+  votinginfo2->AddCandidateToCandidateList(candidate2);
+  votinginfo2->AddCandidateToCandidateList(candidate3);
+  votinginfo2->AddCandidateToCandidateList(candidate4);
+  EXPECT_EQ(votinginfo2->GetNumCandidates(), 4);
+  int invalid_num = votinginfo2->GetNumCandidates()/2.0;  // half
+  EXPECT_EQ(invalid_num, 2);  // half
+
+  EXPECT_EQ(votinginfo2->GetNumInvalid(), 0);
+  votinginfo2->AddBallotToInvalidList(invalid1);
+  votinginfo2->AddBallotToInvalidList(invalid2);
+  votinginfo2->AddBallotToInvalidList(invalid3);
+  EXPECT_EQ(votinginfo2->GetNumInvalid(), 3);
+
+  std::list<Ballot*> invalid_list = votinginfo2->GetInvalidList();
+  EXPECT_EQ(invalid_list.size(), 3);
+  std::list<int> ranked_cand_list;
+
+  while(!invalid_list.empty()) {  // for each invalid ballot
+    ranked_cand_list = invalid_list.front()->GetRankedCandidateIDList();
+    EXPECT_LT(ranked_cand_list.size(), invalid_num);  // 1, < invalid_num
+    invalid_list.pop_front();
+  }
+}
+
+TEST_F(VotingInfoTests, WriteInvalidBallotsToFile_OddNumCand) {
+  EXPECT_EQ(votinginfo2->GetNumCandidates(), 0);  // STV
+  votinginfo2->AddCandidateToCandidateList(candidate1);
+  votinginfo2->AddCandidateToCandidateList(candidate2);
+  votinginfo2->AddCandidateToCandidateList(candidate3);
+  EXPECT_EQ(votinginfo2->GetNumCandidates(), 3);
+  int invalid_num = votinginfo2->GetNumCandidates()/2.0;  // half
+  EXPECT_EQ(invalid_num, 1.5);  // half
+
+  EXPECT_EQ(votinginfo2->GetNumInvalid(), 0);
+  votinginfo2->AddBallotToInvalidList(invalid1);
+  votinginfo2->AddBallotToInvalidList(invalid2);
+  votinginfo2->AddBallotToInvalidList(invalid3);
+  EXPECT_EQ(votinginfo2->GetNumInvalid(), 3);
+
+  std::list<Ballot*> invalid_list = votinginfo2->GetInvalidList();
+  EXPECT_EQ(invalid_list.size(), 3);
+  std::list<int> ranked_cand_list;
+
+  while(!invalid_list.empty()) {  // for each invalid ballot
+    ranked_cand_list = invalid_list.front()->GetRankedCandidateIDList();
+    EXPECT_LT(ranked_cand_list.size(), invalid_num);  // 1, < invalid_num
+    invalid_list.pop_front();
+  }
 }

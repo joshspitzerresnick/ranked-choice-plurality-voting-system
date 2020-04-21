@@ -6,6 +6,8 @@
 
 #include "stv_election.h"
 
+#define INVALIDATED_FILE "invalidated.txt"
+
 STVElection::STVElection(VotingInfo* votingInfo) {
   numSeats_ = votingInfo->GetNumSeats() <= votingInfo->GetNumCandidates() ? votingInfo->GetNumSeats() : votingInfo->GetNumCandidates();
   int numBallots = votingInfo->GetNumBallots();
@@ -15,6 +17,7 @@ STVElection::STVElection(VotingInfo* votingInfo) {
 }
 
 void STVElection::RunElection(VotingInfo* votingInfo) {
+  votingInfo->WriteInvalidBallotsToFile(INVALIDATED_FILE);
   STVCandidate* candidate;  // stv candidate object pointer to hold candidate object to pass between member functions
   std::list<Ballot*> ballotList;  // ballot pointer list to hold ballots for passing between stvelectionrecord functions
   std::list<STVCandidate*> tempSTVCandidateList;
