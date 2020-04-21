@@ -201,7 +201,7 @@ TEST_F(VotingInfoTests, WriteInvalidBallotsToFile_EvenNumCand) {
   EXPECT_EQ(invalid_list.size(), 3);
   std::list<int> ranked_cand_list;
 
-  while(!invalid_list.empty()) {  // for each invalid ballot
+  while (!invalid_list.empty()) {  // for each invalid ballot
     ranked_cand_list = invalid_list.front()->GetRankedCandidateIDList();
     EXPECT_LT(ranked_cand_list.size(), invalid_num);  // 1, < invalid_num
     invalid_list.pop_front();
@@ -214,7 +214,7 @@ TEST_F(VotingInfoTests, WriteInvalidBallotsToFile_OddNumCand) {
   votinginfo2->AddCandidateToCandidateList(candidate2);
   votinginfo2->AddCandidateToCandidateList(candidate3);
   EXPECT_EQ(votinginfo2->GetNumCandidates(), 3);
-  int invalid_num = votinginfo2->GetNumCandidates()/2.0;  // half
+  float invalid_num = votinginfo2->GetNumCandidates()/2.0;  // half
   EXPECT_EQ(invalid_num, 1.5);  // half
 
   EXPECT_EQ(votinginfo2->GetNumInvalid(), 0);
@@ -227,7 +227,7 @@ TEST_F(VotingInfoTests, WriteInvalidBallotsToFile_OddNumCand) {
   EXPECT_EQ(invalid_list.size(), 3);
   std::list<int> ranked_cand_list;
 
-  while(!invalid_list.empty()) {  // for each invalid ballot
+  while (!invalid_list.empty()) {  // for each invalid ballot
     ranked_cand_list = invalid_list.front()->GetRankedCandidateIDList();
     EXPECT_LT(ranked_cand_list.size(), invalid_num);  // 1, < invalid_num
     invalid_list.pop_front();

@@ -75,9 +75,11 @@ TEST_F(STVElectionTests, Constructor) {
 }
 
 TEST_F(STVElectionTests, RunElection) {
-  EXPECT_NO_THROW(stvElection->RunElection());
+  stvElection = new STVElection(votinginfo);
+  EXPECT_NO_THROW(stvElection->RunElection(votinginfo));
 }
 
 TEST_F(STVElectionTests, DisplayResults) {
-  EXPECT_NO_THROW(stvElection->DisplayResult());
+  stvElection = new STVElection(votinginfo);
+  EXPECT_NO_THROW(stvElection->DisplayResult(votinginfo));
 }
