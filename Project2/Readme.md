@@ -1,6 +1,6 @@
-# csci5801_Project1 - Team3
+# csci5801_Project2 - Team3
 
-Project1 - Waterfall Methodology - VotingSystem
+Project2 - Agile Methodology - VotingSystem
 
 - Bryan Baker - bake1358@umn.edu
 - Hailin Archer - deak0007@umn.edu
@@ -9,61 +9,27 @@ Project1 - Waterfall Methodology - VotingSystem
 
 ## How to compile the system
 
-### Voting System build / clean using included makefile
+### Build the Voting System and test files
 
-To build the voting system, first ensure you are using the correct stable
-makefile. In the project directory, navigate to the `src` directory and type
+To build both the voting system and the unit test file, in the project directory, type
 ```
-Project1/src $ cp Makefile.colin_stable Makefile
+Project2 $ make
 ```
-Then, compile the project by typing `make`
+This will create an executable file called `VotingSystem` in the `src` directory.  Run the project by typing
 ```
-Project1/src $ make
+Project2/src $ ./VotingSystem
 ```
-This will create an executable file called `VotingSystem` in the `src`
-directory. Run the project by typing
+An executable file called `runTests` will also be created in the `testing` directory.  Run these unit tests by typing
 ```
-Project1/src $ ./VotingSystem
+Project2/testing $ ./runTests
 ```
-In order to clean the `src` directory of object files and the executable, type
+There is also a system test in a bash script called `SystemTest.sh`.  Run this test by typing
 ```
-Project1/src $ make clean
+Project2/testing $ ./SystemTest.sh
 ```
+This system test will output data for review in the file `system_test_report.txt`.
 
-### Voting System build using CMake
-
-To build the voting system, ensure you are in the `src` directory and type:
+In order to clean the `src` and `testing` directory of object files and the executables, type
 ```
-Project1/src $ cmake CMakeLists.txt
+Project1 $ make clean
 ```
-Then type:
-```
-Project1/src $ make
-```
-This will build the voting system. You can execute the system with the following
-command:
-```
-Project1/src $ ./VotingSystem
-```
-- **NOTE** Running cmake will overwrite your current Makefile, and will be
-customized to work only on your machine's file system. Do not push this version
-of the Makefile to GitHub, as no one else will be able to use it.
-
-### Unit Test files build using CMake
-
-To build unit test files, ensure you are in the `testing` directory and type:
-```
-Project1/testing $ cmake CMakeLists.txt
-```
-Then type:
-```
-Project1/testing $ make
-```
-This will build the test system. You can execute the test system with the
-following command:
-```
-Project1/testing $ ./runTests
-```
-- **NOTE** Running cmake will overwrite your current Makefile, and will be
-customized to work only on your machine's file system. Do not push this version
-of the Makefile to GitHub, as no one else will be able to use it.
