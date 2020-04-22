@@ -31,5 +31,5 @@ This system test will output data for review in the file `system_test_report.txt
 
 In order to clean the `src` and `testing` directory of object files and the executables, type
 ```
-Project1 $ make clean
+Project2 $ make clean
 ```
