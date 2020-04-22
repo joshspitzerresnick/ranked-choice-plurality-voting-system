@@ -47,22 +47,58 @@ int VotingInfo::GetNumSeats() const {
 }
 
 void VotingInfo::AddCandidateToCandidateList(Candidate* candidate) {
-  candidate_list_.push_back(candidate);
+  std::list<Candidate*> temp_list = GetCandidateList();
+  while (!temp_list.empty()) {
+    if (temp_list.front()->GetID() == candidate->GetID()) {  // don't add twice
+      std::string errmsg = "Candidate with ID #" + std::to_string(candidate->GetID()) + " already added to Candidate list";
+      perror(errmsg.c_str());
+      return;
+    }
+    temp_list.pop_front();
+  }
+  candidate_list_.push_back(candidate);  // else
   IncrementNumCandidates();
 }
 
 void VotingInfo::AddCandidateToCandidateList(STVCandidate* stv_candidate) {
-  stv_candidate_list_.push_back(stv_candidate);
+  std::list<STVCandidate*> temp_list = GetSTVCandidateList();
+  while (!temp_list.empty()) {
+    if (temp_list.front()->GetID() == stv_candidate->GetID()) {  // don't add twice
+      std::string errmsg = "STVCandidate with ID #" + std::to_string(stv_candidate->GetID()) + " already added to STVCandidate list";
+      perror(errmsg.c_str());
+      return;
+    }
+    temp_list.pop_front();
+  }
+  stv_candidate_list_.push_back(stv_candidate);  // else
   IncrementNumCandidates();
 }
 
 void VotingInfo::AddBallotToBallotList(Ballot* ballot) {
-  ballot_list_.push_back(ballot);
+  std::list<Ballot*> temp_list = GetBallotList();
+  while (!temp_list.empty()) {
+    if (temp_list.front()->GetID() == ballot->GetID()) {  // don't add twice
+      std::string errmsg = "Ballot with ID #" + std::to_string(ballot->GetID()) + " already added to Ballot list";
+      perror(errmsg.c_str());
+      return;
+    }
+    temp_list.pop_front();
+  }
+  ballot_list_.push_back(ballot);  // else
   IncrementNumBallots();
 }
 
 void VotingInfo::AddBallotToInvalidList(Ballot* ballot) {
-  invalid_list_.push_back(ballot);
+  std::list<Ballot*> temp_list = GetInvalidList();
+  while (!temp_list.empty()) {
+    if (temp_list.front()->GetID() == ballot->GetID()) {  // don't add twice
+      std::string errmsg = "Ballot with ID #" + std::to_string(ballot->GetID()) + " already added to Invalid list";
+      perror(errmsg.c_str());
+      return;
+    }
+    temp_list.pop_front();
+  }
+  invalid_list_.push_back(ballot);  // else
   IncrementNumInvalid();
 }
 

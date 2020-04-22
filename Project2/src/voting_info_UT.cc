@@ -101,6 +101,16 @@ TEST_F(VotingInfoTests, AddBallotToBallotList) {
   EXPECT_EQ(votinginfo1->GetNumBallots(), 2);  // ballot1 already added
 }
 
+TEST_F(VotingInfoTests, AddBallotToInvalidList) {
+  EXPECT_EQ(votinginfo2->GetNumInvalid(), 0);  // STV
+  votinginfo2->AddBallotToInvalidList(invalid1);
+  EXPECT_EQ(votinginfo2->GetNumInvalid(), 1);
+  votinginfo2->AddBallotToInvalidList(invalid2);
+  EXPECT_EQ(votinginfo2->GetNumInvalid(), 2);
+  votinginfo2->AddBallotToInvalidList(invalid1);
+  EXPECT_EQ(votinginfo2->GetNumInvalid(), 2);  // invalid1 already added
+}
+
 TEST_F(VotingInfoTests, GetNumCandidates) {
   EXPECT_EQ(votinginfo1->GetNumCandidates(), 0);
   EXPECT_EQ(votinginfo2->GetNumCandidates(), 0);
@@ -109,6 +119,11 @@ TEST_F(VotingInfoTests, GetNumCandidates) {
 TEST_F(VotingInfoTests, GetNumBallots) {
   EXPECT_EQ(votinginfo1->GetNumBallots(), 0);
   EXPECT_EQ(votinginfo2->GetNumBallots(), 0);
+}
+
+TEST_F(VotingInfoTests, GetNumInvalid) {
+  EXPECT_EQ(votinginfo1->GetNumInvalid(), 0);
+  EXPECT_EQ(votinginfo2->GetNumInvalid(), 0);  // STV
 }
 
 TEST_F(VotingInfoTests, GetCandidateList) {
@@ -130,6 +145,15 @@ TEST_F(VotingInfoTests, GetBallotList) {
   EXPECT_EQ(votinginfo1->GetBallotList().size(), votinginfo1->GetNumBallots());
 }
 
+TEST_F(VotingInfoTests, GetInvalidList) {
+  EXPECT_EQ(votinginfo2->GetInvalidList(), std::list<Ballot*>{});  // STV
+  votinginfo2->AddBallotToInvalidList(invalid1);
+  EXPECT_EQ(votinginfo2->GetInvalidList().front(), invalid1);
+  votinginfo2->AddBallotToInvalidList(invalid2);
+  EXPECT_EQ(votinginfo2->GetInvalidList().back(), invalid2);  // in order
+  EXPECT_EQ(votinginfo2->GetInvalidList().size(), votinginfo2->GetNumInvalid());
+}
+
 TEST_F(VotingInfoTests, WriteInvalidBallotsToFile_EvenNumCand) {
   EXPECT_EQ(votinginfo2->GetNumCandidates(), 0);  // STV
   votinginfo2->AddCandidateToCandidateList(candidate1);
@@ -137,7 +161,7 @@ TEST_F(VotingInfoTests, WriteInvalidBallotsToFile_EvenNumCand) {
   votinginfo2->AddCandidateToCandidateList(candidate3);
   votinginfo2->AddCandidateToCandidateList(candidate4);
   EXPECT_EQ(votinginfo2->GetNumCandidates(), 4);
-  int invalid_num = votinginfo2->GetNumCandidates()/2.0;  // half
+  float invalid_num = votinginfo2->GetNumCandidates()/2.0;  // half
   EXPECT_EQ(invalid_num, 2);  // half
 
   EXPECT_EQ(votinginfo2->GetNumInvalid(), 0);
@@ -163,7 +187,7 @@ TEST_F(VotingInfoTests, WriteInvalidBallotsToFile_OddNumCand) {
   votinginfo2->AddCandidateToCandidateList(candidate2);
   votinginfo2->AddCandidateToCandidateList(candidate3);
   EXPECT_EQ(votinginfo2->GetNumCandidates(), 3);
-  int invalid_num = votinginfo2->GetNumCandidates()/2.0;  // half
+  float invalid_num = votinginfo2->GetNumCandidates()/2.0;  // half
   EXPECT_EQ(invalid_num, 1.5);  // half
 
   EXPECT_EQ(votinginfo2->GetNumInvalid(), 0);

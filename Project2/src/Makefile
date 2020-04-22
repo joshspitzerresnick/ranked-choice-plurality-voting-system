@@ -43,4 +43,4 @@ docs:
 	cd ../documentation; doxygen Doxyfile
 
 clean:
-	rm *.o VotingSystem
+	rm -f *.o VotingSystem
