@@ -313,7 +313,7 @@ TEST_F(STVElectionRecordTests, AddLoserBallotsToNonDistributedBallotList) {
   EXPECT_EQ(ballot_list, ballots);
   election_record->AddLoserBallotsToNonDistributedBallotList(ballots);
   ballot_list = election_record->GetNonDistributedBallotList();
-  EXPECT_EQ(ballot_list.size(), 2.0 * ballots.size());
+  EXPECT_EQ(ballot_list.size(), ballots.size());
 }
 
 TEST_F(STVElectionRecordTests, PopCandidateOffLosersList) {
