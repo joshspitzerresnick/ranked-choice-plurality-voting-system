@@ -124,9 +124,11 @@ TEST_F(CandidateTests, AddBallot) {
     EXPECT_EQ(candidate1->GetNumBallots(), 1);
     EXPECT_EQ(candidate2->GetNumBallots(), 1);
     // Add same ballot to candidate 1 and 2.
-    candidate2->AddBallot(ballot1);
-    EXPECT_EQ(candidate1->GetNumBallots(), 1);
-    EXPECT_EQ(candidate2->GetNumBallots(), 1);
+    // Removing this test because this is not to have this functionality.  
+    // Candidates do not know what ballots other candidates have.
+    // candidate2->AddBallot(ballot1);
+    // EXPECT_EQ(candidate1->GetNumBallots(), 1);
+    // EXPECT_EQ(candidate2->GetNumBallots(), 1);
 }
 
 TEST_F(CandidateTests, IncrementNumBallots) {
@@ -226,11 +228,13 @@ TEST_F(STVCandidateTests, AddBallot) {
     EXPECT_EQ(candidate1->GetFirstBallotNum(), 1);
     EXPECT_EQ(candidate2->GetFirstBallotNum(), 2);
     // Add same ballot to candidate 1 and candidate 2
-    candidate2->AddBallot(ballot1);
-    EXPECT_EQ(candidate1->GetNumBallots(), 1);
-    EXPECT_EQ(candidate2->GetNumBallots(), 1);
-    EXPECT_EQ(candidate1->GetFirstBallotNum(), 1);
-    EXPECT_EQ(candidate2->GetFirstBallotNum(), 2);
+    // Removing this test because this is not to have this functionality.  
+    // Candidates do not know what ballots other candidates have.
+    // candidate2->AddBallot(ballot1);
+    // EXPECT_EQ(candidate1->GetNumBallots(), 1);
+    // EXPECT_EQ(candidate2->GetNumBallots(), 1);
+    // EXPECT_EQ(candidate1->GetFirstBallotNum(), 1);
+    // EXPECT_EQ(candidate2->GetFirstBallotNum(), 2);
 }
 
 TEST_F(STVCandidateTests, RemoveBallotList) {

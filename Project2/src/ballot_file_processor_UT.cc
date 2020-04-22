@@ -107,7 +107,7 @@ TEST_F(BallotFileTests, ProcessPluralityBallots) {
 TEST_F(BallotFileTests, ProcessSTVBallots) {
     // Process stv ballots
     sbfp->ProcessFiles(votinginfos);
-    // Check tha tthe correct number of candidates were created.
+    // Check that the correct number of candidates were created.
     EXPECT_EQ(votinginfos->GetNumCandidates(), 6);
     // Check that the correct number of ballots were created.
     EXPECT_EQ(votinginfos->GetNumBallots(), 4);
