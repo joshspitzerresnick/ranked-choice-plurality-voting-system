@@ -55,6 +55,12 @@ class STVElectionRecord {
    */
   std::list<STVCandidate*> GetLosersList();
   /**
+   * @brief Returns droop quota.
+   *
+   * @return int holding droop quota.
+   */
+  int GetDroop();
+  /**
    * @brief Function to shuffle the ballots prior to the election.
    */
   void ShuffleBallots();

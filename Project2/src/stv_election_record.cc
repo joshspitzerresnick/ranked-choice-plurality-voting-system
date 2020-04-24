@@ -32,6 +32,10 @@ std::list<STVCandidate*> STVElectionRecord::GetLosersList() {
   return losersList_;
 }
 
+int STVElectionRecord::GetDroop() {
+  return DroopQuota_;
+}
+
 void STVElectionRecord::ShuffleBallots() {
   char msg[1000], temp[10];
   // Call utility function to shuffle ballots

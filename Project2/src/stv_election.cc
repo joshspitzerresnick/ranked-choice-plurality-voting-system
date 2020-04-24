@@ -5,6 +5,7 @@
  */
 
 #include "stv_election.h"
+#define INVALIDATED_FILE "invalidated.txt"
 
 STVElection::STVElection(VotingInfo* votingInfo) {
   numSeats_ = votingInfo->GetNumSeats() <= votingInfo->GetNumCandidates() ? votingInfo->GetNumSeats() : votingInfo->GetNumCandidates();
@@ -14,7 +15,9 @@ STVElection::STVElection(VotingInfo* votingInfo) {
     votingInfo->GetBallotList(), droop);
 }
 
-void STVElection::RunElection() {
+void STVElection::RunElection(VotingInfo* votingInfo) {
+  votingInfo->WriteInvalidBallotsToFile(INVALIDATED_FILE);
+
   STVCandidate* candidate;  // stv candidate object pointer to hold candidate object to pass between member functions
   std::list<Ballot*> ballotList;  // ballot pointer list to hold ballots for passing between stvelectionrecord functions
   std::list<STVCandidate*> tempSTVCandidateList;
@@ -70,13 +73,14 @@ void STVElection::RunElection() {
     LOGGER->Log(msg);
     stvElectionRecord_->AddCandidateToWinnersList(candidate);
   }
+  Logger::GetLogger()->Log("----------------------------------------Election Complete-------------------------------------------");
   // display election results
-  DisplayResult();
+  DisplayResult(votingInfo);
   snprintf(msg, sizeof(msg), "---------------------------------------------------------Election Complete---------------------------------------------------------");
   Logger::GetLogger()->Log(msg);
 }
 
-void STVElection::DisplayResult() {
+void STVElection::DisplayResult(VotingInfo* votingInfo) {
   std::list<STVCandidate*> winnersList;
   std::list<STVCandidate*> losersList;
   std::list<STVCandidate*>::iterator it;
@@ -90,6 +94,12 @@ void STVElection::DisplayResult() {
   LOGGER->Log(msg);
   std::cout << msg << "\n" << std::flush;
   snprintf(msg, sizeof(msg), "* Election Type: STV");
+  LOGGER->Log(msg);
+  std::cout << msg << std::endl;
+  snprintf(msg, sizeof(msg), "* # Ballots: %d", votingInfo->GetNumBallots());
+  LOGGER->Log(msg);
+  std::cout << msg << std::endl;
+  snprintf(msg, sizeof(msg), "* # Invalid ballots: %d", votingInfo->GetNumInvalid());
   LOGGER->Log(msg);
   std::cout << msg << std::endl;
   snprintf(msg, sizeof(msg), "* #Seats: %d", numSeats_);
@@ -115,6 +125,12 @@ void STVElection::DisplayResult() {
     LOGGER->Log(msg);
     std::cout << msg << std::endl;
   }
+  snprintf(msg, sizeof(msg), "Location of audit report:\t\tsrc/VotingSystemAuditReport.txt");
+  LOGGER->Log(msg);
+  std::cout << msg << std::endl;
+  snprintf(msg, sizeof(msg), "Location of invalidated ballots report:\tsrc/invalidated.txt");
+  LOGGER->Log(msg);
+  std::cout << msg << std::endl;
   snprintf(msg, sizeof(msg), "-------------End of Result Display------------");
   LOGGER->Log(msg);
   std::cout << msg << std::endl;

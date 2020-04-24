@@ -106,4 +106,6 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
         losers_list.pop_front(); 
         i++;
     }
+    snprintf(msg, sizeof(msg), "Location of audit report:\t\tsrc/VotingSystemAuditReport.txt");
+    LOGGER->Log(msg);
 }
