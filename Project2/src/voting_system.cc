@@ -11,18 +11,26 @@
 #include <iostream>
 #include <stdio.h>
 #include <limits.h>  // INT_MAX for ignoring bad input
+#include <QApplication>
+#include <QString>
+#include <QFileDialog>
 
 bool BallotShuffleOff = false;
 
 void UserInterface(int *numSeats, int *choice);
+void get_ballots_manual(VotingInfo* voting_info);
+void get_ballots_gui(VotingInfo* voting_info);
 void DisplayHelp();
 
 int main(int argc, char** argv) {
+
+  //need to create a QApplication object to use a QWidget
+  QApplication a(argc, argv);
   int choice = 5;
   int numSeats;
+  bool ManuallyEnterBallots = false;
   STVElection* stvElection;
   PluralityElection* pluralityElection;
-  BallotFileProcessor* ballotFileProcessor;
   VotingInfo* votingInfo;
   char msg[200];
   Logger::GetLogger();
@@ -33,36 +41,21 @@ int main(int argc, char** argv) {
     LOGGER->Log("Command line argument received: turn off ballot shuffle.");
   }
 
+  if (argc >= 2 && ((strcmp(argv[1], "-m") == 0) || (strcmp(argv[2], "-m") == 0))) {
+    ManuallyEnterBallots = true;  // Manually enter ballots rather than GUI select
+    LOGGER->Log("Command line argument received: manually enter ballot file names.");
+  }
+
   UserInterface(&numSeats, &choice);
   votingInfo = new VotingInfo(choice, numSeats);
 
-  // loop to get number of ballot files & take in multiple ballot files
-  int has_more_ballot_files_ = 1;  // true
-  std::string ballot_files_;
-  while(has_more_ballot_files_ != 0) {  // not false or error
-    std::cout << "Enter name of ballot file:\n" << std::flush;
-    std::cin >> ballot_files_;
-    snprintf(msg, sizeof(msg), "User entered ballot file: %s", ballot_files_.c_str());
-    LOGGER->Log(msg);
-
-    // input checking
-    while (true) {
-      std::cout << "Do you have more ballot files to input? 1: Yes, 0: No\n" << std::flush;
-      std::cin >> has_more_ballot_files_;  // automatically cast to bool // letters to 0
-      if (std::cin.fail() || (has_more_ballot_files_ != 1 && has_more_ballot_files_ != 0) ) {  // failed input, will continue to silently fail
-        std::cout << "Invalid input. Please enter 1 for yes or 0 for no." << std::endl;
-        std::cin.clear();  // return to normal operation
-        cin.ignore(INT_MAX, '\n');  // remove bad input
-      } else {  // 1 or 0 entered
-        break;
-      }
-    }
-
-    ballotFileProcessor = new BallotFileProcessor(ballot_files_);
-    ballotFileProcessor->ProcessFiles(votingInfo);
-
-    // delete previous BallotFileProcessor object after use, not pointer
-    delete ballotFileProcessor;
+  if(ManuallyEnterBallots)
+  {
+    get_ballots_manual(votingInfo);
+  }
+  else
+  {
+    get_ballots_gui(votingInfo);
   }
 
   switch (choice) {
@@ -145,6 +138,70 @@ void UserInterface(int *numSeats, int *choice) {
         }
       }
     }
+  }
+}
+
+void get_ballots_manual(VotingInfo* voting_info)
+{
+// loop to get number of ballot files & take in multiple ballot files
+  int has_more_ballot_files_ = 1;  // true
+  BallotFileProcessor* ballotFileProcessor;
+  char msg[200];
+  std::string ballot_files_;
+  while(has_more_ballot_files_ != 0) {  // not false or error
+    std::cout << "Enter name of ballot file:\n" << std::flush;
+    std::cin >> ballot_files_;
+    snprintf(msg, sizeof(msg), "User entered ballot file: %s", ballot_files_.c_str());
+    Logger::GetLogger()->Log(msg);
+
+    // input checking
+    while (true) {
+      std::cout << "Do you have more ballot files to input? 1: Yes, 0: No\n" << std::flush;
+      std::cin >> has_more_ballot_files_;  // automatically cast to bool // letters to 0
+      if (std::cin.fail() || (has_more_ballot_files_ != 1 && has_more_ballot_files_ != 0) ) {  // failed input, will continue to silently fail
+        std::cout << "Invalid input. Please enter 1 for yes or 0 for no." << std::endl;
+        std::cin.clear();  // return to normal operation
+        cin.ignore(INT_MAX, '\n');  // remove bad input
+       } else {  // 1 or 0 entered
+         break;
+      }
+     }
+
+    ballotFileProcessor = new BallotFileProcessor(ballot_files_);
+    ballotFileProcessor->ProcessFiles(voting_info);
+
+    // delete previous BallotFileProcessor object after use, not pointer
+    delete ballotFileProcessor;
+  }
+}
+
+void get_ballots_gui(VotingInfo* voting_info)
+{
+  char msg[200];
+  BallotFileProcessor* ballotFileProcessor;
+  QString filter = "csv(*.csv)";
+  QStringList ballot_files = QFileDialog::getOpenFileNames(NULL, "Select ballot files","./", filter);
+  QString b_file;
+  std::list<std::string> ballot_files_list;
+  while(!ballot_files.empty())
+  {
+      b_file = ballot_files.front();
+      ballot_files_list.push_back(b_file.toStdString());
+      ballot_files.pop_front();
+      cout << "Selected Ballot File:" << b_file.toStdString() << "\n" << std::endl;
+      snprintf(msg, sizeof(msg), "User entered ballot file: %s", b_file.toStdString().c_str());
+      Logger::GetLogger()->Log(msg);
+  }
+
+  std::string ballot_files_;
+  while(!ballot_files_list.empty()) {  // not false or error
+    ballot_files_ = ballot_files_list.front();
+    ballot_files_list.pop_front();
+    ballotFileProcessor = new BallotFileProcessor(ballot_files_);
+    ballotFileProcessor->ProcessFiles(voting_info);
+
+    // delete previous BallotFileProcessor object after use, not pointer
+    delete ballotFileProcessor;
   }
 }
 
