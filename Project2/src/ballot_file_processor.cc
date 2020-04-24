@@ -12,6 +12,7 @@
 #include "ballot.h"
 #include "voting_info.h"
 #include "ballot_file_processor.h"
+#include "logger.h"
 
 using std::vector;
 using std::string;
@@ -35,6 +36,15 @@ bool BallotFileProcessor::IsInvalid(int algo, int cand_cnt, Ballot* ballot) {
   }
 }
 
+bool BallotFileProcessor::IsInvalid(int algo, int cand_cnt, Ballot* ballot) {
+    std::list<int> cand_lst = ballot->GetRankedCandidateIDList();
+    if (algo != 0 && (cand_lst.size() < (cand_cnt / 2.0))) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
   // Define required variables
   int linecnt = 0;
@@ -49,8 +59,11 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
   std::list<int> cand_list;
   string line, word;
   bool candidates_already_loaded_ = false;
+  char msg[1000];
 
   ballot_files_.open(ballot_file_name_, ios::in);  // Open ballot file
+  snprintf(msg, sizeof(msg), "Read in ballot file: %s", ballot_file_name_.c_str());
+  LOGGER->Log(msg);
 
   // Start processing ballot file
   while (getline(ballot_files_, line)) {
@@ -109,4 +122,5 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
     linecnt++;  // Increment line counter
   }
   ballot_files_.close();
+  votinginfo->LogToAuditFile();
 }

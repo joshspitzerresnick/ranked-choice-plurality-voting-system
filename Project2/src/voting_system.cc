@@ -26,10 +26,10 @@ int main(int argc, char** argv) {
   VotingInfo* votingInfo;
   char msg[200];
   Logger::GetLogger();
-  LOGGER->Log("----------------------------------------Start A New Election----------------------------------------");
+  LOGGER->Log("---------------------------------------------------------Start A New Election---------------------------------------------------------");
   // Check command line argument
   if (argc >= 2 && strcmp(argv[1], "-t") == 0) {
-    BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected
+    BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
     LOGGER->Log("Command line argument received: turn off ballot shuffle.");
   }
 
@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
       pluralityElection->RunElection(votingInfo);
       break;
     case 1 :
-      snprintf(msg, sizeof(msg), "Start running STV election...");
+      snprintf(msg, sizeof(msg), "Start running stv election...");
       LOGGER->Log(msg);
       stvElection = new STVElection(votingInfo);
       stvElection->RunElection(votingInfo);
@@ -90,7 +90,7 @@ void UserInterface(int *numSeats, int *choice) {
   char msg[200];
 
   while (*choice != 0 && *choice != 1) {
-    std::cout << "--------------------Voting System Main Menu-------------------------------------\n" << std::flush;
+    std::cout << "-----------------Voting System Main Menu-----------------------\n" << std::flush;
     std::cout << "Select election type, choose \"2: Help\" if instruction is needed: \n" << std::flush;
     std::cout << "0: Plurality\n" << std::flush;
     std::cout << "1: STV\n" << std::flush;
@@ -108,16 +108,17 @@ void UserInterface(int *numSeats, int *choice) {
       DisplayHelp();
     }
   }
+
   snprintf(msg, sizeof(msg), "User choose election type option: %d", *choice);
   Logger::GetLogger()->Log(msg);
   while (!numSeatsValid) {
     std::cout << "Enter number of seats (1-99): ";
     std::cin >> *numSeats;
     // Input checking
-    if (std::cin.fail() || *numSeats < 1 || *numSeats > 99) {  // failed input, will continue to silently fail
+    if (std::cin.fail() || *numSeats < 1 || *numSeats > 99) {
       std::cout << "Invalid input. Please enter a number between 1 and 99." << std::endl;
-      std::cin.clear();  // return to normal operation
-      cin.ignore(INT_MAX, '\n');  // remove bad input
+      std::cin.clear();
+      cin.ignore(INT_MAX, '\n');
       *numSeats = -1;
     } else {
       while (true) {
@@ -131,13 +132,16 @@ void UserInterface(int *numSeats, int *choice) {
           c = 0;
         } else if (c == 'y') {
           numSeatsValid = true;
-          snprintf(msg, sizeof(msg), "User entered number of seats: %d", *numSeats);
+          snprintf(msg, sizeof(msg), "User enter number of seats: %d", *numSeats);
           LOGGER->Log(msg);
           break;
         } else if (c == 'n') {
           break;
         } else {
           std::cout << "Invalid input. Please enter y or n." << std::endl;
+          std::cin.clear();
+          cin.ignore(10000, '\n');
+          c = 0;
         }
       }
     }

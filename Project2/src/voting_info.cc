@@ -1,7 +1,7 @@
 /**
  * @file voting_info.cc
  *
- * @copyright 2020 Josh Spitzer-Resnick, spitz123
+ * @copyright 2020 5801 Team3, all rights reserved
  */
 
 #include <iostream>
@@ -9,6 +9,7 @@
 #include <list>
 #include <fstream>  // ofstream for writing invalid ballots
 #include <typeinfo>  // typeid( ).name() for debugging
+#include "logger.h"
 
 #include "voting_info.h"
 
@@ -99,6 +100,7 @@ void VotingInfo::AddBallotToInvalidList(Ballot* ballot) {
     temp_list.pop_front();
   }
   invalid_list_.push_back(ballot);  // else
+
   IncrementNumInvalid();
 }
 
@@ -181,4 +183,10 @@ void VotingInfo::WriteInvalidBallotsToFile(std::string filename) {
   }
   invalidated_file_ << "--------------------Invalidated Ballot Report Completed-------------------------";
   invalidated_file_.close();
+
+void VotingInfo::LogToAuditFile() {
+  char msg[1000];
+  snprintf(msg, sizeof(msg), "Following ballots are put on invalid ballot list: ");
+  LOGGER->Log(msg);
+  LOGGER->Log(invalid_list_);
 }

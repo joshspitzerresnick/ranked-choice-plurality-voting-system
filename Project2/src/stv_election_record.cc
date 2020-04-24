@@ -76,7 +76,7 @@ void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
             (*itCandidate)->SetFirstBallotNum((*firstBallotNum)++);
           }
           numBallots = (*itCandidate)->AddBallot(curBallot);
-          snprintf(msg, sizeof(msg), "Ballot#%d is assigned to candidate %s", curBallot->GetID(), (*itCandidate)->GetName().c_str());
+          snprintf(msg, sizeof(msg), "Ballot#%d is assigned to candidate %d-%s", curBallot->GetID(), (*itCandidate)->GetID(), (*itCandidate)->GetName().c_str());
           LOGGER->Log(msg);
           // check if current candidate met droop
           if (CheckDroop(numBallots)) {
@@ -159,9 +159,9 @@ template <typename T > void STVElectionRecord::ListShuffle(std::list<T> &L) {
 bool STVElectionRecord::STVCandidateComparator(STVCandidate* candidate1, STVCandidate* candidate2) {
   char msg[1000];
   if (candidate1->GetNumBallots() == candidate2->GetNumBallots()) {
-    snprintf(msg, sizeof(msg), "Tie break between candidate %s (#votes=%d, #1stBallot=%d) and candidate %s (#votes=%d, #1stBallot=%d).",
-        candidate1->GetName().c_str(), candidate1->GetNumBallots(), candidate1->GetFirstBallotNum(),
-        candidate2->GetName().c_str(), candidate2->GetNumBallots(), candidate2->GetFirstBallotNum());
+    snprintf(msg, sizeof(msg), "Tie break between candidate %d-%s (#votes=%d, #1stBallot=%d) and candidate %d-%s (#votes=%d, #1stBallot=%d).",
+        candidate1->GetID(), candidate1->GetName().c_str(), candidate1->GetNumBallots(), candidate1->GetFirstBallotNum(),
+        candidate2->GetID(), candidate2->GetName().c_str(), candidate2->GetNumBallots(), candidate2->GetFirstBallotNum());
     LOGGER->Log(msg);
     return candidate1->GetFirstBallotNum() < candidate2->GetFirstBallotNum();
   } else {
