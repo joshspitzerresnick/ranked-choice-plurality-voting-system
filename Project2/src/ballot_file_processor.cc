@@ -36,15 +36,6 @@ bool BallotFileProcessor::IsInvalid(int algo, int cand_cnt, Ballot* ballot) {
   }
 }
 
-bool BallotFileProcessor::IsInvalid(int algo, int cand_cnt, Ballot* ballot) {
-    std::list<int> cand_lst = ballot->GetRankedCandidateIDList();
-    if (algo != 0 && (cand_lst.size() < (cand_cnt / 2.0))) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
   // Define required variables
   int linecnt = 0;
