@@ -183,6 +183,7 @@ void VotingInfo::WriteInvalidBallotsToFile(std::string filename) {
   }
   invalidated_file_ << "--------------------Invalidated Ballot Report Completed-------------------------";
   invalidated_file_.close();
+}
 
 void VotingInfo::LogToAuditFile() {
   char msg[1000];
