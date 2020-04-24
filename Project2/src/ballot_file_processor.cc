@@ -8,6 +8,7 @@
 #include <sstream>
 #include <vector>
 #include <list>
+#include <cctype>
 #include "candidate.h"
 #include "ballot.h"
 #include "voting_info.h"
@@ -42,6 +43,7 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
   int algo = votinginfo->GetAlgorithm();
   int i, j;
   int num;
+  int numCandidates = 0; // record number of candidates
   Candidate* candidate;
   STVCandidate* stv_candidate;
   Ballot* ballot;
@@ -63,7 +65,12 @@ void BallotFileProcessor::ProcessFiles(VotingInfo* votinginfo) {
     cand_list.clear();
     stringstream s(line);
     while (getline(s, word, ',')) {  // Break the row by , delimiter
-      row.push_back(word);
+      // snprintf(msg,sizeof(msg),"word=%s,word.length()=%d,isalpha(word[0])=%d,isspace(word[0])=%d",word.c_str(),(int)word.length(),isalpha(word[0]),isspace(word[0]));
+      // LOGGER->Log(msg);
+      if (!isspace(word[0])) { // ignore \n at the end of the line
+        if (isspace(word[(int)word.length()-1])) {word.resize((int)word.length()-1);} // Get rid of \n at the end
+        row.push_back(word);
+      }
     }
     if (linecnt == 0) {  // Run for first line - Candidates // only want FIRST ballot file, assume others are the same
       for (i = 0; i < row.size(); i++) {
