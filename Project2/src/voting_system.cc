@@ -38,17 +38,14 @@ int main(int argc, char** argv) {
   UserInterface(&numSeats, &choice);
   votingInfo = new VotingInfo(choice, numSeats);
 
-  // loop to get number of ballot files & take in multiple ballot files
-
-    ballotFileProcessor = new BallotFileProcessor();
-    files = ballotFileProcessor->GetFiles(ballotFileProcessor->GetUserInput());
-    numBallots = ballotFileProcessor->ProcessFiles(files, votingInfo);
-
-    // delete previous BallotFileProcessor object after use, not pointer
-    delete ballotFileProcessor;
-    if (numBallots<1) {
-      throw "No ballots are processed";
-    }
+  ballotFileProcessor = new BallotFileProcessor();
+  files = ballotFileProcessor->GetFiles(ballotFileProcessor->GetUserInput());
+  numBallots = ballotFileProcessor->ProcessFiles(files, votingInfo);
+  // delete previous BallotFileProcessor object after use, not pointer
+  delete ballotFileProcessor;
+  if (numBallots<1) {
+    throw "No ballots are processed";
+  }
 
   switch (choice) {
     case 0:
