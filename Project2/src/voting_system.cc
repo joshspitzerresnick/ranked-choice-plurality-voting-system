@@ -52,8 +52,9 @@ int main(int argc, char** argv) {
   numBallots = ballotFileProcessor->ProcessFiles(files, votingInfo);
   // delete previous BallotFileProcessor object after use, not pointer
   delete ballotFileProcessor;
-  if (numBallots<1) {
-    throw "No ballots are processed";
+  if (votingInfo->GetNumBallots()<1) {
+    std::cout << "There are no valid ballots. Abort." << std::endl;
+    return -1;
   }
 
   switch (choice) {
