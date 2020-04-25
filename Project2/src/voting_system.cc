@@ -11,6 +11,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <limits.h>  // INT_MAX for ignoring bad input
+#include <assert.h>
 
 bool BallotShuffleOff = false;
 
@@ -19,11 +20,12 @@ void DisplayHelp();
 
 int main(int argc, char** argv) {
   int choice = 5;
-  int numSeats;
+  int numSeats, numBallots;
   STVElection* stvElection;
   PluralityElection* pluralityElection;
   BallotFileProcessor* ballotFileProcessor;
   VotingInfo* votingInfo;
+  std::list<string> files;
   char msg[200];
   Logger::GetLogger();
   LOGGER->Log("---------------------------------------------------------Start A New Election---------------------------------------------------------");
@@ -37,33 +39,16 @@ int main(int argc, char** argv) {
   votingInfo = new VotingInfo(choice, numSeats);
 
   // loop to get number of ballot files & take in multiple ballot files
-  int has_more_ballot_files_ = 1;  // true
-  std::string ballot_files_;
-  while(has_more_ballot_files_ != 0) {  // not false or error
-    std::cout << "Enter name of ballot file:\n" << std::flush;
-    std::cin >> ballot_files_;
-    snprintf(msg, sizeof(msg), "User entered ballot file: %s", ballot_files_.c_str());
-    LOGGER->Log(msg);
 
-    // input checking
-    while (true) {
-      std::cout << "Do you have more ballot files to input? 1: Yes, 0: No\n" << std::flush;
-      std::cin >> has_more_ballot_files_;  // automatically cast to bool // letters to 0
-      if (std::cin.fail() || (has_more_ballot_files_ != 1 && has_more_ballot_files_ != 0) ) {  // failed input, will continue to silently fail
-        std::cout << "Invalid input. Please enter 1 for yes or 0 for no." << std::endl;
-        std::cin.clear();  // return to normal operation
-        cin.ignore(INT_MAX, '\n');  // remove bad input
-      } else {  // 1 or 0 entered
-        break;
-      }
-    }
-
-    ballotFileProcessor = new BallotFileProcessor(ballot_files_);
-    ballotFileProcessor->ProcessFiles(votingInfo);
+    ballotFileProcessor = new BallotFileProcessor();
+    files = ballotFileProcessor->GetFiles(ballotFileProcessor->GetUserInput());
+    numBallots = ballotFileProcessor->ProcessFiles(files, votingInfo);
 
     // delete previous BallotFileProcessor object after use, not pointer
     delete ballotFileProcessor;
-  }
+    if (numBallots<1) {
+      throw "No ballots are processed";
+    }
 
   switch (choice) {
     case 0:
