@@ -50,7 +50,6 @@ std::list<std::string> BallotFileProcessor::GetFiles(int choice) {
         if (!(dir == NULL)) {
           validDir = true;
           while ((entry = readdir(dir)) != NULL) {
-            cout << entry->d_name << endl;
             curFile = entry->d_name;
             idx = curFile.rfind('.');
             if (idx != std::string::npos) {
@@ -113,13 +112,19 @@ int BallotFileProcessor::ProcessFiles(std::list<std::string> files, VotingInfo* 
     numBallotsRead = ReadFile(*it, votinginfo, &ballotNum);
     snprintf(msg,sizeof(msg),"numBallotsRead=%d", numBallotsRead);
     LOGGER->Log(msg);
-    if (numBallotsRead < 0) {
+    if (numBallotsRead == -1) {
       snprintf(msg, sizeof(msg), "Invalid candidates detected. Skip file %s", (*it).c_str());
       LOGGER->Log(msg);
+      std::cout << msg << std::endl;
+    } else if (numBallotsRead == -2) {
+      snprintf(msg, sizeof(msg), "Cannot open ballot file: %s", (*it).c_str());
+      LOGGER->Log(msg);
+      std::cout << msg << std::endl;
     } else {
       ballotNum+=numBallotsRead;
-      snprintf(msg,sizeof(msg),"ballotNum=%d", ballotNum);
+      snprintf(msg,sizeof(msg),"%d Ballots are read in file %s", numBallotsRead, (*it).c_str());
       LOGGER->Log(msg);
+      std::cout << msg << std::endl;
     }
   }
   return ballotNum;
@@ -145,8 +150,10 @@ int BallotFileProcessor::ReadFile(std::string fileName, VotingInfo* votinginfo, 
     char msg[1000];
 
     ballot_file.open(fileName, ios::in);  // Open ballot file
-    snprintf(msg, sizeof(msg), "Read in ballot file: %s, status %d", fileName.c_str(), (int)ballot_file.is_open());
-    LOGGER->Log(msg);
+    if (!ballot_file) {
+      return -2;
+    }
+    
     // Start processing ballot file
     while (getline(ballot_file, line)) {
         LOGGER->Log("Inside getline while loop");
