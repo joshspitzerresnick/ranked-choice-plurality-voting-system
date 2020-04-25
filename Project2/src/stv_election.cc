@@ -5,7 +5,7 @@
  */
 
 #include "stv_election.h"
-#define INVALIDATED_FILE "invalidated.txt"
+
 
 STVElection::STVElection(VotingInfo* votingInfo) {
   numSeats_ = votingInfo->GetNumSeats() <= votingInfo->GetNumCandidates() ? votingInfo->GetNumSeats() : votingInfo->GetNumCandidates();
@@ -16,7 +16,6 @@ STVElection::STVElection(VotingInfo* votingInfo) {
 }
 
 void STVElection::RunElection(VotingInfo* votingInfo) {
-  votingInfo->WriteInvalidBallotsToFile(INVALIDATED_FILE);
 
   STVCandidate* candidate;  // stv candidate object pointer to hold candidate object to pass between member functions
   std::list<Ballot*> ballotList;  // ballot pointer list to hold ballots for passing between stvelectionrecord functions
@@ -128,7 +127,7 @@ void STVElection::DisplayResult(VotingInfo* votingInfo) {
   snprintf(msg, sizeof(msg), "Location of audit report: \\src\\VotingSystemAuditReport.txt");
   LOGGER->Log(msg);
   std::cout << msg << std::endl;
-  snprintf(msg, sizeof(msg), "Location of invalidated ballots report: \\src\\invalidated.txt");
+  snprintf(msg, sizeof(msg), "Location of invalidated ballots report: \\src\\%s", InvalidBallotFileName);
   LOGGER->Log(msg);
   std::cout << msg << std::endl;
   snprintf(msg, sizeof(msg), "-------------End of Result Display------------");

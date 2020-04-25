@@ -7,9 +7,22 @@
 #ifndef SRC_BALLOT_FILE_PROCESSOR_H_
 #define SRC_BALLOT_FILE_PROCESSOR_H_
 
-#include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
+#include <vector>
+#include <list>
+#include <cctype>
+#include <iostream>
+#include "logger.h"
+#include <dirent.h>
+#include <sys/types.h>
+#include "candidate.h"
+#include "ballot.h"
+#include "voting_info.h"
+
+// #define INVALIDATED_FILE "InvalidBallotFile.txt"
+extern char InvalidBallotFileName[];
 
 #include "voting_info.h"
 

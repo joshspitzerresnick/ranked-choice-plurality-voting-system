@@ -19,6 +19,7 @@
 #include <string.h>
 
 extern bool BallotShuffleOff;
+extern char InvalidBallotFileName[];
 
 /**
  * @brief The main class for stv election.
@@ -37,7 +38,8 @@ class STVElection{
   /**
   * @brief Run an STV election.
   *
-  * @param[in] VotingInfo*, a pointer to a VotingInfo object
+  * @param[in] VotingInfo*, used in result display
+  *
   * @return void
   *
   */

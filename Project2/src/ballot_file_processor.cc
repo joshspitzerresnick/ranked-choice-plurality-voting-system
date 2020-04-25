@@ -4,19 +4,8 @@
  * @copyright 2020 5801 Team3, All rights reserved.
  */
 
-#include <string>
-#include <sstream>
-#include <vector>
-#include <list>
-#include <cctype>
-#include <iostream>
-#include <dirent.h>
-#include <sys/types.h>
-#include "candidate.h"
-#include "ballot.h"
-#include "voting_info.h"
+
 #include "ballot_file_processor.h"
-#include "logger.h"
 
 using std::vector;
 using std::string;
@@ -129,6 +118,7 @@ int BallotFileProcessor::ProcessFiles(std::list<std::string> files, VotingInfo* 
       std::cout << msg << std::endl;
     }
   }
+  votinginfo->WriteInvalidBallotsToFile(InvalidBallotFileName);
   return ballotNum;
 }
 

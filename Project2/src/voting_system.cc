@@ -12,23 +12,29 @@
 #include <stdio.h>
 #include <limits.h>  // INT_MAX for ignoring bad input
 #include <assert.h>
+#include <ctime>
 
 bool BallotShuffleOff = false;
+char InvalidBallotFileName[500];
 
 void UserInterface(int *numSeats, int *choice);
 void DisplayHelp();
+std::string GetTimeStamp();
 
 int main(int argc, char** argv) {
   int choice = 5;
   int numSeats, numBallots;
+  std::string TimeStamp;
   STVElection* stvElection;
   PluralityElection* pluralityElection;
   BallotFileProcessor* ballotFileProcessor;
   VotingInfo* votingInfo;
   std::list<string> files;
   char msg[200];
-  Logger::GetLogger();
-  LOGGER->Log("---------------------------------------------------------Start A New Election---------------------------------------------------------");
+  TimeStamp = GetTimeStamp();
+  snprintf(InvalidBallotFileName, 500, "InvalidBallotFile_%s.txt",TimeStamp.c_str());
+  Logger::GetLogger();  
+  LOGGER->Log("---------------------------------------------------------Start A New Election---------------------------------------------------------");  
   // Check command line argument
   if (argc >= 2 && strcmp(argv[1], "-t") == 0) {
     BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
@@ -150,4 +156,13 @@ void DisplayHelp() {
   std::cout << "   statistics for the type of election you have chosen will appear on the screen\n" << std::flush;
   std::cout << "4. Close the program\n" << std::flush;
   std::cout << "5. To run a new election, start the system again and repeat the above steps\n" << std::flush;
+}
+
+std::string GetTimeStamp(){
+  char timeStamp[200];
+  time_t now = time(0);
+  std::tm *ltm = localtime(&now);
+  snprintf(timeStamp, sizeof(timeStamp), "%d.%02d.%02d.%02d%02d%02d"
+          , 1900 + ltm->tm_year, ltm->tm_mon, ltm->tm_mday, ltm->tm_hour, ltm->tm_min, ltm->tm_sec);
+  return timeStamp;
 }
