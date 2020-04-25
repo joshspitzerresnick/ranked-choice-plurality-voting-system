@@ -9,6 +9,8 @@
 #include <list>
 #include <fstream>  // ofstream for writing invalid ballots
 #include <typeinfo>  // typeid( ).name() for debugging
+#include <iomanip>
+#include <math.h>
 #include "logger.h"
 
 #include "voting_info.h"
@@ -162,13 +164,12 @@ void VotingInfo::WriteInvalidBallotsToFile(std::string filename) {
   invalidated_file_ << "# candidates: " << GetNumCandidates() << std::endl;
   invalidated_file_ << "# candidates to be invalidated (< half): <" << GetNumCandidates()/2.0 << std::endl;
   invalidated_file_ << "--------------------------------------------------------------------------------" << std::endl;
-  invalidated_file_ << "Ballot ID:\t\t\t\tCandidate IDs in order of preference:" << std::endl;
-  invalidated_file_ << "[1, n] indexed\t\t[0, n-1] indexed" << std::endl;
+  // invalidated_file_ << "Ballot ID:\t\t\t\tCandidate IDs in order of preference:" << std::endl;
+  // invalidated_file_ << "[1, n] indexed\t\t[0, n-1] indexed" << std::endl;
 
   while(!invalid_ballots_.empty()) {  // iterate through ballots
     ranked_candidate_ids_ = invalid_ballots_.front()->GetRankedCandidateIDList();  // makes copy so original list safe
-
-    invalidated_file_ << "#" << invalid_ballots_.front()->GetID() << ":\t.\t.\t.\t.\t.\t.\t.\t";
+    invalidated_file_ << "Ballot #" << std::setw(floor(log10(GetNumBallots()) + 1)) << invalid_ballots_.front()->GetID() << ":  Ranked Candidate ID List: ";
     while (!ranked_candidate_ids_.empty()) {  // iterate through candidate rankings
       invalidated_file_ << ranked_candidate_ids_.front();  // don't leave trailing ", "
 
