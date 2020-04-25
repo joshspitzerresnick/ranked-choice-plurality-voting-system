@@ -61,6 +61,8 @@ std::list<std::string> BallotFileProcessor::GetFiles(int choice) {
               extension = "";
             }
           }
+        } else {
+          std::cout << "Invalid directory. Please re-enter." << std::endl;
         }
         closedir(dir);
       }
@@ -156,7 +158,6 @@ int BallotFileProcessor::ReadFile(std::string fileName, VotingInfo* votinginfo, 
     
     // Start processing ballot file
     while (getline(ballot_file, line)) {
-        LOGGER->Log("Inside getline while loop");
         row.clear();  // Clear the row variable prior to reading in new line.
         introw.clear();
         cand_list.clear();
