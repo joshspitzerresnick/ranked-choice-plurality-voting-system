@@ -4,7 +4,6 @@
  * @copyright 2020 5801 Team3, All rights reserved.
  */
 
-
 #include "ballot_file_processor.h"
 
 using std::vector;
