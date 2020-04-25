@@ -5,7 +5,7 @@
  */
 #include "logger.h"
 
-const char Logger::fileName[] = "VotingSystemAuditFile.txt";
+// std::string Logger::fileName = LogFileName;
 Logger* Logger::pThis = NULL;
 std::ofstream Logger::logFile;
 Logger::Logger() {
@@ -13,7 +13,7 @@ Logger::Logger() {
 Logger* Logger::GetLogger() {
     if (pThis == NULL) {
         pThis = new Logger();
-        logFile.open(fileName, std::ios::out | std::ios::app);
+        logFile.open(LogFileName, std::ios::out | std::ios::app);
     }
     return pThis;
 }

@@ -16,6 +16,7 @@
 
 bool BallotShuffleOff = false;
 char InvalidBallotFileName[500];
+char LogFileName[500];
 
 void UserInterface(int *numSeats, int *choice);
 void DisplayHelp();
@@ -33,6 +34,8 @@ int main(int argc, char** argv) {
   char msg[200];
   TimeStamp = GetTimeStamp();
   snprintf(InvalidBallotFileName, 500, "InvalidBallotFile_%s.txt",TimeStamp.c_str());
+  snprintf(LogFileName, 500, "AuditFile_%s.txt",TimeStamp.c_str());
+  std::cout << LogFileName << std::endl;
   Logger::GetLogger();  
   LOGGER->Log("---------------------------------------------------------Start A New Election---------------------------------------------------------");  
   // Check command line argument

@@ -118,7 +118,9 @@ int BallotFileProcessor::ProcessFiles(std::list<std::string> files, VotingInfo* 
       std::cout << msg << std::endl;
     }
   }
-  votinginfo->WriteInvalidBallotsToFile(InvalidBallotFileName);
+  if (votinginfo->GetAlgorithm() == 1) {
+    votinginfo->WriteInvalidBallotsToFile(InvalidBallotFileName);
+  }  
   return ballotNum;
 }
 

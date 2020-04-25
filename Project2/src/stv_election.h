@@ -20,6 +20,7 @@
 
 extern bool BallotShuffleOff;
 extern char InvalidBallotFileName[];
+extern char LogFileName[];
 
 /**
  * @brief The main class for stv election.

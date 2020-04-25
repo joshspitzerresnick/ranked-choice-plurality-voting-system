@@ -124,7 +124,7 @@ void STVElection::DisplayResult(VotingInfo* votingInfo) {
     LOGGER->Log(msg);
     std::cout << msg << std::endl;
   }
-  snprintf(msg, sizeof(msg), "Location of audit report: \\src\\VotingSystemAuditReport.txt");
+  snprintf(msg, sizeof(msg), "Location of audit report: \\src\\%s", LogFileName);
   LOGGER->Log(msg);
   std::cout << msg << std::endl;
   snprintf(msg, sizeof(msg), "Location of invalidated ballots report: \\src\\%s", InvalidBallotFileName);
