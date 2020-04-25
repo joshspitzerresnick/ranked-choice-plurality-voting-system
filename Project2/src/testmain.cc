@@ -3,6 +3,8 @@
 #include <gtest/gtest.h>
 
 bool BallotShuffleOff = true;
+char InvalidBallotFileName[500];
+char LogFileName[500];
 
 int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);

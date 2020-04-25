@@ -31,13 +31,19 @@ class LoggerTests : public ::testing::Test {
   Candidate* candidate1;
   STVCandidate* stv_candidate1;
   std::list<int> candidateList1;
+  std::list<std::string> plurality_files;
+  std::list<std::string> stv_files;
   int i;
   virtual void SetUp() {
     pl_ballot_file_name = "../testing/plurality_ballots.csv";
     stv_ballot_file_name = "../testing/stv_ballots.csv";
-    pbfp = new BallotFileProcessor(pl_ballot_file_name);
+    plurality_files = {"../testing/plurality_20ballots_5candidates.csv",
+                       "../testing/plurality_110ballots_5candidates.csv"};
+    pbfp = new BallotFileProcessor();
     votinginfop = new VotingInfo(0, 1);
-    sbfp = new BallotFileProcessor(stv_ballot_file_name);
+    stv_files = {"../testing/stv_20ballots_5candidates_0pctBadBallots.csv",
+                       "../testing/stv_100ballots_5candidates_0pctBadBallots.csv"};
+    sbfp = new BallotFileProcessor();
     votinginfos = new VotingInfo(1, 2);
     for (i = 0; i < 5; i++) {
         candidateList1.push_back(i);
@@ -74,12 +80,12 @@ TEST_F(LoggerTests, LogListToFile) {
 
 TEST_F(LoggerTests, LogCandidateListToFile) {
   Logger::GetLogger()->Log("Test print a list of plurality candidates:");
-  pbfp->ProcessFiles(votinginfop);
+  pbfp->ProcessFiles(plurality_files, votinginfop);
   cand_list = votinginfop->GetCandidateList();
   EXPECT_NO_THROW(Logger::GetLogger()->Log(cand_list));
   Logger::GetLogger()->Log(" ");
   Logger::GetLogger()->Log("Test print a list of stv candidates:");
-  sbfp->ProcessFiles(votinginfos);
+  sbfp->ProcessFiles(stv_files, votinginfos);
   cand_list = votinginfos->GetCandidateList();
   EXPECT_NO_THROW(Logger::GetLogger()->Log(cand_list));
   Logger::GetLogger()->Log(" ");
@@ -87,12 +93,12 @@ TEST_F(LoggerTests, LogCandidateListToFile) {
 
 TEST_F(LoggerTests, LogBallotListToFile) {
   Logger::GetLogger()->Log("Test print a list of plurality ballots:");
-  pbfp->ProcessFiles(votinginfop);
+  pbfp->ProcessFiles(plurality_files, votinginfop);
   ballot_list = votinginfop->GetBallotList();
   EXPECT_NO_THROW(Logger::GetLogger()->Log(ballot_list));
   Logger::GetLogger()->Log(" ");
   Logger::GetLogger()->Log("Test print a list of stv ballots:");
-  sbfp->ProcessFiles(votinginfos);
+  sbfp->ProcessFiles(stv_files, votinginfos);
   ballot_list = votinginfos->GetBallotList();
   EXPECT_NO_THROW(Logger::GetLogger()->Log(ballot_list));
   Logger::GetLogger()->Log(" ");

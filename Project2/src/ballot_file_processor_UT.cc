@@ -8,6 +8,9 @@
 #include <list>
 #include "../src/ballot_file_processor.h"
 
+char InvalidBallotFileName[500];
+char LogFileName[500];
+
 /******************************************************
 * TEST FEATURE SetUp
 *******************************************************/
@@ -61,11 +64,11 @@ class BallotFileTests : public ::testing::Test {
     pl_ballot_file_name = "../testing/plurality_ballots.csv";
     stv_ballot_file_name = "../testing/stv_ballots.csv";
     invalid_ballot_file_name = "../testing/invalid_ballots.csv";
-    pbfp = new BallotFileProcessor(pl_ballot_file_name);
+    pbfp = new BallotFileProcessor();
     votinginfop = new VotingInfo(0, 1);
-    sbfp = new BallotFileProcessor(stv_ballot_file_name);
+    sbfp = new BallotFileProcessor();
     votinginfos = new VotingInfo(1, 2);
-    ibfp = new BallotFileProcessor(invalid_ballot_file_name);
+    ibfp = new BallotFileProcessor();
     votinginfoi = new VotingInfo(1, 2);
   }
   virtual void TearDown() {
@@ -81,17 +84,20 @@ class BallotFileTests : public ::testing::Test {
 
 TEST_F(BallotFileTests, Constructor) {
     // Check normal construction
-    EXPECT_NO_THROW(pbfp = new BallotFileProcessor(pl_ballot_file_name));
-    EXPECT_NO_THROW(sbfp = new BallotFileProcessor(stv_ballot_file_name));
+    EXPECT_NO_THROW(pbfp = new BallotFileProcessor());
+    EXPECT_NO_THROW(sbfp = new BallotFileProcessor());
 }
 
 TEST_F(BallotFileTests, ProcessPluralityBallots) {
     // Process plurality ballots
-    pbfp->ProcessFiles(votinginfop);
+    std::list<std::string> plurality_files;
+    plurality_files = {"../testing/plurality_20ballots_5candidates.csv",
+                       "../testing/plurality_110ballots_5candidates.csv"};
+    pbfp->ProcessFiles(plurality_files, votinginfop);
     // Check that the correct number of candidates were created.
-    EXPECT_EQ(votinginfop->GetNumCandidates(), 6);
+    EXPECT_EQ(votinginfop->GetNumCandidates(), 5);
     // Check that the correct number of ballots were created.
-    EXPECT_EQ(votinginfop->GetNumBallots(), 3);
+    EXPECT_EQ(votinginfop->GetNumBallots(), 130);
     // Check that the first candidate added has the correct id and name
     cand_list = votinginfop->GetCandidateList();
     temp = cand_list.front();
@@ -100,17 +106,20 @@ TEST_F(BallotFileTests, ProcessPluralityBallots) {
     // Check that the first ballot added has the correct id and candidate list
     new_ballot_list = votinginfop->GetBallotList();
     tempballot = new_ballot_list.front();
-    EXPECT_EQ(tempballot->GetID(), 1);
-    EXPECT_EQ(tempballot->GetRankedCandidateIDList().front(), 0);
+    EXPECT_EQ(tempballot->GetID(), 0);
+    EXPECT_EQ(tempballot->GetRankedCandidateIDList().front(), 1);
 }
 
 TEST_F(BallotFileTests, ProcessSTVBallots) {
     // Process stv ballots
-    sbfp->ProcessFiles(votinginfos);
+    std::list<std::string> stv_files;
+    stv_files = {"../testing/stv_20ballots_5candidates_0pctBadBallots.csv",
+                 "../testing/stv_100ballots_5candidates_0pctBadBallots.csv"};
+    sbfp->ProcessFiles(stv_files, votinginfos);
     // Check that the correct number of candidates were created.
-    EXPECT_EQ(votinginfos->GetNumCandidates(), 6);
+    EXPECT_EQ(votinginfos->GetNumCandidates(), 5);
     // Check that the correct number of ballots were created.
-    EXPECT_EQ(votinginfos->GetNumBallots(), 4);
+    EXPECT_EQ(votinginfos->GetNumBallots(), 120);
     // Check that the first candidate added has the correct id and name
     new_cand_list = votinginfos->GetSTVCandidateList();
     temp = new_cand_list.front();
@@ -119,19 +128,22 @@ TEST_F(BallotFileTests, ProcessSTVBallots) {
     // Check that the first ballot added has the correct id and candidate list
     new_ballot_list = votinginfos->GetBallotList();
     tempballot = new_ballot_list.front();
-    EXPECT_EQ(tempballot->GetID(), 1);
-    EXPECT_EQ(tempballot->GetRankedCandidateIDList().front(), 0);
+    EXPECT_EQ(tempballot->GetID(), 0);
+    EXPECT_EQ(tempballot->GetRankedCandidateIDList().front(), 4);
 }
 
 TEST_F(BallotFileTests, CheckInvalidBallots) {
     // Process valid and invalid stv ballots
-    ibfp->ProcessFiles(votinginfoi);
+    std::list<std::string> inval_files;
+    inval_files = {"../testing/stv_20ballots_5candidates_10pctBadBallots.csv",
+                   "../testing/stv_500ballots_5candidates_10pctBadBallots.csv"};
+    ibfp->ProcessFiles(inval_files, votinginfoi);
     // Check that the correct number of candidates were created.
-    EXPECT_EQ(votinginfoi->GetNumCandidates(), 6);
+    EXPECT_EQ(votinginfoi->GetNumCandidates(), 5);
     // Check that the correct number of ballots were created.
-    EXPECT_EQ(votinginfoi->GetNumBallots(), 4);
+    EXPECT_EQ(votinginfoi->GetNumBallots(), 484);
     // Check that the correct number of invalid ballots were identified.
-    EXPECT_EQ(votinginfoi->GetNumInvalid(), 5);
+    EXPECT_EQ(votinginfoi->GetNumInvalid(), 36);
     // Check that the first candidate added has the correct id and name
     new_cand_list = votinginfoi->GetSTVCandidateList();
     temp = new_cand_list.front();
@@ -140,14 +152,14 @@ TEST_F(BallotFileTests, CheckInvalidBallots) {
     // Check that the first ballot added has the correct id and candidate list
     new_ballot_list = votinginfoi->GetBallotList();
     tempballot = new_ballot_list.front();
-    EXPECT_EQ(tempballot->GetID(), 1);
-    EXPECT_EQ(tempballot->GetRankedCandidateIDList().front(), 0);
+    EXPECT_EQ(tempballot->GetID(), 0);
+    EXPECT_EQ(tempballot->GetRankedCandidateIDList().front(), 2);
     // Check that the first ballot added to the invalid list has
     // the correct id and candidate list
     new_ballot_list = votinginfoi->GetInvalidList();
     tempballot = new_ballot_list.front();
-    EXPECT_EQ(tempballot->GetID(), 5);
-    EXPECT_EQ(tempballot->GetRankedCandidateIDList().front(), 0);
+    EXPECT_EQ(tempballot->GetID(), 16);
+    EXPECT_EQ(tempballot->GetRankedCandidateIDList().front(), 2);
     EXPECT_EQ(votinginfoi->GetNumInvalid(), new_ballot_list.size());
     // Check IsInvalid function as plurality ballots
     EXPECT_EQ(ibfp->IsInvalid(0, 1, ballot1), false);
