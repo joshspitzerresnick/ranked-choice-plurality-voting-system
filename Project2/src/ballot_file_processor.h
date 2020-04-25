@@ -7,9 +7,22 @@
 #ifndef SRC_BALLOT_FILE_PROCESSOR_H_
 #define SRC_BALLOT_FILE_PROCESSOR_H_
 
-#include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
+#include <vector>
+#include <list>
+#include <cctype>
+#include <iostream>
+#include "logger.h"
+#include <dirent.h>
+#include <sys/types.h>
+#include "candidate.h"
+#include "ballot.h"
+#include "voting_info.h"
+
+// #define INVALIDATED_FILE "InvalidBallotFile.txt"
+extern char InvalidBallotFileName[];
 
 #include "voting_info.h"
 
@@ -23,19 +36,19 @@ class BallotFileProcessor {
   /**
   * @brief Constructs a ballot file processor with standard empty string.
   *
-  * @param[in] string holding text of a csv ballot file.
+  * @param[in] void
   */
-  explicit BallotFileProcessor(std::string = "");
+  BallotFileProcessor();
   /**
-  * @brief Deconstructs a ballot file processor.
-  */
-  ~BallotFileProcessor();
-  /**
-  * @brief Processes ballot files.
-  *
-  * @param[in] pointer to VotingInfo object with algorithm and seat info.
-  */
-  void ProcessFiles(VotingInfo*);
+   * @brief Process ballot files, return total number of ballots read.
+   * 
+   * @param[in] std::list<std::string> Ballot file list.
+   * 
+   * @param[in] VotingInfo* VotingInfo object to store information from ballots.
+   * 
+   * @return int, total number of ballots processed. 
+   */
+  int ProcessFiles(std::list<std::string>, VotingInfo*);
   /**
    * @brief Check if ballot file is valid.
    * 
@@ -48,9 +61,35 @@ class BallotFileProcessor {
    * @return bool, True if the ballot is invalid, False if the ballot valid. 
    */
   bool IsInvalid(int, int, Ballot*);
+  /**
+   * @brief Get user's input on how they want to provide ballot files.
+   * 
+   * @param[in] void.
+   * 
+   * @return int, user's choice. 
+   */
+  int GetUserInput();
+  /**
+   * @brief Fetch files based on user's option choice.
+   * 
+   * @param[in] int, user's choice: 1-type in files' names; 2-type in directory name where the files are located.
+   * 
+   * @return list<string>, file name list. 
+   */
+  std::list<std::string> GetFiles(int choice);
 
  private:
-  std::string ballot_file_name_;  // Name of the ballot file to process.
-  std::ifstream ballot_files_;  // Stream to use for processing ballot file.
+  /**
+   * @brief Process a ballot file, return number of ballots read.
+   * 
+   * @param[in] string, Ballot file name.
+   * 
+   * @param[in] VotingInfo* VotingInfo object to store information from ballots.
+   *
+   * @param[in] int* ballot index for ballot ID assignment.
+   * 
+   * @return int, number of ballots processed. 
+   */
+  int ReadFile(std::string fileName, VotingInfo* votinginfo, int* ballotNum);
 };
 #endif  // SRC_BALLOT_FILE_PROCESSOR_H_

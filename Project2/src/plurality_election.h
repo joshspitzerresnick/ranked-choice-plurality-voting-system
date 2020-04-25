@@ -12,6 +12,8 @@
 #include "ballot.h"
 #include "plurality_election_record.h"
 
+extern char LogFileName[];
+
 /**
  * @brief The main class for plurality election.
  *

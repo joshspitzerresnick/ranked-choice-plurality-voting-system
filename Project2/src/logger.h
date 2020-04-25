@@ -14,6 +14,7 @@
 #include <string.h>
 #include "candidate.h"
 using namespace std;
+extern char LogFileName[];
 #define LOGGER Logger::GetLogger()
 /**
 *   Singleton Logger Class.
@@ -62,7 +63,7 @@ class Logger {
     /**
     *   Log file name.
     **/
-    static const char fileName[];
+   //  static std::string fileName;
     /**
     *   Singleton logger class object pointer.
     **/

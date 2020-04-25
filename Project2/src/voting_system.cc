@@ -11,22 +11,33 @@
 #include <iostream>
 #include <stdio.h>
 #include <limits.h>  // INT_MAX for ignoring bad input
+#include <assert.h>
+#include <ctime>
 
 bool BallotShuffleOff = false;
+char InvalidBallotFileName[500];
+char LogFileName[500];
 
 void UserInterface(int *numSeats, int *choice);
 void DisplayHelp();
+std::string GetTimeStamp();
 
 int main(int argc, char** argv) {
   int choice = 5;
-  int numSeats;
+  int numSeats, numBallots;
+  std::string TimeStamp;
   STVElection* stvElection;
   PluralityElection* pluralityElection;
   BallotFileProcessor* ballotFileProcessor;
   VotingInfo* votingInfo;
+  std::list<string> files;
   char msg[200];
-  Logger::GetLogger();
-  LOGGER->Log("---------------------------------------------------------Start A New Election---------------------------------------------------------");
+  TimeStamp = GetTimeStamp();
+  snprintf(InvalidBallotFileName, 500, "InvalidBallotFile_%s.txt",TimeStamp.c_str());
+  snprintf(LogFileName, 500, "AuditFile_%s.txt",TimeStamp.c_str());
+  std::cout << LogFileName << std::endl;
+  Logger::GetLogger();  
+  LOGGER->Log("---------------------------------------------------------Start A New Election---------------------------------------------------------");  
   // Check command line argument
   if (argc >= 2 && strcmp(argv[1], "-t") == 0) {
     BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
@@ -36,33 +47,13 @@ int main(int argc, char** argv) {
   UserInterface(&numSeats, &choice);
   votingInfo = new VotingInfo(choice, numSeats);
 
-  // loop to get number of ballot files & take in multiple ballot files
-  int has_more_ballot_files_ = 1;  // true
-  std::string ballot_files_;
-  while(has_more_ballot_files_ != 0) {  // not false or error
-    std::cout << "Enter name of ballot file:\n" << std::flush;
-    std::cin >> ballot_files_;
-    snprintf(msg, sizeof(msg), "User entered ballot file: %s", ballot_files_.c_str());
-    LOGGER->Log(msg);
-
-    // input checking
-    while (true) {
-      std::cout << "Do you have more ballot files to input? 1: Yes, 0: No\n" << std::flush;
-      std::cin >> has_more_ballot_files_;  // automatically cast to bool // letters to 0
-      if (std::cin.fail() || (has_more_ballot_files_ != 1 && has_more_ballot_files_ != 0) ) {  // failed input, will continue to silently fail
-        std::cout << "Invalid input. Please enter 1 for yes or 0 for no." << std::endl;
-        std::cin.clear();  // return to normal operation
-        cin.ignore(INT_MAX, '\n');  // remove bad input
-      } else {  // 1 or 0 entered
-        break;
-      }
-    }
-
-    ballotFileProcessor = new BallotFileProcessor(ballot_files_);
-    ballotFileProcessor->ProcessFiles(votingInfo);
-
-    // delete previous BallotFileProcessor object after use, not pointer
-    delete ballotFileProcessor;
+  ballotFileProcessor = new BallotFileProcessor();
+  files = ballotFileProcessor->GetFiles(ballotFileProcessor->GetUserInput());
+  numBallots = ballotFileProcessor->ProcessFiles(files, votingInfo);
+  // delete previous BallotFileProcessor object after use, not pointer
+  delete ballotFileProcessor;
+  if (numBallots<1) {
+    throw "No ballots are processed";
   }
 
   switch (choice) {
@@ -168,4 +159,13 @@ void DisplayHelp() {
   std::cout << "   statistics for the type of election you have chosen will appear on the screen\n" << std::flush;
   std::cout << "4. Close the program\n" << std::flush;
   std::cout << "5. To run a new election, start the system again and repeat the above steps\n" << std::flush;
+}
+
+std::string GetTimeStamp(){
+  char timeStamp[200];
+  time_t now = time(0);
+  std::tm *ltm = localtime(&now);
+  snprintf(timeStamp, sizeof(timeStamp), "%d.%02d.%02d.%02d%02d%02d"
+          , 1900 + ltm->tm_year, ltm->tm_mon, ltm->tm_mday, ltm->tm_hour, ltm->tm_min, ltm->tm_sec);
+  return timeStamp;
 }

@@ -106,6 +106,10 @@ void PluralityElection::DisplayResults(PluralityElectionRecord* election_record,
         losers_list.pop_front(); 
         i++;
     }
-    snprintf(msg, sizeof(msg), "Location of audit report:  \\src\\VotingSystemAuditReport.txt");
+    snprintf(msg, sizeof(msg), "Location of audit report: \\src\\%s", LogFileName);
     LOGGER->Log(msg);
+    std::cout << msg << "\n" << std::flush;
+    snprintf(msg, sizeof(msg), "-------------End of Result Display------------");
+    LOGGER->Log(msg);
+    std::cout << msg << std::endl;
 }
