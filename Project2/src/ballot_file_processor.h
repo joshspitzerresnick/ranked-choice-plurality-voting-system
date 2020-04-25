@@ -25,17 +25,11 @@ class BallotFileProcessor {
   *
   * @param[in] string holding text of a csv ballot file.
   */
-  explicit BallotFileProcessor(std::string = "");
+  explicit BallotFileProcessor();
   /**
   * @brief Deconstructs a ballot file processor.
   */
-  ~BallotFileProcessor();
-  /**
-  * @brief Processes ballot files.
-  *
-  * @param[in] pointer to VotingInfo object with algorithm and seat info.
-  */
-  void ProcessFiles(VotingInfo*);
+  int ProcessFiles(std::list<std::string>, VotingInfo*);
   /**
    * @brief Check if ballot file is valid.
    * 
@@ -48,9 +42,10 @@ class BallotFileProcessor {
    * @return bool, True if the ballot is invalid, False if the ballot valid. 
    */
   bool IsInvalid(int, int, Ballot*);
+  int GetUserInput();
+  std::list<std::string> GetFiles(int choice);
 
  private:
-  std::string ballot_file_name_;  // Name of the ballot file to process.
-  std::ifstream ballot_files_;  // Stream to use for processing ballot file.
+  int ReadFile(std::string fileName, VotingInfo* votinginfo, int* ballotNum);
 };
 #endif  // SRC_BALLOT_FILE_PROCESSOR_H_
