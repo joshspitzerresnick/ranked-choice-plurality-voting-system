@@ -47,7 +47,7 @@ class PluralityElectionTests : public ::testing::Test {
     ballot9 = new Ballot(9, candidateList1);
     ballot10 = new Ballot(10, candidateList2);
     candidate1 = new Candidate(1, "Allison", "Democrat");
-    candidate1 = new Candidate(2, "Mark", "Independant");
+    candidate2 = new Candidate(2, "Mark", "Independant");
   }
   virtual void TearDown() {
     delete ballot1;
