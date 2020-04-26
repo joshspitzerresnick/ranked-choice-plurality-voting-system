@@ -111,7 +111,6 @@ int BallotFileProcessor::ProcessFiles(std::list<std::string> files, VotingInfo* 
       LOGGER->Log(msg);
       std::cout << msg << std::endl;
     } else {
-      ballotNum+=numBallotsRead;
       snprintf(msg,sizeof(msg),"%d Ballots are read in file %s", numBallotsRead, (*it).c_str());
       LOGGER->Log(msg);
       std::cout << msg << std::endl;
