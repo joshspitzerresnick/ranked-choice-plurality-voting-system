@@ -19,6 +19,18 @@ This will create an executable file called `VotingSystem` in the `src` directory
 ```
 Project2/src $ ./VotingSystem
 ```
+The Voting System can be executed without the ballot file selection gui (all command prompt based) by typing
+```
+Project2/src $ ./VotingSystem -m
+```
+To run the Voting System with ballot shuffling turned off type
+```
+Project2/src $ ./VotingSystem -t
+```
+The above command line arguments can be combined with
+```
+Project2/src $ ./VotingSystem -t -m
+```
 An executable file called `runTests` will also be created in the `testing` directory.  Run these unit tests by typing
 ```
 Project2/testing $ ./runTests
@@ -32,4 +44,8 @@ This system test will output data for review in the file `system_test_report.txt
 In order to clean the `src` and `testing` directory of object files and the executables, type
 ```
 Project2 $ make clean
+```
+To clean up the file system and remove the log files Voting System creates along with the system test reports, type
+```
+Project2 $ make log-clean
 ```
