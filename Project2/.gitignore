@@ -15,3 +15,11 @@ src/CMakeCache.txt
 src/VotingSystem
 audit.txt
 invalidated.txt
+src/.qmake.stash
+testing/gtest_main.a
+src/AuditFile_*
+src/InvalidBallotFile_*
+testing/AuditFile_*
+testing/InvalidBallotFile_*
+testing/system_test_report.txt
+src/Makefile

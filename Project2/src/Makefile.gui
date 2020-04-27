@@ -415,6 +415,9 @@ distdir: FORCE
 clean: compiler_clean 
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core
+	-$(DEL_FILE) *~ stash *.stash
+	-$(DEL_FILE) $(TARGET)
+	-$(DEL_FILE) Makefile
 
 
 distclean: clean 
