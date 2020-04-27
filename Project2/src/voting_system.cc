@@ -13,6 +13,9 @@
 #include <limits.h>  // INT_MAX for ignoring bad input
 #include <assert.h>
 #include <ctime>
+#include <QApplication>
+#include <QString>
+#include <QFileDialog>
 
 bool BallotShuffleOff = false;
 char InvalidBallotFileName[500];
@@ -20,11 +23,16 @@ char LogFileName[500];
 
 void UserInterface(int *numSeats, int *choice);
 void DisplayHelp();
+int get_ballots_gui(VotingInfo* voting_info);
 std::string GetTimeStamp();
 
 int main(int argc, char** argv) {
+
+  //need to create a QApplication object to use a QWidget
+  QApplication a(argc, argv);
   int choice = 5;
   int numSeats, numBallots;
+  bool ManuallyEnterBallots = false;
   std::string TimeStamp;
   STVElection* stvElection;
   PluralityElection* pluralityElection;
@@ -44,14 +52,25 @@ int main(int argc, char** argv) {
     LOGGER->Log("Command line argument received: turn off ballot shuffle.");
   }
 
+  if (argc >= 2 && ((strcmp(argv[1], "-m") == 0) || (strcmp(argv[2], "-m") == 0))) {
+    ManuallyEnterBallots = true;  // Manually enter ballots rather than GUI select
+    LOGGER->Log("Command line argument received: manually enter ballot file names.");
+  }
+
   UserInterface(&numSeats, &choice);
   votingInfo = new VotingInfo(choice, numSeats);
-
-  ballotFileProcessor = new BallotFileProcessor();
-  files = ballotFileProcessor->GetFiles(ballotFileProcessor->GetUserInput());
-  numBallots = ballotFileProcessor->ProcessFiles(files, votingInfo);
-  // delete previous BallotFileProcessor object after use, not pointer
-  delete ballotFileProcessor;
+  if(ManuallyEnterBallots)
+  {
+    ballotFileProcessor = new BallotFileProcessor();
+    files = ballotFileProcessor->GetFiles(ballotFileProcessor->GetUserInput());
+    numBallots = ballotFileProcessor->ProcessFiles(files, votingInfo);
+    // delete previous BallotFileProcessor object after use, not pointer
+    delete ballotFileProcessor;
+  }
+  else
+  {
+    numBallots = get_ballots_gui(votingInfo);
+  }
   if (votingInfo->GetNumBallots()<1) {
     std::cout << "There are no valid ballots. Abort." << std::endl;
     return -1;
@@ -138,6 +157,31 @@ void UserInterface(int *numSeats, int *choice) {
       }
     }
   }
+}
+
+int get_ballots_gui(VotingInfo* voting_info)
+{
+  char msg[200];
+  int numBallots;
+  BallotFileProcessor* ballotFileProcessor;
+  QString filter = "csv(*.csv)";
+  QStringList ballot_files = QFileDialog::getOpenFileNames(NULL, "Select ballot files","./", filter);
+  QString b_file;
+  std::list<std::string> ballot_files_list;
+  while(!ballot_files.empty())
+  {
+      b_file = ballot_files.front();
+      ballot_files_list.push_back(b_file.toStdString());
+      ballot_files.pop_front();
+      cout << "Selected Ballot File:" << b_file.toStdString() << "\n" << std::endl;
+      snprintf(msg, sizeof(msg), "User entered ballot file: %s", b_file.toStdString().c_str());
+      Logger::GetLogger()->Log(msg);
+  }
+
+  ballotFileProcessor = new BallotFileProcessor();
+  numBallots = ballotFileProcessor->ProcessFiles(ballot_files_list, voting_info);
+  delete ballotFileProcessor;
+  return numBallots;
 }
 
 void DisplayHelp() {
