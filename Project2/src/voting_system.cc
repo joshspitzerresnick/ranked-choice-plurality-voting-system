@@ -21,9 +21,36 @@ bool BallotShuffleOff = false;
 char InvalidBallotFileName[500];
 char LogFileName[500];
 
+/**
+* @brief The command line user interface, allows the user to enter the number of seats and the
+* election choice, either plurality of STV
+*
+* @param[out] int* numSeats used to specified the number of seats for the election
+* @param[out] int* choice, either 0 for plurality 1 for stv
+*/
 void UserInterface(int *numSeats, int *choice);
+
+/**
+* @brief Prints some help information to the user through cout.
+*
+*/
 void DisplayHelp();
+
+/**
+* @brief Launches a GUI so the user can select the ballot files and then processes
+* the ballot files and saves them into voting_info
+*
+* @param[out] VotingInfo*, ballots passed into VotingInfo
+*
+* @return Returns int, the total number of ballots
+*/
 int get_ballots_gui(VotingInfo* voting_info);
+
+/**
+* @brief Utility function to get a timestamp to be used for the audit and invalid ballot files.
+*
+* @return Returns std::string, of timestamp in format year_month_day_hour_min_second
+*/
 std::string GetTimeStamp();
 
 int main(int argc, char** argv) {
@@ -192,18 +219,31 @@ void DisplayHelp() {
   std::cout << "1. Open your command line terminal on your Linux system\n" << std::flush;
   std::cout << "2. Type ./VotingSystem and press enter\n\n" << std::flush;
   std::cout << "To calibrate the voting system:\n" << std::flush;
-  std::cout << "1. Contact your IT department to enter the appropriate commands\n\n" << std::flush;
+  std::cout << "3. Contact your IT department to enter the appropriate commands\n\n" << std::flush;
   std::cout << "How to run an election:\n" << std::flush;
-  std::cout << "1. In the input screen:\n" << std::flush;
+  std::cout << "4. In the input screen:\n" << std::flush;
   std::cout << "   a. enter election type: 0 = plurality, 1 = STV\n" << std::flush;
   std::cout << "   b. enter number of seats\n" << std::flush;
-  std::cout << "   c. enter name(s) of ballot file(s), one at a time\n" << std::flush;
-  std::cout << "   d. press enter to run election\n" << std::flush;
-  std::cout << "2. Wait momentarily for all computations to finish\n" << std::flush;
-  std::cout << "3. When all computations have finished, a summary of the results with appropriate\n" << std::flush;
+  std::cout << "   c. Gui will launch for selecting ballot files, you may select multiple ballot files\n" << std::flush;
+  std::cout << "   d. Election will run\n" << std::flush;
+  std::cout << "5. Wait momentarily for all computations to finish\n" << std::flush;
+  std::cout << "6. When all computations have finished, a summary of the results with appropriate\n" << std::flush;
   std::cout << "   statistics for the type of election you have chosen will appear on the screen\n" << std::flush;
-  std::cout << "4. Close the program\n" << std::flush;
-  std::cout << "5. To run a new election, start the system again and repeat the above steps\n" << std::flush;
+  std::cout << "7. Close the program\n" << std::flush;
+  std::cout << "8. To run a new election, start the system again and repeat the above steps\n\n" << std::flush;
+  std::cout << "Alternative run method: enter files manually through command line\n\n" << std::flush;
+  std::cout << "If you would prefer enter ballot files through the command line instead of the gui:\n" << std::flush;
+  std::cout << "1. Type ./VotingSystem -m \n" << std::flush;
+  std::cout << "2. Follow steps 4a-b above \n" << std::flush;
+  std::cout << "3. At the input screen:\n" << std::flush;
+  std::cout << "    a. enter 1 to specify ballot files, 2 to specify a directory \n" << std::flush;
+  std::cout << "    b. If 1 is entered to specify ballot files enter each file one \n" << std::flush;
+  std::cout << "       at a time, hit enter after each file, once all files have \n" << std::flush;
+  std::cout << "       hit q to run the election with these files \n" << std::flush;
+  std::cout << "       If 2 is entered to specify a directory, type the name of \n" << std::flush;
+  std::cout << "       the directory and hit enter, all csv files in that will \n" << std::flush;
+  std::cout << "       be used in the election \n" << std::flush;
+  std::cout << "    c. Election will run \n" << std::flush;
 }
 
 std::string GetTimeStamp(){
