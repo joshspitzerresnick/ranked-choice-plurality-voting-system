@@ -11,8 +11,16 @@
 #include "stv_election_record.h"
 #include "candidate.h"
 #include "ballot.h"
+#include <list>
+#include <cmath>
+#include <iostream>
+#include "logger.h"
+#include <cstdlib>
+#include <string.h>
 
 extern bool BallotShuffleOff;
+extern char InvalidBallotFileName[];
+extern char LogFileName[];
 
 /**
  * @brief The main class for stv election.
@@ -31,19 +39,20 @@ class STVElection{
   /**
   * @brief Run an STV election.
   *
-  * @param[in] none
+  * @param[in] VotingInfo*, used in result display
+  *
   * @return void
   *
   */
-  void RunElection();
+  void RunElection(VotingInfo*);
     /**
   * @brief Display STV election results.
   *
-  * @param[in] none, using member structure within the same class
+  * @param[in] VotingInfo*, a pointer to a VotingInfo object
   * @return void
   *
   */
-  void DisplayResult();
+  void DisplayResult(VotingInfo*);
  private:
   STVElectionRecord* stvElectionRecord_;  // stv election record object
   // STVResultDisplay* stvResultDisplay_;  // stv result display object // NO LONGER USING - Josh

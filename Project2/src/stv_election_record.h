@@ -11,8 +11,14 @@
 #include "candidate.h"
 #include "ballot.h"
 #include "logger.h"
-
-extern Logger* logger;
+#include <vector>
+#include "candidate.h"
+#include "ballot.h"
+#include <cstdlib>
+#include <string.h>
+#include <algorithm> //std::shuffle
+#include <random>  // std::default_random_engine
+#include <chrono>  // std::chrono::system_clock
 
 /**
  * @brief The class for the STV election records
@@ -30,7 +36,7 @@ class STVElectionRecord {
   * @param[in] droop value
   *
   */
-  explicit STVElectionRecord(const std::list<STVCandidate*>,
+  STVElectionRecord(const std::list<STVCandidate*>,
                                const std::list<Ballot*>, int);
   /**
    * @brief Function to get nonDistributedBallotList_.
@@ -49,13 +55,19 @@ class STVElectionRecord {
    */
   std::list<STVCandidate*> GetLosersList();
   /**
+   * @brief Returns droop quota.
+   *
+   * @return int holding droop quota.
+   */
+  int GetDroop();
+  /**
    * @brief Function to shuffle the ballots prior to the election.
    */
   void ShuffleBallots();
   /**
    * @brief Function to distribute the ballots to the canidate of the ballots choosing.
    */
-  void DistributeBallots();
+  void DistributeBallots(int*);
   /**
    * @brief Function to check a ballot count against the droop value.
    *
@@ -101,15 +113,6 @@ class STVElectionRecord {
    */
   void AddBallotToDiscardedBallotList(Ballot*);
   /**
-   * @brief Break a tie between two stv candidates
-   *
-   * @param[in] STV candidate 1
-   * @param[in] STV candidate 2
-   *
-   * @return true if the first candidate wins over the second candidate
-   */
-  // bool BreakTies(const STVCandidate*, const STVCandidate*);
-  /**
    * @brief Take an stv candidate off the losers list
    *
    * @return An stv candidate
@@ -117,13 +120,25 @@ class STVElectionRecord {
   STVCandidate* PopCandidateOffLosersList();
 
  private:
-  template <typename T > void listShuffle( std::list<T> &L ); // utility function for shuffling ballots
-  bool CandidateNumBallotsComp(const STVCandidate* candidate1, const STVCandidate* candidate2); // utility function for comparing candidates' votes
+  /**
+   * @brief Private utility function for shuffling ballots
+   *
+   * @return Shuffled list
+   */
+  template <typename T > void ListShuffle(std::list<T> &L);
+  /**
+   * @brief Private utility function for comparing candidates' votes
+   *
+   * @return bool: whether candidate1 has more votes than candidate2
+   */
+  static bool STVCandidateComparator(STVCandidate* candidate1,
+                               STVCandidate* candidate2);
   std::list<Ballot*> nonDistributedBallotList_;  // Non Distributed ballot list
-  std::list<STVCandidate*> nonElectedCandidateList_;  // Non elected candidate list
+  std::list<STVCandidate*> nonElectedCandidateList_;
+                  // Non elected candidate list
   std::list<STVCandidate*> winnersList_;  // Winner List
   std::list<STVCandidate*> losersList_;  // Loser List
   std::list<Ballot*> discardedBallotList_;  // The discarded ballot list
   int DroopQuota_;  // The droop quota
 };
-#endif
+#endif  // SRC_STV_ELECTION_RECORD_H_

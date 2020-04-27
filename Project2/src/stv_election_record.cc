@@ -5,123 +5,103 @@
  */
 
 #include "stv_election_record.h"
-#include <list>
-#include "candidate.h"
-#include "ballot.h"
-#include <algorithm> //std::shuffle
-#include <vector>
-#include <cstdlib>
-#include <random>  // std::default_random_engine
-#include <chrono>  // std::chrono::system_clock
 
-// forward declaration of helpers
-template <typename T > void listShuffle( std::list<T> &L );
-// bool STVCandidateComparator(const STVCandidate* candidate1, const STVCandidate* candidate2);
-//bool STVElectionRecord::BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2);
-
-STVElectionRecord::STVElectionRecord(const std::list<STVCandidate*> stvcandidate_list, const std::list<Ballot*> ballot_list, int droop)
- : nonElectedCandidateList_(stvcandidate_list), nonDistributedBallotList_(ballot_list), DroopQuota_(droop),
- winnersList_(0), losersList_(0), discardedBallotList_(0) {
+STVElectionRecord::STVElectionRecord
+(std::list<STVCandidate*> candidates, std::list<Ballot*> ballots, int droop) {
+    this->nonDistributedBallotList_ = ballots;
+    this->nonElectedCandidateList_ = candidates;
+    this->winnersList_ = {};
+    this->losersList_ = {};
+    this->discardedBallotList_ = {};
+    this->DroopQuota_ = droop;
 }
 
-// STVElectionRecord::~STVElectionRecord() {
-//     // Add code here
-// }
-
-std::list<Ballot*> STVElectionRecord::GetNonDistributedBallotList()
-{
+std::list<Ballot*> STVElectionRecord::GetNonDistributedBallotList() {
   return nonDistributedBallotList_;
-};
+}
 
-std::list<STVCandidate*> STVElectionRecord::GetNonElectedCandidateList()
-{
+std::list<STVCandidate*> STVElectionRecord::GetNonElectedCandidateList() {
   return nonElectedCandidateList_;
-};
+}
 
-std::list<STVCandidate*> STVElectionRecord::GetWinnersList()
-{
+std::list<STVCandidate*> STVElectionRecord::GetWinnersList() {
   return winnersList_;
-};
+}
 
-std::list<STVCandidate*> STVElectionRecord::GetLosersList()
-{
+std::list<STVCandidate*> STVElectionRecord::GetLosersList() {
   return losersList_;
-};
+}
+
+int STVElectionRecord::GetDroop() {
+  return DroopQuota_;
+}
 
 void STVElectionRecord::ShuffleBallots() {
+  char msg[1000], temp[10];
   // Call utility function to shuffle ballots
-  listShuffle( nonDistributedBallotList_ );
-  // Get the sequence after shuffling for logging purpose
-  int ballotSequenceAfterShuffle [(int)nonDistributedBallotList_.size()];
-  int i=0;
-  std::list<Ballot*>::iterator it; //Create an iterator of std::list
-  // Make iterate point to begining and incerement it one by one till it reaches the end of list.
-  for (it = nonDistributedBallotList_.begin(); it != nonDistributedBallotList_.end(); it++)
-  {
-    // Access the object through iterator
-    ballotSequenceAfterShuffle[i] = (*it)->GetID();
-  }
-  // Log ballot sequence after shuffle to logger
-  //----------------Need code-----------------------------
+  ListShuffle(nonDistributedBallotList_);
+  // Log the sequence after shuffling
+  snprintf(msg, sizeof(msg), "Ballot sequence after shuffle: ");
+  LOGGER->Log(msg);
+  LOGGER->Log(nonDistributedBallotList_);
 }
 
-// utility function for shuffling ballots
-template <typename T > void STVElectionRecord::listShuffle( std::list<T> &L )
-{
-  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-  std::vector<T> V( L.begin(), L.end() );
-  std::shuffle( V.begin(), V.end(), std::default_random_engine(seed) );
-  L.assign( V.begin(), V.end() );
-}
-
-void STVElectionRecord::DistributeBallots() {
-  std::list<int> tempRankedCandidateList; // temperory int array to store ranked candidate list from each ballot
-  int curCandidateID; // current ranked candidate ID
-  int numBallots; // number of ballots a candidate has
-  bool assigned; // if a ballot had been assigned
-  Ballot* curBallot; // a holder for the ballot popped off list
-  STVCandidate* tempCandidate; //pointer to a candidate
-  // Loop on nonDistributedBallotList
-  while(!nonDistributedBallotList_.empty()) // keep looping if nonDistributedBallotList is not empty
-  {
+void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
+  std::list<int> tempRankedCandidateIDList;  // temperory int array to store ranked candidate list from each ballot
+  // int curCandidateID;  // current ranked candidate ID
+  int numBallots;  // number of ballots a candidate has
+  bool assigned;  // if a ballot had been assigned
+  Ballot* curBallot;  // a holder for the ballot popped off list
+  STVCandidate* tempCandidate;  // pointer to a candidate
+  char msg[1000], temp[10];
+  // Loop on nonDistributedBallotList: keep looping if nonDistributedBallotList is not empty
+  while (!nonDistributedBallotList_.empty()) {
     curBallot = nonDistributedBallotList_.front();
     nonDistributedBallotList_.pop_front();
-    //--------- Log to logger
-    //
-    assigned = false; //initialize
+    assigned = false;  //  initialize
     // Get ranked candidate list
-    tempRankedCandidateList = /*(int)*/ curBallot->GetRankedCandidateIDList(); // TODO
-    auto li = tempRankedCandidateList.begin();
-    while (!assigned && li != tempRankedCandidateList.end()){
-      std::advance(li, 1);
-      // Find the next ranked candidate on nonElectedCandidateList
-      curCandidateID = *li;
+    tempRankedCandidateIDList = /*(int)*/ curBallot->GetRankedCandidateIDList();
+    snprintf(msg, sizeof(msg), "Ballot %d RankedCandidateIDList: ", curBallot->GetID());
+    LOGGER->Log(msg);
+    LOGGER->Log(tempRankedCandidateIDList);
+    auto li = tempRankedCandidateIDList.begin();
+    while (!assigned && li != tempRankedCandidateIDList.end()) {
       // Create a list Iterator
       std::list<STVCandidate*>::iterator itCandidate;
-      for (itCandidate = nonElectedCandidateList_.begin(); itCandidate != nonElectedCandidateList_.end(); itCandidate++){
-        if ((*itCandidate)->GetID() == *li){
+      for (itCandidate = nonElectedCandidateList_.begin();
+      itCandidate != nonElectedCandidateList_.end(); itCandidate++) {
+        if ((*itCandidate)->GetID() == *li) {
+          if ((*itCandidate)->GetNumBallots() < 1) {
+            // Assign first ballot number
+            (*itCandidate)->SetFirstBallotNum((*firstBallotNum)++);
+          }
           numBallots = (*itCandidate)->AddBallot(curBallot);
-          //check if current candidate met droop
-          if (CheckDroop(numBallots))
-          {
+          snprintf(msg, sizeof(msg), "Ballot#%d is assigned to candidate %d-%s", curBallot->GetID(), (*itCandidate)->GetID(), (*itCandidate)->GetName().c_str());
+          LOGGER->Log(msg);
+          // check if current candidate met droop
+          if (CheckDroop(numBallots)) {
             tempCandidate = *itCandidate;
             nonElectedCandidateList_.erase(itCandidate++);
             AddCandidateToWinnersList(tempCandidate);
             //--------- Log to logger
-            //
+            snprintf(msg, sizeof(msg), "candidate %s met droop, move to winnersList", tempCandidate->GetName().c_str());
+            LOGGER->Log(msg);
           }
           assigned = true;
           break;
         }
       }
+      // Find the next ranked candidate on nonElectedCandidateList
+      std::advance(li, 1);
     }
-    if (li == tempRankedCandidateList.end() && !assigned){
-    AddBallotToDiscardedBallotList(curBallot);  // did not find a candidate on non elected list for this ballot
-    //--------- Log to logger
-    //
+    if (li == tempRankedCandidateIDList.end() && !assigned) {
+      // did not find a candidate on non elected list for this ballot
+      AddBallotToDiscardedBallotList(curBallot);
+      //--------- Log to logger
+      snprintf(msg, sizeof(msg), "Ballot#%d is discarded", curBallot->GetID());
+      LOGGER->Log(msg);
     }
   }
-  // delete tempRankedCandidateList; // NOT ALLOCATED - Josh
 }
 
 bool STVElectionRecord::CheckDroop(int droop) {
@@ -132,32 +112,15 @@ void STVElectionRecord::AddCandidateToWinnersList(STVCandidate* candidate) {
   winnersList_.push_back(candidate);
 }
 
-struct STVCandidateComparator
-{
-	// Compare 2 STVCandidate objects using number of ballots and order received
-	bool operator ()(const STVCandidate* candidate1, const STVCandidate* candidate2)
-	{
-		if (candidate1->GetNumBallots() == candidate2->GetNumBallots())
-        {return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum(); }
-      return candidate1->GetNumBallots() > candidate2->GetNumBallots();
-	}
-};
-
 void STVElectionRecord::SortNonElectedCandidateList() {
-  nonElectedCandidateList_.sort(STVCandidateComparator());
-  // nonElectedCandidateList_.sort([](const STVCandidate &candidate1, const STVCandidate &candidate2)
-  //   {
-  //     if (candidate1.GetNumBallots() == candidate2.GetNumBallots())
-  //       {return candidate1.GetFirstBallotNum()>candidate2.GetFirstBallotNum(); }
-  //     return candidate1.GetNumBallots() > candidate2.GetNumBallots();
-  //   }
-  // );
+  nonElectedCandidateList_.sort(STVCandidateComparator);
 }
 
 STVCandidate*
 STVElectionRecord::RemoveLastCandidateFromNonElectedCandidateList() {
   STVCandidate* candidate;
   candidate = nonElectedCandidateList_.back();
+  nonElectedCandidateList_.pop_back();
   return candidate;
 }
 
@@ -171,32 +134,37 @@ STVElectionRecord::AddCandidateToLosersList(STVCandidate* candidate) {
 void
 STVElectionRecord::AddLoserBallotsToNonDistributedBallotList(std::list<Ballot*>
                                                              ballot_list) {
-  nonDistributedBallotList_.assign(ballot_list.begin(),ballot_list.end());
+  nonDistributedBallotList_.assign(ballot_list.begin(), ballot_list.end());
 }
 
 void STVElectionRecord::AddBallotToDiscardedBallotList(Ballot* ballot) {
   discardedBallotList_.push_front(ballot);
 }
 
-// bool STVElectionRecord::BreakTies(const STVCandidate* candidate1, const STVCandidate* candidate2) {
-//   return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum();
-// }
-
 STVCandidate* STVElectionRecord::PopCandidateOffLosersList() {
   STVCandidate* candidate;
   candidate = losersList_.back();
   losersList_.pop_back();
-  //--------- Log to logger
-  //
   return candidate;
 }
 
+template <typename T > void STVElectionRecord::ListShuffle(std::list<T> &L) {
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  std::vector<T> V(L.begin(), L.end());
+  std::shuffle(V.begin(), V.end(), std::default_random_engine(seed));
+  L.assign(V.begin(), V.end());
+}
+
 // utility function for comparing candidates' votes
-// bool STVElectionRecord::STVCandidateComparator(const STVCandidate* candidate1, const STVCandidate* candidate2) {
-//   if (candidate1->GetNumBallots() == candidate2->GetNumBallots()){
-//     return candidate1->GetFirstBallotNum()>candidate2->GetFirstBallotNum();
-//   }
-//   else {
-//   return candidate1->GetNumBallots() > candidate2->GetNumBallots();
-//   }
-// }
+bool STVElectionRecord::STVCandidateComparator(STVCandidate* candidate1, STVCandidate* candidate2) {
+  char msg[1000];
+  if (candidate1->GetNumBallots() == candidate2->GetNumBallots()) {
+    snprintf(msg, sizeof(msg), "Tie break between candidate %d-%s (#votes=%d, #1stBallot=%d) and candidate %d-%s (#votes=%d, #1stBallot=%d).",
+        candidate1->GetID(), candidate1->GetName().c_str(), candidate1->GetNumBallots(), candidate1->GetFirstBallotNum(),
+        candidate2->GetID(), candidate2->GetName().c_str(), candidate2->GetNumBallots(), candidate2->GetFirstBallotNum());
+    LOGGER->Log(msg);
+    return candidate1->GetFirstBallotNum() < candidate2->GetFirstBallotNum();
+  } else {
+  return candidate1->GetNumBallots() > candidate2->GetNumBallots();
+  }
+}

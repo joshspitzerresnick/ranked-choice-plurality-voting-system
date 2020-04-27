@@ -1,7 +1,7 @@
 /**
  * @file voting_info.h
  *
- * @copyright 2020 Josh Spitzer-Resnick, spitz123
+ * @copyright 2020 5801 Team3, all rights reserved
  */
 
 #ifndef SRC_VOTING_INFO_H_
@@ -47,22 +47,36 @@ class VotingInfo {
   int GetNumSeats() const;
   /**
   * @brief Adds a candidate to the list of candidates.
+  *        Sends message to perror and silently fails if try to add candidate
+  *        with same id_.
   *
   * @param[in] Candidate* holding a candidate to be added.
   */
   void AddCandidateToCandidateList(Candidate*);
   /**
   * @brief Adds an STV candidate to the list of candidates.
+  *        Sends message to perror and silently fails if try to add candidate
+  *        with same id_.
   *
   * @param[in] STVCandidate* holding an STV candidate to be added.
   */
   void AddCandidateToCandidateList(STVCandidate*);
   /**
   * @brief Adds a ballot to the list of ballots.
+  *        Sends message to perror and silently fails if try to add ballot
+  *        with same id_.
   *
   * @param[in] Ballot* holding a ballot to be added.
   */
   void AddBallotToBallotList(Ballot*);
+  /**
+   * @brief Adds a ballot to the list of invalid ballots.
+   *        Sends message to perror and silently fails if try to add ballot
+   *        with same id_.
+   *
+   * @param[in] Ballot* holding a ballot to be added.
+   */
+  void AddBallotToInvalidList(Ballot*);
   /**
   * @brief Returns number of candidates in candidate list.
   *
@@ -75,6 +89,12 @@ class VotingInfo {
   * @return int holding number of ballots in ballot list.
   */
   int GetNumBallots() const;
+  /**
+   * @brief Returns number of ballots in invalid ballot list.
+   * 
+   * @return int holding number of ballots in invalid ballot list.
+   */
+  int GetNumInvalid() const;
   /**
   * @brief Returns list of candidates.
   *
@@ -93,10 +113,31 @@ class VotingInfo {
   * @return std::list<Ballot*> holding list of ballots.
   */
   std::list<Ballot*> GetBallotList() const;
+  /**
+   * @brief Returns list of invalid ballots.
+
+   *
+   * @return std::list<Ballot*> holding list of invalid ballots.
+   */
+  std::list<Ballot*> GetInvalidList() const;
+  /**
+  * @brief Writes report of all invalidated ballots (less than half of
+  *        candidates ranked) from an STV election to a specified filename.
+  *
+  * @param[in] std::string holding a filename for report to be written to.
+  */
+  void WriteInvalidBallotsToFile(std::string filename);
+  /**
+   * @brief Log to audit file.
+   * 
+   * @return void.
+   */
+  void LogToAuditFile();
 
  private:
   void IncrementNumCandidates();
   void IncrementNumBallots();
+  void IncrementNumInvalid();
   int algorithm_;
   int num_seats_;
   int num_candidates_;
@@ -104,5 +145,7 @@ class VotingInfo {
   std::list<STVCandidate*> stv_candidate_list_;
   int num_ballots_;
   std::list<Ballot*> ballot_list_;
+  int num_invalid_;
+  std::list<Ballot*> invalid_list_;
 };
 #endif  // SRC_VOTING_INFO_H_

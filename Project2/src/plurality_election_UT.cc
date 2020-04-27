@@ -47,7 +47,7 @@ class PluralityElectionTests : public ::testing::Test {
     ballot9 = new Ballot(9, candidateList1);
     ballot10 = new Ballot(10, candidateList2);
     candidate1 = new Candidate(1, "Allison", "Democrat");
-    candidate1 = new Candidate(2, "Mark", "Independant");
+    candidate2 = new Candidate(2, "Mark", "Independant");
   }
   virtual void TearDown() {
     delete ballot1;
@@ -70,12 +70,28 @@ class PluralityElectionTests : public ::testing::Test {
  ******************************************************************************/
 
 TEST_F(PluralityElectionTests, Constructor) {
-    EXPECT_NO_THROW(pElection = new PluralityElection());
-    // Add more tests
+  EXPECT_NO_THROW(pElection = new PluralityElection());
 }
 
 TEST_F(PluralityElectionTests, RunElection) {
-    EXPECT_NO_THROW(pElection->RunElection(votinginfo1));
-    EXPECT_NE(candidate1->GetNumBallots(), 1);
-    // Add tests
+  EXPECT_NO_THROW(pElection->RunElection(votinginfo1));
+  EXPECT_NE(candidate1->GetNumBallots(), 1);
+  // Add tests
+}
+
+TEST_F(PluralityElectionTests, DisplayResults) {
+  std::list<Candidate*> candidates_list = votinginfo1->GetCandidateList();
+  std::list<Ballot*> ballots_list = votinginfo1->GetBallotList();
+  int num_seats;
+  num_seats = (votinginfo1->GetNumSeats() <= votinginfo1->GetNumCandidates())
+              ? votinginfo1->GetNumSeats() : votinginfo1->GetNumCandidates();
+  PluralityElectionRecord* election_record;
+  election_record = new PluralityElectionRecord(candidates_list, ballots_list);
+  election_record->DistributeBallots();
+  election_record->SortNonElectedCandidateList();
+  election_record
+      ->MoveFirstNCandidatesFromNonELectedListToWinnersList(num_seats);
+  election_record->MoveRemainingCandidatesToLosersList();
+  EXPECT_NO_THROW(pElection->DisplayResults(election_record, votinginfo1));
+  // Add tests
 }

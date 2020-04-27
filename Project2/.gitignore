@@ -2,8 +2,8 @@ build
 *.o
 *.exe
 *.out
-!documentation/html
-!documentation/latex
+documentation/html
+documentation/latex
 .vscode/
 testing/CMakeFiles/
 testing/cmake_install.cmake
@@ -13,3 +13,13 @@ src/CMakeFiles/
 src/cmake_install.cmake
 src/CMakeCache.txt
 src/VotingSystem
+audit.txt
+invalidated.txt
+src/.qmake.stash
+testing/gtest_main.a
+src/AuditFile_*
+src/InvalidBallotFile_*
+testing/AuditFile_*
+testing/InvalidBallotFile_*
+testing/system_test_report.txt
+src/Makefile
