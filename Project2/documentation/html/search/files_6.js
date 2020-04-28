@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['stv_5felection_2ecc',['stv_election.cc',['../stv__election_8cc.html',1,'']]],
-  ['stv_5felection_2eh',['stv_election.h',['../stv__election_8h.html',1,'']]],
-  ['stv_5felection_5frecord_2eh',['stv_election_record.h',['../stv__election__record_8h.html',1,'']]]
+  ['voting_5finfo_2ecc',['voting_info.cc',['../voting__info_8cc.html',1,'']]],
+  ['voting_5finfo_2eh',['voting_info.h',['../voting__info_8h.html',1,'']]],
+  ['voting_5fsystem_2ecc',['voting_system.cc',['../voting__system_8cc.html',1,'']]]
 ];

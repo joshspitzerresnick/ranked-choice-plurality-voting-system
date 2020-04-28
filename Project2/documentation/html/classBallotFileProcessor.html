@@ -78,49 +78,45 @@ Collaboration diagram for BallotFileProcessor:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aadc47aedf9172bfc26b2b6324dc40576"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallotFileProcessor.html#aadc47aedf9172bfc26b2b6324dc40576">BallotFileProcessor</a> (std::string=&quot;&quot;)</td></tr>
-<tr class="memdesc:aadc47aedf9172bfc26b2b6324dc40576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a ballot file processor with standard empty string.  <a href="#aadc47aedf9172bfc26b2b6324dc40576">More...</a><br /></td></tr>
-<tr class="separator:aadc47aedf9172bfc26b2b6324dc40576"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a372429408537c8919b969a23c3cc7e41"><td class="memItemLeft" align="right" valign="top"><a id="a372429408537c8919b969a23c3cc7e41"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallotFileProcessor.html#a372429408537c8919b969a23c3cc7e41">~BallotFileProcessor</a> ()</td></tr>
-<tr class="memdesc:a372429408537c8919b969a23c3cc7e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs a ballot file processor. <br /></td></tr>
-<tr class="separator:a372429408537c8919b969a23c3cc7e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d25f1db840f21ab7d19f4b4898193c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallotFileProcessor.html#a3d25f1db840f21ab7d19f4b4898193c9">ProcessFiles</a> (<a class="el" href="classVotingInfo.html">VotingInfo</a> *)</td></tr>
-<tr class="memdesc:a3d25f1db840f21ab7d19f4b4898193c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes ballot files.  <a href="#a3d25f1db840f21ab7d19f4b4898193c9">More...</a><br /></td></tr>
-<tr class="separator:a3d25f1db840f21ab7d19f4b4898193c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad199c2e246c3a0baf2d6a99e4ddcf144"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallotFileProcessor.html#ad199c2e246c3a0baf2d6a99e4ddcf144">BallotFileProcessor</a> ()</td></tr>
+<tr class="memdesc:ad199c2e246c3a0baf2d6a99e4ddcf144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a ballot file processor with standard empty string.  <a href="#ad199c2e246c3a0baf2d6a99e4ddcf144">More...</a><br /></td></tr>
+<tr class="separator:ad199c2e246c3a0baf2d6a99e4ddcf144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32053d65ec327ae34713d757b66a7afb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallotFileProcessor.html#a32053d65ec327ae34713d757b66a7afb">ProcessFiles</a> (std::list&lt; std::string &gt;, <a class="el" href="classVotingInfo.html">VotingInfo</a> *)</td></tr>
+<tr class="memdesc:a32053d65ec327ae34713d757b66a7afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process ballot files, return total number of ballots read.  <a href="#a32053d65ec327ae34713d757b66a7afb">More...</a><br /></td></tr>
+<tr class="separator:a32053d65ec327ae34713d757b66a7afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5fa519ae4703ac435535242070902b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallotFileProcessor.html#ab5fa519ae4703ac435535242070902b9">IsInvalid</a> (int, int, <a class="el" href="classBallot.html">Ballot</a> *)</td></tr>
+<tr class="memdesc:ab5fa519ae4703ac435535242070902b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if ballot file is valid.  <a href="#ab5fa519ae4703ac435535242070902b9">More...</a><br /></td></tr>
+<tr class="separator:ab5fa519ae4703ac435535242070902b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a14b51d82b1873d576fe51ef861701f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallotFileProcessor.html#a2a14b51d82b1873d576fe51ef861701f">GetUserInput</a> ()</td></tr>
+<tr class="memdesc:a2a14b51d82b1873d576fe51ef861701f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get user's input on how they want to provide ballot files.  <a href="#a2a14b51d82b1873d576fe51ef861701f">More...</a><br /></td></tr>
+<tr class="separator:a2a14b51d82b1873d576fe51ef861701f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23b892165d81f5b5441733ca49a30cd5"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBallotFileProcessor.html#a23b892165d81f5b5441733ca49a30cd5">GetFiles</a> (int choice)</td></tr>
+<tr class="memdesc:a23b892165d81f5b5441733ca49a30cd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch files based on user's option choice.  <a href="#a23b892165d81f5b5441733ca49a30cd5">More...</a><br /></td></tr>
+<tr class="separator:a23b892165d81f5b5441733ca49a30cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The main class for processing ballot files. </p>
 <p>Is a ballot file processor. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aadc47aedf9172bfc26b2b6324dc40576"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadc47aedf9172bfc26b2b6324dc40576">&#9670;&nbsp;</a></span>BallotFileProcessor()</h2>
+<a id="ad199c2e246c3a0baf2d6a99e4ddcf144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad199c2e246c3a0baf2d6a99e4ddcf144">&#9670;&nbsp;</a></span>BallotFileProcessor()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">BallotFileProcessor::BallotFileProcessor </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>ballotfilename</em> = <code>&quot;&quot;</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Constructs a ballot file processor with standard empty string. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">string</td><td>holding text of a csv ballot file. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">void</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -128,35 +124,145 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a3d25f1db840f21ab7d19f4b4898193c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d25f1db840f21ab7d19f4b4898193c9">&#9670;&nbsp;</a></span>ProcessFiles()</h2>
+<a id="a23b892165d81f5b5441733ca49a30cd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23b892165d81f5b5441733ca49a30cd5">&#9670;&nbsp;</a></span>GetFiles()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BallotFileProcessor::ProcessFiles </td>
+          <td class="memname">std::list&lt; std::string &gt; BallotFileProcessor::GetFiles </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classVotingInfo.html">VotingInfo</a> *&#160;</td>
-          <td class="paramname"><em>votinginfo</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>choice</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Processes ballot files. </p>
+<p>Fetch files based on user's option choice. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pointer</td><td>to <a class="el" href="classVotingInfo.html" title="The main class for storing voting information. ">VotingInfo</a> object with algorithm and seat info. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">int,user's</td><td>choice: 1-type in files' names; 2-type in directory name where the files are located.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>list&lt;string&gt;, file name list. </dd></dl>
+
+</div>
+</div>
+<a id="a2a14b51d82b1873d576fe51ef861701f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a14b51d82b1873d576fe51ef861701f">&#9670;&nbsp;</a></span>GetUserInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BallotFileProcessor::GetUserInput </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get user's input on how they want to provide ballot files. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">void.</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int, user's choice. </dd></dl>
+
+</div>
+</div>
+<a id="ab5fa519ae4703ac435535242070902b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5fa519ae4703ac435535242070902b9">&#9670;&nbsp;</a></span>IsInvalid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BallotFileProcessor::IsInvalid </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>algo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>cand_cnt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classBallot.html">Ballot</a> *&#160;</td>
+          <td class="paramname"><em>ballot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if ballot file is valid. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">int</td><td>for the algorithm used. 0 is a plurality election, 1 is an stv election.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">int</td><td>for the number of candidates in the election.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pointer</td><td>to a ballot object</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool, True if the ballot is invalid, False if the ballot valid. </dd></dl>
+
+</div>
+</div>
+<a id="a32053d65ec327ae34713d757b66a7afb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32053d65ec327ae34713d757b66a7afb">&#9670;&nbsp;</a></span>ProcessFiles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int BallotFileProcessor::ProcessFiles </td>
+          <td>(</td>
+          <td class="paramtype">std::list&lt; std::string &gt;&#160;</td>
+          <td class="paramname"><em>files</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classVotingInfo.html">VotingInfo</a> *&#160;</td>
+          <td class="paramname"><em>votinginfo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Process ballot files, return total number of ballots read. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">std::list&lt;std::string&gt;</td><td><a class="el" href="classBallot.html" title="The main class for ballots. ">Ballot</a> file list.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">VotingInfo*</td><td><a class="el" href="classVotingInfo.html" title="The main class for storing voting information. ">VotingInfo</a> object to store information from ballots.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int, total number of ballots processed. </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/spitz123/csci5801_s20/repo-Team3/Project1/src/<a class="el" href="ballot__file__processor_8h_source.html">ballot_file_processor.h</a></li>
-<li>/home/spitz123/csci5801_s20/repo-Team3/Project1/src/<a class="el" href="ballot__file__processor_8cc.html">ballot_file_processor.cc</a></li>
+<li>/home/spitz123/csci5801_s20/repo-Team3/Project2/src/<a class="el" href="ballot__file__processor_8h_source.html">ballot_file_processor.h</a></li>
+<li>/home/spitz123/csci5801_s20/repo-Team3/Project2/src/<a class="el" href="ballot__file__processor_8cc.html">ballot_file_processor.cc</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

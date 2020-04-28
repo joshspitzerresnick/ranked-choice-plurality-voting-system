@@ -60,13 +60,14 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classLogger-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Logger Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>The main class for logging info to an audit file.  
+<p>Singleton <a class="el" href="classLogger.html" title="Singleton Logger Class. ">Logger</a> Class.  
  <a href="classLogger.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="logger_8h_source.html">logger.h</a>&gt;</code></p>
@@ -78,71 +79,154 @@ Collaboration diagram for Logger:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abc41bfb031d896170c7675fa96a6b30c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#abc41bfb031d896170c7675fa96a6b30c">Logger</a> ()</td></tr>
-<tr class="memdesc:abc41bfb031d896170c7675fa96a6b30c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an object to use to log election information to a file.  <a href="#abc41bfb031d896170c7675fa96a6b30c">More...</a><br /></td></tr>
-<tr class="separator:abc41bfb031d896170c7675fa96a6b30c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb668a9e186a25fbaad2e4af6d1ed00a"><td class="memItemLeft" align="right" valign="top"><a id="acb668a9e186a25fbaad2e4af6d1ed00a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#acb668a9e186a25fbaad2e4af6d1ed00a">~Logger</a> ()</td></tr>
-<tr class="memdesc:acb668a9e186a25fbaad2e4af6d1ed00a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructs election logging object. <br /></td></tr>
-<tr class="separator:acb668a9e186a25fbaad2e4af6d1ed00a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad22a485469cc14c5266e5fda019aba4d"><td class="memItemLeft" align="right" valign="top"><a id="ad22a485469cc14c5266e5fda019aba4d"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#ad22a485469cc14c5266e5fda019aba4d">GetLogFile</a> ()</td></tr>
-<tr class="memdesc:ad22a485469cc14c5266e5fda019aba4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the file name of the election information audit file. <br /></td></tr>
-<tr class="separator:ad22a485469cc14c5266e5fda019aba4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb535266f5ad2a27ce2bd589884f347b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#adb535266f5ad2a27ce2bd589884f347b">LogToFile</a> (std::string message)</td></tr>
-<tr class="memdesc:adb535266f5ad2a27ce2bd589884f347b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Send a message to the logger to append to an election information file.  <a href="#adb535266f5ad2a27ce2bd589884f347b">More...</a><br /></td></tr>
-<tr class="separator:adb535266f5ad2a27ce2bd589884f347b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c67b32e3bdb174a86e507a82d8a2702"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#a4c67b32e3bdb174a86e507a82d8a2702">Log</a> (const std::string &amp;msg)</td></tr>
+<tr class="memdesc:a4c67b32e3bdb174a86e507a82d8a2702"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a message.  <a href="#a4c67b32e3bdb174a86e507a82d8a2702">More...</a><br /></td></tr>
+<tr class="separator:a4c67b32e3bdb174a86e507a82d8a2702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7436e95d0e81bdb0e1b3a4c78cdb9ed2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#a7436e95d0e81bdb0e1b3a4c78cdb9ed2">Log</a> (std::list&lt; int &gt; &amp;L)</td></tr>
+<tr class="memdesc:a7436e95d0e81bdb0e1b3a4c78cdb9ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a list of integers.  <a href="#a7436e95d0e81bdb0e1b3a4c78cdb9ed2">More...</a><br /></td></tr>
+<tr class="separator:a7436e95d0e81bdb0e1b3a4c78cdb9ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5273a101444fc160d1a0935b6448e791"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#a5273a101444fc160d1a0935b6448e791">Log</a> (std::list&lt; <a class="el" href="classCandidate.html">Candidate</a> *&gt; L)</td></tr>
+<tr class="memdesc:a5273a101444fc160d1a0935b6448e791"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a list of <a class="el" href="classCandidate.html" title="The main class for candidates. ">Candidate</a> objects.  <a href="#a5273a101444fc160d1a0935b6448e791">More...</a><br /></td></tr>
+<tr class="separator:a5273a101444fc160d1a0935b6448e791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99456033df2a51e976709037ad85cd11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#a99456033df2a51e976709037ad85cd11">Log</a> (std::list&lt; <a class="el" href="classBallot.html">Ballot</a> *&gt; L)</td></tr>
+<tr class="memdesc:a99456033df2a51e976709037ad85cd11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a list of <a class="el" href="classBallot.html" title="The main class for ballots. ">Ballot</a> objects.  <a href="#a99456033df2a51e976709037ad85cd11">More...</a><br /></td></tr>
+<tr class="separator:a99456033df2a51e976709037ad85cd11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:ae85cfbef8b7e6940475a5012fa1935c6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classLogger.html">Logger</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#ae85cfbef8b7e6940475a5012fa1935c6">GetLogger</a> ()</td></tr>
+<tr class="memdesc:ae85cfbef8b7e6940475a5012fa1935c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to create the instance of logger class.  <a href="#ae85cfbef8b7e6940475a5012fa1935c6">More...</a><br /></td></tr>
+<tr class="separator:ae85cfbef8b7e6940475a5012fa1935c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The main class for logging info to an audit file. </p>
-<p>Is an election file logger </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="abc41bfb031d896170c7675fa96a6b30c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc41bfb031d896170c7675fa96a6b30c">&#9670;&nbsp;</a></span>Logger()</h2>
+<div class="textblock"><p>Singleton <a class="el" href="classLogger.html" title="Singleton Logger Class. ">Logger</a> Class. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae85cfbef8b7e6940475a5012fa1935c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae85cfbef8b7e6940475a5012fa1935c6">&#9670;&nbsp;</a></span>GetLogger()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Logger::Logger </td>
+          <td class="memname"><a class="el" href="classLogger.html">Logger</a> * Logger::GetLogger </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Constructs an object to use to log election information to a file. </p>
+<p>Function to create the instance of logger class. </p>
+<dl class="section return"><dt>Returns</dt><dd>singleton object of logger class.. </dd></dl>
+
+</div>
+</div>
+<a id="a4c67b32e3bdb174a86e507a82d8a2702"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c67b32e3bdb174a86e507a82d8a2702">&#9670;&nbsp;</a></span>Log() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Logger::Log </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Logs a message. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">string</td><td>holding text of a csv ballot file. </td></tr>
+    <tr><td class="paramname">msg</td><td>message to be logged. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="adb535266f5ad2a27ce2bd589884f347b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb535266f5ad2a27ce2bd589884f347b">&#9670;&nbsp;</a></span>LogToFile()</h2>
+<a id="a7436e95d0e81bdb0e1b3a4c78cdb9ed2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7436e95d0e81bdb0e1b3a4c78cdb9ed2">&#9670;&nbsp;</a></span>Log() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Logger::LogToFile </td>
+          <td class="memname">void Logger::Log </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>message</em></td><td>)</td>
+          <td class="paramtype">std::list&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>L</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Send a message to the logger to append to an election information file. </p>
+<p>Logs a list of integers. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">message</td><td>to be written to the election information file. </td></tr>
+    <tr><td class="paramname">list</td><td>to be logged. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5273a101444fc160d1a0935b6448e791"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5273a101444fc160d1a0935b6448e791">&#9670;&nbsp;</a></span>Log() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Logger::Log </td>
+          <td>(</td>
+          <td class="paramtype">std::list&lt; <a class="el" href="classCandidate.html">Candidate</a> *&gt;&#160;</td>
+          <td class="paramname"><em>L</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Logs a list of <a class="el" href="classCandidate.html" title="The main class for candidates. ">Candidate</a> objects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>to be logged. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a99456033df2a51e976709037ad85cd11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99456033df2a51e976709037ad85cd11">&#9670;&nbsp;</a></span>Log() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Logger::Log </td>
+          <td>(</td>
+          <td class="paramtype">std::list&lt; <a class="el" href="classBallot.html">Ballot</a> *&gt;&#160;</td>
+          <td class="paramname"><em>L</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Logs a list of <a class="el" href="classBallot.html" title="The main class for ballots. ">Ballot</a> objects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>to be logged. </td></tr>
   </table>
   </dd>
 </dl>
@@ -150,8 +234,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/spitz123/csci5801_s20/repo-Team3/Project1/src/<a class="el" href="logger_8h_source.html">logger.h</a></li>
-<li>/home/spitz123/csci5801_s20/repo-Team3/Project1/src/logger.cc</li>
+<li>/home/spitz123/csci5801_s20/repo-Team3/Project2/src/<a class="el" href="logger_8h_source.html">logger.h</a></li>
+<li>/home/spitz123/csci5801_s20/repo-Team3/Project2/src/<a class="el" href="logger_8cc.html">logger.cc</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

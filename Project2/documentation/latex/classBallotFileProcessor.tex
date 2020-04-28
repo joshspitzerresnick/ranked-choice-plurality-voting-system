@@ -15,19 +15,22 @@ Collaboration diagram for Ballot\+File\+Processor\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=202pt]{classBallotFileProcessor__coll__graph}
+\includegraphics[width=196pt]{classBallotFileProcessor__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classBallotFileProcessor_aadc47aedf9172bfc26b2b6324dc40576}{Ballot\+File\+Processor} (std\+::string=\char`\"{}\char`\"{})
+\hyperlink{classBallotFileProcessor_ad199c2e246c3a0baf2d6a99e4ddcf144}{Ballot\+File\+Processor} ()
 \begin{DoxyCompactList}\small\item\em Constructs a ballot file processor with standard empty string. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classBallotFileProcessor_a372429408537c8919b969a23c3cc7e41}\label{classBallotFileProcessor_a372429408537c8919b969a23c3cc7e41}} 
-\hyperlink{classBallotFileProcessor_a372429408537c8919b969a23c3cc7e41}{$\sim$\+Ballot\+File\+Processor} ()
-\begin{DoxyCompactList}\small\item\em Deconstructs a ballot file processor. \end{DoxyCompactList}\item 
-void \hyperlink{classBallotFileProcessor_a3d25f1db840f21ab7d19f4b4898193c9}{Process\+Files} (\hyperlink{classVotingInfo}{Voting\+Info} $\ast$)
-\begin{DoxyCompactList}\small\item\em Processes ballot files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \hyperlink{classBallotFileProcessor_a32053d65ec327ae34713d757b66a7afb}{Process\+Files} (std\+::list$<$ std\+::string $>$, \hyperlink{classVotingInfo}{Voting\+Info} $\ast$)
+\begin{DoxyCompactList}\small\item\em Process ballot files, return total number of ballots read. \end{DoxyCompactList}\item 
+bool \hyperlink{classBallotFileProcessor_ab5fa519ae4703ac435535242070902b9}{Is\+Invalid} (int, int, \hyperlink{classBallot}{Ballot} $\ast$)
+\begin{DoxyCompactList}\small\item\em Check if ballot file is valid. \end{DoxyCompactList}\item 
+int \hyperlink{classBallotFileProcessor_a2a14b51d82b1873d576fe51ef861701f}{Get\+User\+Input} ()
+\begin{DoxyCompactList}\small\item\em Get user\textquotesingle{}s input on how they want to provide ballot files. \end{DoxyCompactList}\item 
+std\+::list$<$ std\+::string $>$ \hyperlink{classBallotFileProcessor_a23b892165d81f5b5441733ca49a30cd5}{Get\+Files} (int choice)
+\begin{DoxyCompactList}\small\item\em Fetch files based on user\textquotesingle{}s option choice. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -36,11 +39,11 @@ The main class for processing ballot files.
 Is a ballot file processor. 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classBallotFileProcessor_aadc47aedf9172bfc26b2b6324dc40576}\label{classBallotFileProcessor_aadc47aedf9172bfc26b2b6324dc40576}} 
+\mbox{\Hypertarget{classBallotFileProcessor_ad199c2e246c3a0baf2d6a99e4ddcf144}\label{classBallotFileProcessor_ad199c2e246c3a0baf2d6a99e4ddcf144}} 
 \index{Ballot\+File\+Processor@{Ballot\+File\+Processor}!Ballot\+File\+Processor@{Ballot\+File\+Processor}}
 \index{Ballot\+File\+Processor@{Ballot\+File\+Processor}!Ballot\+File\+Processor@{Ballot\+File\+Processor}}
 \subsubsection{\texorpdfstring{Ballot\+File\+Processor()}{BallotFileProcessor()}}
-{\footnotesize\ttfamily Ballot\+File\+Processor\+::\+Ballot\+File\+Processor (\begin{DoxyParamCaption}\item[{std\+::string}]{ballotfilename = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+{\footnotesize\ttfamily Ballot\+File\+Processor\+::\+Ballot\+File\+Processor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -48,30 +51,93 @@ Constructs a ballot file processor with standard empty string.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em string} & holding text of a csv ballot file. \\
+\mbox{\tt in}  & {\em void} & \\
 \hline
 \end{DoxyParams}
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classBallotFileProcessor_a3d25f1db840f21ab7d19f4b4898193c9}\label{classBallotFileProcessor_a3d25f1db840f21ab7d19f4b4898193c9}} 
-\index{Ballot\+File\+Processor@{Ballot\+File\+Processor}!Process\+Files@{Process\+Files}}
-\index{Process\+Files@{Process\+Files}!Ballot\+File\+Processor@{Ballot\+File\+Processor}}
-\subsubsection{\texorpdfstring{Process\+Files()}{ProcessFiles()}}
-{\footnotesize\ttfamily void Ballot\+File\+Processor\+::\+Process\+Files (\begin{DoxyParamCaption}\item[{\hyperlink{classVotingInfo}{Voting\+Info} $\ast$}]{votinginfo }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classBallotFileProcessor_a23b892165d81f5b5441733ca49a30cd5}\label{classBallotFileProcessor_a23b892165d81f5b5441733ca49a30cd5}} 
+\index{Ballot\+File\+Processor@{Ballot\+File\+Processor}!Get\+Files@{Get\+Files}}
+\index{Get\+Files@{Get\+Files}!Ballot\+File\+Processor@{Ballot\+File\+Processor}}
+\subsubsection{\texorpdfstring{Get\+Files()}{GetFiles()}}
+{\footnotesize\ttfamily std\+::list$<$ std\+::string $>$ Ballot\+File\+Processor\+::\+Get\+Files (\begin{DoxyParamCaption}\item[{int}]{choice }\end{DoxyParamCaption})}
 
 
 
-Processes ballot files. 
+Fetch files based on user\textquotesingle{}s option choice. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em pointer} & to \hyperlink{classVotingInfo}{Voting\+Info} object with algorithm and seat info. \\
+\mbox{\tt in}  & {\em int,user\textquotesingle{}s} & choice\+: 1-\/type in files\textquotesingle{} names; 2-\/type in directory name where the files are located.\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list$<$string$>$, file name list. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBallotFileProcessor_a2a14b51d82b1873d576fe51ef861701f}\label{classBallotFileProcessor_a2a14b51d82b1873d576fe51ef861701f}} 
+\index{Ballot\+File\+Processor@{Ballot\+File\+Processor}!Get\+User\+Input@{Get\+User\+Input}}
+\index{Get\+User\+Input@{Get\+User\+Input}!Ballot\+File\+Processor@{Ballot\+File\+Processor}}
+\subsubsection{\texorpdfstring{Get\+User\+Input()}{GetUserInput()}}
+{\footnotesize\ttfamily int Ballot\+File\+Processor\+::\+Get\+User\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get user\textquotesingle{}s input on how they want to provide ballot files. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em void.} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int, user\textquotesingle{}s choice. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBallotFileProcessor_ab5fa519ae4703ac435535242070902b9}\label{classBallotFileProcessor_ab5fa519ae4703ac435535242070902b9}} 
+\index{Ballot\+File\+Processor@{Ballot\+File\+Processor}!Is\+Invalid@{Is\+Invalid}}
+\index{Is\+Invalid@{Is\+Invalid}!Ballot\+File\+Processor@{Ballot\+File\+Processor}}
+\subsubsection{\texorpdfstring{Is\+Invalid()}{IsInvalid()}}
+{\footnotesize\ttfamily bool Ballot\+File\+Processor\+::\+Is\+Invalid (\begin{DoxyParamCaption}\item[{int}]{algo,  }\item[{int}]{cand\+\_\+cnt,  }\item[{\hyperlink{classBallot}{Ballot} $\ast$}]{ballot }\end{DoxyParamCaption})}
+
+
+
+Check if ballot file is valid. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em int} & for the algorithm used. 0 is a plurality election, 1 is an stv election.\\
+\hline
+\mbox{\tt in}  & {\em int} & for the number of candidates in the election.\\
+\hline
+\mbox{\tt in}  & {\em pointer} & to a ballot object\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool, True if the ballot is invalid, False if the ballot valid. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBallotFileProcessor_a32053d65ec327ae34713d757b66a7afb}\label{classBallotFileProcessor_a32053d65ec327ae34713d757b66a7afb}} 
+\index{Ballot\+File\+Processor@{Ballot\+File\+Processor}!Process\+Files@{Process\+Files}}
+\index{Process\+Files@{Process\+Files}!Ballot\+File\+Processor@{Ballot\+File\+Processor}}
+\subsubsection{\texorpdfstring{Process\+Files()}{ProcessFiles()}}
+{\footnotesize\ttfamily int Ballot\+File\+Processor\+::\+Process\+Files (\begin{DoxyParamCaption}\item[{std\+::list$<$ std\+::string $>$}]{files,  }\item[{\hyperlink{classVotingInfo}{Voting\+Info} $\ast$}]{votinginfo }\end{DoxyParamCaption})}
+
+
+
+Process ballot files, return total number of ballots read. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em std\+::list$<$std\+::string$>$} & \hyperlink{classBallot}{Ballot} file list.\\
+\hline
+\mbox{\tt in}  & {\em Voting\+Info$\ast$} & \hyperlink{classVotingInfo}{Voting\+Info} object to store information from ballots.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int, total number of ballots processed. 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{ballot__file__processor_8h}{ballot\+\_\+file\+\_\+processor.\+h}\item 
-/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{ballot__file__processor_8cc}{ballot\+\_\+file\+\_\+processor.\+cc}\end{DoxyCompactItemize}
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project2/src/\hyperlink{ballot__file__processor_8h}{ballot\+\_\+file\+\_\+processor.\+h}\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project2/src/\hyperlink{ballot__file__processor_8cc}{ballot\+\_\+file\+\_\+processor.\+cc}\end{DoxyCompactItemize}

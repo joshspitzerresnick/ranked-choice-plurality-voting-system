@@ -15,7 +15,7 @@ Collaboration diagram for S\+T\+V\+Election\+Record\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=253pt]{classSTVElectionRecord__coll__graph}
+\includegraphics[width=238pt]{classSTVElectionRecord__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -35,11 +35,13 @@ std\+::list$<$ \hyperlink{classSTVCandidate}{S\+T\+V\+Candidate} $\ast$ $>$ \hyp
 \mbox{\Hypertarget{classSTVElectionRecord_affc79a53b8fa74a8d7a65ae92b256387}\label{classSTVElectionRecord_affc79a53b8fa74a8d7a65ae92b256387}} 
 std\+::list$<$ \hyperlink{classSTVCandidate}{S\+T\+V\+Candidate} $\ast$ $>$ \hyperlink{classSTVElectionRecord_affc79a53b8fa74a8d7a65ae92b256387}{Get\+Losers\+List} ()
 \begin{DoxyCompactList}\small\item\em Function to get losers\+List\+\_\+. \end{DoxyCompactList}\item 
+int \hyperlink{classSTVElectionRecord_aa954f6081a250962261e63a7497c1eb4}{Get\+Droop} ()
+\begin{DoxyCompactList}\small\item\em Returns droop quota. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classSTVElectionRecord_a9f0c214158ad1d590db5f0ac3712c4ef}\label{classSTVElectionRecord_a9f0c214158ad1d590db5f0ac3712c4ef}} 
 void \hyperlink{classSTVElectionRecord_a9f0c214158ad1d590db5f0ac3712c4ef}{Shuffle\+Ballots} ()
 \begin{DoxyCompactList}\small\item\em Function to shuffle the ballots prior to the election. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classSTVElectionRecord_a38efbeda31b39ea6973d3b77b2ef3769}\label{classSTVElectionRecord_a38efbeda31b39ea6973d3b77b2ef3769}} 
-void \hyperlink{classSTVElectionRecord_a38efbeda31b39ea6973d3b77b2ef3769}{Distribute\+Ballots} ()
+\mbox{\Hypertarget{classSTVElectionRecord_a0fb9749e08613f0024656a3b55b9ec3f}\label{classSTVElectionRecord_a0fb9749e08613f0024656a3b55b9ec3f}} 
+void \hyperlink{classSTVElectionRecord_a0fb9749e08613f0024656a3b55b9ec3f}{Distribute\+Ballots} (int $\ast$)
 \begin{DoxyCompactList}\small\item\em Function to distribute the ballots to the canidate of the ballots choosing. \end{DoxyCompactList}\item 
 bool \hyperlink{classSTVElectionRecord_ab941d3821a34ef527128042500c416c7}{Check\+Droop} (int)
 \begin{DoxyCompactList}\small\item\em Function to check a ballot count against the droop value. \end{DoxyCompactList}\item 
@@ -57,7 +59,7 @@ void \hyperlink{classSTVElectionRecord_a04c1523f0e9f60e87544542fc39c56c4}{Add\+L
 void \hyperlink{classSTVElectionRecord_a441b1386f1c250a6e2c92763b31bd1a2}{Add\+Ballot\+To\+Discarded\+Ballot\+List} (\hyperlink{classBallot}{Ballot} $\ast$)
 \begin{DoxyCompactList}\small\item\em Add ballot to discared ballot list. \end{DoxyCompactList}\item 
 \hyperlink{classSTVCandidate}{S\+T\+V\+Candidate} $\ast$ \hyperlink{classSTVElectionRecord_ae7078fcee0d4b897d1536bee9ac342f6}{Pop\+Candidate\+Off\+Losers\+List} ()
-\begin{DoxyCompactList}\small\item\em Break a tie between two stv candidates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Take an stv candidate off the losers list. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -70,7 +72,7 @@ Is an S\+TV Election Record -\/ will do most of S\+TV election work.
 \index{S\+T\+V\+Election\+Record@{S\+T\+V\+Election\+Record}!S\+T\+V\+Election\+Record@{S\+T\+V\+Election\+Record}}
 \index{S\+T\+V\+Election\+Record@{S\+T\+V\+Election\+Record}!S\+T\+V\+Election\+Record@{S\+T\+V\+Election\+Record}}
 \subsubsection{\texorpdfstring{S\+T\+V\+Election\+Record()}{STVElectionRecord()}}
-{\footnotesize\ttfamily S\+T\+V\+Election\+Record\+::\+S\+T\+V\+Election\+Record (\begin{DoxyParamCaption}\item[{const std\+::list$<$ \hyperlink{classSTVCandidate}{S\+T\+V\+Candidate} $\ast$$>$}]{stvcandidate\+\_\+list,  }\item[{const std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$$>$}]{ballot\+\_\+list,  }\item[{int}]{droop }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+{\footnotesize\ttfamily S\+T\+V\+Election\+Record\+::\+S\+T\+V\+Election\+Record (\begin{DoxyParamCaption}\item[{const std\+::list$<$ \hyperlink{classSTVCandidate}{S\+T\+V\+Candidate} $\ast$$>$}]{,  }\item[{const std\+::list$<$ \hyperlink{classBallot}{Ballot} $\ast$$>$}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
 
 
 
@@ -169,6 +171,19 @@ Function to check a ballot count against the droop value.
 \begin{DoxyReturn}{Returns}
 Returns a bool of true if droop has been met and false otherwise. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classSTVElectionRecord_aa954f6081a250962261e63a7497c1eb4}\label{classSTVElectionRecord_aa954f6081a250962261e63a7497c1eb4}} 
+\index{S\+T\+V\+Election\+Record@{S\+T\+V\+Election\+Record}!Get\+Droop@{Get\+Droop}}
+\index{Get\+Droop@{Get\+Droop}!S\+T\+V\+Election\+Record@{S\+T\+V\+Election\+Record}}
+\subsubsection{\texorpdfstring{Get\+Droop()}{GetDroop()}}
+{\footnotesize\ttfamily int S\+T\+V\+Election\+Record\+::\+Get\+Droop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns droop quota. 
+
+\begin{DoxyReturn}{Returns}
+int holding droop quota. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classSTVElectionRecord_ae7078fcee0d4b897d1536bee9ac342f6}\label{classSTVElectionRecord_ae7078fcee0d4b897d1536bee9ac342f6}} 
 \index{S\+T\+V\+Election\+Record@{S\+T\+V\+Election\+Record}!Pop\+Candidate\+Off\+Losers\+List@{Pop\+Candidate\+Off\+Losers\+List}}
 \index{Pop\+Candidate\+Off\+Losers\+List@{Pop\+Candidate\+Off\+Losers\+List}!S\+T\+V\+Election\+Record@{S\+T\+V\+Election\+Record}}
@@ -177,18 +192,9 @@ Returns a bool of true if droop has been met and false otherwise.
 
 
 
-Break a tie between two stv candidates. 
+Take an stv candidate off the losers list. 
 
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em S\+TV} & candidate 1 \\
-\hline
-\mbox{\tt in}  & {\em S\+TV} & candidate 2\\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-true if the first candidate wins over the second candidate Take an stv candidate off the losers list
-
 An stv candidate 
 \end{DoxyReturn}
 \mbox{\Hypertarget{classSTVElectionRecord_a741e5d955734ed07db8465cbaa3b0091}\label{classSTVElectionRecord_a741e5d955734ed07db8465cbaa3b0091}} 
@@ -208,5 +214,5 @@ The last stv candidate from the non elected candidates list
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/\hyperlink{stv__election__record_8h}{stv\+\_\+election\+\_\+record.\+h}\item 
-/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/stv\+\_\+election\+\_\+record.\+cc\end{DoxyCompactItemize}
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project2/src/\hyperlink{stv__election__record_8h}{stv\+\_\+election\+\_\+record.\+h}\item 
+/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project2/src/stv\+\_\+election\+\_\+record.\+cc\end{DoxyCompactItemize}

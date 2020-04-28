@@ -17,59 +17,59 @@ using namespace std;
 extern char LogFileName[];
 #define LOGGER Logger::GetLogger()
 /**
-*   Singleton Logger Class.
+*   @brief Singleton Logger Class.
 */
 class Logger {
  public:
     /**
-    *   Logs a message
+    *   @brief Logs a message
     *   @param msg message to be logged.
     */
     void Log(const std::string& msg);
     /**
-    *   Funtion to create the instance of logger class.
+    *   @brief Function to create the instance of logger class.
     *   @return singleton object of logger class..
     */
     static Logger* GetLogger();
     /**
-    *   Logs a list of integers
+    *   @brief Logs a list of integers
     *   @param list to be logged.
     */
     void Log(std::list<int> &L);
     /**
-    *   Logs a list of Candidate objects
+    *   @brief Logs a list of Candidate objects
     *   @param list to be logged.
     */
     void Log(std::list<Candidate*> L);
     /**
-    *   Logs a list of Ballot objects
+    *   @brief Logs a list of Ballot objects
     *   @param list to be logged.
     */
     void Log(std::list<Ballot*> L);
 
  private:
     /**
-    *    Default constructor for the Logger class.
+    *   @brief Default constructor for the Logger class.
     */
     Logger();
     /**
-    *   copy constructor for the Logger class.
+    *   @brief copy constructor for the Logger class.
     */
     Logger(const Logger&) {}  // copy constructor is private
     /**
-    *   assignment operator for the Logger class.
+    *   @brief assignment operator for the Logger class.
     */
     Logger& operator=(const Logger&) { return *this; }
     /**
-    *   Log file name.
+    *   @brief Log file name.
     **/
    //  static std::string fileName;
     /**
-    *   Singleton logger class object pointer.
+    *   @brief Singleton logger class object pointer.
     **/
     static Logger* pThis;
     /**
-    *   Log file stream object.
+    *   @brief Log file stream object.
     **/
     static std::ofstream logFile;
 };

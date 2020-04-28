@@ -71,6 +71,9 @@ $(function() {
 <li>AddBallotToDiscardedBallotList()
 : <a class="el" href="classSTVElectionRecord.html#a441b1386f1c250a6e2c92763b31bd1a2">STVElectionRecord</a>
 </li>
+<li>AddBallotToInvalidList()
+: <a class="el" href="classVotingInfo.html#abeaad75b449c2dee8379d1f67768f963">VotingInfo</a>
+</li>
 <li>AddCandidateToCandidateList()
 : <a class="el" href="classVotingInfo.html#ac0ab5f83a06ea6721999addb43a581ea">VotingInfo</a>
 </li>
@@ -91,10 +94,7 @@ $(function() {
 : <a class="el" href="classBallot.html#a890f4b9091da6f3836b5730d640869f8">Ballot</a>
 </li>
 <li>BallotFileProcessor()
-: <a class="el" href="classBallotFileProcessor.html#aadc47aedf9172bfc26b2b6324dc40576">BallotFileProcessor</a>
-</li>
-<li>BreakTies()
-: <a class="el" href="classPluralityElectionRecord.html#af157c9564184c444bcf8cab59b0ac07e">PluralityElectionRecord</a>
+: <a class="el" href="classBallotFileProcessor.html#ad199c2e246c3a0baf2d6a99e4ddcf144">BallotFileProcessor</a>
 </li>
 </ul>
 
@@ -113,18 +113,15 @@ $(function() {
 
 
 <h3><a id="index_d"></a>- d -</h3><ul>
-<li>DisplayElectionResults()
-: <a class="el" href="classResultDisplay.html#aa5c34c71893f44bf148983c0ddf35627">ResultDisplay</a>
-</li>
 <li>DisplayResult()
-: <a class="el" href="classSTVElection.html#a224ba2c99b4dbd2f4bbce4de8b1e98f4">STVElection</a>
+: <a class="el" href="classSTVElection.html#aac94522a407b09ee5030abe88c61a1e8">STVElection</a>
 </li>
 <li>DisplayResults()
 : <a class="el" href="classPluralityElection.html#a7e2e3eb5e4ccdff5f9f57a7a17148608">PluralityElection</a>
 </li>
 <li>DistributeBallots()
 : <a class="el" href="classPluralityElectionRecord.html#a0429e5fd83d0583d0077c51b163cae23">PluralityElectionRecord</a>
-, <a class="el" href="classSTVElectionRecord.html#a38efbeda31b39ea6973d3b77b2ef3769">STVElectionRecord</a>
+, <a class="el" href="classSTVElectionRecord.html#a0fb9749e08613f0024656a3b55b9ec3f">STVElectionRecord</a>
 </li>
 </ul>
 
@@ -139,6 +136,12 @@ $(function() {
 <li>GetCandidateList()
 : <a class="el" href="classVotingInfo.html#ad64e934ebd73e4be9e89458e0a304030">VotingInfo</a>
 </li>
+<li>GetDroop()
+: <a class="el" href="classSTVElectionRecord.html#aa954f6081a250962261e63a7497c1eb4">STVElectionRecord</a>
+</li>
+<li>GetFiles()
+: <a class="el" href="classBallotFileProcessor.html#a23b892165d81f5b5441733ca49a30cd5">BallotFileProcessor</a>
+</li>
 <li>GetFirstBallotNum()
 : <a class="el" href="classSTVCandidate.html#a3281dae3d03733994405241e57a23eec">STVCandidate</a>
 </li>
@@ -146,8 +149,11 @@ $(function() {
 : <a class="el" href="classBallot.html#ab918e416b8b0981b82b20b9df1d7ba51">Ballot</a>
 , <a class="el" href="classCandidate.html#a29b844b51162c153c6f85cf817c1c9d2">Candidate</a>
 </li>
-<li>GetLogFile()
-: <a class="el" href="classLogger.html#ad22a485469cc14c5266e5fda019aba4d">Logger</a>
+<li>GetInvalidList()
+: <a class="el" href="classVotingInfo.html#a387f2f8293d6b90d2c877b237e2e43f6">VotingInfo</a>
+</li>
+<li>GetLogger()
+: <a class="el" href="classLogger.html#ae85cfbef8b7e6940475a5012fa1935c6">Logger</a>
 </li>
 <li>GetLosersList()
 : <a class="el" href="classPluralityElectionRecord.html#af998fcfa909f9e781ab5c48bd6b54d77">PluralityElectionRecord</a>
@@ -171,6 +177,9 @@ $(function() {
 <li>GetNumCandidates()
 : <a class="el" href="classVotingInfo.html#add7749e53650135da703aa7b816598f5">VotingInfo</a>
 </li>
+<li>GetNumInvalid()
+: <a class="el" href="classVotingInfo.html#ab228e2f9415e099d0d38c2194309e3c6">VotingInfo</a>
+</li>
 <li>GetNumSeats()
 : <a class="el" href="classVotingInfo.html#a9c226e3b169e0228ab26cb0a251792bd">VotingInfo</a>
 </li>
@@ -179,6 +188,9 @@ $(function() {
 </li>
 <li>GetSTVCandidateList()
 : <a class="el" href="classVotingInfo.html#a16f743613daad52be36a92226001e5dd">VotingInfo</a>
+</li>
+<li>GetUserInput()
+: <a class="el" href="classBallotFileProcessor.html#a2a14b51d82b1873d576fe51ef861701f">BallotFileProcessor</a>
 </li>
 <li>GetWinnersList()
 : <a class="el" href="classPluralityElectionRecord.html#a5b5da69173023ac0441918b0485b58b9">PluralityElectionRecord</a>
@@ -191,15 +203,18 @@ $(function() {
 <li>IncrementNumBallots()
 : <a class="el" href="classCandidate.html#a15a55468662174c8189b32fe344deb9e">Candidate</a>
 </li>
+<li>IsInvalid()
+: <a class="el" href="classBallotFileProcessor.html#ab5fa519ae4703ac435535242070902b9">BallotFileProcessor</a>
+</li>
 </ul>
 
 
 <h3><a id="index_l"></a>- l -</h3><ul>
-<li>Logger()
-: <a class="el" href="classLogger.html#abc41bfb031d896170c7675fa96a6b30c">Logger</a>
+<li>Log()
+: <a class="el" href="classLogger.html#a4c67b32e3bdb174a86e507a82d8a2702">Logger</a>
 </li>
-<li>LogToFile()
-: <a class="el" href="classLogger.html#adb535266f5ad2a27ce2bd589884f347b">Logger</a>
+<li>LogToAuditFile()
+: <a class="el" href="classVotingInfo.html#a04dd909817f43719f40b3d537b74fe67">VotingInfo</a>
 </li>
 </ul>
 
@@ -225,7 +240,7 @@ $(function() {
 : <a class="el" href="classSTVElectionRecord.html#ae7078fcee0d4b897d1536bee9ac342f6">STVElectionRecord</a>
 </li>
 <li>ProcessFiles()
-: <a class="el" href="classBallotFileProcessor.html#a3d25f1db840f21ab7d19f4b4898193c9">BallotFileProcessor</a>
+: <a class="el" href="classBallotFileProcessor.html#a32053d65ec327ae34713d757b66a7afb">BallotFileProcessor</a>
 </li>
 </ul>
 
@@ -237,12 +252,9 @@ $(function() {
 <li>RemoveLastCandidateFromNonElectedCandidateList()
 : <a class="el" href="classSTVElectionRecord.html#a741e5d955734ed07db8465cbaa3b0091">STVElectionRecord</a>
 </li>
-<li>ResultDisplay()
-: <a class="el" href="classResultDisplay.html#ab2395a9e2f5723c8a737469bef03a2b5">ResultDisplay</a>
-</li>
 <li>RunElection()
 : <a class="el" href="classPluralityElection.html#aef5d1b066923d289571e49cc5d9836e7">PluralityElection</a>
-, <a class="el" href="classSTVElection.html#a3b80c78d70ba3dc7181884b0dfcf142e">STVElection</a>
+, <a class="el" href="classSTVElection.html#a5b72107678148a378c2c6f2ea674f344">STVElection</a>
 </li>
 </ul>
 
@@ -277,18 +289,16 @@ $(function() {
 </ul>
 
 
+<h3><a id="index_w"></a>- w -</h3><ul>
+<li>WriteInvalidBallotsToFile()
+: <a class="el" href="classVotingInfo.html#a2b8291b20085e9e4397f3d0dd0cc1a32">VotingInfo</a>
+</li>
+</ul>
+
+
 <h3><a id="index_0x7e"></a>- ~ -</h3><ul>
-<li>~BallotFileProcessor()
-: <a class="el" href="classBallotFileProcessor.html#a372429408537c8919b969a23c3cc7e41">BallotFileProcessor</a>
-</li>
-<li>~Logger()
-: <a class="el" href="classLogger.html#acb668a9e186a25fbaad2e4af6d1ed00a">Logger</a>
-</li>
 <li>~PluralityElectionRecord()
 : <a class="el" href="classPluralityElectionRecord.html#ae04ff63f885d88bb3160621802855413">PluralityElectionRecord</a>
-</li>
-<li>~ResultDisplay()
-: <a class="el" href="classResultDisplay.html#a763c9837857c1dd00d06aa2fc6d357fb">ResultDisplay</a>
 </li>
 <li>~VotingInfo()
 : <a class="el" href="classVotingInfo.html#a72e88f41ab4e266582041b8f42768586">VotingInfo</a>

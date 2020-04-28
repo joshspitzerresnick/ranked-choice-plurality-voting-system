@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['votinginfo',['VotingInfo',['../classVotingInfo.html#a7bdb2f2026f5f68eee3fbee92855b759',1,'VotingInfo']]]
+  ['userinterface',['UserInterface',['../voting__system_8cc.html#adea641fb0c9612320d13079a7b90f346',1,'voting_system.cc']]]
 ];

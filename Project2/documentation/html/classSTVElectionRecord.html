@@ -97,14 +97,17 @@ std::list&lt; <a class="el" href="classSTVCandidate.html">STVCandidate</a> * &gt
 std::list&lt; <a class="el" href="classSTVCandidate.html">STVCandidate</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTVElectionRecord.html#affc79a53b8fa74a8d7a65ae92b256387">GetLosersList</a> ()</td></tr>
 <tr class="memdesc:affc79a53b8fa74a8d7a65ae92b256387"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to get losersList_. <br /></td></tr>
 <tr class="separator:affc79a53b8fa74a8d7a65ae92b256387"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa954f6081a250962261e63a7497c1eb4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTVElectionRecord.html#aa954f6081a250962261e63a7497c1eb4">GetDroop</a> ()</td></tr>
+<tr class="memdesc:aa954f6081a250962261e63a7497c1eb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns droop quota.  <a href="#aa954f6081a250962261e63a7497c1eb4">More...</a><br /></td></tr>
+<tr class="separator:aa954f6081a250962261e63a7497c1eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f0c214158ad1d590db5f0ac3712c4ef"><td class="memItemLeft" align="right" valign="top"><a id="a9f0c214158ad1d590db5f0ac3712c4ef"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTVElectionRecord.html#a9f0c214158ad1d590db5f0ac3712c4ef">ShuffleBallots</a> ()</td></tr>
 <tr class="memdesc:a9f0c214158ad1d590db5f0ac3712c4ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to shuffle the ballots prior to the election. <br /></td></tr>
 <tr class="separator:a9f0c214158ad1d590db5f0ac3712c4ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38efbeda31b39ea6973d3b77b2ef3769"><td class="memItemLeft" align="right" valign="top"><a id="a38efbeda31b39ea6973d3b77b2ef3769"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTVElectionRecord.html#a38efbeda31b39ea6973d3b77b2ef3769">DistributeBallots</a> ()</td></tr>
-<tr class="memdesc:a38efbeda31b39ea6973d3b77b2ef3769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to distribute the ballots to the canidate of the ballots choosing. <br /></td></tr>
-<tr class="separator:a38efbeda31b39ea6973d3b77b2ef3769"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fb9749e08613f0024656a3b55b9ec3f"><td class="memItemLeft" align="right" valign="top"><a id="a0fb9749e08613f0024656a3b55b9ec3f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTVElectionRecord.html#a0fb9749e08613f0024656a3b55b9ec3f">DistributeBallots</a> (int *)</td></tr>
+<tr class="memdesc:a0fb9749e08613f0024656a3b55b9ec3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to distribute the ballots to the canidate of the ballots choosing. <br /></td></tr>
+<tr class="separator:a0fb9749e08613f0024656a3b55b9ec3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab941d3821a34ef527128042500c416c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTVElectionRecord.html#ab941d3821a34ef527128042500c416c7">CheckDroop</a> (int)</td></tr>
 <tr class="memdesc:ab941d3821a34ef527128042500c416c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to check a ballot count against the droop value.  <a href="#ab941d3821a34ef527128042500c416c7">More...</a><br /></td></tr>
 <tr class="separator:ab941d3821a34ef527128042500c416c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,7 +131,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:a441b1386f1c250a6e2c92763b31bd1a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add ballot to discared ballot list.  <a href="#a441b1386f1c250a6e2c92763b31bd1a2">More...</a><br /></td></tr>
 <tr class="separator:a441b1386f1c250a6e2c92763b31bd1a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7078fcee0d4b897d1536bee9ac342f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSTVCandidate.html">STVCandidate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTVElectionRecord.html#ae7078fcee0d4b897d1536bee9ac342f6">PopCandidateOffLosersList</a> ()</td></tr>
-<tr class="memdesc:ae7078fcee0d4b897d1536bee9ac342f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Break a tie between two stv candidates.  <a href="#ae7078fcee0d4b897d1536bee9ac342f6">More...</a><br /></td></tr>
+<tr class="memdesc:ae7078fcee0d4b897d1536bee9ac342f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take an stv candidate off the losers list.  <a href="#ae7078fcee0d4b897d1536bee9ac342f6">More...</a><br /></td></tr>
 <tr class="separator:ae7078fcee0d4b897d1536bee9ac342f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -140,27 +143,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">STVElectionRecord::STVElectionRecord </td>
           <td>(</td>
           <td class="paramtype">const std::list&lt; <a class="el" href="classSTVCandidate.html">STVCandidate</a> *&gt;&#160;</td>
-          <td class="paramname"><em>stvcandidate_list</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::list&lt; <a class="el" href="classBallot.html">Ballot</a> *&gt;&#160;</td>
-          <td class="paramname"><em>ballot_list</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>droop</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -168,11 +168,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Constructs an stv election record with a candidate list, ballot list, and droop value. </p>
@@ -320,6 +315,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="aa954f6081a250962261e63a7497c1eb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa954f6081a250962261e63a7497c1eb4">&#9670;&nbsp;</a></span>GetDroop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int STVElectionRecord::GetDroop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns droop quota. </p>
+<dl class="section return"><dt>Returns</dt><dd>int holding droop quota. </dd></dl>
+
+</div>
+</div>
 <a id="ae7078fcee0d4b897d1536bee9ac342f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae7078fcee0d4b897d1536bee9ac342f6">&#9670;&nbsp;</a></span>PopCandidateOffLosersList()</h2>
 
@@ -335,17 +350,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 
-<p>Break a tie between two stv candidates. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">STV</td><td>candidate 1 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">STV</td><td>candidate 2</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if the first candidate wins over the second candidate Take an stv candidate off the losers list</dd>
-<dd>
-An stv candidate </dd></dl>
+<p>Take an stv candidate off the losers list. </p>
+<dl class="section return"><dt>Returns</dt><dd>An stv candidate </dd></dl>
 
 </div>
 </div>
@@ -370,8 +376,8 @@ An stv candidate </dd></dl>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/spitz123/csci5801_s20/repo-Team3/Project1/src/<a class="el" href="stv__election__record_8h_source.html">stv_election_record.h</a></li>
-<li>/home/spitz123/csci5801_s20/repo-Team3/Project1/src/stv_election_record.cc</li>
+<li>/home/spitz123/csci5801_s20/repo-Team3/Project2/src/<a class="el" href="stv__election__record_8h_source.html">stv_election_record.h</a></li>
+<li>/home/spitz123/csci5801_s20/repo-Team3/Project2/src/stv_election_record.cc</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

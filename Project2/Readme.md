@@ -1,4 +1,4 @@
-# csci5801_Project2 - Team3
+# CSci 5801 Project2 - Team3
 
 Project2 - Agile Methodology - VotingSystem
 

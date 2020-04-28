@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: /home/spitz123/csci5801_s20/repo-Team3/Project1/src/logger.h File Reference</title>
+<title>My Project: /home/spitz123/csci5801_s20/repo-Team3/Project2/src/logger.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,28 +63,43 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">logger.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;fstream&gt;</code><br />
+<div class="textblock"><code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;list&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="candidate_8h_source.html">candidate.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for logger.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="logger_8h__incl.png" border="0" usemap="#_2home_2spitz123_2csci5801__s20_2repo-Team3_2Project1_2src_2logger_8h" alt=""/></div>
+<div class="center"><img src="logger_8h__incl.png" border="0" usemap="#_2home_2spitz123_2csci5801__s20_2repo-Team3_2Project2_2src_2logger_8h" alt=""/></div>
+<map name="_2home_2spitz123_2csci5801__s20_2repo-Team3_2Project2_2src_2logger_8h" id="_2home_2spitz123_2csci5801__s20_2repo-Team3_2Project2_2src_2logger_8h">
+<area shape="rect" id="node8" href="candidate_8h.html" title="candidate.h" alt="" coords="251,109,341,136"/>
+<area shape="rect" id="node9" href="ballot_8h.html" title="ballot.h" alt="" coords="299,184,363,211"/>
+</map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="logger_8h__dep__incl.png" border="0" usemap="#_2home_2spitz123_2csci5801__s20_2repo-Team3_2Project1_2src_2logger_8hdep" alt=""/></div>
-<map name="_2home_2spitz123_2csci5801__s20_2repo-Team3_2Project1_2src_2logger_8hdep" id="_2home_2spitz123_2csci5801__s20_2repo-Team3_2Project1_2src_2logger_8hdep">
-<area shape="rect" id="node2" href="stv__election__record_8h.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project1\l/src/stv_election_record.h" alt="" coords="79,109,253,165"/>
-<area shape="rect" id="node5" href="voting__system_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project1\l/src/voting_system.cc" alt="" coords="204,317,379,373"/>
-<area shape="rect" id="node3" href="stv__election_8h.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project1\l/src/stv_election.h" alt="" coords="79,213,253,269"/>
-<area shape="rect" id="node4" href="stv__election_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project1\l/src/stv_election.cc" alt="" coords="5,317,180,373"/>
+<div class="center"><img src="logger_8h__dep__incl.png" border="0" usemap="#_2home_2spitz123_2csci5801__s20_2repo-Team3_2Project2_2src_2logger_8hdep" alt=""/></div>
+<map name="_2home_2spitz123_2csci5801__s20_2repo-Team3_2Project2_2src_2logger_8hdep" id="_2home_2spitz123_2csci5801__s20_2repo-Team3_2Project2_2src_2logger_8hdep">
+<area shape="rect" id="node2" href="ballot__file__processor_8h.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/ballot_file_processor.h" alt="" coords="63,109,242,165"/>
+<area shape="rect" id="node4" href="voting__system_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/voting_system.cc" alt="" coords="192,317,367,373"/>
+<area shape="rect" id="node5" href="logger_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/logger.cc" alt="" coords="317,109,492,165"/>
+<area shape="rect" id="node6" href="plurality__election_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/plurality_election.cc" alt="" coords="516,109,691,165"/>
+<area shape="rect" id="node7" href="stv__election__record_8h.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/stv_election_record.h" alt="" coords="715,109,889,165"/>
+<area shape="rect" id="node8" href="stv__election_8h.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/stv_election.h" alt="" coords="715,213,889,269"/>
+<area shape="rect" id="node10" href="voting__info_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/voting_info.cc" alt="" coords="965,109,1140,165"/>
+<area shape="rect" id="node3" href="ballot__file__processor_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/ballot_file_processor.cc" alt="" coords="5,213,191,269"/>
+<area shape="rect" id="node9" href="stv__election_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/stv_election.cc" alt="" coords="715,317,889,373"/>
 </map>
 </div>
 </div>
@@ -93,11 +108,23 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html">Logger</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The main class for logging info to an audit file.  <a href="classLogger.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Singleton <a class="el" href="classLogger.html" title="Singleton Logger Class. ">Logger</a> Class.  <a href="classLogger.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aa385268d3ec7b4d3ecceb7c787171bf0"><td class="memItemLeft" align="right" valign="top"><a id="aa385268d3ec7b4d3ecceb7c787171bf0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LOGGER</b>&#160;&#160;&#160;<a class="el" href="classLogger.html#ae85cfbef8b7e6940475a5012fa1935c6">Logger::GetLogger</a>()</td></tr>
+<tr class="separator:aa385268d3ec7b4d3ecceb7c787171bf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:acb3500d6229786d99850d47d1d9c6ee1"><td class="memItemLeft" align="right" valign="top"><a id="acb3500d6229786d99850d47d1d9c6ee1"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>LogFileName</b> []</td></tr>
+<tr class="separator:acb3500d6229786d99850d47d1d9c6ee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>2020 5801 Team3, All rights reserved. </dd></dl>
+<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>2020 5801 Team3, based on a singleton logger example, All rights reserved. </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
