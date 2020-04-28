@@ -1,11 +1,18 @@
-\hypertarget{voting__system_8cc}{}\section{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/voting\+\_\+system.cc File Reference}
-\label{voting__system_8cc}\index{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/voting\+\_\+system.\+cc@{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/voting\+\_\+system.\+cc}}
+\hypertarget{voting__system_8cc}{}\section{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project2/src/voting\+\_\+system.cc File Reference}
+\label{voting__system_8cc}\index{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project2/src/voting\+\_\+system.\+cc@{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project2/src/voting\+\_\+system.\+cc}}
 {\ttfamily \#include \char`\"{}stv\+\_\+election.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}plurality\+\_\+election.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}ballot\+\_\+file\+\_\+processor.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}logger.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$cstring$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$Q\+Application$>$}\newline
+{\ttfamily \#include $<$Q\+String$>$}\newline
+{\ttfamily \#include $<$Q\+File\+Dialog$>$}\newline
 Include dependency graph for voting\+\_\+system.\+cc\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -16,12 +23,15 @@ Include dependency graph for voting\+\_\+system.\+cc\+:\nopagebreak
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{voting__system_8cc_adea641fb0c9612320d13079a7b90f346}\label{voting__system_8cc_adea641fb0c9612320d13079a7b90f346}} 
-void {\bfseries User\+Interface} (int $\ast$num\+Seats, int $\ast$choice)
-\item 
+void \hyperlink{voting__system_8cc_adea641fb0c9612320d13079a7b90f346}{User\+Interface} (int $\ast$num\+Seats, int $\ast$choice)
+\begin{DoxyCompactList}\small\item\em The command line user interface, allows the user to enter the number of seats and the election choice, either plurality of S\+TV. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{voting__system_8cc_a746bd5f171a4854e01b931f9e4839876}\label{voting__system_8cc_a746bd5f171a4854e01b931f9e4839876}} 
-void {\bfseries Display\+Help} ()
-\item 
+void \hyperlink{voting__system_8cc_a746bd5f171a4854e01b931f9e4839876}{Display\+Help} ()
+\begin{DoxyCompactList}\small\item\em Prints some help information to the user through cout. \end{DoxyCompactList}\item 
+int \hyperlink{voting__system_8cc_a933b3bb4dab70ac18a5cb58c08c9a4cd}{get\+\_\+ballots\+\_\+gui} (\hyperlink{classVotingInfo}{Voting\+Info} $\ast$voting\+\_\+info)
+\begin{DoxyCompactList}\small\item\em Launches a G\+UI so the user can select the ballot files and then processes the ballot files and saves them into voting\+\_\+info. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{voting__system_8cc_a47cdb5979787e4a581c067b537906a09}{Get\+Time\+Stamp} ()
+\begin{DoxyCompactList}\small\item\em Utility function to get a timestamp to be used for the audit and invalid ballot files. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{voting__system_8cc_a3c04138a5bfe5d72780bb7e82a18e627}\label{voting__system_8cc_a3c04138a5bfe5d72780bb7e82a18e627}} 
 int {\bfseries main} (int argc, char $\ast$$\ast$argv)
 \end{DoxyCompactItemize}
@@ -31,8 +41,11 @@ int {\bfseries main} (int argc, char $\ast$$\ast$argv)
 \mbox{\Hypertarget{voting__system_8cc_ae811c1b079da1d8b8a14de2dc5a95e12}\label{voting__system_8cc_ae811c1b079da1d8b8a14de2dc5a95e12}} 
 bool {\bfseries Ballot\+Shuffle\+Off} = false
 \item 
-\mbox{\Hypertarget{voting__system_8cc_a0009c186c3629201f6c24eded36605f4}\label{voting__system_8cc_a0009c186c3629201f6c24eded36605f4}} 
-\hyperlink{classLogger}{Logger} $\ast$ {\bfseries logger} = new \hyperlink{classLogger}{Logger}()
+\mbox{\Hypertarget{voting__system_8cc_ad7af62c902b42a00d2406010626b1431}\label{voting__system_8cc_ad7af62c902b42a00d2406010626b1431}} 
+char {\bfseries Invalid\+Ballot\+File\+Name} \mbox{[}500\mbox{]}
+\item 
+\mbox{\Hypertarget{voting__system_8cc_a8192859a99b46f5cad7976c55b9bf9cb}\label{voting__system_8cc_a8192859a99b46f5cad7976c55b9bf9cb}} 
+char {\bfseries Log\+File\+Name} \mbox{[}500\mbox{]}
 \end{DoxyCompactItemize}
 
 
@@ -40,3 +53,54 @@ bool {\bfseries Ballot\+Shuffle\+Off} = false
 \begin{DoxyCopyright}{Copyright}
 2020 5801 Team3, All rights reserved. 
 \end{DoxyCopyright}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{voting__system_8cc_a933b3bb4dab70ac18a5cb58c08c9a4cd}\label{voting__system_8cc_a933b3bb4dab70ac18a5cb58c08c9a4cd}} 
+\index{voting\+\_\+system.\+cc@{voting\+\_\+system.\+cc}!get\+\_\+ballots\+\_\+gui@{get\+\_\+ballots\+\_\+gui}}
+\index{get\+\_\+ballots\+\_\+gui@{get\+\_\+ballots\+\_\+gui}!voting\+\_\+system.\+cc@{voting\+\_\+system.\+cc}}
+\subsubsection{\texorpdfstring{get\+\_\+ballots\+\_\+gui()}{get\_ballots\_gui()}}
+{\footnotesize\ttfamily int get\+\_\+ballots\+\_\+gui (\begin{DoxyParamCaption}\item[{\hyperlink{classVotingInfo}{Voting\+Info} $\ast$}]{voting\+\_\+info }\end{DoxyParamCaption})}
+
+
+
+Launches a G\+UI so the user can select the ballot files and then processes the ballot files and saves them into voting\+\_\+info. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em Voting\+Info$\ast$,ballots} & passed into \hyperlink{classVotingInfo}{Voting\+Info}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns int, the total number of ballots 
+\end{DoxyReturn}
+\mbox{\Hypertarget{voting__system_8cc_a47cdb5979787e4a581c067b537906a09}\label{voting__system_8cc_a47cdb5979787e4a581c067b537906a09}} 
+\index{voting\+\_\+system.\+cc@{voting\+\_\+system.\+cc}!Get\+Time\+Stamp@{Get\+Time\+Stamp}}
+\index{Get\+Time\+Stamp@{Get\+Time\+Stamp}!voting\+\_\+system.\+cc@{voting\+\_\+system.\+cc}}
+\subsubsection{\texorpdfstring{Get\+Time\+Stamp()}{GetTimeStamp()}}
+{\footnotesize\ttfamily std\+::string Get\+Time\+Stamp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Utility function to get a timestamp to be used for the audit and invalid ballot files. 
+
+\begin{DoxyReturn}{Returns}
+Returns std\+::string, of timestamp in format year\+\_\+month\+\_\+day\+\_\+hour\+\_\+min\+\_\+second 
+\end{DoxyReturn}
+\mbox{\Hypertarget{voting__system_8cc_adea641fb0c9612320d13079a7b90f346}\label{voting__system_8cc_adea641fb0c9612320d13079a7b90f346}} 
+\index{voting\+\_\+system.\+cc@{voting\+\_\+system.\+cc}!User\+Interface@{User\+Interface}}
+\index{User\+Interface@{User\+Interface}!voting\+\_\+system.\+cc@{voting\+\_\+system.\+cc}}
+\subsubsection{\texorpdfstring{User\+Interface()}{UserInterface()}}
+{\footnotesize\ttfamily void User\+Interface (\begin{DoxyParamCaption}\item[{int $\ast$}]{num\+Seats,  }\item[{int $\ast$}]{choice }\end{DoxyParamCaption})}
+
+
+
+The command line user interface, allows the user to enter the number of seats and the election choice, either plurality of S\+TV. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em int$\ast$} & num\+Seats used to specified the number of seats for the election \\
+\hline
+\mbox{\tt out}  & {\em int$\ast$} & choice, either 0 for plurality 1 for stv \\
+\hline
+\end{DoxyParams}

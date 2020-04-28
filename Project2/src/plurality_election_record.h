@@ -10,8 +10,11 @@
 #include "candidate.h"
 #include "ballot.h"
 
-
-
+/**
+ * @brief The class for the plurality election records
+ *
+ * Is a Plurality Election Record - will do most of plurality election work.
+ */
 class PluralityElectionRecord
 {
  public:
@@ -34,23 +37,23 @@ class PluralityElectionRecord
   void DistributeBallots();
 
   /**
-  * @brief Sorts the nonElectedCandidateList, candidate with the highest 
+  * @brief Sorts the nonElectedCandidateList, candidate with the highest
   *        number of ballots is sent to front of the list
   */
   void SortNonElectedCandidateList();
 
  /**
-  * @brief Moves Candidates from the non elected candidate list to the 
+  * @brief Moves Candidates from the non elected candidate list to the
   *        winners list
-  * 
+  *
   *@param[in] int Number of candidates to move to the winners list
   */
   void MoveFirstNCandidatesFromNonELectedListToWinnersList(int);
 
  /**
-  * @brief Moves Candidates from the non elected candidate list to the 
+  * @brief Moves Candidates from the non elected candidate list to the
   *        losers list
-  * 
+  *
   */
   void MoveRemainingCandidatesToLosersList();
 
@@ -81,9 +84,9 @@ class PluralityElectionRecord
   std::list<Ballot*> GetNonDistributedBallotList();
 
  /**
-  * @brief Moves Candidates from the non elected candidate list to the 
+  * @brief Moves Candidates from the non elected candidate list to the
   *        losers list
-  * 
+  *
   *@param[in] int Number of candidates to move to the losers list
   */
   static bool CandidateNumBallotsComp(Candidate*,Candidate*);

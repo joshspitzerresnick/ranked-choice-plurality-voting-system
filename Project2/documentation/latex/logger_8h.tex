@@ -1,13 +1,17 @@
-\hypertarget{logger_8h}{}\section{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/logger.h File Reference}
-\label{logger_8h}\index{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/logger.\+h@{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project1/src/logger.\+h}}
-{\ttfamily \#include $<$iostream$>$}\newline
+\hypertarget{logger_8h}{}\section{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project2/src/logger.h File Reference}
+\label{logger_8h}\index{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project2/src/logger.\+h@{/home/spitz123/csci5801\+\_\+s20/repo-\/\+Team3/\+Project2/src/logger.\+h}}
 {\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}candidate.\+h\char`\"{}}\newline
 Include dependency graph for logger.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=262pt]{logger_8h__incl}
+\includegraphics[width=350pt]{logger_8h__incl}
 \end{center}
 \end{figure}
 This graph shows which files directly or indirectly include this file\+:\nopagebreak
@@ -21,10 +25,22 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{classLogger}{Logger}
-\begin{DoxyCompactList}\small\item\em The main class for logging info to an audit file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Singleton \hyperlink{classLogger}{Logger} Class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{logger_8h_aa385268d3ec7b4d3ecceb7c787171bf0}\label{logger_8h_aa385268d3ec7b4d3ecceb7c787171bf0}} 
+\#define {\bfseries L\+O\+G\+G\+ER}~\hyperlink{classLogger_ae85cfbef8b7e6940475a5012fa1935c6}{Logger\+::\+Get\+Logger}()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{logger_8h_acb3500d6229786d99850d47d1d9c6ee1}\label{logger_8h_acb3500d6229786d99850d47d1d9c6ee1}} 
+char {\bfseries Log\+File\+Name} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 \begin{DoxyCopyright}{Copyright}
-2020 5801 Team3, All rights reserved. 
+2020 5801 Team3, based on a singleton logger example, All rights reserved. 
 \end{DoxyCopyright}

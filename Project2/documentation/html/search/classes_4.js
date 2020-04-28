@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['resultdisplay',['ResultDisplay',['../classResultDisplay.html',1,'']]]
+  ['stvcandidate',['STVCandidate',['../classSTVCandidate.html',1,'']]],
+  ['stvelection',['STVElection',['../classSTVElection.html',1,'']]],
+  ['stvelectionrecord',['STVElectionRecord',['../classSTVElectionRecord.html',1,'']]]
 ];

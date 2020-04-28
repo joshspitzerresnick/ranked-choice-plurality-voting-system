@@ -1,6 +1,11 @@
-<map id="/home/spitz123/csci5801_s20/repo&#45;Team3/Project1/src/logger.h" name="/home/spitz123/csci5801_s20/repo&#45;Team3/Project1/src/logger.h">
-<area shape="rect" id="node2" href="$stv__election__record_8h.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project1\l/src/stv_election_record.h" alt="" coords="79,109,253,165"/>
-<area shape="rect" id="node5" href="$voting__system_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project1\l/src/voting_system.cc" alt="" coords="204,317,379,373"/>
-<area shape="rect" id="node3" href="$stv__election_8h.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project1\l/src/stv_election.h" alt="" coords="79,213,253,269"/>
-<area shape="rect" id="node4" href="$stv__election_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project1\l/src/stv_election.cc" alt="" coords="5,317,180,373"/>
+<map id="/home/spitz123/csci5801_s20/repo&#45;Team3/Project2/src/logger.h" name="/home/spitz123/csci5801_s20/repo&#45;Team3/Project2/src/logger.h">
+<area shape="rect" id="node2" href="$ballot__file__processor_8h.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/ballot_file_processor.h" alt="" coords="63,109,242,165"/>
+<area shape="rect" id="node4" href="$voting__system_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/voting_system.cc" alt="" coords="192,317,367,373"/>
+<area shape="rect" id="node5" href="$logger_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/logger.cc" alt="" coords="317,109,492,165"/>
+<area shape="rect" id="node6" href="$plurality__election_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/plurality_election.cc" alt="" coords="516,109,691,165"/>
+<area shape="rect" id="node7" href="$stv__election__record_8h.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/stv_election_record.h" alt="" coords="715,109,889,165"/>
+<area shape="rect" id="node8" href="$stv__election_8h.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/stv_election.h" alt="" coords="715,213,889,269"/>
+<area shape="rect" id="node10" href="$voting__info_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/voting_info.cc" alt="" coords="965,109,1140,165"/>
+<area shape="rect" id="node3" href="$ballot__file__processor_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/ballot_file_processor.cc" alt="" coords="5,213,191,269"/>
+<area shape="rect" id="node9" href="$stv__election_8cc.html" title="/home/spitz123/csci5801\l_s20/repo&#45;Team3/Project2\l/src/stv_election.cc" alt="" coords="715,317,889,373"/>
 </map>

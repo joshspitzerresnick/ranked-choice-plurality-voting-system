@@ -1,6 +1,7 @@
-<map id="/home/spitz123/csci5801_s20/repo&#45;Team3/Project1/src/ballot_file_processor.cc" name="/home/spitz123/csci5801_s20/repo&#45;Team3/Project1/src/ballot_file_processor.cc">
-<area shape="rect" id="node6" href="$candidate_8h.html" title="candidate.h" alt="" coords="145,259,234,285"/>
-<area shape="rect" id="node8" href="$ballot_8h.html" title="ballot.h" alt="" coords="347,333,411,360"/>
-<area shape="rect" id="node9" href="$voting__info_8h.html" title="voting_info.h" alt="" coords="224,184,320,211"/>
-<area shape="rect" id="node10" href="$ballot__file__processor_8h.html" title="ballot_file_processor.h" alt="" coords="309,109,461,136"/>
+<map id="/home/spitz123/csci5801_s20/repo&#45;Team3/Project2/src/ballot_file_processor.cc" name="/home/spitz123/csci5801_s20/repo&#45;Team3/Project2/src/ballot_file_processor.cc">
+<area shape="rect" id="node2" href="$ballot__file__processor_8h.html" title="ballot_file_processor.h" alt="" coords="439,109,591,136"/>
+<area shape="rect" id="node10" href="$logger_8h.html" title="logger.h" alt="" coords="320,184,388,211"/>
+<area shape="rect" id="node13" href="$candidate_8h.html" title="candidate.h" alt="" coords="440,259,529,285"/>
+<area shape="rect" id="node14" href="$ballot_8h.html" title="ballot.h" alt="" coords="591,333,655,360"/>
+<area shape="rect" id="node17" href="$voting__info_8h.html" title="voting_info.h" alt="" coords="558,184,654,211"/>
 </map>
