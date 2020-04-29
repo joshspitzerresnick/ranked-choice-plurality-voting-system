@@ -70,7 +70,6 @@ int main(int argc, char** argv) {
   TimeStamp = GetTimeStamp();
   snprintf(InvalidBallotFileName, 500, "InvalidBallotFile_%s.txt",TimeStamp.c_str());
   snprintf(LogFileName, 500, "AuditFile_%s.txt",TimeStamp.c_str());
-  std::cout << LogFileName << std::endl;
   Logger::GetLogger();  
   LOGGER->Log("---------------------------------------------------------Start A New Election---------------------------------------------------------");  
   // Check command line argument
@@ -78,12 +77,12 @@ int main(int argc, char** argv) {
     BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
     LOGGER->Log("Command line argument received: turn off ballot shuffle.");
   }
-
-  if (argc >= 2 && ((strcmp(argv[1], "-m") == 0) || (strcmp(argv[2], "-m") == 0))) {
+  
+  if ((argc >= 2 && (strcmp(argv[1], "-m") == 0)) || (argc >= 3 && (strcmp(argv[2], "-m") == 0))) {
     ManuallyEnterBallots = true;  // Manually enter ballots rather than GUI select
     LOGGER->Log("Command line argument received: manually enter ballot file names.");
   }
-
+  LOGGER->Log("After -m check");
   UserInterface(&numSeats, &choice);
   votingInfo = new VotingInfo(choice, numSeats);
   if(ManuallyEnterBallots)
