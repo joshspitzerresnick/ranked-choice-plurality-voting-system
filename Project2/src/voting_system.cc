@@ -70,20 +70,33 @@ int main(int argc, char** argv) {
   TimeStamp = GetTimeStamp();
   snprintf(InvalidBallotFileName, 500, "InvalidBallotFile_%s.txt",TimeStamp.c_str());
   snprintf(LogFileName, 500, "AuditFile_%s.txt",TimeStamp.c_str());
-  std::cout << LogFileName << std::endl;
   Logger::GetLogger();  
   LOGGER->Log("---------------------------------------------------------Start A New Election---------------------------------------------------------");  
   // Check command line argument
-  if (argc >= 2 && strcmp(argv[1], "-t") == 0) {
-    BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
-    LOGGER->Log("Command line argument received: turn off ballot shuffle.");
+  if (argc > 3) {
+	  std::cout << "Too many command line arguments. Abort." << std::endl;
+	  return -1;
   }
-
-  if (argc >= 2 && ((strcmp(argv[1], "-m") == 0) || (strcmp(argv[2], "-m") == 0))) {
-    ManuallyEnterBallots = true;  // Manually enter ballots rather than GUI select
-    LOGGER->Log("Command line argument received: manually enter ballot file names.");
+  if (argc > 1) {
+    for (int iCmd = 1; iCmd < argc; iCmd++) {
+	  if (strcmp(argv[iCmd],"-t") == 0) {
+         BallotShuffleOff = true;  // Turn off ballot shuffle if '-t' is detected    
+         snprintf(msg, sizeof(msg), "Command line argument '%s' received: turn off ballot shuffle.", argv[iCmd]);
+		 LOGGER->Log(msg);
+		 std::cout << msg << std::endl;
+      } else if (strcmp(argv[iCmd],"-m") == 0) {
+         ManuallyEnterBallots = true;  // Manually enter ballots rather than GUI select
+         snprintf(msg, sizeof(msg), "Command line argument '%s' received: manually enter ballot files.", argv[iCmd]);
+		 LOGGER->Log(msg);
+		 std::cout << msg << std::endl;;
+      } else {
+		 snprintf(msg, sizeof(msg), "Invalid command line argument '%s'. Ignored.", argv[iCmd]);
+		 LOGGER->Log(msg);
+		 std::cout << msg << std::endl;;
+	  }
+    }
   }
-
+  
   UserInterface(&numSeats, &choice);
   votingInfo = new VotingInfo(choice, numSeats);
   if(ManuallyEnterBallots)
