@@ -26,6 +26,8 @@ void STVElection::RunElection(VotingInfo* votingInfo) {
   if (!BallotShuffleOff) {
     stvElectionRecord_->ShuffleBallots();  // shuffle ballots
   }
+  LOGGER->Log("Candidate List:");
+  LOGGER->Log(votingInfo->GetSTVCandidateList());
   while (true) {
     stvElectionRecord_->DistributeBallots(&firstBallotNum);
     tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
@@ -52,17 +54,17 @@ void STVElection::RunElection(VotingInfo* votingInfo) {
     // Logging...
     snprintf(msg, sizeof(msg), "Move candidate %s to losersList", candidate->GetName().c_str());
     LOGGER->Log(msg);
+    snprintf(msg, sizeof(msg), "Move candidate %s's %d ballots to nonDistributedBallotList: ", candidate->GetName().c_str(), candidate->GetNumBallots());
     ballotList = stvElectionRecord_->AddCandidateToLosersList(candidate);    
-    tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();
+    tempSTVCandidateList = stvElectionRecord_->GetNonElectedCandidateList();    
+    LOGGER->Log(msg);
+    LOGGER->Log(ballotList);
+    stvElectionRecord_->AddLoserBallotsToNonDistributedBallotList(ballotList);
     // when there is no more candidate on nonelected list, exit loop
     if (tempSTVCandidateList.empty()) {
       LOGGER->Log("No more candidate on nonElectedList");
       break;
     }
-    snprintf(msg, sizeof(msg), "Move candidate %s's ballot to nonDistributedBallotList: ", candidate->GetName().c_str());
-    LOGGER->Log(msg);
-    LOGGER->Log(ballotList);
-    stvElectionRecord_->AddLoserBallotsToNonDistributedBallotList(ballotList);
   }
   // if need more candidates to fill seats, move the candidates being put on losers list last to winners list
   while ((int)(stvElectionRecord_->GetWinnersList().size()) < numSeats_) {

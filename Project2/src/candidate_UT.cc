@@ -32,8 +32,8 @@ class CandidateTests : public ::testing::Test {
         candidateDup.push_back(i);
     }
     candidateDup.push_back(3);
-    ballot1 = new Ballot(1, candidateList1);
-    ballot2 = new Ballot(2, candidateList2);
+    ballot1 = new Ballot(1, candidateList1, candidateList1);
+    ballot2 = new Ballot(2, candidateList2, candidateList2);
     candidate1 = new Candidate(1, "Allison", "Democrat");
     candidate2 = new Candidate(2, "Mark", "Independant");
   }
@@ -64,8 +64,8 @@ class STVCandidateTests : public ::testing::Test {
         candidateDup.push_back(i);
     }
     candidateDup.push_back(3);
-    ballot1 = new Ballot(1, candidateList1);
-    ballot2 = new Ballot(2, candidateList2);
+    ballot1 = new Ballot(1, candidateList1, candidateList1);
+    ballot2 = new Ballot(2, candidateList2, candidateList2);
     candidate1 = new STVCandidate(1, "Allison", "Democrat");
     candidate2 = new STVCandidate(2, "Mark", "Independant");
   }

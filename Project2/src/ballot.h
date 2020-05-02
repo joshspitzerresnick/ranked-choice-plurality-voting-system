@@ -24,9 +24,10 @@ class Ballot {  // : public Reporter {
   *
   * @param[in] int holding a ballot id number
   * @param[in] linked list containing candidate id numbers
+  * @param[in] linked list containing original ballot
   *
   */
-  explicit Ballot(int, std::list<int>);
+  explicit Ballot(int, std::list<int>, std::list<int>);
   /**
   * @brief Get ballot id
   * @return ballot id
@@ -37,8 +38,14 @@ class Ballot {  // : public Reporter {
   * @return std::list<int> ranked candidate ID List
   */
   std::list<int> GetRankedCandidateIDList();
+  /**
+  * @brief Get the original ballot
+  * @return std::list<int> original ballot
+  */
+  std::list<int> GetOriBallot();
  private:
   std::list<int> rankedCandidateIDList_;  // list of candidates
+  std::list<int> oriBallot_; 
   int id_;  // ballot id number
 };
 #endif  // SRC_BALLOT_H_

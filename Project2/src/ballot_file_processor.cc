@@ -100,8 +100,6 @@ int BallotFileProcessor::ProcessFiles(std::list<std::string> files, VotingInfo* 
 
   for (std::list<std::string>::iterator it=files.begin(); it != files.end(); ++it) {
     numBallotsRead = ReadFile(*it, votinginfo, &ballotNum);
-    snprintf(msg,sizeof(msg),"numBallotsRead=%d", numBallotsRead);
-    LOGGER->Log(msg);
     if (numBallotsRead == -1) {
       snprintf(msg, sizeof(msg), "Invalid candidates detected. Skip file %s", (*it).c_str());
       LOGGER->Log(msg);
@@ -118,6 +116,7 @@ int BallotFileProcessor::ProcessFiles(std::list<std::string> files, VotingInfo* 
   }
   if (votinginfo->GetAlgorithm() == 1) {
     votinginfo->WriteInvalidBallotsToFile(InvalidBallotFileName);
+    votinginfo->LogToAuditFile();
   }  
   return ballotNum;
 }
@@ -137,9 +136,8 @@ int BallotFileProcessor::ReadFile(std::string fileName, VotingInfo* votinginfo, 
     vector<string> row;
     vector<string> candidateNameVector;
     vector<int> introw;
-    std::list<int> cand_list;
+    std::list<int> cand_list, oriBallot;
     string line, word;
-    char msg[1000];
 
     ballot_file.open(fileName, ios::in);  // Open ballot file
     if (!ballot_file) {
@@ -151,20 +149,15 @@ int BallotFileProcessor::ReadFile(std::string fileName, VotingInfo* votinginfo, 
         row.clear();  // Clear the row variable prior to reading in new line.
         introw.clear();
         cand_list.clear();
+        oriBallot.clear();
         stringstream s(line);
         while (getline(s, word, ',')) {  // Break the row by , delimiter
-        // snprintf(msg,sizeof(msg),"word=%s,word.length()=%d,isalpha(word[0])=%d,isspace(word[0])=%d",word.c_str(),(int)word.length(),isalpha(word[0]),isspace(word[0]));
-        // LOGGER->Log(msg);
           if (!isspace(word[0])) { // ignore \n at the end of the line
             if (isspace(word[(int)word.length()-1])) {word.resize((int)word.length()-1);} // Get rid of \n at the end
             row.push_back(word);
-            // snprintf(msg, sizeof(msg), "word= %s", word.c_str());
-            // LOGGER->Log(msg);
           }
         }
         if (linecnt == 0) {  // Run for first line - Candidates
-          // snprintf(msg, sizeof(msg), "ballotNum=%d", *ballotNum);
-          // LOGGER->Log(msg);
           if (*ballotNum == 0) {
             for (i = 0; i < row.size(); i++) {
               if (algo == 0) {  // plurality election
@@ -180,8 +173,6 @@ int BallotFileProcessor::ReadFile(std::string fileName, VotingInfo* votinginfo, 
               candidateList = votinginfo->GetCandidateList();
               for (std::list<Candidate*>::iterator it=candidateList.begin(); it != candidateList.end(); ++it) {
                 candidateNameVector.push_back((*it)->GetName().c_str());
-            //     snprintf(msg, sizeof(msg), "canName= %s", (*it)->GetName().c_str());
-            // LOGGER->Log(msg);
               }
             } else {
               stvCandidateList = votinginfo->GetSTVCandidateList();
@@ -195,6 +186,7 @@ int BallotFileProcessor::ReadFile(std::string fileName, VotingInfo* votinginfo, 
             for (i = 0; i < row.size(); i++) {
                 num = atoi(row.at(i).c_str());
                 introw.push_back(num);  // Convert strings to integers
+                oriBallot.push_back(num);
             }
             i = 0;
             j = 0;
@@ -205,7 +197,7 @@ int BallotFileProcessor::ReadFile(std::string fileName, VotingInfo* votinginfo, 
                     }
                 }
             }
-            ballot = new Ballot((*ballotNum)++, cand_list);
+            ballot = new Ballot((*ballotNum)++, cand_list,oriBallot);
             if (IsInvalid(algo, votinginfo->GetNumCandidates(), ballot)) {
                 votinginfo->AddBallotToInvalidList(ballot);
             } else {
@@ -214,7 +206,6 @@ int BallotFileProcessor::ReadFile(std::string fileName, VotingInfo* votinginfo, 
         }
         linecnt++;  // Increment line counter
     }
-    ballot_file.close();
-    votinginfo->LogToAuditFile();
+    ballot_file.close();    
     return linecnt-1;  // Return number of ballots processed
 }

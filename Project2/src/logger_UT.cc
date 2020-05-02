@@ -48,7 +48,7 @@ class LoggerTests : public ::testing::Test {
     for (i = 0; i < 5; i++) {
         candidateList1.push_back(i);
     }
-    ballot1 = new Ballot(1, candidateList1);
+    ballot1 = new Ballot(1, candidateList1, candidateList1);
     candidate1 = new Candidate(1, "Allison", "Democrat");
     stv_candidate1 = new STVCandidate(2, "Mark", "Independant");
   }
@@ -74,7 +74,8 @@ TEST_F(LoggerTests, LogMsgToFile) {
 
 TEST_F(LoggerTests, LogListToFile) {
   Logger::GetLogger()->Log("Test print a list of integers:");
-  EXPECT_NO_THROW(Logger::GetLogger()->Log({2, 4, 6, 8, 10}));
+  std::list<int> L={2, 4, 6, 8, 10};
+  EXPECT_NO_THROW(Logger::GetLogger()->Log(L,0));
   Logger::GetLogger()->Log(" ");
 }
 

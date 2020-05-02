@@ -42,10 +42,10 @@ class BallotFileTests : public ::testing::Test {
     for (i=0; i < 6; i++) {
         cand_ints.push_back(i);
     }
-    ballot1 = new Ballot(1, std::list<int>{0});
-    ballot2 = new Ballot(2, std::list<int>{2});
-    ballot3 = new Ballot(3, std::list<int>{5});
-    ballot4 = new Ballot(4, std::list<int>{4, 3, 2, 6, 1});
+    ballot1 = new Ballot(1, std::list<int>{0}, std::list<int>{0});
+    ballot2 = new Ballot(2, std::list<int>{2}, std::list<int>{2});
+    ballot3 = new Ballot(3, std::list<int>{5}, std::list<int>{5});
+    ballot4 = new Ballot(4, std::list<int>{4, 3, 2, 6, 1}, std::list<int>{4, 3, 2, 6, 1});
     ballot_list.push_back(ballot1);
     ballot_list.push_back(ballot2);
     ballot_list.push_back(ballot3);

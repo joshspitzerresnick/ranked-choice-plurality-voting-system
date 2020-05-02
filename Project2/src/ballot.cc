@@ -6,9 +6,10 @@
 
 #include "ballot.h"
 
-Ballot::Ballot(int ballot_id, std::list<int> CandidateList) {
+Ballot::Ballot(int ballot_id, std::list<int> CandidateList, std::list<int> oriBallot) {
     std::list<int> tempList;
-    tempList = CandidateList;
+    oriBallot_ = oriBallot;
+    tempList = CandidateList;    
     tempList.sort();
     tempList.unique();
     if (ballot_id < 0) {
@@ -28,4 +29,8 @@ int Ballot::GetID() {
 
 std::list<int> Ballot::GetRankedCandidateIDList() {
     return rankedCandidateIDList_;
+}
+
+std::list<int> Ballot::GetOriBallot() {
+    return oriBallot_;
 }

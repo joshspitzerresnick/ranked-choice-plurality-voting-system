@@ -24,13 +24,17 @@ void Logger::Log(const std::string& msg) {
   }
 }
 
-void Logger::Log(std::list<int> &L) {
+void Logger::Log(std::list<int> &L, int op) {
   char msg[1000], temp[50];
-  snprintf(msg, sizeof(msg), "... ");
+  snprintf(msg, sizeof(msg), ": ");
   std::list<int>::iterator it;  // Create an iterator of std::list
   int cnt = 0, n = 0;
   for (it= L.begin(); it!= L.end(); it++) {
-    n = snprintf(temp, sizeof(temp), "%d,", *it);
+	  if (op == 1 && *it == 0) {
+		n = snprintf(temp, sizeof(temp), ",");
+	  } else {
+        n = snprintf(temp, sizeof(temp), "%d,", *it);
+	  }
     cnt += n;
     if (cnt < 200) {
       strncat(msg, temp, sizeof(msg));
@@ -47,7 +51,7 @@ void Logger::Log(std::list<int> &L) {
 
 void Logger::Log(std::list<Candidate*> L) {
   char msg[1000], temp[50];
-  snprintf(msg, sizeof(msg), "... ");
+  snprintf(msg, sizeof(msg), "");
   std::list<Candidate*>::iterator it;  // Create an iterator of std::list
   int cnt = 0, n = 0;
   for (it= L.begin(); it!= L.end(); it++) {
@@ -59,7 +63,7 @@ void Logger::Log(std::list<Candidate*> L) {
     } else {
       cnt = 0;
       LOGGER->Log(msg);  // Log
-      snprintf(msg, sizeof(msg), "...");
+      snprintf(msg, sizeof(msg), "");
       strncat(msg, temp, sizeof(msg));
     }
   }
@@ -69,7 +73,7 @@ void Logger::Log(std::list<Candidate*> L) {
 
 void Logger::Log(std::list<Ballot*> L) {
   char msg[1000], temp[50];
-  snprintf(msg, sizeof(msg), "... ");
+  snprintf(msg, sizeof(msg), "");
   std::list<Ballot*>::iterator it;  // Create an iterator of std::list
   int cnt = 0, n = 0;
   for (it= L.begin(); it!= L.end(); it++) {
@@ -80,7 +84,28 @@ void Logger::Log(std::list<Ballot*> L) {
     } else {
       cnt = 0;
       LOGGER->Log(msg);  // Log
-      snprintf(msg, sizeof(msg), "...");
+      snprintf(msg, sizeof(msg), "");
+      strncat(msg, temp, sizeof(msg));
+    }
+  }
+  logFile << msg << "\n";
+  logFile.flush();
+}
+void Logger::Log(std::list<STVCandidate*> L) {
+  char msg[1000], temp[50];
+  snprintf(msg, sizeof(msg), "");
+  std::list<STVCandidate*>::iterator it;  // Create an iterator of std::list
+  int cnt = 0, n = 0;
+  for (it= L.begin(); it!= L.end(); it++) {
+    cnt++;
+    n = snprintf(temp, sizeof(temp), "%d-%s,", (*it)->GetID(), (*it)->GetName().c_str());
+    cnt += n;
+    if (cnt < 200) {
+      strncat(msg, temp, sizeof(msg));
+    } else {
+      cnt = 0;
+      LOGGER->Log(msg);  // Log
+      snprintf(msg, sizeof(msg), "");
       strncat(msg, temp, sizeof(msg));
     }
   }

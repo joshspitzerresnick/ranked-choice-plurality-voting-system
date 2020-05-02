@@ -34,13 +34,19 @@ class Logger {
     /**
     *   @brief Logs a list of integers
     *   @param list to be logged.
+    *   @param option: whether to print 0
     */
-    void Log(std::list<int> &L);
+    void Log(std::list<int> &L, int op);
     /**
     *   @brief Logs a list of Candidate objects
     *   @param list to be logged.
     */
     void Log(std::list<Candidate*> L);
+    /**
+    *   @brief Logs a list of STVCandidate objects
+    *   @param list to be logged.
+    */
+    void Log(std::list<STVCandidate*> L);
     /**
     *   @brief Logs a list of Ballot objects
     *   @param list to be logged.

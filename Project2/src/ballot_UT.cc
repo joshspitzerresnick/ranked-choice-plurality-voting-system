@@ -29,8 +29,8 @@ class BallotTests : public ::testing::Test {
         candidateDup.push_back(i);
     }
     candidateDup.push_back(3);
-    ballot1 = new Ballot(1, candidateList1);
-    ballot2 = new Ballot(2, candidateList2);
+    ballot1 = new Ballot(1, candidateList1, candidateList1);
+    ballot2 = new Ballot(2, candidateList2, candidateList2);
   }
   virtual void TearDown() {
     delete ballot1;
@@ -45,12 +45,12 @@ class BallotTests : public ::testing::Test {
 
 TEST_F(BallotTests, Constructor) {
     // Negative ballot id should throw exception.
-    EXPECT_ANY_THROW(ballot1 = new Ballot(-1, candidateList1));
+    EXPECT_ANY_THROW(ballot1 = new Ballot(-1, candidateList1, candidateList1));
     // Duplicate candidate id should throw exception.
-    EXPECT_ANY_THROW(ballot1 = new Ballot(1, candidateDup));
+    EXPECT_ANY_THROW(ballot1 = new Ballot(1, candidateDup, candidateDup));
     // Common ballot definitions.
-    EXPECT_NO_THROW(ballot1 = new Ballot(1, candidateList1));
-    EXPECT_NO_THROW(ballot2 = new Ballot(2, candidateList2));
+    EXPECT_NO_THROW(ballot1 = new Ballot(1, candidateList1, candidateList1));
+    EXPECT_NO_THROW(ballot2 = new Ballot(2, candidateList2, candidateList2));
 }
 
 TEST_F(BallotTests, GetID) {

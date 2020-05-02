@@ -41,12 +41,12 @@ class VotingInfoTests : public ::testing::Test {
     stv_candidate1 = new STVCandidate(1, "Al", "left");
     stv_candidate2 = new STVCandidate(2, "Beth", "center");
     stv_candidate3 = new STVCandidate(3, "Carl", "right");
-    ballot1 = new Ballot(1, {1, 2, 3});
-    ballot2 = new Ballot(2, {1, 3, 2});
-    ballot3 = new Ballot(3, {1, 2});
-    invalid1 = new Ballot(4, {1});
-    invalid2 = new Ballot(5, {2});
-    invalid3 = new Ballot(6, {3});
+    ballot1 = new Ballot(1, {1, 2, 3}, {1, 2, 3});
+    ballot2 = new Ballot(2, {1, 3, 2}, {1, 3, 2});
+    ballot3 = new Ballot(3, {1, 2}, {1, 2});
+    invalid1 = new Ballot(4, {1}, {1});
+    invalid2 = new Ballot(5, {2}, {2});
+    invalid3 = new Ballot(6, {3}, {3});
   }
   virtual void TearDown() {
     delete votinginfo1;

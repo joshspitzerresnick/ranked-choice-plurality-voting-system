@@ -21,6 +21,8 @@ void PluralityElection::RunElection(VotingInfo* votingInfo) {
     int num_seats = votingInfo->GetNumSeats() <= votingInfo->GetNumCandidates() ? votingInfo->GetNumSeats() : votingInfo->GetNumCandidates();
     char msg[1000], temp[50];
     PluralityElectionRecord* election_record = new PluralityElectionRecord(candidates_list, ballots_list);
+    LOGGER->Log("Candidate List:");
+    LOGGER->Log(candidates_list);
     snprintf(msg, sizeof(msg), "Start distributing %d ballots", votingInfo->GetNumBallots());
     LOGGER->Log(msg);
     election_record->DistributeBallots();

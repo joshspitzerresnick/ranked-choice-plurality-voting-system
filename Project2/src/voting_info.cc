@@ -157,24 +157,28 @@ void VotingInfo::WriteInvalidBallotsToFile(std::string filename) {
   }
 
   std::list<Ballot*> invalid_ballots_ = GetInvalidList();  // makes copy so original list safe
-  std::list<int> ranked_candidate_ids_;
+  std::list<int> oriBallot;
+  std::list<STVCandidate*>::iterator it;
 
   invalidated_file_ << "--------------------Invalidated Ballot Report-----------------------------------" << std::endl;
   invalidated_file_ << "# invalidated ballots: " << GetNumInvalid() << std::endl;
   invalidated_file_ << "# candidates: " << GetNumCandidates() << std::endl;
   invalidated_file_ << "# candidates to be invalidated (< half): <" << GetNumCandidates()/2.0 << std::endl;
+  invalidated_file_ << "Candidate List: ";
+  for (it = stv_candidate_list_.begin(); it !=  stv_candidate_list_.end(); it++) {
+	  invalidated_file_ << (*it)->GetID() << ": " << (*it)->GetName().c_str() << ", ";
+  }
+  invalidated_file_ << "\n";
   invalidated_file_ << "--------------------------------------------------------------------------------" << std::endl;
-  // invalidated_file_ << "Ballot ID:\t\t\t\tCandidate IDs in order of preference:" << std::endl;
-  // invalidated_file_ << "[1, n] indexed\t\t[0, n-1] indexed" << std::endl;
-
   while(!invalid_ballots_.empty()) {  // iterate through ballots
-    ranked_candidate_ids_ = invalid_ballots_.front()->GetRankedCandidateIDList();  // makes copy so original list safe
-    invalidated_file_ << "Ballot #" << std::setw(floor(log10(GetNumBallots()) + 1)) << invalid_ballots_.front()->GetID() << ":  Ranked Candidate ID List: ";
-    while (!ranked_candidate_ids_.empty()) {  // iterate through candidate rankings
-      invalidated_file_ << ranked_candidate_ids_.front();  // don't leave trailing ", "
-
-      ranked_candidate_ids_.pop_front();  // will not need anymore
-      if (ranked_candidate_ids_.empty()) {
+    oriBallot = invalid_ballots_.front()->GetOriBallot();  // makes copy so original list safe
+    invalidated_file_ << "Ballot #" << std::setw(floor(log10(GetNumBallots()) + 1)) << invalid_ballots_.front()->GetID() << ":  ";
+    while (!oriBallot.empty()) {  // iterate through candidate rankings
+      if (oriBallot.front() != 0) {
+        invalidated_file_ << oriBallot.front();  // don't leave trailing ", "
+      }      
+      oriBallot.pop_front();  // will not need anymore
+      if (oriBallot.empty()) {
         invalidated_file_ << std::endl;  // end of 1 ballot
         break;
       }

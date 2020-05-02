@@ -47,7 +47,7 @@ void STVElectionRecord::ShuffleBallots() {
 }
 
 void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
-  std::list<int> tempRankedCandidateIDList;  // temperory int array to store ranked candidate list from each ballot
+  std::list<int> tempRankedCandidateIDList, oriBallot;  // temperory int array to store candidate list from each ballot
   // int curCandidateID;  // current ranked candidate ID
   int numBallots;  // number of ballots a candidate has
   bool assigned;  // if a ballot had been assigned
@@ -56,14 +56,22 @@ void STVElectionRecord::DistributeBallots(int* firstBallotNum) {
   char msg[1000], temp[10];
   // Loop on nonDistributedBallotList: keep looping if nonDistributedBallotList is not empty
   while (!nonDistributedBallotList_.empty()) {
+    if (nonElectedCandidateList_.empty()) {
+      LOGGER->Log("No more candidate on nonElectedList");
+      break;
+    }
     curBallot = nonDistributedBallotList_.front();
     nonDistributedBallotList_.pop_front();
     assigned = false;  //  initialize
     // Get ranked candidate list
     tempRankedCandidateIDList = /*(int)*/ curBallot->GetRankedCandidateIDList();
+    oriBallot = curBallot->GetOriBallot();
     snprintf(msg, sizeof(msg), "Ballot %d RankedCandidateIDList: ", curBallot->GetID());
     LOGGER->Log(msg);
-    LOGGER->Log(tempRankedCandidateIDList);
+    LOGGER->Log(tempRankedCandidateIDList,0);
+    snprintf(msg, sizeof(msg), "Original Ballot: ");
+    LOGGER->Log(msg);
+    LOGGER->Log(oriBallot,1);
     auto li = tempRankedCandidateIDList.begin();
     while (!assigned && li != tempRankedCandidateIDList.end()) {
       // Create a list Iterator

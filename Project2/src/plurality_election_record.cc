@@ -18,9 +18,14 @@ PluralityElectionRecord::PluralityElectionRecord(std::list<Candidate*> candidate
 void PluralityElectionRecord::DistributeBallots() {
     Ballot* curr_ballot;
     int curr_candidate_id;
+    std::list<int> oriBallot;
     char msg[1000];
     while (!nonDistributedBallotList_.empty()) {
         curr_ballot = nonDistributedBallotList_.front();
+        snprintf(msg, sizeof(msg), "Ballot %d: ", curr_ballot->GetID());
+        LOGGER->Log(msg);
+        oriBallot = curr_ballot->GetOriBallot();        
+        LOGGER->Log(oriBallot,1);
         curr_candidate_id = curr_ballot->GetRankedCandidateIDList().front();
         std::list<Candidate*>::iterator it;
         for(it = this->nonElectedCandidateList_.begin(); it != this->nonElectedCandidateList_.end(); it++)

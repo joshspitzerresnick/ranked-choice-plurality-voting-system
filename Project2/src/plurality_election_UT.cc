@@ -36,16 +36,16 @@ class PluralityElectionTests : public ::testing::Test {
     votinginfo2 = new VotingInfo(1, 2);  // STV, 3 candidates
     candidateList1.push_back(1);
     candidateList2.push_back(2);
-    ballot1 = new Ballot(1, candidateList1);
-    ballot2 = new Ballot(2, candidateList2);
-    ballot3 = new Ballot(3, candidateList1);
-    ballot4 = new Ballot(4, candidateList2);
-    ballot5 = new Ballot(5, candidateList1);
-    ballot6 = new Ballot(6, candidateList2);
-    ballot7 = new Ballot(7, candidateList1);
-    ballot8 = new Ballot(8, candidateList2);
-    ballot9 = new Ballot(9, candidateList1);
-    ballot10 = new Ballot(10, candidateList2);
+    ballot1 = new Ballot(1, candidateList1, candidateList1);
+    ballot2 = new Ballot(2, candidateList2, candidateList2);
+    ballot3 = new Ballot(3, candidateList1, candidateList1);
+    ballot4 = new Ballot(4, candidateList2, candidateList2);
+    ballot5 = new Ballot(5, candidateList1, candidateList1);
+    ballot6 = new Ballot(6, candidateList2, candidateList2);
+    ballot7 = new Ballot(7, candidateList1, candidateList1);
+    ballot8 = new Ballot(8, candidateList2, candidateList2);
+    ballot9 = new Ballot(9, candidateList1, candidateList1);
+    ballot10 = new Ballot(10, candidateList2, candidateList2);
     candidate1 = new Candidate(1, "Allison", "Democrat");
     candidate2 = new Candidate(2, "Mark", "Independant");
   }
